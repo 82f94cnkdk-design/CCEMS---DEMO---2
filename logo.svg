@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" role="img" aria-label="Crown and Cross joined C monogram">
+  <g fill="none" stroke="#C5A15A" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <!-- crown -->
+    <path d="M72 45 L88 25 L105 44 L120 20 L135 44 L152 25 L168 45 L160 58 H80 Z"/>
+    <path d="M82 58 H158"/>
+    <!-- joined Cs -->
+    <path d="M106 78 C84 64,58 72,49 96 C40 121,55 145,80 150 C91 152,101 149,109 143"/>
+    <path d="M134 78 C156 64,182 72,191 96 C200 121,185 145,160 150 C149 152,139 149,131 143"/>
+    <!-- central cross -->
+    <path d="M120 70 V150"/>
+    <path d="M96 98 H144"/>
+  </g>
+</svg>

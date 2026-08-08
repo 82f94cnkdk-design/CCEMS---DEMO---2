@@ -1,0 +1,17 @@
+{
+  "name": "CCEMS \u2014 Crown & Cross Estate Management System",
+  "short_name": "CCEMS",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f1e6",
+  "theme_color": "#06291f",
+  "description": "Crown & Cross Organic Estate management system Phase 1 v0.3.",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
