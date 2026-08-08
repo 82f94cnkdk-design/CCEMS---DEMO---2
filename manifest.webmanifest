@@ -5,7 +5,7 @@
   "display": "standalone",
   "background_color": "#f6f1e6",
   "theme_color": "#06291f",
-  "description": "CCEMS Phase 1 v0.5 \u2014 Land, Crops & Grazing Operations.",
+  "description": "CCEMS Phase 1 v0.6 \u2014 Maintenance, Assets & Fleet Operations.",
   "icons": [
     {
       "src": "/logo.svg",
