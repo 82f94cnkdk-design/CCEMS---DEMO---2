@@ -5,7 +5,7 @@
   "display": "standalone",
   "background_color": "#f6f1e6",
   "theme_color": "#06291f",
-  "description": "CCEMS Phase 1 v0.8 \u2014 Tasks, Workflows, SOPs & Compliance Command.",
+  "description": "CCEMS Phase 1 v0.9 \u2014 Inventory, Stores, Purchasing & Supplier Operations.",
   "icons": [
     {
       "src": "/logo.svg",
