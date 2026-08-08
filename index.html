@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v0.9 Inventory, Stores, Purchasing & Supplier Operations demo">
+<meta name="description" content="CCEMS Phase 1 v0.9.1 Inventory, Stores, Purchasing & Supplier Operations demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v0.9</title>
+<title>CCEMS Phase 1 v0.9.1</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -20,12 +20,61 @@ table{width:100%;border-collapse:collapse}th{font-size:9px;letter-spacing:.09em;
 .modalBackdrop{position:fixed;inset:0;background:rgba(2,23,17,.62);display:flex;align-items:center;justify-content:center;padding:18px;z-index:20}.modal{width:min(920px,100%);max-height:92vh;overflow:auto;background:var(--paper);border-radius:15px;box-shadow:0 24px 80px rgba(0,0,0,.24);padding:23px}.modalHead{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}.modalHead h3{font-family:Georgia,serif;font-size:25px;margin:0}.close{background:none;border:0;font-size:24px;cursor:pointer;color:var(--muted)}.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0}.tabs button{border:1px solid #cdd6d1;background:white;border-radius:8px;padding:7px 10px;cursor:pointer}.tabs button.active{background:var(--g900);color:white;border-color:var(--g900)}.audit{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px}.sectionTitle{font-family:Georgia,serif;font-size:17px;margin:18px 0 8px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}.toolbar input,.toolbar select{border:1px solid #ccd6d0;border-radius:9px;padding:10px 11px;background:white}.timeline{border-left:2px solid #d6dfd8;margin-left:8px;padding-left:18px}.event{padding:8px 0 14px;position:relative}.event:before{content:"";position:absolute;left:-24px;top:14px;width:10px;height:10px;border-radius:50%;background:var(--gold)}
 .cc-logo{display:inline-flex;align-items:center;justify-content:center}.cc-logo img{display:block;width:100%;height:auto}.login-logo{width:150px;margin:0 auto 14px}.side-logo{width:54px;margin-bottom:8px}.hero-logo{width:74px;margin-bottom:14px}.top-logo{width:34px;margin-right:10px}
 @media(max-width:1050px){.kpis{grid-template-columns:repeat(3,1fr)}.grid2,.grid3{grid-template-columns:1fr}.app{grid-template-columns:215px 1fr}}@media(max-width:720px){.login{grid-template-columns:1fr}.hero{display:none}.app{grid-template-columns:1fr}.side{position:relative;height:auto}.nav{display:grid;grid-template-columns:repeat(2,1fr)}.navTitle{grid-column:1/-1}.topRight{display:none}.kpis{grid-template-columns:repeat(2,1fr)}.content{padding:18px}.top{height:64px}.top h1{font-size:22px}.head{align-items:flex-start;flex-direction:column}}
+
+/* v0.9.1 Mobile layout stabilisation */
+html,body{max-width:100%;overflow-x:hidden}
+.main,.content,.card,.panel,.grid2,.grid3,.kpis{min-width:0;max-width:100%}
+.grid2>*,.grid3>*,.kpis>*{min-width:0}
+.panel{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{max-width:100%}
+td,th{overflow-wrap:anywhere;word-break:normal}
+.top{padding-top:env(safe-area-inset-top)}
+.side{padding-top:calc(20px + env(safe-area-inset-top))}
+@media(max-width:720px){
+  body{width:100%;overflow-x:hidden}
+  .app{display:block;width:100%;max-width:100%}
+  .main{width:100%;max-width:100%}
+  .content{width:100%;max-width:100%;padding:14px 10px 28px;overflow-x:hidden}
+  .head{gap:10px;margin-bottom:14px}
+  .head h2{font-size:25px;line-height:1.1}
+  .card{width:100%;max-width:100%;border-radius:12px}
+  .panel{width:100%;max-width:100%;padding:15px;overflow-x:auto}
+  .grid2,.grid3{display:grid;grid-template-columns:minmax(0,1fr);width:100%;max-width:100%;gap:14px}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr));width:100%;max-width:100%;gap:9px}
+  .kpi{min-width:0;padding:13px}
+  .kpi .v{font-size:24px}
+  .welcome{min-height:230px;padding:18px}
+  .welcome h3{font-size:27px;line-height:1.08}
+  .top{width:100%;max-width:100%;padding-left:14px;padding-right:14px}
+  .top h1{min-width:0;font-size:20px}
+  .top-logo{flex:0 0 30px;width:30px}
+  .side{width:100%;max-width:100%}
+  .nav{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .nav button{min-width:0;white-space:normal;line-height:1.15}
+  /* Wide operational tables scroll inside their card instead of widening the whole page */
+  .panel table{width:max-content;min-width:680px;max-width:none}
+  .panel table th,.panel table td{white-space:normal;vertical-align:top}
+  .panel table th{min-width:90px}
+  .panel table td{max-width:190px}
+  .panel table th:first-child,.panel table td:first-child{min-width:130px}
+  .badge{white-space:normal;text-align:center;line-height:1.15}
+  .stat{align-items:flex-start}
+}
+@media(max-width:420px){
+  .content{padding-left:8px;padding-right:8px}
+  .panel{padding:13px}
+  .kpis{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .kpi .l{font-size:9px}
+  .kpi .v{font-size:22px}
+  .welcome h3{font-size:24px}
+}
+
 </style>
 </head>
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v0.9</div><h2>Welcome Back</h2><p class="muted">Inventory, Stores, Purchasing & Supplier Operations prototype with browser persistence on this device.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v0.9.1</div><h2>Welcome Back</h2><p class="muted">Inventory, Stores, Purchasing & Supplier Operations prototype with browser persistence on this device.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden">
  <aside class="side"><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -72,7 +121,7 @@ table{width:100%;border-collapse:collapse}th{font-size:9px;letter-spacing:.09em;
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
  </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v0.9</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v0.9.1</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
