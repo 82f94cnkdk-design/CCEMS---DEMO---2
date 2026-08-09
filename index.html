@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v1.1.23 Estate Operations Control Centre demo">
+<meta name="description" content="CCEMS Phase 1 v1.1.24 Estate Operations Control Centre demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v1.1.23</title>
+<title>CCEMS Phase 1 v1.1.24</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -878,12 +878,18 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 .dependency-row>div{display:grid;gap:3px}.dependency-row span{font-size:12px;color:var(--muted)}
 @media(max-width:720px){.dependency-row{grid-template-columns:minmax(0,1fr);gap:7px}}
 
+
+/* v1.1.24 — explicit blocker state */
+.workflow-card[data-blocked="true"]{box-shadow:inset 4px 0 0 #a86e19}
+.workflow-card[data-blocked="true"] .workflow-progress>div{opacity:.55}
+.active-blocked{font-weight:900!important}
+
 </style>
 </head>
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.23</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.24</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden"><div id="sideBackdrop" class="side-backdrop" onclick="toggleSideNav(false)"></div>
  <aside class="side" id="ccemsSideNav"><button class="side-close-btn" type="button" onclick="toggleSideNav(false)" aria-label="Close navigation">×</button><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -938,7 +944,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
  </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation">☰ <span>Menu</span></button><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.1.23</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation">☰ <span>Menu</span></button><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.1.24</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
@@ -2374,8 +2380,8 @@ function workflowDaysLate(r){
 function workflowDerivedStatus(r){
  if(!r)return "UNKNOWN";
  if(r.status==="COMPLETED")return "COMPLETED";
+ if(r.blocked===true||r.status==="BLOCKED"||workflowIsBlocked(r.id))return "BLOCKED";
  if(r.status==="AWAITING APPROVAL")return "AWAITING APPROVAL";
- if(workflowIsBlocked(r.id))return "BLOCKED";
  if(workflowDaysLate(r)>0)return "OVERDUE";
  return r.status||"IN PROGRESS"
 }
@@ -2418,7 +2424,7 @@ function workflowRunRows(rows){
     <div class="workflow-card-actions" onclick="event.stopPropagation()">
       ${!approval&&r.status!=="COMPLETED"?`<button class="wf-state-btn" onclick="workflowSetApproval('${esc(r.id)}')">Send to Approval</button>`:""}
       ${r.status!=="COMPLETED"?`<button class="wf-state-btn ${critical?"active-critical":""}" onclick="workflowSetCritical('${esc(r.id)}',${critical?"false":"true"})">${critical?"Remove Critical":"Mark Critical"}</button>`:""}
-      ${r.status!=="COMPLETED"?`<button class="wf-state-btn ${blocked?"active-blocked":""}" onclick="workflowBlockerModal('${esc(r.id)}')">${blocked?"Manage Blocker":"Add Blocker"}</button>`:""}
+      ${r.status!=="COMPLETED"?`<button class="wf-state-btn ${blocked?"active-blocked":""}" onclick="workflowBlockerModal('${esc(r.id)}')">${blocked?"Manage / Resolve Blocker":"Block Workflow"}</button>`:""}
     </div>
    </div>`
  }).join("")}</div>`
@@ -2426,6 +2432,7 @@ function workflowRunRows(rows){
 
 function workflowSetApproval(id){
  const r=workflowById(id);if(!r){alert("Workflow record could not be found.");return}
+ if(workflowDerivedStatus(r)==="BLOCKED"){alert("This workflow is blocked. Resolve blockers before sending it for approval.");return}
  r.status="AWAITING APPROVAL";
  r.approvalStatus="PENDING";
  r.progress=100;
@@ -2474,24 +2481,100 @@ function saveWorkflowDependency(id){
  if(!state.workflowDependencies.some(x=>String(x.workflowId)===String(id)&&String(x.dependsOnId)===String(dependsOnId))){
    state.workflowDependencies.unshift({id:nextId(state.workflowDependencies),workflowId:id,dependsOnId,note:val("wfDepNote"),created:new Date().toISOString()})
  }
- const r=workflowById(id);audit("ADD_DEPENDENCY","WORKFLOW_RUN",`${r?.ref||id} → ${workflowById(dependsOnId)?.ref||dependsOnId}`);save();closeModal();render("workflows")
+ const r=workflowById(id);
+ applyWorkflowBlockedState(id);
+ audit("ADD_DEPENDENCY","WORKFLOW_RUN",`${r?.ref||id} → ${workflowById(dependsOnId)?.ref||dependsOnId}`);
+ save();closeModal();render("workflows")
 }
+
+function applyWorkflowBlockedState(id){
+ const r=workflowById(id);if(!r)return;
+ if(r.status!=="BLOCKED"){
+   r.statusBeforeBlock=r.status&&r.status!=="BLOCKED"?r.status:"IN PROGRESS"
+ }
+ r.blocked=true;
+ r.status="BLOCKED"
+}
+function releaseWorkflowBlockedState(id){
+ const r=workflowById(id);if(!r)return;
+ if(workflowBlockersFor(id).length===0){
+   const unmetDependency=workflowDependenciesFor(id).some(d=>{
+     const target=workflowById(d.dependsOnId);
+     return !target||target.status!=="COMPLETED"
+   });
+   if(!unmetDependency){
+     r.blocked=false;
+     r.status=r.statusBeforeBlock&&r.statusBeforeBlock!=="BLOCKED"?r.statusBeforeBlock:"IN PROGRESS";
+     delete r.statusBeforeBlock
+   }
+ }
+}
+
 function workflowBlockerModal(id){
  const r=workflowById(id);if(!r)return;const open=workflowBlockersFor(id);
  modal(`<div class="modalHead"><div><h3>Workflow Blockers</h3><p class="muted">${esc(r.ref)} · ${esc(r.title)}</p></div><button class="close" onclick="closeModal()">×</button></div>
+ <div class="stat"><span>Workflow status</span>${badge(workflowDerivedStatus(r))}</div>
  ${open.length?`<div class="sectionTitle">Open Blockers</div>${open.map(b=>`<div class="notice"><strong>${esc(b.reason)}</strong><br><span class="muted">${esc(b.notes||"")}</span><div class="actions" style="margin-top:8px"><button class="secondary" onclick="resolveWorkflowBlocker('${esc(b.id)}','${esc(id)}')">Resolve</button></div></div>`).join("")}`:""}
  <div class="sectionTitle">Add Blocker</div><div class="field"><label>Reason</label><select id="wfBlockReason"><option>RESOURCE UNAVAILABLE</option><option>WAITING FOR SUPPLIER</option><option>WAITING FOR APPROVAL</option><option>DEPENDENT WORK INCOMPLETE</option><option>SAFETY HOLD</option><option>COMPLIANCE HOLD</option><option>OTHER</option></select></div>
  <div class="field"><label>Notes</label><textarea id="wfBlockNotes" rows="3"></textarea></div>
  <div class="actions"><button class="secondary" onclick="workflowDependencyModal('${esc(id)}')">Add Dependency Instead</button><button class="primary" onclick="saveWorkflowBlocker('${esc(id)}')">Add Blocker</button></div>`)
 }
 function saveWorkflowBlocker(id){
+ const r=workflowById(id);if(!r){alert("Workflow record could not be found.");return}
+ const reason=val("wfBlockReason"),notes=val("wfBlockNotes");
+ if(!reason){alert("Select a blocker reason.");return}
  state.workflowBlockers=state.workflowBlockers||[];
- state.workflowBlockers.unshift({id:nextId(state.workflowBlockers),workflowId:id,reason:val("wfBlockReason"),notes:val("wfBlockNotes"),status:"OPEN",created:new Date().toISOString()});
- const r=workflowById(id);audit("BLOCK","WORKFLOW_RUN",`${r?.ref||id} · ${val("wfBlockReason")}`);save();closeModal();render("workflows")
+ state.workflowBlockers.unshift({
+   id:nextId(state.workflowBlockers),
+   workflowId:String(id),
+   reason,
+   notes,
+   status:"OPEN",
+   created:new Date().toISOString(),
+   createdBy:workflowCurrentUser()
+ });
+ applyWorkflowBlockedState(id);
+ audit("BLOCK","WORKFLOW_RUN",`${r.ref} · ${reason}`);
+ save();
+ closeModal();
+ render("workflows")
 }
 function resolveWorkflowBlocker(blockerId,workflowId){
- const b=(state.workflowBlockers||[]).find(x=>String(x.id)===String(blockerId));if(!b)return;
- b.status="RESOLVED";b.resolved=new Date().toISOString();audit("RESOLVE_BLOCKER","WORKFLOW_RUN",workflowById(workflowId)?.ref||workflowId);save();closeModal();render("workflows")
+ const b=(state.workflowBlockers||[]).find(x=>String(x.id)===String(blockerId));
+ if(!b){alert("Blocker record could not be found.");return}
+ b.status="RESOLVED";
+ b.resolved=new Date().toISOString();
+ b.resolvedBy=workflowCurrentUser();
+ releaseWorkflowBlockedState(workflowId);
+ audit("RESOLVE_BLOCKER","WORKFLOW_RUN",workflowById(workflowId)?.ref||workflowId);
+ save();
+ closeModal();
+ render("workflows")
+}
+
+
+function forceReleaseWorkflowBlock(id){
+ const r=workflowById(id);if(!r)return;
+ const open=workflowBlockersFor(id);
+ if(open.length){
+   alert("Resolve the open blocker records first.");
+   return
+ }
+ const unmet=workflowDependenciesFor(id).some(d=>{
+   const target=workflowById(d.dependsOnId);
+   return !target||target.status!=="COMPLETED"
+ });
+ if(unmet){
+   alert("This workflow still has an incomplete dependency.");
+   return
+ }
+ r.blocked=false;
+ r.status=r.statusBeforeBlock&&r.statusBeforeBlock!=="BLOCKED"?r.statusBeforeBlock:"IN PROGRESS";
+ delete r.statusBeforeBlock;
+ audit("UNBLOCK","WORKFLOW_RUN",r.ref);
+ save();
+ closeModal();
+ render("workflows")
 }
 
 function workflowApprovalsView(){
