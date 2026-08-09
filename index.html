@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v1.1.22 Estate Operations Control Centre demo">
+<meta name="description" content="CCEMS Phase 1 v1.1.23 Estate Operations Control Centre demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v1.1.22</title>
+<title>CCEMS Phase 1 v1.1.23</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -883,7 +883,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.22</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.23</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden"><div id="sideBackdrop" class="side-backdrop" onclick="toggleSideNav(false)"></div>
  <aside class="side" id="ccemsSideNav"><button class="side-close-btn" type="button" onclick="toggleSideNav(false)" aria-label="Close navigation">×</button><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -938,7 +938,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
  </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation">☰ <span>Menu</span></button><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.1.22</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation">☰ <span>Menu</span></button><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.1.23</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
@@ -2341,6 +2341,44 @@ function saveSupplier(){
  audit("CREATE","SUPPLIER",val("spName"));closeModal();render("suppliers")
 }
 
+
+
+/* v1.1.23 — restored workflow runtime helper layer */
+function workflowById(id){
+ return (state.workflowRuns||[]).find(x=>String(x.id)===String(id))
+}
+function workflowCurrentUser(){
+ return state.user?.name||state.currentUser?.name||state.currentUser||"James Carter"
+}
+function workflowDependenciesFor(id){
+ return (state.workflowDependencies||[]).filter(x=>String(x.workflowId)===String(id))
+}
+function workflowBlockersFor(id){
+ return (state.workflowBlockers||[]).filter(x=>String(x.workflowId)===String(id)&&x.status!=="RESOLVED")
+}
+function workflowIsBlocked(id){
+ const deps=workflowDependenciesFor(id);
+ const unmet=deps.some(d=>{
+   const target=workflowById(d.dependsOnId);
+   return !target||target.status!=="COMPLETED"
+ });
+ return unmet||workflowBlockersFor(id).length>0
+}
+function workflowDaysLate(r){
+ if(!r||!r.due||r.status==="COMPLETED")return 0;
+ const due=new Date(String(r.due).slice(0,10)+"T23:59:59");
+ const now=new Date("2026-08-09T23:59:59");
+ if(Number.isNaN(due.getTime()))return 0;
+ return Math.max(0,Math.floor((now-due)/86400000))
+}
+function workflowDerivedStatus(r){
+ if(!r)return "UNKNOWN";
+ if(r.status==="COMPLETED")return "COMPLETED";
+ if(r.status==="AWAITING APPROVAL")return "AWAITING APPROVAL";
+ if(workflowIsBlocked(r.id))return "BLOCKED";
+ if(workflowDaysLate(r)>0)return "OVERDUE";
+ return r.status||"IN PROGRESS"
+}
 
 function renderWorkflows(v){
  setTitle("Advanced Task & Workflow Management");
