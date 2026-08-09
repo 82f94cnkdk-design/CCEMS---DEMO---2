@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v1.0.22 Estate Operations Control Centre demo">
+<meta name="description" content="CCEMS Phase 1 v1.0.23 Estate Operations Control Centre demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v1.0.22</title>
+<title>CCEMS Phase 1 v1.0.23</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -405,12 +405,79 @@ td,th{overflow-wrap:anywhere;word-break:normal}
  #executiveReportPrint .governance-level-pill{font-size:7.5px!important;padding:6px 5px!important}
 }
 
+
+/* v1.0.23 — Governance grid with exact column starts */
+#executiveReportPrint .gov-grid{width:100%;display:block}
+#executiveReportPrint .gov-row{
+ display:grid;
+ grid-template-columns:31% 29% 17% 23%;
+ align-items:start;
+ width:100%;
+ box-sizing:border-box;
+ border-bottom:1px solid var(--line);
+}
+#executiveReportPrint .gov-row>div{
+ box-sizing:border-box;
+ min-width:0;
+ padding:12px 8px;
+ text-align:left;
+}
+#executiveReportPrint .gov-head{
+ color:var(--muted);
+ font-size:9px;
+ font-weight:800;
+ letter-spacing:.11em;
+ text-transform:uppercase;
+}
+#executiveReportPrint .gov-cell{
+ font-size:12px;
+ line-height:1.25;
+ color:var(--ink);
+}
+#executiveReportPrint .gov-level{
+ display:flex;
+ justify-content:flex-start;
+ align-items:flex-start;
+}
+#executiveReportPrint .governance-level-pill{
+ display:inline-flex!important;
+ align-items:center;
+ justify-content:center;
+ min-width:86px!important;
+ max-width:100%;
+ min-height:30px!important;
+ padding:6px 8px!important;
+ border-radius:999px!important;
+ background:#eef1ef!important;
+ color:#65706a!important;
+ font-size:8px!important;
+ font-weight:800!important;
+ letter-spacing:.04em!important;
+ text-transform:uppercase!important;
+ white-space:nowrap!important;
+ line-height:1!important;
+ box-sizing:border-box!important;
+}
+@media(max-width:720px){
+ #executiveReportPrint .gov-row{
+   grid-template-columns:31% 29% 17% 23%;
+ }
+ #executiveReportPrint .gov-row>div{padding:10px 6px}
+ #executiveReportPrint .gov-head{font-size:8px}
+ #executiveReportPrint .gov-cell{font-size:11px}
+ #executiveReportPrint .governance-level-pill{
+   min-width:74px!important;
+   font-size:7px!important;
+   padding:6px 5px!important;
+ }
+}
+
 </style>
 </head>
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.0.22</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.0.23</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden">
  <aside class="side"><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -465,7 +532,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
  </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.0.22</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.0.23</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
@@ -1348,7 +1415,11 @@ function openExecutiveReport(id){
  <div class="kpis">${kpi("Animals",s.animals,"Livestock")}${kpi("Land blocks",s.land,"Managed")}${kpi("Active staff",s.activeStaff,"People")}${kpi("Open tasks",s.openTasks,"Workload")}${kpi("Open incidents",s.openIncidents,"Risk")}${kpi("Low stock",s.lowStock,"Supply")}</div>
  <section class="card panel" style="margin-top:14px"><div class="sectionTitle">Operational Position</div><div class="stat"><span>Open maintenance work orders</span><strong>${s.openWO}</strong></div><div class="stat"><span>Pending approvals</span><strong>${s.pendingApprovals}</strong></div><div class="stat"><span>Open corrective actions</span><strong>${s.openCorrective}</strong></div><div class="stat"><span>Current controlled documents</span><strong>${s.currentDocuments}</strong></div></section>
  <section class="card panel" style="margin-top:14px"><div class="sectionTitle">Management Attention</div>${(s.alerts||[]).map(a=>`<div class="warn"><strong>${esc(a.title)}</strong> · ${badge(a.severity)}<br>${esc(a.detail)}<br><span class="muted">${esc(a.module||"")}</span></div>`).join("")||'<div class="notice">No immediate management alerts.</div>'}</section>
- <div class="sectionTitle">Governance & Access Model</div><div class="governance-table-wrap"><table class="governance-table"><thead><tr><th>Role</th><th>Scope</th><th>Level</th><th>Permissions</th></tr></thead><tbody>${state.roles.map(x=>`<tr><td>${esc(x.name)}</td><td>${esc(x.scope)}</td><td><span class="governance-level-pill">${esc(x.level)}</span></td><td>${esc(x.permissions)}</td></tr>`).join("")}</tbody></table></div>
+ <div class="sectionTitle">Governance & Access Model</div>
+<div class="gov-grid">
+  <div class="gov-row gov-head"><div>Role</div><div>Scope</div><div>Level</div><div>Permissions</div></div>
+  ${state.roles.map(x=>`<div class="gov-row"><div class="gov-cell gov-role">${esc(x.name)}</div><div class="gov-cell gov-scope">${esc(x.scope)}</div><div class="gov-cell gov-level"><span class="governance-level-pill">${esc(x.level)}</span></div><div class="gov-cell gov-perms">${esc(x.permissions)}</div></div>`).join("")}
+</div>
  <p class="muted">Generated ${dateFmt(r.generated)} · ${esc(r.ref)} · ${esc(r.status)}</p></div>
  <div class="actions report-export-actions" style="margin-top:18px"><button class="secondary" onclick="closeModal()">Close</button><button class="secondary" onclick="printExecutiveReport(${id},'print')">Print</button><button class="secondary" onclick="printExecutiveReport(${id},'pdf')">Save as PDF</button><button class="primary" onclick="saveExecutiveReportExcel(${id})">Export Excel</button></div>`)
 }
