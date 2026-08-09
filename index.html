@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v1.0.5 Estate Operations Control Centre demo">
+<meta name="description" content="CCEMS Phase 1 v1.0.6 Estate Operations Control Centre demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v1.0.5</title>
+<title>CCEMS Phase 1 v1.0.6</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -74,7 +74,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.0.5</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.0.6</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden">
  <aside class="side"><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -128,7 +128,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
  </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.0.5</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.0.6</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
@@ -274,6 +274,11 @@ const defaults={
 
 
 
+
+ executiveReports:[
+ {id:1,ref:"EXR-2026-001",title:"Estate Executive Operations Report",period:"9 Aug 2026",generated:"2026-08-09",generatedBy:"James Carter",status:"FINAL",snapshot:null}
+ ],
+
  notifications:[
  {id:1,severity:"CRITICAL",title:"Medicine withdrawal active",detail:"CCJ-0048 · Crown & Cross Hope · withdrawal until 11 Aug 2026",module:"Animals",status:"OPEN",date:"2026-08-09"},
  {id:2,severity:"HIGH",title:"Organic dairy feed below reorder",detail:"FEED-JER-001 · 18 bags remaining · reorder 20",module:"Inventory",status:"OPEN",date:"2026-08-09"},
@@ -378,7 +383,7 @@ function load(){try{
  if(old){const migrated=Object.assign(clone(defaults),JSON.parse(old));migrated.notifications=clone(defaults.notifications);migrated.estateDiary=clone(defaults.estateDiary);migrated.incidents=clone(defaults.incidents);migrated.documents=clone(defaults.documents);migrated.roles=clone(defaults.roles);migrated.activityFeed=clone(defaults.activityFeed);return normaliseState(migrated)}
  return clone(defaults)
 }catch(e){return clone(defaults)}}
-function normaliseState(s){["grazing","crops","soilTests","inputs","harvests","fieldOps","assets","workOrders","inspections","fuelLogs","parts","suppliers","training","shifts","attendance","leave","ppe","taskRules","recurringTasks","checklistRuns","correctiveActions","approvals","sopAcknowledgements","complianceEvidence","inventory","stockIssues","purchaseRequisitions","purchaseOrders","goodsReceipts","procurementSuppliers","notifications","estateDiary","incidents","documents","roles","activityFeed"].forEach(k=>{if(!Array.isArray(s[k]))s[k]=clone(defaults[k])});(s.documents||[]).forEach(d=>{if(!("file" in d))d.file=null;if(!Array.isArray(d.revisions))d.revisions=[]});return s}
+function normaliseState(s){["grazing","crops","soilTests","inputs","harvests","fieldOps","assets","workOrders","inspections","fuelLogs","parts","suppliers","training","shifts","attendance","leave","ppe","taskRules","recurringTasks","checklistRuns","correctiveActions","approvals","sopAcknowledgements","complianceEvidence","inventory","stockIssues","purchaseRequisitions","purchaseOrders","goodsReceipts","procurementSuppliers","executiveReports","notifications","estateDiary","incidents","documents","roles","activityFeed"].forEach(k=>{if(!Array.isArray(s[k]))s[k]=clone(defaults[k])});(s.documents||[]).forEach(d=>{if(!("file" in d))d.file=null;if(!Array.isArray(d.revisions))d.revisions=[]});return s}
 function save(){localStorage.setItem(KEY,JSON.stringify(state))}
 function audit(action,entity,detail){state.audit.unshift({at:new Date().toISOString(),user:"James Carter",action,entity,detail});save()}
 function login(){document.getElementById("login").classList.add("hidden");document.getElementById("app").classList.remove("hidden");render("controlcentre")}
@@ -889,10 +894,64 @@ function saveDocumentEdit(){
 }
 function documentModal(){modal(`<div class="modalHead"><h3>Register Document</h3><button class="close" onclick="closeModal()">×</button></div><div class="field"><label>Title</label><input id="dcTitle"></div><div class="grid2"><div><div class="field"><label>Category</label><select id="dcCat"><option>COMPLIANCE</option><option>ANIMAL HEALTH</option><option>ORGANIC COMPLIANCE</option><option>HEALTH & SAFETY</option><option>INSURANCE</option><option>HR & TRAINING</option><option>OPERATIONS</option><option>MAINTENANCE</option><option>PROCUREMENT</option><option>FOOD SAFETY</option></select></div><div class="field"><label>Department</label><select id="dcDept">${optionsFrom(ccDepartments(),"Select department")}</select></div><div class="field"><label>Version</label><input id="dcVersion"></div></div><div><div class="field"><label>Owner</label><select id="dcOwner">${optionsFrom(ccStaff().map(s=>s.name),"Select document owner")}</select></div><div class="field"><label>Review date</label><input id="dcReview" type="date"></div><div class="field"><label>Sensitivity</label><select id="dcSens"><option>INTERNAL</option><option>CONTROLLED</option><option>CONFIDENTIAL</option></select></div></div></div><button class="primary" onclick="saveDocument()">Register Document</button>`)}
 function saveDocument(){if(!val("dcDept")){alert("Select a department.");return}if(!val("dcOwner")){alert("Select the document owner.");return}const id=nextId(state.documents),ref=`DOC-${String(id).padStart(3,"0")}`;state.documents.push({id,ref,title:val("dcTitle"),category:val("dcCat"),department:val("dcDept"),version:val("dcVersion"),owner:val("dcOwner"),review:val("dcReview"),status:"CURRENT",sensitivity:val("dcSens")});audit("CREATE","DOCUMENT",ref);closeModal();render("documents")}
+function executiveSnapshot(){
+ return {
+  generatedAt:new Date().toISOString(),
+  animals:state.animals.length,
+  land:state.land.length,
+  activeStaff:state.staff.filter(s=>s.status==="ACTIVE").length,
+  openTasks:state.tasks.filter(x=>!["DONE","COMPLETED"].includes(x.status)).length,
+  openIncidents:state.incidents.filter(i=>i.status!=="CLOSED").length,
+  openWO:state.workOrders.filter(w=>w.status!=="COMPLETED").length,
+  lowStock:state.inventory.filter(i=>Number(i.qty)<=Number(i.reorder)).length,
+  pendingApprovals:state.approvals.filter(a=>a.status==="PENDING").length+state.purchaseRequisitions.filter(r=>r.status==="PENDING").length,
+  openCorrective:state.correctiveActions.filter(c=>c.status!=="CLOSED").length,
+  currentDocuments:state.documents.filter(d=>d.status==="CURRENT").length,
+  alerts:globalAlerts().slice(0,12).map(a=>({severity:a.severity,title:a.title,detail:a.detail,module:a.module}))
+ }
+}
 function renderReports(v){
  setTitle("Executive Reports");
- const openTasks=state.tasks.filter(x=>!["DONE","COMPLETED"].includes(x.status)).length,low=state.inventory.filter(i=>Number(i.qty)<=Number(i.reorder)).length;
- v.innerHTML=`<div class="head"><div><h2>Executive Estate Report</h2><p>Phase 1 management summary across operations, people, compliance and resources.</p></div><button class="secondary" onclick="window.print()">Print / Save PDF</button></div><div class="kpis">${kpi("Animals",state.animals.length,"Livestock register")}${kpi("Land blocks",state.land.length,"Managed")}${kpi("Active staff",state.staff.filter(s=>s.status==="ACTIVE").length,"People")}${kpi("Open tasks",openTasks,"Workload")}${kpi("Open incidents",state.incidents.filter(i=>i.status!=="CLOSED").length,"Risk")}${kpi("Low stock",low,"Supply")}</div><div class="grid2"><section class="card panel"><h3>Operational Position</h3><div class="stat"><span>Open maintenance work orders</span><strong>${state.workOrders.filter(w=>w.status!=="COMPLETED").length}</strong></div><div class="stat"><span>Pending approvals</span><strong>${state.approvals.filter(a=>a.status==="PENDING").length+state.purchaseRequisitions.filter(r=>r.status==="PENDING").length}</strong></div><div class="stat"><span>Open corrective actions</span><strong>${state.correctiveActions.filter(c=>c.status!=="CLOSED").length}</strong></div><div class="stat"><span>Current documents</span><strong>${state.documents.filter(d=>d.status==="CURRENT").length}</strong></div></section><section class="card panel"><h3>Governance & Access Model</h3>${simpleTable(["Role","Scope","Level","Permissions"],state.roles.map(r=>[esc(r.name),esc(r.scope),badge(r.level),esc(r.permissions)]))}</section></div><section class="card panel" style="margin-top:17px"><h3>Management Attention</h3>${globalAlerts().slice(0,10).map(a=>`<div class="warn"><strong>${esc(a.title)}</strong> · ${badge(a.severity)}<br>${esc(a.detail)}</div>`).join("")||'<div class="notice">No immediate management alerts.</div>'}</section>`
+ const reps=state.executiveReports||[];
+ v.innerHTML=`<div class="head"><div><h2>Executive Reports</h2><p>Generate, retain and open formal estate management reports.</p></div><button class="primary" onclick="executiveReportModal()">+ Generate Report</button></div>
+ <div class="kpis">${kpi("Generated reports",reps.length,"Executive archive")}${kpi("Final",reps.filter(r=>r.status==="FINAL").length,"Issued")}${kpi("Open alerts",globalAlerts().length,"Current estate position")}${kpi("Pending approvals",state.approvals.filter(a=>a.status==="PENDING").length+state.purchaseRequisitions.filter(r=>r.status==="PENDING").length,"Awaiting decision")}</div>
+ <section class="card panel"><table><thead><tr><th>Reference</th><th>Report</th><th>Period</th><th>Generated</th><th>Prepared by</th><th>Status</th><th>Open</th></tr></thead><tbody>${reps.map(r=>`<tr class="clickable" onclick="openExecutiveReport(${r.id})"><td><strong>${esc(r.ref)}</strong></td><td>${esc(r.title)}</td><td>${esc(r.period)}</td><td>${dateFmt(r.generated)}</td><td>${esc(r.generatedBy)}</td><td>${badge(r.status)}</td><td><button class="primary" onclick="event.stopPropagation();openExecutiveReport(${r.id})">Open Report</button></td></tr>`).join("")}</tbody></table></section>`
+}
+function executiveReportModal(){
+ modal(`<div class="modalHead"><div><h3>Generate Executive Report</h3><p class="muted">Create a locked management snapshot from current CCEMS data.</p></div><button class="close" onclick="closeModal()">×</button></div>
+ <div class="field"><label>Report title</label><input id="erTitle" value="Estate Executive Operations Report"></div>
+ <div class="field"><label>Reporting period</label><input id="erPeriod" value="9 Aug 2026"></div>
+ <div class="field"><label>Prepared by</label><select id="erBy">${optionsFrom(ccStaff().map(s=>s.name),"Select report preparer")}</select></div>
+ <div class="field"><label>Status</label><select id="erStatus"><option>FINAL</option><option>DRAFT</option></select></div>
+ <div class="notice">The report captures a snapshot of current KPIs, alerts, approvals, incidents, maintenance, stock and governance at the moment it is generated.</div>
+ <button class="primary" onclick="generateExecutiveReport()">Generate Report</button>`)
+}
+function generateExecutiveReport(){
+ if(!val("erBy")){alert("Select who prepared the report.");return}
+ const id=nextId(state.executiveReports),ref=`EXR-2026-${String(id).padStart(3,"0")}`;
+ const snap=executiveSnapshot();
+ state.executiveReports.unshift({id,ref,title:val("erTitle"),period:val("erPeriod"),generated:new Date().toISOString().slice(0,10),generatedBy:val("erBy"),status:val("erStatus"),snapshot:snap});
+ audit("GENERATE","EXECUTIVE_REPORT",ref);save();closeModal();openExecutiveReport(id)
+}
+function openExecutiveReport(id){
+ const r=state.executiveReports.find(x=>x.id===id);if(!r)return;
+ const s=r.snapshot||executiveSnapshot();
+ modal(`<div class="modalHead"><div><h3>${esc(r.ref)} · ${esc(r.title)}</h3><p class="muted">${esc(r.period)} · Prepared by ${esc(r.generatedBy)}</p></div><button class="close" onclick="closeModal()">×</button></div>
+ <div id="executiveReportPrint"><div class="sectionTitle">Executive Summary</div>
+ <div class="kpis">${kpi("Animals",s.animals,"Livestock")}${kpi("Land blocks",s.land,"Managed")}${kpi("Active staff",s.activeStaff,"People")}${kpi("Open tasks",s.openTasks,"Workload")}${kpi("Open incidents",s.openIncidents,"Risk")}${kpi("Low stock",s.lowStock,"Supply")}</div>
+ <div class="grid2"><section><div class="stat"><span>Open maintenance work orders</span><strong>${s.openWO}</strong></div><div class="stat"><span>Pending approvals</span><strong>${s.pendingApprovals}</strong></div><div class="stat"><span>Open corrective actions</span><strong>${s.openCorrective}</strong></div><div class="stat"><span>Current controlled documents</span><strong>${s.currentDocuments}</strong></div></section>
+ <section><div class="sectionTitle">Management Attention</div>${(s.alerts||[]).map(a=>`<div class="warn"><strong>${esc(a.title)}</strong> · ${badge(a.severity)}<br>${esc(a.detail)}<br><span class="muted">${esc(a.module||"")}</span></div>`).join("")||'<div class="notice">No immediate management alerts.</div>'}</section></div>
+ <div class="sectionTitle">Governance & Access Model</div>${simpleTable(["Role","Scope","Level","Permissions"],state.roles.map(x=>[esc(x.name),esc(x.scope),badge(x.level),esc(x.permissions)]))}
+ <p class="muted">Generated ${dateFmt(r.generated)} · ${esc(r.ref)} · ${esc(r.status)}</p></div>
+ <div class="actions" style="margin-top:18px"><button class="secondary" onclick="closeModal()">Close</button><button class="primary" onclick="printExecutiveReport(${id})">Print / Save PDF</button></div>`)
+}
+function printExecutiveReport(id){
+ const r=state.executiveReports.find(x=>x.id===id),content=document.getElementById("executiveReportPrint")?.innerHTML;
+ if(!r||!content)return;
+ const w=window.open("","_blank");
+ if(!w){alert("Your browser blocked the report window. Allow pop-ups for CCEMS and try again.");return}
+ w.document.write(`<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(r.ref)} Executive Report</title><style>body{font-family:Arial,sans-serif;color:#173329;padding:28px;max-width:1000px;margin:auto}h1,h2,h3{font-family:Georgia,serif;color:#0b3529}.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.kpi,.warn,.notice{border:1px solid #dde4de;border-radius:10px;padding:12px;margin:8px 0}.stat{display:flex;justify-content:space-between;border-bottom:1px solid #dde4de;padding:10px 0}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}table{width:100%;border-collapse:collapse}th,td{padding:9px;border-bottom:1px solid #ddd;text-align:left}.badge{font-size:11px;font-weight:bold}@media(max-width:650px){.kpis,.grid2{grid-template-columns:1fr 1fr}}@media print{button{display:none}}</style></head><body><h1>Crown & Cross Organic Estate</h1><h2>${esc(r.title)}</h2><p><strong>${esc(r.ref)}</strong> · ${esc(r.period)} · Prepared by ${esc(r.generatedBy)}</p>${content}</body></html>`);
+ w.document.close();setTimeout(()=>w.print(),300)
 }
 
 function inventoryItem(sku){return state.inventory.find(i=>i.sku===sku)}
