@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v1.0.9 Estate Operations Control Centre demo">
+<meta name="description" content="CCEMS Phase 1 v1.0.10 Estate Operations Control Centre demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v1.0.9</title>
+<title>CCEMS Phase 1 v1.0.10</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -99,7 +99,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.0.9</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.0.10</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden">
  <aside class="side"><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -154,7 +154,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
  </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.0.9</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.0.10</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
@@ -301,6 +301,10 @@ const defaults={
 
 
 
+
+ permissionOverrides:[
+ ],
+
  executiveReports:[
  {id:1,ref:"EXR-2026-001",title:"Estate Executive Operations Report",period:"9 Aug 2026",generated:"2026-08-09",generatedBy:"James Carter",status:"FINAL",snapshot:null}
  ],
@@ -409,7 +413,7 @@ function load(){try{
  if(old){const migrated=Object.assign(clone(defaults),JSON.parse(old));migrated.notifications=clone(defaults.notifications);migrated.estateDiary=clone(defaults.estateDiary);migrated.incidents=clone(defaults.incidents);migrated.documents=clone(defaults.documents);migrated.roles=clone(defaults.roles);migrated.activityFeed=clone(defaults.activityFeed);return normaliseState(migrated)}
  return clone(defaults)
 }catch(e){return clone(defaults)}}
-function normaliseState(s){["grazing","crops","soilTests","inputs","harvests","fieldOps","assets","workOrders","inspections","fuelLogs","parts","suppliers","training","shifts","attendance","leave","ppe","taskRules","recurringTasks","checklistRuns","correctiveActions","approvals","sopAcknowledgements","complianceEvidence","inventory","stockIssues","purchaseRequisitions","purchaseOrders","goodsReceipts","procurementSuppliers","executiveReports","notifications","estateDiary","incidents","documents","roles","activityFeed"].forEach(k=>{if(!Array.isArray(s[k]))s[k]=clone(defaults[k])});(s.documents||[]).forEach(d=>{if(!("file" in d))d.file=null;if(!Array.isArray(d.revisions))d.revisions=[]});return s}
+function normaliseState(s){["grazing","crops","soilTests","inputs","harvests","fieldOps","assets","workOrders","inspections","fuelLogs","parts","suppliers","training","shifts","attendance","leave","ppe","taskRules","recurringTasks","checklistRuns","correctiveActions","approvals","sopAcknowledgements","complianceEvidence","inventory","stockIssues","purchaseRequisitions","purchaseOrders","goodsReceipts","procurementSuppliers","permissionOverrides","executiveReports","notifications","estateDiary","incidents","documents","roles","activityFeed"].forEach(k=>{if(!Array.isArray(s[k]))s[k]=clone(defaults[k])});(s.documents||[]).forEach(d=>{if(!("file" in d))d.file=null;if(!Array.isArray(d.revisions))d.revisions=[]});return s}
 function save(){localStorage.setItem(KEY,JSON.stringify(state))}
 function audit(action,entity,detail){state.audit.unshift({at:new Date().toISOString(),user:"James Carter",action,entity,detail});save()}
 function login(){document.getElementById("login").classList.add("hidden");document.getElementById("app").classList.remove("hidden");render("controlcentre")}
@@ -1013,45 +1017,84 @@ function printExecutiveReport(id){
 
 
 function rolePermissionMatrix(){
- return [
-  {permission:"View Estate Command",director:"YES",manager:"YES",department:"YES",operative:"LIMITED",auditor:"YES"},
-  {permission:"Create / Edit Operational Records",director:"YES",manager:"YES",department:"OWN DEPT",operative:"ASSIGNED",auditor:"NO"},
-  {permission:"Assign Tasks",director:"YES",manager:"YES",department:"OWN DEPT",operative:"NO",auditor:"NO"},
-  {permission:"Approve Workflows / Purchasing",director:"YES",manager:"YES",department:"REQUEST ONLY",operative:"NO",auditor:"NO"},
-  {permission:"View HR / Personnel Records",director:"YES",manager:"YES",department:"OWN TEAM",operative:"SELF",auditor:"CONTROLLED"},
-  {permission:"View Controlled Documents",director:"YES",manager:"YES",department:"OWN SCOPE",operative:"ASSIGNED",auditor:"YES"},
-  {permission:"Upload / Replace Controlled Documents",director:"YES",manager:"YES",department:"OWN SCOPE",operative:"NO",auditor:"NO"},
-  {permission:"Generate Executive Reports",director:"YES",manager:"YES",department:"NO",operative:"NO",auditor:"VIEW ONLY"},
-  {permission:"Close Corrective Actions",director:"YES",manager:"YES",department:"OWN SCOPE",operative:"NO",auditor:"NO"},
-  {permission:"User / Role Administration",director:"YES",manager:"LIMITED",department:"NO",operative:"NO",auditor:"NO"},
-  {permission:"Audit History",director:"YES",manager:"YES",department:"OWN SCOPE",operative:"OWN ACTIONS",auditor:"YES"}
- ]
+ const base=[
+  {key:"estate_command",permission:"View Estate Command",director:"YES",manager:"YES",department:"YES",operative:"LIMITED",auditor:"YES"},
+  {key:"operational_records",permission:"Create / Edit Operational Records",director:"YES",manager:"YES",department:"OWN DEPT",operative:"ASSIGNED ONLY",auditor:"NO"},
+  {key:"assign_tasks",permission:"Assign Tasks",director:"YES",manager:"YES",department:"OWN DEPT",operative:"NO",auditor:"NO"},
+  {key:"approve_workflows",permission:"Approve Workflows / Purchasing",director:"YES",manager:"YES",department:"REQUEST ONLY",operative:"NO",auditor:"NO"},
+  {key:"hr_records",permission:"View HR / Personnel Records",director:"YES",manager:"YES",department:"OWN TEAM",operative:"SELF ONLY",auditor:"CONTROLLED"},
+  {key:"controlled_docs_view",permission:"View Controlled Documents",director:"YES",manager:"YES",department:"OWN SCOPE",operative:"ASSIGNED ONLY",auditor:"YES"},
+  {key:"controlled_docs_manage",permission:"Upload / Replace Controlled Documents",director:"YES",manager:"YES",department:"OWN SCOPE",operative:"NO",auditor:"NO"},
+  {key:"executive_reports",permission:"Generate Executive Reports",director:"YES",manager:"YES",department:"NO",operative:"NO",auditor:"VIEW ONLY"},
+  {key:"corrective_close",permission:"Close Corrective Actions",director:"YES",manager:"YES",department:"OWN SCOPE",operative:"NO",auditor:"NO"},
+  {key:"role_admin",permission:"User / Role Administration",director:"YES",manager:"LIMITED",department:"NO",operative:"NO",auditor:"NO"},
+  {key:"audit_history",permission:"Audit History",director:"YES",manager:"YES",department:"OWN SCOPE",operative:"OWN ACTIONS",auditor:"YES"}
+ ];
+ const fields=["director","manager","department","operative","auditor"];
+ base.forEach(row=>fields.forEach(field=>{
+   const o=(state.permissionOverrides||[]).find(x=>x.permissionKey===row.key&&x.roleKey===field);
+   if(o)row[field]=o.value
+ }));
+ return base
+}
+function roleKeyLabel(k){return ({director:"Estate Director",manager:"Estate Manager",department:"Department Manager",operative:"Operative",auditor:"Auditor / Read Only"})[k]||k}
+function permissionTone(v){
+ const x=String(v||"").toUpperCase();
+ if(x==="NO")return "BLOCKED";
+ if(["YES","FULL"].includes(x))return "CLEARED";
+ if(x.includes("VIEW"))return "READ ONLY";
+ return x
 }
 function renderAccessModel(v){
  setTitle("Roles & Access");
  const matrix=rolePermissionMatrix();
- v.innerHTML=`<div class="head"><div><h2>Roles & Access Model</h2><p>Phase 1 access-control model for estate leadership, managers, operatives and auditors.</p></div></div>
- <div class="kpis">${kpi("Defined roles",state.roles.length,"Access profiles")}${kpi("Executive roles",state.roles.filter(r=>r.level==="EXECUTIVE").length,"Estate-wide")}${kpi("Manager roles",state.roles.filter(r=>r.level==="MANAGER").length,"Operational control")}${kpi("Read-only roles",state.roles.filter(r=>r.level==="READ_ONLY").length,"Audit access")}</div>
+ v.innerHTML=`<div class="head"><div><h2>Roles & Access Model</h2><p>Tap any permission cell to inspect or amend the Phase 1 access rule.</p></div></div>
+ <div class="kpis">${kpi("Defined roles",state.roles.length,"Access profiles")}${kpi("Permission rules",matrix.length*5,"Role × permission controls")}${kpi("Amendments",(state.permissionOverrides||[]).length,"Saved overrides")}${kpi("Read-only roles",state.roles.filter(r=>r.level==="READ_ONLY").length,"Audit access")}</div>
  <div class="grid2"><section class="card panel"><h3>Role Profiles</h3>${state.roles.map(r=>`<div class="activity clickable" onclick="roleDetail(${r.id})"><strong>${esc(r.name)}</strong> · ${badge(r.level)}<br><span>${esc(r.scope)}</span><br><span class="muted">${esc(r.permissions)}</span><div class="muted" style="margin-top:6px;font-size:12px">Tap to open role</div></div>`).join("")}</section>
- <section class="card panel"><h3>Access Principles</h3><div class="notice"><strong>Least privilege</strong><br>Staff should only receive the access required for their responsibilities.</div><div class="notice"><strong>Department scope</strong><br>Department managers are limited to their own operational area unless explicitly elevated.</div><div class="notice"><strong>Segregation of duties</strong><br>Requesting, approving and receiving should be separated where practical.</div><div class="notice"><strong>Auditability</strong><br>Access-sensitive actions should be recorded in Audit History.</div></section></div>
- <section class="card panel" style="margin-top:17px"><h3>Permissions Matrix</h3><table><thead><tr><th>Permission</th><th>Estate Director</th><th>Estate Manager</th><th>Department Manager</th><th>Operative</th><th>Auditor</th></tr></thead><tbody>${matrix.map(m=>`<tr><td><strong>${esc(m.permission)}</strong></td><td>${badge(m.director)}</td><td>${badge(m.manager)}</td><td>${badge(m.department)}</td><td>${badge(m.operative)}</td><td>${badge(m.auditor)}</td></tr>`).join("")}</tbody></table></section>`
+ <section class="card panel"><h3>Access Principles</h3><div class="notice"><strong>Least privilege</strong><br>Staff receive only the access required for their responsibilities.</div><div class="notice"><strong>Department scope</strong><br>Department managers are limited to their own operational area unless explicitly elevated.</div><div class="notice"><strong>Segregation of duties</strong><br>Requesting, approving and receiving should be separated where practical.</div><div class="notice"><strong>Auditability</strong><br>Every permission amendment is written to Audit History.</div></section></div>
+ <section class="card panel" style="margin-top:17px"><h3>Editable Permissions Matrix</h3><div class="notice">Tap any permission value to open it. Changes in this browser prototype alter the access model and are persisted on this device.</div><table><thead><tr><th>Permission</th><th>Estate Director</th><th>Estate Manager</th><th>Department Manager</th><th>Operative</th><th>Auditor</th></tr></thead><tbody>${matrix.map(m=>`<tr><td class="clickable" onclick="permissionRowDetail('${m.key}')"><strong>${esc(m.permission)}</strong><br><span class="muted">Tap for permission detail</span></td>${["director","manager","department","operative","auditor"].map(k=>`<td class="clickable" onclick="permissionCellModal('${m.key}','${k}')">${badge(permissionTone(m[k]))}<br><span class="muted">${esc(m[k])}</span></td>`).join("")}</tr>`).join("")}</tbody></table></section>`
+}
+function permissionRowDetail(key){
+ const row=rolePermissionMatrix().find(x=>x.key===key);if(!row)return;
+ modal(`<div class="modalHead"><div><h3>${esc(row.permission)}</h3><p class="muted">Permission Rule</p></div><button class="close" onclick="closeModal()">×</button></div>
+ ${simpleTable(["Role","Current access","Edit"],["director","manager","department","operative","auditor"].map(k=>[esc(roleKeyLabel(k)),badge(permissionTone(row[k])),`<button class="primary" onclick="permissionCellModal('${key}','${k}')">Amend</button>`]))}
+ <div class="actions" style="margin-top:18px"><button class="secondary" onclick="closeModal()">Close</button></div>`)
+}
+function permissionCellModal(permissionKey,roleKey){
+ const row=rolePermissionMatrix().find(x=>x.key===permissionKey);if(!row)return;
+ const current=row[roleKey];
+ const values=["YES","NO","LIMITED","OWN DEPT","OWN TEAM","OWN SCOPE","ASSIGNED ONLY","SELF ONLY","REQUEST ONLY","VIEW ONLY","CONTROLLED","OWN ACTIONS"];
+ modal(`<div class="modalHead"><div><h3>Amend Permission</h3><p class="muted">${esc(row.permission)} · ${esc(roleKeyLabel(roleKey))}</p></div><button class="close" onclick="closeModal()">×</button></div>
+ <input type="hidden" id="pmKey" value="${esc(permissionKey)}"><input type="hidden" id="pmRole" value="${esc(roleKey)}">
+ <div class="stat"><span>Current access</span>${badge(permissionTone(current))}</div>
+ <div class="field"><label>Access level</label><select id="pmValue">${values.map(v=>`<option value="${esc(v)}" ${v===current?"selected":""}>${esc(v)}</option>`).join("")}</select></div>
+ <div class="field"><label>Reason for amendment</label><textarea id="pmReason" placeholder="Why is this access level being changed?"></textarea></div>
+ <div class="field"><label>Authorised by</label><select id="pmBy">${optionsFrom(ccStaff().map(s=>s.name),"Select authorising staff member")}</select></div>
+ <div class="warn">Production CCEMS will require privileged authentication and server-side authorisation before changing role permissions.</div>
+ <button class="primary" onclick="savePermissionOverride()">Save Permission</button>`)
+}
+function savePermissionOverride(){
+ const key=val("pmKey"),role=val("pmRole"),value=val("pmValue"),reason=val("pmReason"),by=val("pmBy");
+ if(!by){alert("Select who authorised this permission amendment.");return}
+ if(!reason.trim()){alert("Enter a reason for the permission amendment.");return}
+ state.permissionOverrides=state.permissionOverrides||[];
+ let o=state.permissionOverrides.find(x=>x.permissionKey===key&&x.roleKey===role);
+ if(o){o.value=value;o.reason=reason;o.authorisedBy=by;o.updated=new Date().toISOString()}
+ else state.permissionOverrides.push({id:nextId(state.permissionOverrides),permissionKey:key,roleKey:role,value,reason,authorisedBy:by,updated:new Date().toISOString()});
+ audit("UPDATE","ROLE_PERMISSION",`${roleKeyLabel(role)} · ${key} · ${value} · authorised by ${by}`);
+ save();closeModal();render("access")
 }
 function roleDetail(id){
  const r=state.roles.find(x=>x.id===id);if(!r)return;
- const users=state.staff.filter(s=>{
-   if(r.name==="Estate Manager")return /manager/i.test(s.role||"");
-   if(r.name==="Department Manager")return /supervisor|head|manager/i.test(s.role||"")&&!/estate manager/i.test(s.role||"");
-   return false
- });
+ const roleMap={"Estate Director":"director","Estate Manager":"manager","Department Manager":"department","Operative":"operative","Auditor / Read Only":"auditor"};
+ const rk=roleMap[r.name];
+ const matrix=rolePermissionMatrix();
  modal(`<div class="modalHead"><div><h3>${esc(r.name)}</h3><p class="muted">${esc(r.level)} · ${esc(r.scope)}</p></div><button class="close" onclick="closeModal()">×</button></div>
- <div class="stat"><span>Access level</span>${badge(r.level)}</div>
- <div class="stat"><span>Scope</span><strong>${esc(r.scope)}</strong></div>
- <div class="sectionTitle">Permission Summary</div><div class="notice">${esc(r.permissions)}</div>
- <div class="sectionTitle">Example Assigned Staff</div>${users.length?simpleTable(["Employee","Name","Role","Department"],users.map(s=>[esc(s.no),esc(s.name),esc(s.role),esc(s.dept||s.department||"—")])):'<div class="notice">No staff are explicitly mapped to this role in the browser prototype.</div>'}
- <div class="warn" style="margin-top:14px">Phase 1 currently models access roles in the browser. Production CCEMS must enforce these permissions server-side with authenticated user accounts and MFA.</div>
+ <div class="stat"><span>Access level</span>${badge(r.level)}</div><div class="stat"><span>Scope</span><strong>${esc(r.scope)}</strong></div>
+ <div class="sectionTitle">Role Permissions</div>${rk?simpleTable(["Permission","Access","Amend"],matrix.map(m=>[esc(m.permission),badge(permissionTone(m[rk])),`<button class="primary" onclick="permissionCellModal('${m.key}','${rk}')">Amend</button>`])):'<div class="notice">No matrix mapping recorded for this role.</div>'}
+ <div class="warn" style="margin-top:14px">Phase 1 models role permissions in the browser. Production enforcement must be server-side with authenticated user accounts, MFA and privileged-access controls.</div>
  <div class="actions" style="margin-top:18px"><button class="secondary" onclick="closeModal()">Close</button></div>`)
 }
-
 function inventoryItem(sku){return state.inventory.find(i=>i.sku===sku)}
 function inventoryAlerts(){
  let a=[];
