@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v1.1.10 Estate Operations Control Centre demo">
+<meta name="description" content="CCEMS Phase 1 v1.1.11 Estate Operations Control Centre demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v1.1.10</title>
+<title>CCEMS Phase 1 v1.1.11</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -699,12 +699,29 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 .diary-entry-time,.diary-entry-main,.diary-entry-status{display:grid;gap:4px}.diary-entry-time span,.diary-entry-main span,.diary-entry-status>span{font-size:12px;color:var(--muted)}.diary-entry-status{text-align:right;justify-items:end}.dash-open{margin-left:auto;color:var(--g800)!important;font-weight:800}
 @media(max-width:720px){.diary-entry-card{grid-template-columns:78px minmax(0,1fr) 84px;gap:8px;padding:13px 0}.diary-entry-status .badge{font-size:9px}}
 
+
+/* v1.1.11 — clear module exit/navigation */
+.page-back-row{display:flex;align-items:center;margin-bottom:12px}
+.page-back-btn{
+ display:inline-flex;align-items:center;justify-content:center;
+ min-height:42px;padding:0 14px;border:1px solid var(--line);
+ border-radius:10px;background:var(--paper);color:var(--g900);
+ font-weight:800;cursor:pointer
+}
+.page-back-btn:active{transform:scale(.99)}
+@media(max-width:720px){
+ .page-back-row{margin-bottom:10px}
+ .page-back-btn{width:100%;justify-content:flex-start}
+ .diary-entry-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+ .diary-entry-actions .primary{grid-column:1/-1}
+}
+
 </style>
 </head>
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.10</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.11</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden"><div id="sideBackdrop" class="side-backdrop" onclick="toggleSideNav(false)"></div>
  <aside class="side" id="ccemsSideNav"><button class="side-close-btn" type="button" onclick="toggleSideNav(false)" aria-label="Close navigation">×</button><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -759,7 +776,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
  </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation">☰ <span>Menu</span></button><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.1.10</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation">☰ <span>Menu</span></button><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.1.11</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
@@ -1545,7 +1562,7 @@ function controlApprove(src,id){if(src==="workflow"){const a=state.approvals.fin
 function renderDiary(v){
  setTitle("Estate Diary");
  const rows=[...(state.estateDiary||[])].sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
- v.innerHTML=`<div class="head"><div><h2>Estate Diary</h2><p>Cross-department operational calendar and estate commitments.</p></div><button class="primary" onclick="diaryModal()">+ Diary Entry</button></div>
+ v.innerHTML=`<div class="page-back-row"><button class="page-back-btn" onclick="render('dashboard')">← Back to Estate Dashboard</button></div><div class="head"><div><h2>Estate Diary</h2><p>Cross-department operational calendar and estate commitments.</p></div><button class="primary" onclick="diaryModal()">+ Diary Entry</button></div>
  <section class="card panel"><div class="diary-list">${rows.map(d=>`<button class="diary-entry-card" onclick="openDiaryEntry(${d.id})"><div class="diary-entry-time"><strong>${esc(d.time)}</strong><span>${dateFmt(d.date)}</span></div><div class="diary-entry-main"><strong>${esc(d.title)}</strong><span>${esc(d.department)} · ${esc(d.owner)}</span></div><div class="diary-entry-status">${badge(d.status)}<span>Open ›</span></div></button>`).join("")||'<div class="notice">No diary entries recorded.</div>'}</div></section>`
 }
 function openDiaryEntry(id){
@@ -1556,7 +1573,7 @@ function openDiaryEntry(id){
  <div class="stat"><span>Type</span>${badge(d.type||"ACTIVITY")}</div>
  <div class="stat"><span>Status</span>${badge(d.status||"SCHEDULED")}</div>
  <div class="sectionTitle">Diary Control</div>
- <div class="actions"><button class="secondary" onclick="closeModal()">Close</button><button class="primary" onclick="editDiaryEntry(${d.id})">Amend Entry</button></div>`)
+ <div class="actions diary-entry-actions"><button class="secondary" onclick="closeModal()">Close</button><button class="secondary" onclick="closeModal();render('dashboard')">Back to Dashboard</button><button class="primary" onclick="editDiaryEntry(${d.id})">Amend Entry</button></div>`)
 }
 function editDiaryEntry(id){
  const d=(state.estateDiary||[]).find(x=>x.id===id);if(!d)return;
