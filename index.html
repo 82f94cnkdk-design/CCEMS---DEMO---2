@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v1.1.32 Estate Operations Control Centre demo">
+<meta name="description" content="CCEMS Phase 1 v1.1.33 Estate Operations Control Centre demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v1.1.32</title>
+<title>CCEMS Phase 1 v1.1.33</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -879,13 +879,13 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 @media(max-width:720px){.dependency-row{grid-template-columns:minmax(0,1fr);gap:7px}}
 
 
-/* v1.1.32 — explicit blocker state */
+/* v1.1.33 — explicit blocker state */
 .workflow-card[data-blocked="true"]{box-shadow:inset 4px 0 0 #a86e19}
 .workflow-card[data-blocked="true"] .workflow-progress>div{opacity:.55}
 .active-blocked{font-weight:900!important}
 
 
-/* v1.1.32 — controlled step execution & workflow timeline */
+/* v1.1.33 — controlled step execution & workflow timeline */
 .step-evidence-card{border:1px solid #d8ded8;border-radius:18px;padding:16px;margin:10px 0;background:#fffdf8;text-align:left;width:100%}
 .step-evidence-card strong{display:block;color:#123f32;margin-bottom:5px}
 .step-evidence-card small{display:block;color:#6d7772;line-height:1.45}
@@ -896,7 +896,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 .workflow-timeline-item span{margin-top:3px}.workflow-timeline-item small{color:#727b77;margin-top:4px}
 .step-control-note{padding:12px 14px;border-radius:14px;background:#eef5ef;margin:10px 0;color:#234b3d}
 
-/* v1.1.32 — SLA & due-date control */
+/* v1.1.33 — SLA & due-date control */
 .sla-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
 .sla-strip button{border:1px solid var(--line);border-radius:14px;background:#fff;padding:13px;text-align:left;color:var(--ink);cursor:pointer}
 .sla-strip span{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:800}
@@ -908,18 +908,18 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 @media(max-width:720px){.sla-strip{grid-template-columns:1fr 1fr}}
 
 
-/* v1.1.32 — workflow drill-down & zero-state UX */
+/* v1.1.33 — workflow drill-down & zero-state UX */
 .sla-strip button.zero-state,.workflow-kpis button.zero-state,.workflow-command-strip button.zero-state{opacity:.58;cursor:default}
 .workflow-zero{border:1px solid #d8e3d9;background:#eef6ef;border-radius:14px;padding:16px;color:#315b48;margin-top:12px}
 .workflow-result-head{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
 .workflow-result-count{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:800}
 
 
-/* v1.1.32 — clearer workflow history actor attribution */
+/* v1.1.33 — clearer workflow history actor attribution */
 .workflow-timeline-item small b{color:var(--g900);font-weight:800}
 
 
-/* v1.1.32 — controlled workflow evidence attachments */
+/* v1.1.33 — controlled workflow evidence attachments */
 .evidence-upload{border:1px dashed #aebdb4;border-radius:16px;padding:14px;background:#fbfcf9;margin-top:8px}
 .evidence-upload input[type=file]{width:100%;font-size:15px}
 .evidence-upload-help{display:block;color:#6d7772;font-size:13px;line-height:1.45;margin-top:7px}
@@ -930,7 +930,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 .evidence-file small{color:#6d7772;margin-top:3px}
 
 
-/* v1.1.32 — iPhone-native photo/document evidence pickers */
+/* v1.1.33 — iPhone-native photo/document evidence pickers */
 .evidence-picker-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .evidence-picker-btn{display:grid;grid-template-columns:auto 1fr;gap:2px 9px;align-items:center;border:1px solid #b8c6bd;border-radius:13px;background:#fff;padding:13px;cursor:pointer;color:var(--g900);touch-action:manipulation}
 .evidence-picker-btn>span{grid-row:1/3;font-size:22px}
@@ -942,7 +942,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 @media(max-width:520px){.evidence-picker-grid{grid-template-columns:1fr}.evidence-picker-btn{min-height:58px}}
 
 
-/* v1.1.32 — universal CCEMS evidence upload standard */
+/* v1.1.33 — universal CCEMS evidence upload standard */
 .ccems-evidence-widget{margin-top:12px;border:1px solid #d6ded8;border-radius:15px;padding:13px;background:#fbfcf9}
 .ccems-evidence-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
 .ccems-evidence-title strong{color:var(--g900)}.ccems-evidence-title span{font-size:11px;color:var(--muted)}
@@ -954,7 +954,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 .ccems-evidence-selected-count{font-size:12px;font-weight:800;color:var(--g800);padding:5px 0}
 
 
-/* v1.1.32 — persistent evidence viewing */
+/* v1.1.33 — persistent evidence viewing */
 .ccems-evidence-openable{cursor:pointer}
 .ccems-evidence-openable:active{background:#f2f6f2}
 .evidence-open-label{display:block;margin-top:4px;font-size:11px;font-weight:800;color:var(--g800)}
@@ -963,12 +963,29 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 .evidence-file-open{display:grid;gap:10px;justify-items:start;border:1px solid var(--line);border-radius:14px;padding:16px;background:#fff;margin-bottom:14px}
 .evidence-doc-icon.large{width:72px;height:72px}
 
+
+/* v1.1.33 — evidence-aware approval management */
+.approval-queue{display:grid;gap:12px}
+.approval-card{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+.approval-card-main{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:start;width:100%;border:0;background:transparent;color:var(--ink);padding:14px;text-align:left;cursor:pointer}
+.approval-card-main>div{display:grid;gap:4px}.approval-card-main span,.approval-card-main small{font-size:12px;color:var(--muted)}
+.approval-card-actions{display:flex;gap:8px;flex-wrap:wrap;border-top:1px solid var(--line);padding:10px 14px;background:#fafaf7}
+.approval-evidence-step{border:1px solid var(--line);border-radius:12px;padding:12px;margin:8px 0;background:#fff}
+.approval-evidence-step>div:first-child{display:grid;gap:3px}.approval-evidence-step span,.approval-evidence-step p{font-size:12px;color:var(--muted)}
+.approval-evidence-meta{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:8px}
+.approval-evidence-open{display:flex;justify-content:space-between;align-items:center;width:100%;border:1px solid var(--line);border-radius:12px;background:#fff;padding:12px;color:var(--ink);text-align:left}
+@media(max-width:720px){
+ .approval-card-main{grid-template-columns:1fr}
+ .approval-card-actions{display:grid;grid-template-columns:1fr 1fr}
+ .approval-evidence-meta{align-items:flex-start;flex-direction:column}
+}
+
 </style>
 </head>
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.32</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.33</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden"><div id="sideBackdrop" class="side-backdrop" onclick="toggleSideNav(false)"></div>
  <aside class="side" id="ccemsSideNav"><button class="side-close-btn" type="button" onclick="toggleSideNav(false)" aria-label="Close navigation">×</button><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -1023,7 +1040,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
  </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation">☰ <span>Menu</span></button><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.1.32</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation">☰ <span>Menu</span></button><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.1.33</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
@@ -1187,6 +1204,7 @@ const defaults={
  workflowBlockers:[],
  workflowStepRecords:[],
  workflowHistory:[],
+ workflowApprovalReviews:[],
 
  evidenceAttachments:[],
 
@@ -1306,7 +1324,7 @@ function load(){try{
 }catch(e){return clone(defaults)}}
 function normaliseState(s){
  s=s&&typeof s==="object"?s:{};
- ["tasks","animals","compliance","staff","land","flocks","movements","grazing","crops","soilTests","inputs","harvests","fieldOps","assets","workOrders","inspections","fuelLogs","parts","suppliers","training","shifts","attendance","leave","ppe","taskRules","recurringTasks","checklistRuns","correctiveActions","approvals","sopAcknowledgements","complianceEvidence","inventory","stockIssues","purchaseRequisitions","purchaseOrders","goodsReceipts","procurementSuppliers","workflowTemplates","workflowRuns","workflowComments","workflowEscalations","workflowDependencies","workflowBlockers","workflowStepRecords","workflowHistory","evidenceAttachments","auditReports","permissionOverrides","executiveReports","notifications","estateDiary","incidents","documents","roles","activityFeed"].forEach(k=>{
+ ["tasks","animals","compliance","staff","land","flocks","movements","grazing","crops","soilTests","inputs","harvests","fieldOps","assets","workOrders","inspections","fuelLogs","parts","suppliers","training","shifts","attendance","leave","ppe","taskRules","recurringTasks","checklistRuns","correctiveActions","approvals","sopAcknowledgements","complianceEvidence","inventory","stockIssues","purchaseRequisitions","purchaseOrders","goodsReceipts","procurementSuppliers","workflowTemplates","workflowRuns","workflowComments","workflowEscalations","workflowDependencies","workflowBlockers","workflowStepRecords","workflowHistory","evidenceAttachments","workflowApprovalReviews","auditReports","permissionOverrides","executiveReports","notifications","estateDiary","incidents","documents","roles","activityFeed"].forEach(k=>{
    if(!Array.isArray(s[k]))s[k]=clone(defaults[k]||[]);
    else s[k]=s[k].filter(x=>x!==null&&x!==undefined)
  });
@@ -1432,7 +1450,7 @@ function ccemsWireSubsections(page){
 }
 
 
-/* v1.1.32 — universal CCEMS evidence attachment framework */
+/* v1.1.33 — universal CCEMS evidence attachment framework */
 function ccemsEvidenceKey(module,recordId,field){
  return `${String(module||"GENERAL")}::${String(recordId||"NEW")}::${String(field||"EVIDENCE")}`
 }
@@ -1538,7 +1556,7 @@ function ccemsInjectEvidenceWidgets(){
 }
 
 
-/* v1.1.32 — persistent evidence viewer */
+/* v1.1.33 — persistent evidence viewer */
 function ccemsEvidenceById(id){
  return (state.evidenceAttachments||[]).find(x=>String(x.id)===String(id))
 }
@@ -2734,7 +2752,9 @@ function workflowSetApproval(id){
  r.approvalStatus="PENDING";
  r.progress=100;
  r.submittedAt=new Date().toISOString();
- audit("SUBMIT_APPROVAL","WORKFLOW_RUN",`${r.ref} · ${r.approvalRole||"Manager"}`);
+ const evSummary=workflowEvidenceSummary(id);
+ addWorkflowHistory(id,"SUBMITTED FOR APPROVAL",`${workflowCurrentUser()} · ${evSummary.total} attachment(s) · ${evSummary.stepRecords.length} controlled step record(s)`);
+ audit("SUBMIT_APPROVAL","WORKFLOW_RUN",`${r.ref} · ${r.approvalRole||"Manager"} · evidence ${evSummary.total}`);
  save();
  render("workflows")
 }
@@ -2874,9 +2894,96 @@ function forceReleaseWorkflowBlock(id){
  render("workflows")
 }
 
+
+/* v1.1.33 — evidence-aware workflow approval */
+function workflowEvidenceSummary(id){
+ const stepRecords=workflowStepRecordsFor(id);
+ const direct=ccemsEvidenceFor("WORKFLOW_RUN",id,"EVIDENCE");
+ const stepAttachments=stepRecords.flatMap(s=>ccemsEvidenceFor("WORKFLOW_STEP",`${id}-${Number(s.stepIndex)}`,"EVIDENCE"));
+ return {
+   stepRecords,
+   direct,
+   stepAttachments,
+   total:direct.length+stepAttachments.length
+ }
+}
+function workflowApprovalReviewsFor(id){
+ return (state.workflowApprovalReviews||[]).filter(x=>String(x.workflowId)===String(id)).sort((a,b)=>String(b.at).localeCompare(String(a.at)))
+}
+function workflowEvidenceReviewModal(id){
+ const r=workflowById(id);if(!r)return;
+ const summary=workflowEvidenceSummary(id),tpl=(state.workflowTemplates||[]).find(x=>x.id===r.templateId);
+ const steps=tpl?.steps||[];
+ modal(`<div class="modalHead"><div><div class="eyebrow">Approval Evidence Pack</div><h3>${esc(r.ref)} · ${esc(r.title)}</h3><p class="muted">${esc(r.department)} · ${esc(r.assignedTo)}</p></div><button class="close" onclick="closeModal()">×</button></div>
+ <div class="workflow-detail-grid">
+   <div class="stat"><span>Controlled steps</span><strong>${summary.stepRecords.length}/${steps.length||summary.stepRecords.length}</strong></div>
+   <div class="stat"><span>Attachments</span><strong>${summary.total}</strong></div>
+   <div class="stat"><span>Submitted by</span><strong>${esc(r.assignedTo||"—")}</strong></div>
+   <div class="stat"><span>Submitted</span><strong>${r.submittedAt?new Date(r.submittedAt).toLocaleString("en-GB"):r.completedAt?new Date(r.completedAt).toLocaleString("en-GB"):"—"}</strong></div>
+ </div>
+
+ <div class="sectionTitle">Controlled Step Evidence</div>
+ ${summary.stepRecords.length?summary.stepRecords.map(s=>{
+    const ev=ccemsEvidenceFor("WORKFLOW_STEP",`${id}-${Number(s.stepIndex)}`,"EVIDENCE");
+    return `<div class="approval-evidence-step">
+      <div><strong>${Number(s.stepIndex)+1}. ${esc(s.stepName)}</strong><span>${esc(s.result)} · ${esc(s.completedBy)} · ${s.completedAt?new Date(s.completedAt).toLocaleString("en-GB"):"—"}</span></div>
+      <div class="approval-evidence-meta"><span>${ev.length} attachment${ev.length===1?"":"s"}</span>${ev.length?`<button class="secondary" onclick="ccemsEvidenceList('WORKFLOW_STEP','${esc(id)}-${Number(s.stepIndex)}','EVIDENCE')">View Evidence</button>`:""}</div>
+      ${s.notes?`<p>${esc(s.notes)}</p>`:""}
+    </div>`
+ }).join(""):'<div class="notice">No controlled step evidence has been recorded.</div>'}
+
+ ${summary.direct.length?`<div class="sectionTitle">Workflow-Level Evidence</div><button class="approval-evidence-open" onclick="ccemsEvidenceList('WORKFLOW_RUN','${esc(id)}','EVIDENCE')"><span>${summary.direct.length} workflow attachment${summary.direct.length===1?"":"s"}</span><strong>Open Evidence ›</strong></button>`:""}
+
+ <div class="sectionTitle">Manager Review</div>
+ <div class="field"><label>Review outcome</label><select id="wfApprovalOutcome"><option value="">Select outcome</option><option>APPROVE</option><option>RETURN FOR CORRECTION</option><option>HOLD FOR MORE EVIDENCE</option></select></div>
+ <div class="field"><label>Manager review notes</label><textarea id="wfApprovalNotes" rows="5" placeholder="Record the basis for the decision and any evidence reviewed."></textarea></div>
+ <div class="actions"><button class="secondary" onclick="openWorkflowRun('${esc(id)}')">Back to Workflow</button><button class="primary" onclick="saveWorkflowApprovalReview('${esc(id)}')">Record Decision</button></div>`)
+}
+function saveWorkflowApprovalReview(id){
+ const r=workflowById(id);if(!r)return;
+ const outcome=val("wfApprovalOutcome"),notes=val("wfApprovalNotes");
+ if(!outcome||!notes){alert("Select a review outcome and record manager review notes.");return}
+ const summary=workflowEvidenceSummary(id);
+ state.workflowApprovalReviews=state.workflowApprovalReviews||[];
+ state.workflowApprovalReviews.unshift({
+   id:nextId(state.workflowApprovalReviews),
+   workflowId:String(id),
+   outcome,
+   notes,
+   evidenceCount:summary.total,
+   stepEvidenceCount:summary.stepRecords.length,
+   reviewer:workflowCurrentUser(),
+   at:new Date().toISOString()
+ });
+ if(outcome==="APPROVE"){
+   r.approvalStatus="APPROVED";r.status="COMPLETED";r.progress=100;r.approvedAt=new Date().toISOString();r.approvedBy=workflowCurrentUser();
+   addWorkflowHistory(id,"APPROVED & CLOSED",`Approved by ${workflowCurrentUser()} after review of ${summary.total} attachment(s) and ${summary.stepRecords.length} controlled step record(s).`)
+ }else if(outcome==="RETURN FOR CORRECTION"){
+   r.approvalStatus="REJECTED";r.status="IN PROGRESS";r.correctionRequired=notes;r.progress=Math.min(95,Number(r.progress)||0);
+   addWorkflowHistory(id,"RETURNED FOR CORRECTION",`${workflowCurrentUser()} · ${notes}`)
+ }else{
+   r.approvalStatus="EVIDENCE REQUIRED";r.status="AWAITING APPROVAL";r.evidenceHold=true;
+   addWorkflowHistory(id,"HELD FOR MORE EVIDENCE",`${workflowCurrentUser()} · ${notes}`)
+ }
+ audit("APPROVAL_REVIEW","WORKFLOW_RUN",`${r.ref} · ${outcome} · evidence ${summary.total}`);save();closeModal();render("workflows")
+}
+
 function workflowApprovalsView(){
  const rows=(state.workflowRuns||[]).filter(x=>x.status==="AWAITING APPROVAL");
- return `<section class="card panel"><div class="workflow-view-head"><div><h3>Workflow Approval Queue</h3><p class="muted">Completed operational work awaiting management decision.</p></div></div>${rows.length?workflowRunRows(rows):'<div class="notice">No workflow runs are awaiting approval.</div>'}</section>`
+ return `<section class="card panel"><div class="workflow-view-head"><div><h3>Workflow Approval Queue</h3><p class="muted">Completed operational work awaiting management evidence review and decision.</p></div></div>
+ ${rows.length?`<div class="approval-queue">${rows.map(r=>{
+   const s=workflowEvidenceSummary(r.id);
+   return `<div class="approval-card">
+     <button class="approval-card-main" onclick="workflowEvidenceReviewModal('${esc(r.id)}')">
+       <div><strong>${esc(r.ref)} · ${esc(r.title)}</strong><span>${esc(r.department)} · ${esc(r.assignedTo)} · Due ${dateFmt(r.due)}</span></div>
+       <div>${badge(r.approvalStatus||"PENDING")}<small>${s.total} attachment${s.total===1?"":"s"} · ${s.stepRecords.length} step record${s.stepRecords.length===1?"":"s"}</small></div>
+     </button>
+     <div class="approval-card-actions">
+       <button class="secondary" onclick="workflowEvidenceReviewModal('${esc(r.id)}')">Review Evidence</button>
+       <button class="secondary" onclick="workflowTimelineModal('${esc(r.id)}')">Workflow History</button>
+     </div>
+   </div>`
+ }).join("")}</div>`:'<div class="notice">No workflow runs are awaiting approval.</div>'}</section>`
 }
 function workflowEscalate(id){
  const r=workflowById(id);if(!r)return;
@@ -3042,8 +3149,10 @@ async function saveWorkflowStep(id,index){
 function workflowTimelineModal(id){
  const r=workflowById(id);if(!r)return;
  const steps=workflowStepRecordsFor(id),history=workflowHistoryFor(id);
+ const reviews=workflowApprovalReviewsFor(id);
  const events=[
   ...steps.map(x=>({at:x.completedAt,type:"STEP COMPLETED",detail:`${Number(x.stepIndex)+1}. ${x.stepName} · ${x.result}${x.evidence?` · Evidence: ${x.evidence}`:""}${x.attachments?.length?` · ${x.attachments.length} attachment(s)`:""}`,user:x.completedBy})),
+  ...reviews.map(x=>({at:x.at,type:"APPROVAL REVIEW",detail:`${x.outcome} · ${x.notes} · ${x.evidenceCount} attachment(s) reviewed`,user:x.reviewer})),
   ...history
  ].sort((a,b)=>String(b.at).localeCompare(String(a.at)));
  modal(`<div class="modalHead"><div><h3>Workflow History</h3><p class="muted">${esc(r.ref)} · ${esc(r.title)}</p></div><button class="close" onclick="closeModal()">×</button></div>
@@ -3096,7 +3205,7 @@ function openWorkflowRun(id){
    <button class="secondary" onclick="workflowBlockerModal('${esc(r.id)}')">Manage Blockers</button>
    <button class="secondary" onclick="toggleWorkflowCritical(${r.id})">${(r.critical===true||r.priority==="CRITICAL")?"Remove Critical":"Mark Critical"}</button>
    ${!isApproval&&r.status!=="COMPLETED"?`<button class="primary" onclick="submitWorkflowForApproval(${r.id})">Submit for Approval</button>`:""}
-   ${isApproval?`<button class="secondary" onclick="workflowReject(${r.id})">Return for Correction</button><button class="primary" onclick="approveWorkflow(${r.id})">Approve & Close</button>`:""}
+   ${isApproval?`<button class="secondary" onclick="workflowEvidenceReviewModal('${esc(r.id)}')">Manager Review</button><button class="primary" onclick="workflowEvidenceReviewModal('${esc(r.id)}')">Review Evidence & Decide</button>`:""}
  </div>`)
 }
 
