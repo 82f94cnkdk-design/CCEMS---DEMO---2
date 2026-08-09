@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v1.1.8 Estate Operations Control Centre demo">
+<meta name="description" content="CCEMS Phase 1 v1.1.10 Estate Operations Control Centre demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v1.1.8</title>
+<title>CCEMS Phase 1 v1.1.10</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -678,12 +678,33 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 .dashboard-loading h2,.ccems-recovery h2{font-family:Georgia,serif;color:var(--g900);margin:6px 0}
 .ccems-recovery .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
 
+
+/* v1.1.10 — reliable mobile navigation drawer */
+@media(max-width:900px){
+ #ccemsSideNav{visibility:hidden!important;pointer-events:none!important}
+ #ccemsSideNav.open{visibility:visible!important;pointer-events:auto!important;transform:translateX(0)!important}
+ #sideBackdrop.show{opacity:1!important;pointer-events:auto!important}
+ .mobile-menu-btn{position:relative;z-index:10;touch-action:manipulation}
+}
+@media(min-width:901px){
+ #ccemsSideNav{visibility:visible!important;pointer-events:auto!important;transform:none!important}
+}
+.dashboard-clickable{cursor:pointer}
+.dashboard-clickable:active{background:#f7f5ee}
+
+
+/* v1.1.10 — interactive diary register */
+.diary-list{display:grid}
+.diary-entry-card{display:grid;grid-template-columns:110px minmax(0,1fr) 120px;gap:14px;align-items:center;width:100%;border:0;border-bottom:1px solid var(--line);background:transparent;color:var(--ink);padding:14px 4px;text-align:left;cursor:pointer}
+.diary-entry-time,.diary-entry-main,.diary-entry-status{display:grid;gap:4px}.diary-entry-time span,.diary-entry-main span,.diary-entry-status>span{font-size:12px;color:var(--muted)}.diary-entry-status{text-align:right;justify-items:end}.dash-open{margin-left:auto;color:var(--g800)!important;font-weight:800}
+@media(max-width:720px){.diary-entry-card{grid-template-columns:78px minmax(0,1fr) 84px;gap:8px;padding:13px 0}.diary-entry-status .badge{font-size:9px}}
+
 </style>
 </head>
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.8</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.10</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden"><div id="sideBackdrop" class="side-backdrop" onclick="toggleSideNav(false)"></div>
  <aside class="side" id="ccemsSideNav"><button class="side-close-btn" type="button" onclick="toggleSideNav(false)" aria-label="Close navigation">×</button><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -693,7 +714,6 @@ td,th{overflow-wrap:anywhere;word-break:normal}
   <button data-page="tasks"><span class="ic">✓</span>My Tasks</button>
   <button data-page="workflows"><span class="ic">↻</span>Advanced Workflows</button>
   <button data-page="deptwork"><span class="ic">▦</span>Department Work Queue</button>
-  <button data-page="workflows"><span class="ic">↻</span>Workflow Command</button>
   <div class="navTitle">Livestock</div>
   <button data-page="animals"><span class="ic">♞</span>Animals</button>
   <button data-page="health"><span class="ic">✚</span>Health & Medicines</button>
@@ -739,7 +759,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
  </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation">☰ <span>Menu</span></button><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.1.8</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation">☰ <span>Menu</span></button><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.1.10</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
@@ -1040,6 +1060,30 @@ function setTitle(t){document.getElementById("pageTitle").textContent=t}
 function modal(html){document.getElementById("modalRoot").innerHTML=`<div class="modalBackdrop" onclick="if(event.target===this)closeModal()"><div class="modal">${html}</div></div>`}
 function closeModal(){document.getElementById("modalRoot").innerHTML=""}
 function resetDemo(){if(confirm("Reset all v0.4 demo data on this device?")){state=clone(defaults);save();render("dashboard")}}
+
+function toggleSideNav(force){
+ const side=document.getElementById("ccemsSideNav");
+ const backdrop=document.getElementById("sideBackdrop");
+ if(!side)return;
+ const isOpen=side.classList.contains("open");
+ const shouldOpen=typeof force==="boolean"?force:!isOpen;
+ side.classList.toggle("open",shouldOpen);
+ side.style.setProperty("transform",shouldOpen?"translateX(0)":"translateX(-105%)","important");
+ side.style.setProperty("visibility",shouldOpen?"visible":"hidden","important");
+ side.style.setProperty("pointer-events",shouldOpen?"auto":"none","important");
+ if(backdrop){
+   backdrop.classList.toggle("show",shouldOpen);
+   backdrop.style.setProperty("opacity",shouldOpen?"1":"0","important");
+   backdrop.style.setProperty("pointer-events",shouldOpen?"auto":"none","important")
+ }
+ document.body.classList.toggle("nav-open",shouldOpen);
+ const btn=document.querySelector(".mobile-menu-btn");
+ if(btn)btn.setAttribute("aria-expanded",shouldOpen?"true":"false")
+}
+window.addEventListener("resize",()=>{
+ if(window.innerWidth>900)toggleSideNav(false)
+});
+
 function navSetup(){document.querySelectorAll(".nav button[data-page]").forEach(b=>b.onclick=()=>{render(b.dataset.page);if(window.innerWidth<=900)toggleSideNav(false)})}
 navSetup();
 function render(page){
@@ -1107,7 +1151,7 @@ function renderDashboard(v){
  <div class="dash-grid">
    <section class="card panel">
      <div class="dash-section-head"><div><h3>Today’s Tasks</h3><p>Priority work requiring attention.</p></div><button class="dash-link" onclick="render('tasks')">View all →</button></div>
-     ${todayTasks.length?todayTasks.map(x=>`<button class="dash-row" onclick="render('tasks')"><div><strong>${esc(x.title||x.task||"Estate Task")}</strong><span>${esc(x.department||x.dept||"Estate")} · ${esc(x.location||x.loc||"—")}</span></div><div>${badge(x.priority||"MEDIUM")}</div></button>`).join(""):'<div class="notice">No tasks are due today.</div>'}
+     ${todayTasks.length?todayTasks.map(x=>`<button class="dash-row dashboard-clickable" onclick="taskModal(${Number(x.id)||0})"><div><strong>${esc(x.title||x.task||"Estate Task")}</strong><span>${esc(x.department||x.dept||"Estate")} · ${esc(x.location||x.loc||"—")}</span></div><div>${badge(x.priority||"MEDIUM")}</div></button>`).join(""):'<div class="notice">No tasks are due today.</div>'}
    </section>
 
    <section class="card panel">
@@ -1135,7 +1179,7 @@ function renderDashboard(v){
 
    <section class="card panel">
      <div class="dash-section-head"><div><h3>Today’s Estate Diary</h3><p>Scheduled estate activity.</p></div><button class="dash-link" onclick="render('diary')">View diary →</button></div>
-     ${todayDiary.length?todayDiary.map(d=>`<button class="dash-diary" onclick="render('diary')"><span class="dash-time">${esc(d.time||"—")}</span><div><strong>${esc(d.title||"Estate activity")}</strong><span>${esc(d.department||"Estate")} · ${esc(d.owner||"Estate Team")}</span></div></button>`).join(""):'<div class="notice">No diary entries scheduled today.</div>'}
+     ${todayDiary.length?todayDiary.map(d=>`<button class="dash-diary dashboard-clickable" onclick="openDiaryEntry(${Number(d.id)||0})"><span class="dash-time">${esc(d.time||"—")}</span><div><strong>${esc(d.title||"Estate activity")}</strong><span>${esc(d.department||"Estate")} · ${esc(d.owner||"Estate Team")}</span></div><span class="dash-open">Open ›</span></button>`).join(""):'<div class="notice">No diary entries scheduled today.</div>'}
    </section>
  </div>
 
@@ -1403,7 +1447,7 @@ function renderTasksV08(v){
  setTitle("My Tasks");
  v.innerHTML=`<div class="head"><div><h2>My Tasks</h2><p>Assigned estate work with SOP and competency controls.</p></div><div class="actions"><button class="secondary" onclick="render('workflows')">Open Advanced Workflows</button><button class="primary" onclick="taskModalV08()">+ Controlled Task</button></div></div>
  <div class="kpis">${kpi("Open",state.tasks.filter(t=>t.status!=="COMPLETED"&&t.status!=="DONE").length,"Current workload")}${kpi("Recurring",state.recurringTasks.filter(r=>r.active).length,"Active schedules")}${kpi("Approvals",state.approvals.filter(a=>a.status==="PENDING").length,"Pending")}${kpi("Corrective",state.correctiveActions.filter(c=>c.status!=="CLOSED").length,"Open actions")}</div>
- <section class="card panel"><table><thead><tr><th>Task</th><th>Department</th><th>Type</th><th>Assigned</th><th>Priority</th><th>Due</th><th>Status</th><th>Control</th></tr></thead><tbody>${state.tasks.map(t=>{const assigned=t.assigned||"Unassigned";const type=t.type||"General";const chk=competencyCheckV08(assigned,type);return `<tr><td><strong>${esc(t.title)}</strong></td><td>${esc(t.dept)}</td><td>${esc(type)}</td><td>${esc(assigned)}</td><td>${badge(t.priority)}</td><td>${dateFmt(t.due)}</td><td>${badge(t.status)}</td><td>${chk.ok?badge("CLEARED"):badge("BLOCKED")}<br><span class="muted">${esc(chk.msg)}</span></td></tr>`}).join("")}</tbody></table></section>`
+ <section class="card panel"><table><thead><tr><th>Task</th><th>Department</th><th>Type</th><th>Assigned</th><th>Priority</th><th>Due</th><th>Status</th><th>Control</th></tr></thead><tbody>${state.tasks.map(t=>{const assigned=t.assigned||"Unassigned";const type=t.type||"General";const chk=competencyCheckV08(assigned,type);return `<tr class="clickable" onclick="taskModal(${t.id})"><td><strong>${esc(t.title)}</strong></td><td>${esc(t.dept)}</td><td>${esc(type)}</td><td>${esc(assigned)}</td><td>${badge(t.priority)}</td><td>${dateFmt(t.due)}</td><td>${badge(t.status)}</td><td>${chk.ok?badge("CLEARED"):badge("BLOCKED")}<br><span class="muted">${esc(chk.msg)}</span></td></tr>`}).join("")}</tbody></table></section>`
 }
 function taskModalV08(){modal(`<div class="modalHead"><h3>Create Controlled Task</h3><button class="close" onclick="closeModal()">×</button></div><div class="grid2"><div><div class="field"><label>Task</label><input id="tkTitle"></div><div class="field"><label>Department</label><input id="tkDept"></div><div class="field"><label>Task type</label><select id="tkType"><option>General</option><option>Machinery</option><option>Telehandler</option><option>Animal Medicines</option><option>Animal Welfare</option><option>Inspection</option></select></div><div class="field"><label>Assignee</label><select id="tkAssigned">${state.staff.map(s=>`<option>${esc(s.name)}</option>`).join("")}</select></div></div><div><div class="field"><label>Priority</label><select id="tkPriority"><option>LOW</option><option>MEDIUM</option><option selected>HIGH</option><option>CRITICAL</option></select></div><div class="field"><label>Due</label><input id="tkDue" type="date"></div><div class="field"><label>Required SOP</label><select id="tkSop"><option value="">None</option>${state.sops.map(s=>`<option value="${s.code}">${esc(s.code)} · ${esc(s.title)}</option>`).join("")}</select></div></div></div><div id="taskControl" class="notice">Competency will be checked before assignment.</div><button class="primary" onclick="saveControlledTaskV08()">Create Task</button>`)}
 function saveControlledTaskV08(){
@@ -1500,7 +1544,35 @@ function renderApprovalInbox(v){
 function controlApprove(src,id){if(src==="workflow"){const a=state.approvals.find(x=>x.id===id);a.status="APPROVED";audit("APPROVE","CONTROL_CENTRE",a.ref)}else{const r=state.purchaseRequisitions.find(x=>x.id===id);r.status="APPROVED";audit("APPROVE","CONTROL_CENTRE",r.ref)}render("approvals")}
 function renderDiary(v){
  setTitle("Estate Diary");
- v.innerHTML=`<div class="head"><div><h2>Estate Diary</h2><p>Cross-department operational calendar and estate commitments.</p></div><button class="primary" onclick="diaryModal()">+ Diary Entry</button></div><section class="card panel">${simpleTable(["Date","Time","Activity","Department","Type","Owner","Status"],state.estateDiary.sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time)).map(d=>[dateFmt(d.date),esc(d.time),`<strong>${esc(d.title)}</strong>`,esc(d.department),badge(d.type),esc(d.owner),badge(d.status)]))}</section>`
+ const rows=[...(state.estateDiary||[])].sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
+ v.innerHTML=`<div class="head"><div><h2>Estate Diary</h2><p>Cross-department operational calendar and estate commitments.</p></div><button class="primary" onclick="diaryModal()">+ Diary Entry</button></div>
+ <section class="card panel"><div class="diary-list">${rows.map(d=>`<button class="diary-entry-card" onclick="openDiaryEntry(${d.id})"><div class="diary-entry-time"><strong>${esc(d.time)}</strong><span>${dateFmt(d.date)}</span></div><div class="diary-entry-main"><strong>${esc(d.title)}</strong><span>${esc(d.department)} · ${esc(d.owner)}</span></div><div class="diary-entry-status">${badge(d.status)}<span>Open ›</span></div></button>`).join("")||'<div class="notice">No diary entries recorded.</div>'}</div></section>`
+}
+function openDiaryEntry(id){
+ const d=(state.estateDiary||[]).find(x=>x.id===id);if(!d)return;
+ modal(`<div class="modalHead"><div><h3>${esc(d.title)}</h3><p class="muted">${dateFmt(d.date)} · ${esc(d.time)}</p></div><button class="close" onclick="closeModal()">×</button></div>
+ <div class="stat"><span>Department</span><strong>${esc(d.department||"—")}</strong></div>
+ <div class="stat"><span>Owner</span><strong>${esc(d.owner||"—")}</strong></div>
+ <div class="stat"><span>Type</span>${badge(d.type||"ACTIVITY")}</div>
+ <div class="stat"><span>Status</span>${badge(d.status||"SCHEDULED")}</div>
+ <div class="sectionTitle">Diary Control</div>
+ <div class="actions"><button class="secondary" onclick="closeModal()">Close</button><button class="primary" onclick="editDiaryEntry(${d.id})">Amend Entry</button></div>`)
+}
+function editDiaryEntry(id){
+ const d=(state.estateDiary||[]).find(x=>x.id===id);if(!d)return;
+ modal(`<div class="modalHead"><div><h3>Amend Estate Diary Entry</h3><p class="muted">${esc(d.title)}</p></div><button class="close" onclick="closeModal()">×</button></div>
+ <input type="hidden" id="edeId" value="${d.id}">
+ <div class="grid2"><div class="field"><label>Date</label><input id="edeDate" type="date" value="${esc(d.date)}"></div><div class="field"><label>Time</label><input id="edeTime" type="time" value="${esc(d.time)}"></div></div>
+ <div class="field"><label>Activity</label><select id="edeTitle">${diaryActivities().map(x=>`<option ${x===d.title?"selected":""}>${esc(x)}</option>`).join("")}</select></div>
+ <div class="field"><label>Department</label><select id="edeDept">${diaryDepartments().map(x=>`<option ${x===d.department?"selected":""}>${esc(x)}</option>`).join("")}</select></div>
+ <div class="field"><label>Owner</label><select id="edeOwner">${["Estate Team",...ccStaff().map(s=>s.name)].map(x=>`<option ${x===d.owner?"selected":""}>${esc(x)}</option>`).join("")}</select></div>
+ <div class="grid2"><div class="field"><label>Type</label><select id="edeType">${["OPERATION","DELIVERY","MAINTENANCE","COMPLIANCE","LAND","TRAINING","OTHER"].map(x=>`<option ${x===d.type?"selected":""}>${x}</option>`).join("")}</select></div><div class="field"><label>Status</label><select id="edeStatus">${["SCHEDULED","IN PROGRESS","COMPLETED","CANCELLED"].map(x=>`<option ${x===d.status?"selected":""}>${x}</option>`).join("")}</select></div></div>
+ <button class="primary" onclick="saveDiaryEdit()">Save Changes</button>`)
+}
+function saveDiaryEdit(){
+ const d=(state.estateDiary||[]).find(x=>x.id===Number(val("edeId")));if(!d)return;
+ d.date=val("edeDate");d.time=val("edeTime");d.title=val("edeTitle");d.department=val("edeDept");d.owner=val("edeOwner");d.type=val("edeType");d.status=val("edeStatus");
+ audit("UPDATE","ESTATE_DIARY",d.title);save();closeModal();render("diary")
 }
 
 /* v1.0.3 — CCEMS-wide controlled-data rule */
