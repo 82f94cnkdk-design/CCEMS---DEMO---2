@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v1.1.19 Estate Operations Control Centre demo">
+<meta name="description" content="CCEMS Phase 1 v1.1.20 Estate Operations Control Centre demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v1.1.19</title>
+<title>CCEMS Phase 1 v1.1.20</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -825,12 +825,26 @@ td,th{overflow-wrap:anywhere;word-break:normal}
  .task-mobile-list{display:grid;gap:10px}
 }
 
+
+/* v1.1.20 — CCEMS-wide interactive subsection standard */
+.ccems-drill-row{cursor:pointer;transition:background .12s ease}
+.ccems-drill-row:active{background:#f4f1e8}
+.ccems-drill-summary{cursor:pointer;transition:transform .12s ease,background .12s ease}
+.ccems-drill-summary:active{transform:scale(.995);background:#f7f5ee}
+.ccems-section-heading{position:relative;padding-right:24px}
+.ccems-section-heading::after{content:"›";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--g700);font-family:system-ui;font-weight:800}
+@media(max-width:720px){
+ .ccems-drill-row td:first-child{font-weight:700}
+ .ccems-drill-row td:first-child::after{content:"  ›";color:var(--g800);font-weight:800}
+ .ccems-drill-summary{touch-action:manipulation}
+}
+
 </style>
 </head>
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.19</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.20</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden"><div id="sideBackdrop" class="side-backdrop" onclick="toggleSideNav(false)"></div>
  <aside class="side" id="ccemsSideNav"><button class="side-close-btn" type="button" onclick="toggleSideNav(false)" aria-label="Close navigation">×</button><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -885,7 +899,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
  </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation">☰ <span>Menu</span></button><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.1.19</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation">☰ <span>Menu</span></button><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.1.20</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
@@ -1225,12 +1239,73 @@ function ensureDashboardBack(page){
  v.insertBefore(row,v.firstChild)
 }
 
+
+/* v1.1.20 — universal subsection drill-down */
+function ccemsRowDetail(table,row,page){
+ const heads=[...table.querySelectorAll("thead th")].map(x=>x.textContent.trim());
+ const cells=[...row.children].map(x=>x.textContent.trim());
+ const title=cells[0]||"Record Detail";
+ modal(`<div class="modalHead"><div><h3>${esc(title)}</h3><p class="muted">Detailed information from ${esc(document.getElementById("pageTitle")?.textContent||"CCEMS")}</p></div><button class="close" onclick="closeModal()">×</button></div>
+ ${cells.map((v,i)=>`<div class="stat"><span>${esc(heads[i]||`Field ${i+1}`)}</span><strong>${esc(v||"—")}</strong></div>`).join("")}
+ <div class="actions" style="margin-top:16px"><button class="secondary" onclick="closeModal()">Close</button><button class="primary" onclick="closeModal();render('${page}')">Open Related Section</button></div>`)
+}
+function ccemsSummaryDetail(el,page){
+ const label=el.querySelector(".kpiLabel,.label")?.textContent||el.querySelector("span")?.textContent||"Summary";
+ const value=el.querySelector(".kpiValue")?.textContent||el.querySelector("strong")?.textContent||"";
+ const note=[...el.querySelectorAll("small,.muted")].map(x=>x.textContent).join(" · ");
+ modal(`<div class="modalHead"><div><h3>${esc(label.trim())}</h3><p class="muted">${esc(note||"Module summary")}</p></div><button class="close" onclick="closeModal()">×</button></div>
+ <div class="stat"><span>Current value</span><strong>${esc(value.trim()||"View records")}</strong></div>
+ <div class="actions" style="margin-top:16px"><button class="secondary" onclick="closeModal()">Close</button><button class="primary" onclick="closeModal();render('${page}')">View Related Records</button></div>`)
+}
+function ccemsWireSubsections(page){
+ const v=document.getElementById("view");if(!v||page==="dashboard")return;
+
+ /* Every register/table row becomes tappable unless it already has a specific action. */
+ v.querySelectorAll("table tbody tr").forEach(row=>{
+   if(row.querySelector('td[colspan]')||row.dataset.ccemsWired==="1")return;
+   row.dataset.ccemsWired="1";
+   row.classList.add("ccems-drill-row");
+   if(!row.getAttribute("onclick")){
+     row.setAttribute("role","button");
+     row.setAttribute("tabindex","0");
+     row.onclick=e=>{
+       if(e.target.closest("button,a,input,select,textarea"))return;
+       ccemsRowDetail(row.closest("table"),row,page)
+     };
+     row.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();ccemsRowDetail(row.closest("table"),row,page)}}
+   }
+ });
+
+ /* Every KPI and ordinary summary/stat becomes visibly tappable unless already wrapped in a button. */
+ v.querySelectorAll(".kpi,.stat").forEach(el=>{
+   if(el.closest("button")||el.dataset.ccemsWired==="1")return;
+   el.dataset.ccemsWired="1";
+   el.classList.add("ccems-drill-summary");
+   el.setAttribute("role","button");
+   el.setAttribute("tabindex","0");
+   el.onclick=e=>{
+     if(e.target.closest("button,a,input,select,textarea"))return;
+     ccemsSummaryDetail(el,page)
+   };
+   el.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();ccemsSummaryDetail(el,page)}}
+ });
+
+ /* Generic cards with a clear heading also drill into their contained information. */
+ v.querySelectorAll(".card.panel").forEach(card=>{
+   const heading=card.querySelector("h3");
+   if(!heading||card.dataset.ccemsCardWired==="1")return;
+   card.dataset.ccemsCardWired="1";
+   heading.classList.add("ccems-section-heading");
+ });
+}
+
 function render(page){
  document.querySelectorAll(".nav button[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
  const v=document.getElementById("view");
  try{
    ({dashboard:renderDashboard,tasks:renderTasksV08,deptwork:renderDeptWork,workflows:renderWorkflows,animals:renderAnimals,health:renderHealth,breeding:renderBreeding,movements:renderMovements,flocks:renderFlocks,land:renderLand,grazing:renderGrazing,crops:renderCrops,soil:renderSoil,harvest:renderHarvest,sops:renderSops,checklists:renderChecklists,corrective:renderCorrective,compliance:renderComplianceV08,controlcentre:renderControlCentre,approvals:renderApprovalInbox,diary:renderDiary,incidents:renderIncidents,documents:renderDocuments,reports:renderReports,access:renderAccessModel,inventory:renderInventory,purchasing:renderPurchasing,goods:renderGoods,suppliers:renderSuppliers,maintenance:renderMaintenance,assets:renderAssets,fleet:renderFleet,inspections:renderInspections,fuel:renderFuel,staff:renderStaff,rota:renderRota,training:renderTraining,competency:renderCompetency,leave:renderLeave,ppe:renderPPE,workflows:renderWorkflows,audit:renderAudit}[page]||renderDashboard)(v);
-   ensureDashboardBack(page)
+   ensureDashboardBack(page);
+   ccemsWireSubsections(page)
  }catch(err){
    console.error("CCEMS screen render error:",page,err);
    setTitle(page==="dashboard"?"Estate Dashboard":"CCEMS");
