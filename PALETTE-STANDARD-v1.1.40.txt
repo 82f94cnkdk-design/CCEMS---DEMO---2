@@ -1,0 +1,8 @@
+CCEMS v1.1.40 — Crown & Cross Surface Palette
+Primary application surface: warm ivory
+Secondary cards/panels: soft ivory
+Muted information zones: warm parchment
+Primary controls: deep estate green
+Governance/premium emphasis: restrained antique gold
+Pure white: reserved mainly for input controls and document viewing
+Status colours: retained for operational meaning
