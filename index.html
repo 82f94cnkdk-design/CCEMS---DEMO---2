@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v1.0.17 Estate Operations Control Centre demo">
+<meta name="description" content="CCEMS Phase 1 v1.0.18 Estate Operations Control Centre demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v1.0.17</title>
+<title>CCEMS Phase 1 v1.0.18</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -229,12 +229,74 @@ td,th{overflow-wrap:anywhere;word-break:normal}
  .executive-open-btn{width:132px;min-width:132px;height:46px;font-size:14px}
 }
 
+
+/* v1.0.18 — true mobile Executive Reports grid */
+.executive-mobile{display:none}
+@media(max-width:720px){
+ .executive-desktop{display:none}
+ .executive-mobile{display:block;width:100%}
+ .executive-mobile-head,
+ .executive-mobile-row{
+   display:grid;
+   grid-template-columns:1.05fr 1.12fr .72fr 1.28fr;
+   align-items:center;
+   column-gap:10px;
+   width:100%;
+   box-sizing:border-box;
+ }
+ .executive-mobile-head{
+   padding:14px 10px 12px;
+   border-bottom:1px solid var(--line);
+   color:var(--muted);
+   font-size:10px;
+   font-weight:800;
+   letter-spacing:.12em;
+   text-transform:uppercase;
+ }
+ .executive-mobile-row{
+   min-height:82px;
+   padding:14px 10px;
+   border-bottom:1px solid var(--line);
+   font-size:14px;
+   line-height:1.2;
+   cursor:pointer;
+ }
+ .executive-mobile-row:last-child{border-bottom:0}
+ .executive-mobile-head>div:nth-child(3),
+ .executive-mobile-row>div:nth-child(3){text-align:center}
+ .executive-mobile-head>div:nth-child(4),
+ .executive-mobile-row>div:nth-child(4){text-align:right}
+ .executive-open-btn-mobile{
+   width:100%;
+   min-width:0;
+   max-width:132px;
+   height:44px;
+   padding:0 10px;
+   font-size:13px;
+ }
+ .executive-mobile-row .badge{
+   display:inline-flex;
+   justify-content:center;
+   white-space:nowrap;
+ }
+}
+@media(max-width:420px){
+ .executive-mobile-head,
+ .executive-mobile-row{
+   grid-template-columns:1fr 1.05fr .68fr 1.22fr;
+   column-gap:7px;
+ }
+ .executive-mobile-head{font-size:9px;padding-left:8px;padding-right:8px}
+ .executive-mobile-row{font-size:13px;padding-left:8px;padding-right:8px}
+ .executive-open-btn-mobile{font-size:12px;height:42px}
+}
+
 </style>
 </head>
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.0.17</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.0.18</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden">
  <aside class="side"><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -289,7 +351,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
  </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.0.17</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.0.18</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
@@ -1111,7 +1173,15 @@ function renderReports(v){
  const reps=state.executiveReports||[];
  v.innerHTML=`<div class="head"><div><h2>Executive Reports</h2><p>Generate, retain and open formal estate management reports.</p></div><button class="primary" onclick="executiveReportModal()">+ Generate Report</button></div>
  <div class="kpis">${kpi("Generated reports",reps.length,"Executive archive")}${kpi("Final",reps.filter(r=>r.status==="FINAL").length,"Issued")}${kpi("Open alerts",globalAlerts().length,"Current estate position")}${kpi("Pending approvals",state.approvals.filter(a=>a.status==="PENDING").length+state.purchaseRequisitions.filter(r=>r.status==="PENDING").length,"Awaiting decision")}</div>
- <section class="card panel executive-reports-panel"><div class="executive-report-table-wrap"><table class="executive-report-table"><thead><tr><th>Reference</th><th>Report</th><th>Period</th><th>Generated</th><th>Prepared By</th><th>Status</th><th>Open</th></tr></thead><tbody>${reps.map(r=>`<tr class="clickable" onclick="openExecutiveReport(${r.id})"><td><strong>${esc(r.ref)}</strong></td><td>${esc(r.title)}</td><td>${esc(r.period)}</td><td>${dateFmt(r.generated)}</td><td>${esc(r.generatedBy)}</td><td>${badge(r.status)}</td><td><button class="executive-open-btn" onclick="event.stopPropagation();openExecutiveReport(${r.id})">Open Report</button></td></tr>`).join("")}</tbody></table></div></section>`
+ <section class="card panel executive-reports-panel">
+ <div class="executive-report-table-wrap executive-desktop">
+  <table class="executive-report-table"><thead><tr><th>Reference</th><th>Report</th><th>Period</th><th>Generated</th><th>Prepared By</th><th>Status</th><th>Open</th></tr></thead><tbody>${reps.map(r=>`<tr class="clickable" onclick="openExecutiveReport(${r.id})"><td><strong>${esc(r.ref)}</strong></td><td>${esc(r.title)}</td><td>${esc(r.period)}</td><td>${dateFmt(r.generated)}</td><td>${esc(r.generatedBy)}</td><td>${badge(r.status)}</td><td><button class="executive-open-btn" onclick="event.stopPropagation();openExecutiveReport(${r.id})">Open Report</button></td></tr>`).join("")}</tbody></table>
+ </div>
+ <div class="executive-mobile">
+   <div class="executive-mobile-head"><div>Generated</div><div>Prepared By</div><div>Status</div><div>Open</div></div>
+   ${reps.map(r=>`<div class="executive-mobile-row" onclick="openExecutiveReport(${r.id})"><div>${dateFmt(r.generated)}</div><div>${esc(r.generatedBy)}</div><div>${badge(r.status)}</div><div><button class="executive-open-btn executive-open-btn-mobile" onclick="event.stopPropagation();openExecutiveReport(${r.id})">Open Report</button></div></div>`).join("")}
+ </div>
+</section>`
 }
 function executiveReportModal(){
  modal(`<div class="modalHead"><div><h3>Generate Executive Report</h3><p class="muted">Create a locked management snapshot from current CCEMS data.</p></div><button class="close" onclick="closeModal()">×</button></div>
