@@ -1,0 +1,9 @@
+CCEMS UI Standard v1.1.39
+- Crown & Cross deep green / ivory / restrained gold
+- Standard 14px cards and 18px modals
+- 48px minimum controls
+- Primary = deep green filled
+- Secondary = ivory/white outlined
+- Uniform field labels, tabs, tables, evidence cards and status badges
+- Mobile: two-column KPI cards, wrapped tabs, safe modal width, no horizontal page overflow
+- Consistent action groups and record rows
