@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v1.1.17 Estate Operations Control Centre demo">
+<meta name="description" content="CCEMS Phase 1 v1.1.18 Estate Operations Control Centre demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v1.1.17</title>
+<title>CCEMS Phase 1 v1.1.18</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -796,12 +796,19 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 .workflow-card[data-critical="true"]{border-color:#c9746b}
 .workflow-card-critical{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#a33b32}
 
+
+/* v1.1.18 — direct workflow state controls */
+.workflow-card-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
+.wf-state-btn{border:1px solid #bdc9c2;border-radius:9px;background:#fff;color:var(--g900);padding:9px 11px;font-size:12px;font-weight:800;cursor:pointer;touch-action:manipulation}
+.wf-state-btn.active-critical{border-color:#c9746b;background:#fff4f1;color:#9f332b}
+@media(max-width:720px){.workflow-card-actions{display:grid;grid-template-columns:1fr 1fr}.wf-state-btn{min-height:44px}}
+
 </style>
 </head>
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.17</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.18</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden"><div id="sideBackdrop" class="side-backdrop" onclick="toggleSideNav(false)"></div>
  <aside class="side" id="ccemsSideNav"><button class="side-close-btn" type="button" onclick="toggleSideNav(false)" aria-label="Close navigation">×</button><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -856,7 +863,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
  </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation">☰ <span>Menu</span></button><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.1.17</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation">☰ <span>Menu</span></button><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.1.18</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
@@ -2147,6 +2154,8 @@ function renderWorkflows(v){
  <div class="tabs"><button class="active" onclick="workflowTab('runs',this)">Workflow Command</button><button onclick="workflowTab('templates',this)">Templates</button><button onclick="workflowTab('exceptions',this)">Exceptions</button><button onclick="workflowTab('approvals',this)">Approvals</button></div>
  <div id="workflowBody">${workflowRunsView()}</div>`
 }
+
+function workflowById(id){return (state.workflowRuns||[]).find(x=>String(x.id)===String(id))}
 function workflowCurrentUser(){return state.user?.name||state.currentUser?.name||state.currentUser||"James Carter"}
 function workflowQuickView(type){
  const all=state.workflowRuns||[];let rows=all,current=workflowCurrentUser();
@@ -2159,7 +2168,43 @@ function workflowQuickView(type){
 }
 function workflowTab(tab,btn){document.querySelectorAll(".tabs button").forEach(b=>b.classList.remove("active"));btn.classList.add("active");document.getElementById("workflowBody").innerHTML=tab==="templates"?workflowTemplatesView():tab==="exceptions"?workflowExceptionsView():tab==="approvals"?workflowApprovalsView():workflowRunsView()}
 function workflowRunsView(){const runs=state.workflowRuns||[];return `<section class="card panel"><div class="workflow-filter"><select id="wfStatus" onchange="workflowFilter()"><option value="">All statuses</option><option>NOT STARTED</option><option>IN PROGRESS</option><option>OVERDUE</option><option>AWAITING APPROVAL</option><option>COMPLETED</option></select><select id="wfDept" onchange="workflowFilter()"><option value="">All departments</option>${[...new Set(runs.map(x=>x.department))].map(x=>`<option>${esc(x)}</option>`).join("")}</select></div><div id="workflowRunList">${workflowRunRows(runs)}</div></section>`}
-function workflowRunRows(rows){if(!rows.length)return '<div class="notice">No workflow runs match the filters.</div>';return `<div class="workflow-list">${rows.map(r=>`<div class="workflow-card" data-critical="${r.critical===true||r.priority==="CRITICAL"}" onclick="openWorkflowRun(${r.id})"><div class="workflow-card-top"><div><strong>${esc(r.ref)}</strong><h3>${esc(r.title)}</h3>${(r.critical===true||r.priority==="CRITICAL")?'<span class="workflow-card-critical">Critical</span>':""}</div>${badge(r.status)}</div><div class="workflow-meta"><span>${esc(r.department)}</span><span>${esc(r.location)}</span><span>Due ${dateFmt(r.due)}</span></div><div class="workflow-progress"><div style="width:${r.progress||0}%"></div></div><div class="workflow-foot"><span>${r.progress||0}% complete · ${esc(r.assignedTo)}</span><strong>Open ›</strong></div></div>`).join("")}</div>`}
+function workflowRunRows(rows){
+ if(!rows.length)return '<div class="notice">No workflow runs match the filters.</div>';
+ return `<div class="workflow-list">${rows.map(r=>{
+   const critical=r.critical===true||r.priority==="CRITICAL",approval=r.status==="AWAITING APPROVAL";
+   return `<div class="workflow-card" data-critical="${critical}" onclick="openWorkflowRun('${esc(r.id)}')">
+    <div class="workflow-card-top"><div><strong>${esc(r.ref)}</strong><h3>${esc(r.title)}</h3>${critical?'<span class="workflow-card-critical">Critical</span>':""}</div>${badge(r.status)}</div>
+    <div class="workflow-meta"><span>${esc(r.department)}</span><span>${esc(r.location)}</span><span>Due ${dateFmt(r.due)}</span></div>
+    <div class="workflow-progress"><div style="width:${Number(r.progress)||0}%"></div></div>
+    <div class="workflow-foot"><span>${Number(r.progress)||0}% complete · ${esc(r.assignedTo)}</span><strong>Open ›</strong></div>
+    <div class="workflow-card-actions" onclick="event.stopPropagation()">
+      ${!approval&&r.status!=="COMPLETED"?`<button class="wf-state-btn" onclick="workflowSetApproval('${esc(r.id)}')">Send to Approval</button>`:""}
+      ${r.status!=="COMPLETED"?`<button class="wf-state-btn ${critical?"active-critical":""}" onclick="workflowSetCritical('${esc(r.id)}',${critical?"false":"true"})">${critical?"Remove Critical":"Mark Critical"}</button>`:""}
+    </div>
+   </div>`
+ }).join("")}</div>`
+}
+
+function workflowSetApproval(id){
+ const r=workflowById(id);if(!r){alert("Workflow record could not be found.");return}
+ r.status="AWAITING APPROVAL";
+ r.approvalStatus="PENDING";
+ r.progress=100;
+ r.submittedAt=new Date().toISOString();
+ audit("SUBMIT_APPROVAL","WORKFLOW_RUN",`${r.ref} · ${r.approvalRole||"Manager"}`);
+ save();
+ render("workflows")
+}
+function workflowSetCritical(id,on){
+ const r=workflowById(id);if(!r){alert("Workflow record could not be found.");return}
+ r.critical=!!on;
+ if(on)r.priority="CRITICAL";
+ else if(r.priority==="CRITICAL")r.priority="HIGH";
+ audit(on?"MARK_CRITICAL":"REMOVE_CRITICAL","WORKFLOW_RUN",r.ref);
+ save();
+ render("workflows")
+}
+
 function workflowFilter(){const s=val("wfStatus"),d=val("wfDept"),rows=(state.workflowRuns||[]).filter(x=>(!s||x.status===s)&&(!d||x.department===d));document.getElementById("workflowRunList").innerHTML=workflowRunRows(rows)}
 function workflowTemplatesView(){return `<section class="card panel"><div class="workflow-list">${(state.workflowTemplates||[]).map(x=>`<div class="workflow-card" onclick="openWorkflowTemplate(${x.id})"><div class="workflow-card-top"><div><strong>${esc(x.ref)}</strong><h3>${esc(x.name)}</h3></div>${badge(x.status)}</div><div class="workflow-meta"><span>${esc(x.department)}</span><span>${esc(x.frequency)}</span><span>${x.steps.length} steps</span></div><div class="workflow-foot"><span>Approval: ${esc(x.approval)}</span><strong>Open ›</strong></div></div>`).join("")}</div></section>`}
 function workflowExceptionsView(){const rows=(state.workflowRuns||[]).filter(x=>x.status==="OVERDUE"||x.approvalStatus==="REJECTED");return `<section class="card panel"><h3>Exceptions & Escalations</h3>${rows.length?workflowRunRows(rows):'<div class="notice">No active workflow exceptions.</div>'}</section>`}
@@ -2169,11 +2214,11 @@ function workflowApprovalsView(){
  return `<section class="card panel"><div class="workflow-view-head"><div><h3>Workflow Approval Queue</h3><p class="muted">Completed operational work awaiting management decision.</p></div></div>${rows.length?workflowRunRows(rows):'<div class="notice">No workflow runs are awaiting approval.</div>'}</section>`
 }
 function workflowEscalate(id){
- const r=state.workflowRuns.find(x=>x.id===id);if(!r)return;
+ const r=workflowById(id);if(!r)return;
  modal(`<div class="modalHead"><div><h3>Escalate ${esc(r.ref)}</h3><p class="muted">${esc(r.title)}</p></div><button class="close" onclick="closeModal()">×</button></div><div class="field"><label>Escalation reason</label><select id="wfEscReason"><option>OVERDUE</option><option>SAFETY CONCERN</option><option>RESOURCE BLOCKER</option><option>COMPLIANCE RISK</option><option>MANAGEMENT REVIEW</option></select></div><div class="field"><label>Escalate to</label><select id="wfEscTo">${optionsFrom(state.roles.map(x=>x.name),"Select role")}</select></div><div class="field"><label>Notes</label><textarea id="wfEscNotes" rows="4"></textarea></div><button class="primary" onclick="saveWorkflowEscalation(${id})">Raise Escalation</button>`)
 }
 function saveWorkflowEscalation(id){
- const r=state.workflowRuns.find(x=>x.id===id);if(!r)return;
+ const r=workflowById(id);if(!r)return;
  state.workflowEscalations=state.workflowEscalations||[];
  state.workflowEscalations.unshift({id:nextId(state.workflowEscalations),workflowId:id,ref:r.ref,reason:val("wfEscReason"),to:val("wfEscTo"),notes:val("wfEscNotes"),date:new Date().toISOString(),status:"OPEN"});
  r.escalated=true;r.escalationReason=val("wfEscReason");
@@ -2181,29 +2226,29 @@ function saveWorkflowEscalation(id){
  audit("ESCALATE","WORKFLOW_RUN",`${r.ref} · ${r.escalationReason}`);save();closeModal();render("workflows")
 }
 function workflowReassign(id){
- const r=state.workflowRuns.find(x=>x.id===id);if(!r)return;
+ const r=workflowById(id);if(!r)return;
  modal(`<div class="modalHead"><div><h3>Reassign ${esc(r.ref)}</h3><p class="muted">${esc(r.title)}</p></div><button class="close" onclick="closeModal()">×</button></div><div class="field"><label>Assigned to</label><select id="wfReassignTo">${optionsFrom(ccStaff().map(x=>x.name),"Select assignee")}</select></div><div class="field"><label>Reason</label><textarea id="wfReassignReason" rows="3"></textarea></div><button class="primary" onclick="saveWorkflowReassign(${id})">Reassign Workflow</button>`)
 }
 function saveWorkflowReassign(id){
- const r=state.workflowRuns.find(x=>x.id===id),to=val("wfReassignTo");if(!r||!to)return;
+ const r=workflowById(id),to=val("wfReassignTo");if(!r||!to)return;
  const from=r.assignedTo;r.assignedTo=to;r.reassignReason=val("wfReassignReason");
  audit("REASSIGN","WORKFLOW_RUN",`${r.ref} · ${from} → ${to}`);save();closeModal();render("workflows")
 }
 function workflowReject(id){
- const r=state.workflowRuns.find(x=>x.id===id);if(!r)return;
+ const r=workflowById(id);if(!r)return;
  modal(`<div class="modalHead"><div><h3>Return Workflow for Correction</h3><p class="muted">${esc(r.ref)} · ${esc(r.title)}</p></div><button class="close" onclick="closeModal()">×</button></div><div class="field"><label>Correction required</label><textarea id="wfRejectReason" rows="4"></textarea></div><button class="primary" onclick="saveWorkflowReject(${id})">Return to Assignee</button>`)
 }
 function saveWorkflowReject(id){
- const r=state.workflowRuns.find(x=>x.id===id);if(!r)return;
+ const r=workflowById(id);if(!r)return;
  r.status="IN PROGRESS";r.approvalStatus="REJECTED";r.correctionRequired=val("wfRejectReason");r.progress=Math.min(95,r.progress||0);
  audit("RETURN","WORKFLOW_RUN",`${r.ref} · ${r.correctionRequired}`);save();closeModal();render("workflows")
 }
 function workflowAddComment(id){
- const r=state.workflowRuns.find(x=>x.id===id);if(!r)return;
+ const r=workflowById(id);if(!r)return;
  modal(`<div class="modalHead"><div><h3>Add Workflow Note</h3><p class="muted">${esc(r.ref)}</p></div><button class="close" onclick="closeModal()">×</button></div><div class="field"><label>Note / handover comment</label><textarea id="wfComment" rows="5"></textarea></div><button class="primary" onclick="saveWorkflowComment(${id})">Add Note</button>`)
 }
 function saveWorkflowComment(id){
- const r=state.workflowRuns.find(x=>x.id===id);if(!r)return;
+ const r=workflowById(id);if(!r)return;
  state.workflowComments=state.workflowComments||[];
  state.workflowComments.unshift({id:nextId(state.workflowComments),workflowId:id,date:new Date().toISOString(),user:state.user?.name||"Estate User",text:val("wfComment")});
  audit("COMMENT","WORKFLOW_RUN",r.ref);save();closeModal();openWorkflowRun(id)
@@ -2287,7 +2332,7 @@ function saveWorkflowTemplateEdit(id){
 }
 
 function openWorkflowRun(id){
- const r=(state.workflowRuns||[]).find(x=>x.id===id),tpl=(state.workflowTemplates||[]).find(x=>x.id===r?.templateId);if(!r)return;
+ const r=workflowById(id),tpl=(state.workflowTemplates||[]).find(x=>x.id===r?.templateId);if(!r)return;
  const steps=tpl?.steps?.length?tpl.steps:["Complete task","Record evidence","Manager review"];
  r.step=Math.max(0,Math.min(Number(r.step)||0,steps.length));
  if(r.step>=steps.length&&r.status!=="COMPLETED"){r.progress=100;r.status="AWAITING APPROVAL";r.approvalStatus="PENDING"}
@@ -2327,42 +2372,17 @@ function openWorkflowRun(id){
  </div>`)
 }
 
-function submitWorkflowForApproval(id){
- const r=(state.workflowRuns||[]).find(x=>x.id===id);if(!r)return;
- r.status="AWAITING APPROVAL";
- r.approvalStatus="PENDING";
- r.submittedAt=new Date().toISOString();
- if((Number(r.progress)||0)<100)r.progress=100;
- audit("SUBMIT_APPROVAL","WORKFLOW_RUN",`${r.ref} · ${r.approvalRole||"Manager"}`);
- save();
- closeModal();
- render("workflows")
-}
-function toggleWorkflowCritical(id){
- const r=(state.workflowRuns||[]).find(x=>x.id===id);if(!r)return;
- const currently=r.critical===true||r.priority==="CRITICAL";
- if(currently){
-   r.critical=false;
-   if(r.priority==="CRITICAL")r.priority="HIGH";
-   audit("REMOVE_CRITICAL","WORKFLOW_RUN",r.ref)
- }else{
-   r.critical=true;
-   r.priority="CRITICAL";
-   audit("MARK_CRITICAL","WORKFLOW_RUN",r.ref)
- }
- save();
- closeModal();
- render("workflows")
-}
+function submitWorkflowForApproval(id){closeModal();workflowSetApproval(id)}
+function toggleWorkflowCritical(id){const r=workflowById(id);if(!r)return;closeModal();workflowSetCritical(id,!(r.critical===true||r.priority==="CRITICAL"))}
 
 function saveWorkflowNotes(id){
- const r=(state.workflowRuns||[]).find(x=>x.id===id);if(!r)return;
+ const r=workflowById(id);if(!r)return;
  r.evidence=val("wfrEvidence");r.notes=val("wfrNotes");
  audit("UPDATE","WORKFLOW_RUN",`${r.ref} · evidence/notes`);save();
  alert("Workflow evidence and notes saved.")
 }
 function completeWorkflowStep(id,index){
- const r=(state.workflowRuns||[]).find(x=>x.id===id),tpl=(state.workflowTemplates||[]).find(x=>x.id===r?.templateId);if(!r)return;
+ const r=workflowById(id),tpl=(state.workflowTemplates||[]).find(x=>x.id===r?.templateId);if(!r)return;
  const steps=tpl?.steps?.length?tpl.steps:["Complete task","Record evidence","Manager review"];
  if(index!==r.step)return;
  r.evidence=val("wfrEvidence");r.notes=val("wfrNotes");
@@ -2385,11 +2405,11 @@ function completeWorkflowStep(id,index){
 }
 function saveWorkflowProgress(id,advance){
  if(advance){
-   const r=(state.workflowRuns||[]).find(x=>x.id===id);if(r)completeWorkflowStep(id,Number(r.step)||0)
+   const r=workflowById(id);if(r)completeWorkflowStep(id,Number(r.step)||0)
  }else saveWorkflowNotes(id)
 }
 
-function approveWorkflow(id){const r=(state.workflowRuns||[]).find(x=>x.id===id);if(!r)return;if(r.status!=="AWAITING APPROVAL"){alert("This workflow has not yet reached the approval stage.");return}r.approvalStatus="APPROVED";r.status="COMPLETED";r.progress=100;r.approvedAt=new Date().toISOString();r.approvedBy=workflowCurrentUser();audit("APPROVE","WORKFLOW_RUN",`${r.ref} · ${r.approvedBy}`);save();closeModal();render("workflows")}
+function approveWorkflow(id){const r=workflowById(id);if(!r)return;if(r.status!=="AWAITING APPROVAL"){alert("This workflow has not yet reached the approval stage.");return}r.approvalStatus="APPROVED";r.status="COMPLETED";r.progress=100;r.approvedAt=new Date().toISOString();r.approvedBy=workflowCurrentUser();audit("APPROVE","WORKFLOW_RUN",`${r.ref} · ${r.approvedBy}`);save();closeModal();render("workflows")}
 
 function renderAudit(v){
  setTitle("Audit History");
