@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v1.1.24 Estate Operations Control Centre demo">
+<meta name="description" content="CCEMS Phase 1 v1.1.25 Estate Operations Control Centre demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v1.1.24</title>
+<title>CCEMS Phase 1 v1.1.25</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -879,17 +879,28 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 @media(max-width:720px){.dependency-row{grid-template-columns:minmax(0,1fr);gap:7px}}
 
 
-/* v1.1.24 — explicit blocker state */
+/* v1.1.25 — explicit blocker state */
 .workflow-card[data-blocked="true"]{box-shadow:inset 4px 0 0 #a86e19}
 .workflow-card[data-blocked="true"] .workflow-progress>div{opacity:.55}
 .active-blocked{font-weight:900!important}
 
+
+/* v1.1.25 — controlled step execution & workflow timeline */
+.step-evidence-card{border:1px solid #d8ded8;border-radius:18px;padding:16px;margin:10px 0;background:#fffdf8;text-align:left;width:100%}
+.step-evidence-card strong{display:block;color:#123f32;margin-bottom:5px}
+.step-evidence-card small{display:block;color:#6d7772;line-height:1.45}
+.workflow-timeline{border-left:2px solid #d9dfd9;margin:12px 0 0 10px;padding-left:20px}
+.workflow-timeline-item{position:relative;padding:0 0 18px}
+.workflow-timeline-item:before{content:"";position:absolute;left:-27px;top:4px;width:12px;height:12px;border-radius:50%;background:#164d3c;border:3px solid #f7f3e8}
+.workflow-timeline-item strong,.workflow-timeline-item span,.workflow-timeline-item small{display:block}
+.workflow-timeline-item span{margin-top:3px}.workflow-timeline-item small{color:#727b77;margin-top:4px}
+.step-control-note{padding:12px 14px;border-radius:14px;background:#eef5ef;margin:10px 0;color:#234b3d}
 </style>
 </head>
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.24</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.25</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden"><div id="sideBackdrop" class="side-backdrop" onclick="toggleSideNav(false)"></div>
  <aside class="side" id="ccemsSideNav"><button class="side-close-btn" type="button" onclick="toggleSideNav(false)" aria-label="Close navigation">×</button><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -944,7 +955,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
  </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation">☰ <span>Menu</span></button><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.1.24</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation">☰ <span>Menu</span></button><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.1.25</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
@@ -1106,6 +1117,8 @@ const defaults={
  workflowEscalations:[],
  workflowDependencies:[],
  workflowBlockers:[],
+ workflowStepRecords:[],
+ workflowHistory:[],
 
  auditReports:[
  ],
@@ -1223,7 +1236,7 @@ function load(){try{
 }catch(e){return clone(defaults)}}
 function normaliseState(s){
  s=s&&typeof s==="object"?s:{};
- ["tasks","animals","compliance","staff","land","flocks","movements","grazing","crops","soilTests","inputs","harvests","fieldOps","assets","workOrders","inspections","fuelLogs","parts","suppliers","training","shifts","attendance","leave","ppe","taskRules","recurringTasks","checklistRuns","correctiveActions","approvals","sopAcknowledgements","complianceEvidence","inventory","stockIssues","purchaseRequisitions","purchaseOrders","goodsReceipts","procurementSuppliers","workflowTemplates","workflowRuns","workflowComments","workflowEscalations","workflowDependencies","workflowBlockers","auditReports","permissionOverrides","executiveReports","notifications","estateDiary","incidents","documents","roles","activityFeed"].forEach(k=>{
+ ["tasks","animals","compliance","staff","land","flocks","movements","grazing","crops","soilTests","inputs","harvests","fieldOps","assets","workOrders","inspections","fuelLogs","parts","suppliers","training","shifts","attendance","leave","ppe","taskRules","recurringTasks","checklistRuns","correctiveActions","approvals","sopAcknowledgements","complianceEvidence","inventory","stockIssues","purchaseRequisitions","purchaseOrders","goodsReceipts","procurementSuppliers","workflowTemplates","workflowRuns","workflowComments","workflowEscalations","workflowDependencies","workflowBlockers","workflowStepRecords","workflowHistory","auditReports","permissionOverrides","executiveReports","notifications","estateDiary","incidents","documents","roles","activityFeed"].forEach(k=>{
    if(!Array.isArray(s[k]))s[k]=clone(defaults[k]||[]);
    else s[k]=s[k].filter(x=>x!==null&&x!==undefined)
  });
@@ -2534,7 +2547,7 @@ function saveWorkflowBlocker(id){
    createdBy:workflowCurrentUser()
  });
  applyWorkflowBlockedState(id);
- audit("BLOCK","WORKFLOW_RUN",`${r.ref} · ${reason}`);
+ addWorkflowHistory(id,"BLOCKED",reason+(notes?` · ${notes}`:""));audit("BLOCK","WORKFLOW_RUN",`${r.ref} · ${reason}`);
  save();
  closeModal();
  render("workflows")
@@ -2546,7 +2559,7 @@ function resolveWorkflowBlocker(blockerId,workflowId){
  b.resolved=new Date().toISOString();
  b.resolvedBy=workflowCurrentUser();
  releaseWorkflowBlockedState(workflowId);
- audit("RESOLVE_BLOCKER","WORKFLOW_RUN",workflowById(workflowId)?.ref||workflowId);
+ addWorkflowHistory(workflowId,"BLOCKER RESOLVED",b.reason);audit("RESOLVE_BLOCKER","WORKFLOW_RUN",workflowById(workflowId)?.ref||workflowId);
  save();
  closeModal();
  render("workflows")
@@ -2591,7 +2604,7 @@ function saveWorkflowEscalation(id){
  state.workflowEscalations.unshift({id:nextId(state.workflowEscalations),workflowId:id,ref:r.ref,reason:val("wfEscReason"),to:val("wfEscTo"),notes:val("wfEscNotes"),date:new Date().toISOString(),status:"OPEN"});
  r.escalated=true;r.escalationReason=val("wfEscReason");
  if(["SAFETY CONCERN","COMPLIANCE RISK"].includes(r.escalationReason)){r.critical=true;r.priority="CRITICAL"}
- audit("ESCALATE","WORKFLOW_RUN",`${r.ref} · ${r.escalationReason}`);save();closeModal();render("workflows")
+ addWorkflowHistory(id,"ESCALATED",`${r.escalationReason} → ${val("wfEscTo")}`);audit("ESCALATE","WORKFLOW_RUN",`${r.ref} · ${r.escalationReason}`);save();closeModal();render("workflows")
 }
 function workflowReassign(id){
  const r=workflowById(id);if(!r)return;
@@ -2600,7 +2613,7 @@ function workflowReassign(id){
 function saveWorkflowReassign(id){
  const r=workflowById(id),to=val("wfReassignTo");if(!r||!to)return;
  const from=r.assignedTo;r.assignedTo=to;r.reassignReason=val("wfReassignReason");
- audit("REASSIGN","WORKFLOW_RUN",`${r.ref} · ${from} → ${to}`);save();closeModal();render("workflows")
+ addWorkflowHistory(id,"REASSIGNED",`${from} → ${to}`);audit("REASSIGN","WORKFLOW_RUN",`${r.ref} · ${from} → ${to}`);save();closeModal();render("workflows")
 }
 function workflowReject(id){
  const r=workflowById(id);if(!r)return;
@@ -2699,6 +2712,58 @@ function saveWorkflowTemplateEdit(id){
  audit("AMEND","WORKFLOW_TEMPLATE",x.ref);save();closeModal();render("workflows")
 }
 
+
+function workflowStepRecordsFor(id){
+ return (state.workflowStepRecords||[]).filter(x=>String(x.workflowId)===String(id)).sort((a,b)=>Number(a.stepIndex)-Number(b.stepIndex))
+}
+function workflowHistoryFor(id){
+ return (state.workflowHistory||[]).filter(x=>String(x.workflowId)===String(id)).sort((a,b)=>String(b.at).localeCompare(String(a.at)))
+}
+function addWorkflowHistory(id,type,detail){
+ state.workflowHistory=state.workflowHistory||[];
+ state.workflowHistory.unshift({id:nextId(state.workflowHistory),workflowId:String(id),type,detail,at:new Date().toISOString(),user:workflowCurrentUser()})
+}
+function workflowStepModal(id,index){
+ const r=workflowById(id),tpl=(state.workflowTemplates||[]).find(x=>x.id===r?.templateId);if(!r)return;
+ if(workflowDerivedStatus(r)==="BLOCKED"){alert("This workflow is blocked. Resolve the blocker or dependency before completing this step.");return}
+ const steps=tpl?.steps?.length?tpl.steps:["Complete task","Record evidence","Manager review"];
+ if(index!==Number(r.step||0)){alert("Steps must be completed in sequence.");return}
+ const title=steps[index]||`Step ${index+1}`;
+ modal(`<div class="modalHead"><div><div class="eyebrow">Controlled Step ${index+1} of ${steps.length}</div><h3>${esc(title)}</h3><p class="muted">${esc(r.ref)} · ${esc(r.title)}</p></div><button class="close" onclick="closeModal()">×</button></div>
+ <div class="step-control-note">Record completion evidence before closing this controlled step. The entry will be retained in the workflow history.</div>
+ <div class="field"><label>Completion result</label><select id="wfStepResult"><option>COMPLETED</option><option>COMPLETED WITH OBSERVATION</option><option>EXCEPTION IDENTIFIED</option></select></div>
+ <div class="field"><label>Evidence / reference</label><input id="wfStepEvidence" placeholder="Inspection, photograph, document, animal, asset or checklist reference"></div>
+ <div class="field"><label>Completion notes</label><textarea id="wfStepNotes" rows="5" placeholder="Record what was checked, completed or observed."></textarea></div>
+ <div class="field"><label>Completed by</label><input value="${esc(workflowCurrentUser())}" disabled></div>
+ <div class="actions"><button class="secondary" onclick="openWorkflowRun('${esc(id)}')">Cancel</button><button class="primary" onclick="saveWorkflowStep('${esc(id)}',${index})">Complete Controlled Step</button></div>`)
+}
+function saveWorkflowStep(id,index){
+ const r=workflowById(id),tpl=(state.workflowTemplates||[]).find(x=>x.id===r?.templateId);if(!r)return;
+ if(workflowDerivedStatus(r)==="BLOCKED"){alert("This workflow is blocked.");return}
+ const steps=tpl?.steps?.length?tpl.steps:["Complete task","Record evidence","Manager review"];
+ if(index!==Number(r.step||0)){alert("This step is no longer the current workflow step.");return}
+ const result=val("wfStepResult"),evidence=val("wfStepEvidence"),notes=val("wfStepNotes");
+ if(!notes){alert("Enter completion notes for this controlled step.");return}
+ state.workflowStepRecords=state.workflowStepRecords||[];
+ state.workflowStepRecords.push({id:nextId(state.workflowStepRecords),workflowId:String(id),stepIndex:index,stepName:steps[index],result,evidence,notes,completedBy:workflowCurrentUser(),completedAt:new Date().toISOString()});
+ r.step=Math.min(steps.length,index+1);r.progress=Math.round(r.step/steps.length*100);
+ r.evidence=evidence||r.evidence;r.notes=notes||r.notes;
+ if(result==="EXCEPTION IDENTIFIED"){r.critical=true;r.priority="CRITICAL";r.escalated=true;r.escalationReason="STEP EXCEPTION"}
+ if(r.step>=steps.length){r.progress=100;r.status="AWAITING APPROVAL";r.approvalStatus="PENDING";r.completedAt=new Date().toISOString();addWorkflowHistory(id,"SUBMITTED",`All ${steps.length} controlled steps completed; awaiting ${r.approvalRole||tpl?.approval||"manager"} approval.`)}
+ else{r.status="IN PROGRESS";r.approvalStatus="NOT READY";addWorkflowHistory(id,"STEP COMPLETED",`${index+1}. ${steps[index]} · ${result}`)}
+ audit("COMPLETE_STEP","WORKFLOW_RUN",`${r.ref} · ${index+1}/${steps.length} · ${result}`);save();closeModal();openWorkflowRun(id)
+}
+function workflowTimelineModal(id){
+ const r=workflowById(id);if(!r)return;
+ const steps=workflowStepRecordsFor(id),history=workflowHistoryFor(id);
+ const events=[
+  ...steps.map(x=>({at:x.completedAt,type:"STEP COMPLETED",detail:`${Number(x.stepIndex)+1}. ${x.stepName} · ${x.result}${x.evidence?` · Evidence: ${x.evidence}`:""}`,user:x.completedBy})),
+  ...history
+ ].sort((a,b)=>String(b.at).localeCompare(String(a.at)));
+ modal(`<div class="modalHead"><div><h3>Workflow History</h3><p class="muted">${esc(r.ref)} · ${esc(r.title)}</p></div><button class="close" onclick="closeModal()">×</button></div>
+ <div class="workflow-timeline">${events.length?events.map(e=>`<div class="workflow-timeline-item"><strong>${esc(e.type)}</strong><span>${esc(e.detail)}</span><small>${esc(e.user||"Estate User")} · ${new Date(e.at).toLocaleString("en-GB")}</small></div>`).join(""):'<div class="notice">No controlled workflow history has been recorded yet.</div>'}</div>`)
+}
+
 function openWorkflowRun(id){
  const r=workflowById(id),tpl=(state.workflowTemplates||[]).find(x=>x.id===r?.templateId);if(!r)return;
  const steps=tpl?.steps?.length?tpl.steps:["Complete task","Record evidence","Manager review"];
@@ -2719,13 +2784,14 @@ function openWorkflowRun(id){
  <div class="workflow-step-list">
  ${steps.map((s,i)=>{
    const done=i<r.step, current=i===r.step&&!isApproval, future=i>r.step;
-   return `<button class="workflow-step-action ${done?"done":current?"current":"pending"}" ${future||isApproval?"disabled":""} onclick="completeWorkflowStep(${r.id},${i})">
+   return `<button class="workflow-step-action ${done?"done":current?"current":"pending"}" ${future||isApproval?"disabled":""} onclick="workflowStepModal(${r.id},${i})">
     <span class="workflow-step-number">${done?"✓":i+1}</span>
     <span class="workflow-step-copy"><strong>${esc(s)}</strong><small>${done?"Completed":current?(i===steps.length-1?"Ready to complete & submit":"Tap to complete this step"):"Pending"}</small></span>
     <span class="workflow-step-open">${done?"Done":current?"Complete ›":""}</span>
    </button>`
  }).join("")}
  </div>
+ ${workflowStepRecordsFor(r.id).length?`<div class="sectionTitle">Completed Step Evidence</div>${workflowStepRecordsFor(r.id).map(s=>`<button class="step-evidence-card" onclick="workflowTimelineModal('${esc(r.id)}')"><strong>${Number(s.stepIndex)+1}. ${esc(s.stepName)}</strong><small>${esc(s.result)} · ${esc(s.completedBy)}${s.evidence?` · ${esc(s.evidence)}`:""}</small></button>`).join("")}`:""}
  <div class="workflow-progress workflow-progress-large"><div style="width:${r.progress||0}%"></div></div><p class="muted">${r.progress||0}% complete</p>
  <div class="field"><label>Evidence / reference</label><input id="wfrEvidence" value="${esc(r.evidence||"")}" placeholder="Photo, document, checklist or inspection reference"></div>
  <div class="field"><label>Operational notes</label><textarea id="wfrNotes" rows="4">${esc(r.notes||"")}</textarea></div>
@@ -2735,6 +2801,7 @@ function openWorkflowRun(id){
  <div class="actions workflow-actions">
    <button class="secondary" onclick="saveWorkflowNotes(${r.id})">Save Evidence & Notes</button>
    <button class="secondary" onclick="workflowAddComment(${r.id})">Add Note</button>
+   <button class="secondary" onclick="workflowTimelineModal('${esc(r.id)}')">Workflow History</button>
    <button class="secondary" onclick="workflowReassign(${r.id})">Reassign</button>
    <button class="secondary" onclick="workflowEscalate(${r.id})">Escalate</button>
    <button class="secondary" onclick="workflowDependencyModal('${esc(r.id)}')">Add Dependency</button>
@@ -2783,7 +2850,7 @@ function saveWorkflowProgress(id,advance){
  }else saveWorkflowNotes(id)
 }
 
-function approveWorkflow(id){const r=workflowById(id);if(!r)return;if(r.status!=="AWAITING APPROVAL"){alert("This workflow has not yet reached the approval stage.");return}r.approvalStatus="APPROVED";r.status="COMPLETED";r.progress=100;r.approvedAt=new Date().toISOString();r.approvedBy=workflowCurrentUser();audit("APPROVE","WORKFLOW_RUN",`${r.ref} · ${r.approvedBy}`);save();closeModal();render("workflows")}
+function approveWorkflow(id){const r=workflowById(id);if(!r)return;if(r.status!=="AWAITING APPROVAL"){alert("This workflow has not yet reached the approval stage.");return}r.approvalStatus="APPROVED";r.status="COMPLETED";r.progress=100;r.approvedAt=new Date().toISOString();addWorkflowHistory(id,"APPROVED & CLOSED",`Approved by ${workflowCurrentUser()}`);r.approvedBy=workflowCurrentUser();audit("APPROVE","WORKFLOW_RUN",`${r.ref} · ${r.approvedBy}`);save();closeModal();render("workflows")}
 
 function renderAudit(v){
  setTitle("Audit History");
