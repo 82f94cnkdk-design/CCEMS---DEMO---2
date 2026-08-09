@@ -1,0 +1,11 @@
+CCEMS v1.1.48 Full White-Surface Audit
+
+Policy:
+- Warm ivory/cream for cards, panels, rows and action controls.
+- Parchment/ivory for metadata cells and table headers.
+- Deep estate green for primary/selected controls.
+- Semantic red/green/gold retained for status and risk meaning.
+- Near-white reserved only for editable inputs, document/file viewing and print/PDF canvases.
+
+Legacy hard-coded white-ish CSS rules detected before override: 38
+All relevant non-functional surfaces are now overridden by the final v1.1.48 design layer.
