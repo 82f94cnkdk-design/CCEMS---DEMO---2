@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v1.1.30 Estate Operations Control Centre demo">
+<meta name="description" content="CCEMS Phase 1 v1.1.31 Estate Operations Control Centre demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v1.1.30</title>
+<title>CCEMS Phase 1 v1.1.31</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -879,13 +879,13 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 @media(max-width:720px){.dependency-row{grid-template-columns:minmax(0,1fr);gap:7px}}
 
 
-/* v1.1.30 — explicit blocker state */
+/* v1.1.31 — explicit blocker state */
 .workflow-card[data-blocked="true"]{box-shadow:inset 4px 0 0 #a86e19}
 .workflow-card[data-blocked="true"] .workflow-progress>div{opacity:.55}
 .active-blocked{font-weight:900!important}
 
 
-/* v1.1.30 — controlled step execution & workflow timeline */
+/* v1.1.31 — controlled step execution & workflow timeline */
 .step-evidence-card{border:1px solid #d8ded8;border-radius:18px;padding:16px;margin:10px 0;background:#fffdf8;text-align:left;width:100%}
 .step-evidence-card strong{display:block;color:#123f32;margin-bottom:5px}
 .step-evidence-card small{display:block;color:#6d7772;line-height:1.45}
@@ -896,7 +896,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 .workflow-timeline-item span{margin-top:3px}.workflow-timeline-item small{color:#727b77;margin-top:4px}
 .step-control-note{padding:12px 14px;border-radius:14px;background:#eef5ef;margin:10px 0;color:#234b3d}
 
-/* v1.1.30 — SLA & due-date control */
+/* v1.1.31 — SLA & due-date control */
 .sla-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
 .sla-strip button{border:1px solid var(--line);border-radius:14px;background:#fff;padding:13px;text-align:left;color:var(--ink);cursor:pointer}
 .sla-strip span{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:800}
@@ -908,18 +908,18 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 @media(max-width:720px){.sla-strip{grid-template-columns:1fr 1fr}}
 
 
-/* v1.1.30 — workflow drill-down & zero-state UX */
+/* v1.1.31 — workflow drill-down & zero-state UX */
 .sla-strip button.zero-state,.workflow-kpis button.zero-state,.workflow-command-strip button.zero-state{opacity:.58;cursor:default}
 .workflow-zero{border:1px solid #d8e3d9;background:#eef6ef;border-radius:14px;padding:16px;color:#315b48;margin-top:12px}
 .workflow-result-head{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
 .workflow-result-count{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:800}
 
 
-/* v1.1.30 — clearer workflow history actor attribution */
+/* v1.1.31 — clearer workflow history actor attribution */
 .workflow-timeline-item small b{color:var(--g900);font-weight:800}
 
 
-/* v1.1.30 — controlled workflow evidence attachments */
+/* v1.1.31 — controlled workflow evidence attachments */
 .evidence-upload{border:1px dashed #aebdb4;border-radius:16px;padding:14px;background:#fbfcf9;margin-top:8px}
 .evidence-upload input[type=file]{width:100%;font-size:15px}
 .evidence-upload-help{display:block;color:#6d7772;font-size:13px;line-height:1.45;margin-top:7px}
@@ -930,7 +930,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 .evidence-file small{color:#6d7772;margin-top:3px}
 
 
-/* v1.1.30 — iPhone-native photo/document evidence pickers */
+/* v1.1.31 — iPhone-native photo/document evidence pickers */
 .evidence-picker-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .evidence-picker-btn{display:grid;grid-template-columns:auto 1fr;gap:2px 9px;align-items:center;border:1px solid #b8c6bd;border-radius:13px;background:#fff;padding:13px;cursor:pointer;color:var(--g900);touch-action:manipulation}
 .evidence-picker-btn>span{grid-row:1/3;font-size:22px}
@@ -941,12 +941,24 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 .evidence-doc-icon{height:80px;border-radius:9px;background:#eef2ef;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:var(--g800);margin-bottom:7px}
 @media(max-width:520px){.evidence-picker-grid{grid-template-columns:1fr}.evidence-picker-btn{min-height:58px}}
 
+
+/* v1.1.31 — universal CCEMS evidence upload standard */
+.ccems-evidence-widget{margin-top:12px;border:1px solid #d6ded8;border-radius:15px;padding:13px;background:#fbfcf9}
+.ccems-evidence-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.ccems-evidence-title strong{color:var(--g900)}.ccems-evidence-title span{font-size:11px;color:var(--muted)}
+.ccems-evidence-existing,.ccems-evidence-staged{display:grid;gap:8px;margin-top:10px}
+.ccems-evidence-card{display:grid;grid-template-columns:58px minmax(0,1fr) auto;gap:10px;align-items:center;border:1px solid var(--line);border-radius:11px;background:#fff;padding:8px}
+.ccems-evidence-card img,.ccems-evidence-card .evidence-doc-icon{width:58px;height:50px;object-fit:cover;border-radius:8px;margin:0}
+.ccems-evidence-card>div:nth-child(2){min-width:0}.ccems-evidence-card strong,.ccems-evidence-card small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ccems-evidence-card small{color:var(--muted);margin-top:3px}
+.ccems-evidence-card button{border:0;background:transparent;font-size:20px;color:#6d7772}
+.ccems-evidence-selected-count{font-size:12px;font-weight:800;color:var(--g800);padding:5px 0}
+
 </style>
 </head>
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.30</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.31</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden"><div id="sideBackdrop" class="side-backdrop" onclick="toggleSideNav(false)"></div>
  <aside class="side" id="ccemsSideNav"><button class="side-close-btn" type="button" onclick="toggleSideNav(false)" aria-label="Close navigation">×</button><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -1001,7 +1013,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
  </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation">☰ <span>Menu</span></button><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.1.30</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation">☰ <span>Menu</span></button><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.1.31</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
@@ -1166,6 +1178,8 @@ const defaults={
  workflowStepRecords:[],
  workflowHistory:[],
 
+ evidenceAttachments:[],
+
  auditReports:[
  ],
 
@@ -1282,7 +1296,7 @@ function load(){try{
 }catch(e){return clone(defaults)}}
 function normaliseState(s){
  s=s&&typeof s==="object"?s:{};
- ["tasks","animals","compliance","staff","land","flocks","movements","grazing","crops","soilTests","inputs","harvests","fieldOps","assets","workOrders","inspections","fuelLogs","parts","suppliers","training","shifts","attendance","leave","ppe","taskRules","recurringTasks","checklistRuns","correctiveActions","approvals","sopAcknowledgements","complianceEvidence","inventory","stockIssues","purchaseRequisitions","purchaseOrders","goodsReceipts","procurementSuppliers","workflowTemplates","workflowRuns","workflowComments","workflowEscalations","workflowDependencies","workflowBlockers","workflowStepRecords","workflowHistory","auditReports","permissionOverrides","executiveReports","notifications","estateDiary","incidents","documents","roles","activityFeed"].forEach(k=>{
+ ["tasks","animals","compliance","staff","land","flocks","movements","grazing","crops","soilTests","inputs","harvests","fieldOps","assets","workOrders","inspections","fuelLogs","parts","suppliers","training","shifts","attendance","leave","ppe","taskRules","recurringTasks","checklistRuns","correctiveActions","approvals","sopAcknowledgements","complianceEvidence","inventory","stockIssues","purchaseRequisitions","purchaseOrders","goodsReceipts","procurementSuppliers","workflowTemplates","workflowRuns","workflowComments","workflowEscalations","workflowDependencies","workflowBlockers","workflowStepRecords","workflowHistory","evidenceAttachments","auditReports","permissionOverrides","executiveReports","notifications","estateDiary","incidents","documents","roles","activityFeed"].forEach(k=>{
    if(!Array.isArray(s[k]))s[k]=clone(defaults[k]||[]);
    else s[k]=s[k].filter(x=>x!==null&&x!==undefined)
  });
@@ -1327,6 +1341,8 @@ function toggleSideNav(force){
  document.body.classList.toggle("nav-open",shouldOpen);
  const btn=document.querySelector(".mobile-menu-btn");
  if(btn)btn.setAttribute("aria-expanded",shouldOpen?"true":"false")
+
+ setTimeout(ccemsInjectEvidenceWidgets,0)
 }
 window.addEventListener("resize",()=>{
  if(window.innerWidth>900)toggleSideNav(false)
@@ -1403,6 +1419,103 @@ function ccemsWireSubsections(page){
    card.dataset.ccemsCardWired="1";
    heading.classList.add("ccems-section-heading");
  });
+}
+
+
+/* v1.1.31 — universal CCEMS evidence attachment framework */
+function ccemsEvidenceKey(module,recordId,field){
+ return `${String(module||"GENERAL")}::${String(recordId||"NEW")}::${String(field||"EVIDENCE")}`
+}
+function ccemsEvidenceFor(module,recordId,field){
+ const key=ccemsEvidenceKey(module,recordId,field);
+ return (state.evidenceAttachments||[]).filter(x=>x.key===key)
+}
+function ccemsEvidenceWidget(module,recordId,field,label="Attach Evidence"){
+ const key=ccemsEvidenceKey(module,recordId,field);
+ const existing=ccemsEvidenceFor(module,recordId,field);
+ const safeId="ev_"+Math.abs([...key].reduce((a,c)=>((a<<5)-a)+c.charCodeAt(0),0));
+ return `<div class="ccems-evidence-widget" data-evidence-key="${esc(key)}">
+   <div class="ccems-evidence-title"><strong>${esc(label)}</strong><span>${existing.length} attached</span></div>
+   <div class="evidence-picker-grid">
+     <label class="evidence-picker-btn" for="${safeId}_photos"><span>📷</span><strong>Add Photos</strong><small>Camera or Photo Library</small></label>
+     <label class="evidence-picker-btn" for="${safeId}_docs"><span>＋</span><strong>Add Documents</strong><small>PDF, Word, Excel, CSV or file</small></label>
+   </div>
+   <input class="evidence-native-input" id="${safeId}_photos" type="file" accept="image/*" multiple onchange="ccemsEvidenceSelected('${esc(key)}',this)">
+   <input class="evidence-native-input" id="${safeId}_docs" type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.csv,.txt,.rtf,.json,.xml,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/csv,text/plain" multiple onchange="ccemsEvidenceSelected('${esc(key)}',this)">
+   <div class="ccems-evidence-existing">${existing.map(ccemsEvidenceCard).join("")}</div>
+   <div class="ccems-evidence-staged" id="${safeId}_staged"></div>
+ </div>`
+}
+function ccemsEvidenceCard(a){
+ const isImg=(a.type||"").startsWith("image/");
+ return `<div class="ccems-evidence-card">${isImg&&a.data?`<img src="${a.data}" alt="Evidence image">`:`<div class="evidence-doc-icon">FILE</div>`}<div><strong>${esc(a.name||"Attachment")}</strong><small>${Math.max(1,Math.round(Number(a.size||0)/1024))} KB · ${esc(a.addedBy||"Estate User")}</small></div><button type="button" onclick="ccemsRemoveEvidence('${esc(a.id)}')">×</button></div>`
+}
+function ccemsEvidenceSelected(key,input){
+ const files=Array.from(input?.files||[]);
+ if(!files.length)return;
+ window.__ccemsEvidenceStaging=window.__ccemsEvidenceStaging||{};
+ window.__ccemsEvidenceStaging[key]=[...(window.__ccemsEvidenceStaging[key]||[]),...files];
+ const widget=document.querySelector(`[data-evidence-key="${CSS.escape(key)}"]`);
+ if(!widget)return;
+ const staged=widget.querySelector(".ccems-evidence-staged");
+ const all=window.__ccemsEvidenceStaging[key]||[];
+ staged.innerHTML=`<div class="ccems-evidence-selected-count">${all.length} new file${all.length===1?"":"s"} selected — saved when this record is saved.</div>`+all.map(f=>`<div class="ccems-evidence-card"><div class="evidence-doc-icon">${f.type?.startsWith("image/")?"PHOTO":"FILE"}</div><div><strong>${esc(f.name)}</strong><small>${Math.max(1,Math.round(f.size/1024))} KB</small></div></div>`).join("")
+}
+async function ccemsEvidenceFileData(f){
+ if(f.type?.startsWith("image/")){
+   return new Promise((resolve,reject)=>{
+     const reader=new FileReader();
+     reader.onload=()=>{
+       const img=new Image();
+       img.onload=()=>{
+         const max=1280,scale=Math.min(1,max/Math.max(img.width,img.height));
+         const canvas=document.createElement("canvas");
+         canvas.width=Math.max(1,Math.round(img.width*scale));canvas.height=Math.max(1,Math.round(img.height*scale));
+         canvas.getContext("2d").drawImage(img,0,0,canvas.width,canvas.height);
+         resolve(canvas.toDataURL("image/jpeg",0.72))
+       };
+       img.onerror=()=>resolve(reader.result);
+       img.src=reader.result
+     };
+     reader.onerror=()=>reject(reader.error);
+     reader.readAsDataURL(f)
+   })
+ }
+ if(f.size>2*1024*1024)return null;
+ return new Promise((resolve,reject)=>{
+   const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=()=>reject(reader.error);reader.readAsDataURL(f)
+ })
+}
+async function ccemsCommitEvidence(module,recordId,field){
+ const key=ccemsEvidenceKey(module,recordId,field);
+ const staged=(window.__ccemsEvidenceStaging||{})[key]||[];
+ if(!staged.length)return [];
+ state.evidenceAttachments=state.evidenceAttachments||[];
+ const added=[];
+ for(const f of staged){
+   const data=await ccemsEvidenceFileData(f);
+   const rec={id:`EVA-${Date.now()}-${Math.random().toString(36).slice(2,7)}`,key,module:String(module),recordId:String(recordId),field:String(field),name:f.name,type:f.type||"application/octet-stream",size:f.size,data,addedAt:new Date().toISOString(),addedBy:workflowCurrentUser?workflowCurrentUser():"Estate User"};
+   state.evidenceAttachments.push(rec);added.push(rec)
+ }
+ delete window.__ccemsEvidenceStaging[key];
+ return added
+}
+function ccemsRemoveEvidence(id){
+ const i=(state.evidenceAttachments||[]).findIndex(x=>String(x.id)===String(id));if(i<0)return;
+ state.evidenceAttachments.splice(i,1);save();alert("Evidence attachment removed.")
+}
+function ccemsInjectEvidenceWidgets(){
+ const root=document.getElementById("modal")||document.body;
+ root.querySelectorAll(".field").forEach((field,i)=>{
+   if(field.querySelector(".ccems-evidence-widget"))return;
+   const label=(field.querySelector("label")?.textContent||"").trim().toLowerCase();
+   const terms=["evidence","reference","attachment","supporting document","delivery note","photo","photograph","inspection file"];
+   if(!terms.some(term=>label.includes(term)))return;
+   const input=field.querySelector("input,textarea");
+   const rid=input?.dataset?.recordId||document.querySelector("[data-record-id]")?.dataset?.recordId||"CURRENT";
+   const module=document.getElementById("pageTitle")?.textContent||"CCEMS";
+   field.insertAdjacentHTML("beforeend",ccemsEvidenceWidget(module,rid,label.toUpperCase(),"Attach Photos / Documents"))
+ })
 }
 
 function render(page){
@@ -1857,7 +1970,7 @@ function renderChecklists(v){
  <section class="card panel">${simpleTable(["Template","Entity","Date","Owner","Status","Score","Evidence"],state.checklistRuns.map(c=>[esc(c.template),esc(c.entity),dateFmt(c.date),esc(c.owner),badge(c.status),esc(c.score),esc(c.evidence)]))}</section>`
 }
 function checklistModalV08(){modal(`<div class="modalHead"><h3>Record Checklist Run</h3><button class="close" onclick="closeModal()">×</button></div><div class="field"><label>Checklist</label><input id="clTemplate"></div><div class="field"><label>Entity</label><input id="clEntity"></div><div class="grid2"><div><div class="field"><label>Date</label><input id="clDate" type="date"></div><div class="field"><label>Owner</label><input id="clOwner"></div></div><div><div class="field"><label>Score</label><input id="clScore"></div><div class="field"><label>Evidence</label><input id="clEvidence"></div></div></div><button class="primary" onclick="saveChecklistV08()">Complete Checklist</button>`)}
-function saveChecklistV08(){state.checklistRuns.unshift({id:nextId(state.checklistRuns),template:val("clTemplate"),entity:val("clEntity"),date:val("clDate"),owner:val("clOwner"),status:"COMPLETE",evidence:val("clEvidence"),score:val("clScore")});audit("COMPLETE","CHECKLIST",val("clTemplate"));closeModal();render("checklists")}
+async function saveChecklistV08(){state.checklistRuns.unshift({id:nextId(state.checklistRuns),template:val("clTemplate"),entity:val("clEntity"),date:val("clDate"),owner:val("clOwner"),status:"COMPLETE",evidence:val("clEvidence"),score:val("clScore")});audit("COMPLETE","CHECKLIST",val("clTemplate"));closeModal();render("checklists")}
 function renderCorrective(v){
  setTitle("Corrective Actions");
  v.innerHTML=`<div class="head"><div><h2>Corrective Actions</h2><p>Root cause, ownership, due dates and verification.</p></div><button class="primary" onclick="correctiveModalV08()">+ Corrective Action</button></div>
@@ -2017,7 +2130,7 @@ function renderIncidents(v){
  v.innerHTML=`<div class="head"><div><h2>Incident Command</h2><p>Estate incidents, ownership, corrective follow-through and closure.</p></div><button class="primary" onclick="incidentModal()">+ Report Incident</button></div><div class="kpis">${kpi("Open",state.incidents.filter(i=>i.status!=="CLOSED").length,"Require management")}${kpi("Critical / high",state.incidents.filter(i=>["CRITICAL","HIGH"].includes(i.severity)&&i.status!=="CLOSED").length,"Priority")}${kpi("Closed",state.incidents.filter(i=>i.status==="CLOSED").length,"Resolved")}</div><section class="card panel">${simpleTable(["Reference","Date","Incident","Category","Severity","Location","Reported by","Owner","Status","Linked"],state.incidents.map(i=>[`<strong>${esc(i.ref)}</strong>`,`${dateFmt(i.date)} ${esc(i.time)}`,esc(i.title),esc(i.category),badge(i.severity),esc(i.location),esc(i.reportedBy),esc(i.owner),badge(i.status),esc(i.linked||"—")]))}</section>`
 }
 function incidentModal(){modal(`<div class="modalHead"><h3>Report Estate Incident</h3><button class="close" onclick="closeModal()">×</button></div><div class="field"><label>Incident title</label><input id="inTitle"></div><div class="grid2"><div><div class="field"><label>Date</label><input id="inDate" type="date"></div><div class="field"><label>Time</label><input id="inTime" type="time"></div><div class="field"><label>Category</label><select id="inCat"><option>SAFETY</option><option>ANIMAL WELFARE</option><option>BIOSECURITY</option><option>EQUIPMENT</option><option>ENVIRONMENTAL</option><option>FOOD SAFETY</option><option>SECURITY</option></select></div><div class="field"><label>Severity</label><select id="inSeverity"><option>LOW</option><option>MEDIUM</option><option>HIGH</option><option>CRITICAL</option></select></div></div><div><div class="field"><label>Location</label><select id="inLoc">${optionsFrom(ccLocations(),"Select estate location")}</select></div><div class="field"><label>Reported by</label><select id="inBy">${optionsFrom(ccStaff().map(s=>s.name),"Select reporting staff member")}</select></div><div class="field"><label>Owner</label><select id="inOwner">${optionsFrom(ccStaff().map(s=>s.name),"Select incident owner")}</select></div><div class="field"><label>Immediate action</label><textarea id="inAction"></textarea></div></div></div><button class="primary" onclick="saveIncident()">Record Incident</button>`)}
-function saveIncident(){if(!val("inLoc")){alert("Select an estate location.");return}if(!val("inBy")){alert("Select the reporting staff member.");return}if(!val("inOwner")){alert("Select the incident owner.");return}const id=nextId(state.incidents),ref=`INC-2026-${String(id).padStart(3,"0")}`;state.incidents.unshift({id,ref,date:val("inDate"),time:val("inTime"),category:val("inCat"),severity:val("inSeverity"),location:val("inLoc"),title:val("inTitle"),reportedBy:val("inBy"),owner:val("inOwner"),status:"OPEN",linked:"",action:val("inAction")});state.notifications.unshift({id:nextId(state.notifications),severity:val("inSeverity"),title:`Incident ${ref}`,detail:val("inTitle"),module:"Incidents",status:"OPEN",date:val("inDate")});audit("CREATE","INCIDENT",ref);closeModal();render("incidents")}
+async function saveIncident(){if(!val("inLoc")){alert("Select an estate location.");return}if(!val("inBy")){alert("Select the reporting staff member.");return}if(!val("inOwner")){alert("Select the incident owner.");return}const id=nextId(state.incidents),ref=`INC-2026-${String(id).padStart(3,"0")}`;state.incidents.unshift({id,ref,date:val("inDate"),time:val("inTime"),category:val("inCat"),severity:val("inSeverity"),location:val("inLoc"),title:val("inTitle"),reportedBy:val("inBy"),owner:val("inOwner"),status:"OPEN",linked:"",action:val("inAction")});state.notifications.unshift({id:nextId(state.notifications),severity:val("inSeverity"),title:`Incident ${ref}`,detail:val("inTitle"),module:"Incidents",status:"OPEN",date:val("inDate")});audit("CREATE","INCIDENT",ref);closeModal();render("incidents")}
 function renderDocuments(v){
  setTitle("Document Register");
  v.innerHTML=`<div class="head"><div><h2>Document Register</h2><p>Controlled estate documents, versions, ownership and review dates.</p></div><button class="primary" onclick="documentModal()">+ Document</button></div>
@@ -2852,18 +2965,7 @@ function workflowStepModal(id,index){
  <div class="step-control-note">Record completion evidence before closing this controlled step. The entry will be retained in the workflow history.</div>
  <div class="field"><label>Completion result</label><select id="wfStepResult"><option>COMPLETED</option><option>COMPLETED WITH OBSERVATION</option><option>EXCEPTION IDENTIFIED</option></select></div>
  <div class="field"><label>Evidence / reference</label><input id="wfStepEvidence" placeholder="Inspection, animal, asset, checklist or document reference"></div>
- <div class="field"><label>Attach evidence</label>
- <div class="evidence-upload">
-   <div class="evidence-picker-grid">
-     <label class="evidence-picker-btn" for="wfStepPhotos"><span>📷</span><strong>Add Photos</strong><small>Camera or Photo Library</small></label>
-     <label class="evidence-picker-btn" for="wfStepDocs"><span>＋</span><strong>Add Documents</strong><small>PDF, Word, Excel or CSV</small></label>
-   </div>
-   <input class="evidence-native-input" id="wfStepPhotos" type="file" accept="image/*" multiple onchange="workflowEvidenceChanged()">
-   <input class="evidence-native-input" id="wfStepDocs" type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.csv,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/csv" multiple onchange="workflowEvidenceChanged()">
-   <small class="evidence-upload-help">Choose photos directly from your iPhone or attach supporting documents. Selected files will appear below before you complete the step.</small>
-   <div id="wfEvidenceCount" class="evidence-selected-count">No evidence files selected</div>
-   <div id="wfEvidencePreview" class="evidence-preview"></div>
- </div></div>
+ <div class="field"><label>Attach evidence</label>${ccemsEvidenceWidget("WORKFLOW_STEP",`${id}-${index}`,"EVIDENCE","Attach Photos / Documents")}</div>
  <div class="field"><label>Completion notes</label><textarea id="wfStepNotes" rows="5" placeholder="Record what was checked, completed or observed."></textarea></div>
  <div class="field"><label>Completed by</label><input value="${esc(workflowCurrentUser())}" disabled></div>
  <div class="actions"><button class="secondary" onclick="openWorkflowRun('${esc(id)}')">Cancel</button><button class="primary" onclick="saveWorkflowStep('${esc(id)}',${index})">Complete Controlled Step</button></div>`)
@@ -2874,8 +2976,7 @@ async function saveWorkflowStep(id,index){
  const steps=tpl?.steps?.length?tpl.steps:["Complete task","Record evidence","Manager review"];
  if(index!==Number(r.step||0)){alert("This step is no longer the current workflow step.");return}
  const result=val("wfStepResult"),evidence=val("wfStepEvidence"),notes=val("wfStepNotes");
- const selectedFiles=workflowSelectedEvidenceFiles();
- const attachments=await workflowFilesToEvidence(selectedFiles);
+ const attachments=await ccemsCommitEvidence("WORKFLOW_STEP",`${id}-${index}`,"EVIDENCE");
  if(!notes){alert("Enter completion notes for this controlled step.");return}
  state.workflowStepRecords=state.workflowStepRecords||[];
  state.workflowStepRecords.push({id:nextId(state.workflowStepRecords),workflowId:String(id),stepIndex:index,stepName:steps[index],result,evidence,attachments,notes,completedBy:workflowCurrentUser(),completedAt:new Date().toISOString()});
@@ -2927,7 +3028,7 @@ function openWorkflowRun(id){
  </div>
  ${workflowStepRecordsFor(r.id).length?`<div class="sectionTitle">Completed Step Evidence</div>${workflowStepRecordsFor(r.id).map(s=>`<button class="step-evidence-card" onclick="workflowTimelineModal('${esc(r.id)}')"><strong>${Number(s.stepIndex)+1}. ${esc(s.stepName)}</strong><small>${esc(s.result)} · ${esc(s.completedBy)}${s.evidence?` · ${esc(s.evidence)}`:""}${s.attachments?.length?` · ${s.attachments.length} attachment(s)`:""}</small></button>`).join("")}`:""}
  <div class="workflow-progress workflow-progress-large"><div style="width:${r.progress||0}%"></div></div><p class="muted">${r.progress||0}% complete</p>
- <div class="field"><label>Evidence / reference</label><input id="wfrEvidence" value="${esc(r.evidence||"")}" placeholder="Photo, document, checklist or inspection reference"></div>
+ <div class="field"><label>Evidence / reference</label><input id="wfrEvidence" data-record-id="${esc(r.id)}" value="${esc(r.evidence||"")}" placeholder="Photo, document, checklist or inspection reference">${ccemsEvidenceWidget("WORKFLOW_RUN",r.id,"EVIDENCE","Attach Photos / Documents")}</div>
  <div class="field"><label>Operational notes</label><textarea id="wfrNotes" rows="4">${esc(r.notes||"")}</textarea></div>
  ${comments.length?`<div class="sectionTitle">Handover & Notes</div><div class="workflow-comments">${comments.slice(0,5).map(c=>`<div><strong>${esc(c.user)}</strong><span>${esc(c.text)}</span></div>`).join("")}</div>`:""}
  ${escalations.length?`<div class="sectionTitle">Open Escalation</div>${escalations.map(e=>`<div class="notice"><strong>${esc(e.reason)}</strong> → ${esc(e.to)}<br><span class="muted">${esc(e.notes||"")}</span></div>`).join("")}`:""}
@@ -2950,11 +3051,12 @@ function openWorkflowRun(id){
 function submitWorkflowForApproval(id){closeModal();workflowSetApproval(id)}
 function toggleWorkflowCritical(id){const r=workflowById(id);if(!r)return;closeModal();workflowSetCritical(id,!(r.critical===true||r.priority==="CRITICAL"))}
 
-function saveWorkflowNotes(id){
+async function saveWorkflowNotes(id){
  const r=workflowById(id);if(!r)return;
  r.evidence=val("wfrEvidence");r.notes=val("wfrNotes");
+ await ccemsCommitEvidence("WORKFLOW_RUN",id,"EVIDENCE");
  audit("UPDATE","WORKFLOW_RUN",`${r.ref} · evidence/notes`);save();
- alert("Workflow evidence and notes saved.")
+ alert("Workflow evidence, attachments and notes saved.");closeModal();openWorkflowRun(id)
 }
 
 function workflowSelectedEvidenceFiles(){
