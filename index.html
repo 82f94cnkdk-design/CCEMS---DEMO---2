@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v1.0.19 Estate Operations Control Centre demo">
+<meta name="description" content="CCEMS Phase 1 v1.0.20 Estate Operations Control Centre demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v1.0.19</title>
+<title>CCEMS Phase 1 v1.0.20</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -307,12 +307,22 @@ td,th{overflow-wrap:anywhere;word-break:normal}
  #auditReportPrint .grid2{grid-template-columns:minmax(0,1fr)}
 }
 
+
+/* v1.0.20 — standard report export controls */
+.report-export-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.report-export-actions button{min-height:44px;white-space:nowrap}
+@media(max-width:720px){
+ .report-export-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+ .report-export-actions button{width:100%;min-width:0}
+ .report-export-actions button:last-child{grid-column:1/-1}
+}
+
 </style>
 </head>
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.0.19</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.0.20</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden">
  <aside class="side"><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -367,7 +377,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
  </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.0.19</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.0.20</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
@@ -1172,6 +1182,29 @@ function saveDocumentEdit(){
 }
 function documentModal(){modal(`<div class="modalHead"><h3>Register Document</h3><button class="close" onclick="closeModal()">×</button></div><div class="field"><label>Title</label><input id="dcTitle"></div><div class="grid2"><div><div class="field"><label>Category</label><select id="dcCat"><option>COMPLIANCE</option><option>ANIMAL HEALTH</option><option>ORGANIC COMPLIANCE</option><option>HEALTH & SAFETY</option><option>INSURANCE</option><option>HR & TRAINING</option><option>OPERATIONS</option><option>MAINTENANCE</option><option>PROCUREMENT</option><option>FOOD SAFETY</option></select></div><div class="field"><label>Department</label><select id="dcDept">${optionsFrom(ccDepartments(),"Select department")}</select></div><div class="field"><label>Version</label><input id="dcVersion"></div></div><div><div class="field"><label>Owner</label><select id="dcOwner">${optionsFrom(ccStaff().map(s=>s.name),"Select document owner")}</select></div><div class="field"><label>Review date</label><input id="dcReview" type="date"></div><div class="field"><label>Sensitivity</label><select id="dcSens"><option>INTERNAL</option><option>CONTROLLED</option><option>CONFIDENTIAL</option></select></div></div></div><button class="primary" onclick="saveDocument()">Register Document</button>`)}
 function saveDocument(){if(!val("dcDept")){alert("Select a department.");return}if(!val("dcOwner")){alert("Select the document owner.");return}const id=nextId(state.documents),ref=`DOC-${String(id).padStart(3,"0")}`;state.documents.push({id,ref,title:val("dcTitle"),category:val("dcCat"),department:val("dcDept"),version:val("dcVersion"),owner:val("dcOwner"),review:val("dcReview"),status:"CURRENT",sensitivity:val("dcSens")});audit("CREATE","DOCUMENT",ref);closeModal();render("documents")}
+
+/* v1.0.20 — CCEMS report export standard */
+function ccemsExcelDownload(filename,rows){
+ const escX=v=>String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+ const table=rows.map(row=>`<tr>${row.map(c=>`<td>${escX(c)}</td>`).join("")}</tr>`).join("");
+ const html=`<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel"><head><meta charset="utf-8"></head><body><table>${table}</table></body></html>`;
+ const blob=new Blob([html],{type:"application/vnd.ms-excel;charset=utf-8"}),u=URL.createObjectURL(blob),a=document.createElement("a");
+ a.href=u;a.download=filename;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(u)
+}
+function ccemsOpenPrintable(title,heading,subheading,content,autoPrint=true){
+ const w=window.open("","_blank");
+ if(!w){alert("Your browser blocked the report window. Allow pop-ups for CCEMS and try again.");return null}
+ w.document.write(`<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title><style>
+ body{font-family:Arial,sans-serif;color:#173329;padding:28px;max-width:1100px;margin:auto;background:white}
+ h1,h2,h3{font-family:Georgia,serif;color:#0b3529}.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.kpi,.card,.warn,.notice{border:1px solid #dde4de;border-radius:10px;padding:12px;margin:8px 0}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.stat{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid #dde4de;padding:9px 0}table{width:100%;border-collapse:collapse;font-size:11px}th,td{padding:7px;border-bottom:1px solid #ddd;text-align:left;vertical-align:top}th{background:#f6f1e6}.muted{color:#66736d}.badge{font-weight:700}
+ @media(max-width:700px){.kpis,.grid2{grid-template-columns:1fr 1fr}}
+ @media print{.no-print{display:none!important}body{padding:0}}
+ </style></head><body><h1>Crown & Cross Organic Estate</h1><h2>${heading}</h2><p>${subheading}</p>${content}<div class="no-print" style="margin-top:24px"><p><strong>PDF:</strong> choose “Save as PDF” in the print dialog. On iPhone/iPad, use the print preview/share options to save the PDF.</p></div></body></html>`);
+ w.document.close();
+ if(autoPrint)setTimeout(()=>w.print(),350);
+ return w
+}
+
 function executiveSnapshot(){
  return {
   generatedAt:new Date().toISOString(),
@@ -1229,15 +1262,36 @@ function openExecutiveReport(id){
  <section class="card panel" style="margin-top:14px"><div class="sectionTitle">Management Attention</div>${(s.alerts||[]).map(a=>`<div class="warn"><strong>${esc(a.title)}</strong> · ${badge(a.severity)}<br>${esc(a.detail)}<br><span class="muted">${esc(a.module||"")}</span></div>`).join("")||'<div class="notice">No immediate management alerts.</div>'}</section>
  <div class="sectionTitle">Governance & Access Model</div>${simpleTable(["Role","Scope","Level","Permissions"],state.roles.map(x=>[esc(x.name),esc(x.scope),badge(x.level),esc(x.permissions)]))}
  <p class="muted">Generated ${dateFmt(r.generated)} · ${esc(r.ref)} · ${esc(r.status)}</p></div>
- <div class="actions" style="margin-top:18px"><button class="secondary" onclick="closeModal()">Close</button><button class="primary" onclick="printExecutiveReport(${id})">Print / Save PDF</button></div>`)
+ <div class="actions report-export-actions" style="margin-top:18px"><button class="secondary" onclick="closeModal()">Close</button><button class="secondary" onclick="printExecutiveReport(${id},'print')">Print</button><button class="secondary" onclick="printExecutiveReport(${id},'pdf')">Save as PDF</button><button class="primary" onclick="saveExecutiveReportExcel(${id})">Export Excel</button></div>`)
 }
-function printExecutiveReport(id){
+function printExecutiveReport(id,mode="print"){
  const r=state.executiveReports.find(x=>x.id===id),content=document.getElementById("executiveReportPrint")?.innerHTML;
  if(!r||!content)return;
- const w=window.open("","_blank");
- if(!w){alert("Your browser blocked the report window. Allow pop-ups for CCEMS and try again.");return}
- w.document.write(`<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(r.ref)} Executive Report</title><style>body{font-family:Arial,sans-serif;color:#173329;padding:28px;max-width:1000px;margin:auto}h1,h2,h3{font-family:Georgia,serif;color:#0b3529}.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.kpi,.warn,.notice{border:1px solid #dde4de;border-radius:10px;padding:12px;margin:8px 0}.stat{display:flex;justify-content:space-between;border-bottom:1px solid #dde4de;padding:10px 0}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}table{width:100%;border-collapse:collapse}th,td{padding:9px;border-bottom:1px solid #ddd;text-align:left}.badge{font-size:11px;font-weight:bold}@media(max-width:650px){.kpis,.grid2{grid-template-columns:1fr 1fr}}@media print{button{display:none}}</style></head><body><h1>Crown & Cross Organic Estate</h1><h2>${esc(r.title)}</h2><p><strong>${esc(r.ref)}</strong> · ${esc(r.period)} · Prepared by ${esc(r.generatedBy)}</p>${content}</body></html>`);
- w.document.close();setTimeout(()=>w.print(),300)
+ ccemsOpenPrintable(`${r.ref} Executive Report`,esc(r.title),`${esc(r.ref)} · ${esc(r.period)} · Prepared by ${esc(r.generatedBy)}`,content,true);
+ audit(mode==="pdf"?"EXPORT_PDF":"PRINT","EXECUTIVE_REPORT",r.ref);save()
+}
+function saveExecutiveReportExcel(id){
+ const r=state.executiveReports.find(x=>x.id===id);if(!r)return;
+ const s=r.snapshot||executiveSnapshot();
+ const rows=[
+  ["Crown & Cross Organic Estate",""],
+  ["Executive Report Reference",r.ref],
+  ["Report Title",r.title],
+  ["Reporting Period",r.period],
+  ["Prepared By",r.generatedBy],
+  ["Generated",dateFmt(r.generated)],
+  ["Status",r.status],
+  [],
+  ["Executive KPI","Value"],
+  ["Animals",s.animals],["Land Blocks",s.land],["Active Staff",s.activeStaff],["Open Tasks",s.openTasks],
+  ["Open Incidents",s.openIncidents],["Open Maintenance Work Orders",s.openWO],["Low Stock",s.lowStock],
+  ["Pending Approvals",s.pendingApprovals],["Open Corrective Actions",s.openCorrective],["Current Controlled Documents",s.currentDocuments],
+  [],
+  ["Management Attention","Severity","Module","Detail"],
+  ...(s.alerts||[]).map(a=>[a.title,a.severity,a.module||"",a.detail||""])
+ ];
+ ccemsExcelDownload(`${r.ref}-executive-report.xls`,rows);
+ audit("EXPORT","EXECUTIVE_REPORT_EXCEL",r.ref);save()
 }
 
 
@@ -1531,15 +1585,13 @@ function openAuditReport(id){
    <section class="card panel" style="margin-top:16px"><h3>Full Audit Trail</h3><div class="audit-report-table-wrap"><table class="audit-report-table"><thead><tr><th>Date & Time</th><th>User</th><th>Action</th><th>Record Type</th><th>Event Detail</th></tr></thead><tbody>${r.events.map(a=>`<tr><td>${auditDateTime(a.at)}</td><td>${esc(a.user||"System")}</td><td>${esc(a.action||"ACTION")}</td><td>${esc(a.entity||"RECORD")}</td><td>${esc(a.detail||"")}</td></tr>`).join("")}</tbody></table></div></section>
    <p class="muted">Generated by CCEMS · ${esc(r.ref)} · ${esc(r.status)}</p>
  </div>
- <div class="actions audit-report-actions" style="margin-top:18px"><button class="secondary" onclick="closeModal()">Close</button><button class="secondary" onclick="saveAuditReportExcel(${r.id})">Save Excel</button><button class="primary" onclick="printAuditReport(${r.id})">Print / Save PDF</button></div>`)
+ <div class="actions audit-report-actions report-export-actions" style="margin-top:18px"><button class="secondary" onclick="closeModal()">Close</button><button class="secondary" onclick="printAuditReport(${r.id},'print')">Print</button><button class="secondary" onclick="printAuditReport(${r.id},'pdf')">Save as PDF</button><button class="primary" onclick="saveAuditReportExcel(${r.id})">Export Excel</button></div>`)
 }
-function printAuditReport(id){
+function printAuditReport(id,mode="print"){
  const r=(state.auditReports||[]).find(x=>x.id===id),content=document.getElementById("auditReportPrint")?.innerHTML;
  if(!r||!content)return;
- const w=window.open("","_blank");
- if(!w){alert("Your browser blocked the report window. Allow pop-ups for CCEMS and try again.");return}
- w.document.write(`<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(r.ref)} Audit Report</title><style>body{font-family:Arial,sans-serif;color:#173329;padding:28px;max-width:1100px;margin:auto}h1,h2,h3{font-family:Georgia,serif;color:#0b3529}.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.kpi,.card{border:1px solid #dde4de;border-radius:10px;padding:12px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.stat{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid #dde4de;padding:9px 0}table{width:100%;border-collapse:collapse;font-size:11px}th,td{padding:7px;border-bottom:1px solid #ddd;text-align:left;vertical-align:top}th{background:#f6f1e6}.muted{color:#66736d}@media print{button{display:none}}@media(max-width:700px){.kpis,.grid2{grid-template-columns:1fr 1fr}}</style></head><body><h1>Crown & Cross Organic Estate</h1><h2>${esc(r.title)}</h2><p><strong>${esc(r.ref)}</strong> · ${esc(r.period)} · Prepared by ${esc(r.preparedBy)}</p>${content}</body></html>`);
- w.document.close();setTimeout(()=>w.print(),300)
+ ccemsOpenPrintable(`${r.ref} Audit Report`,esc(r.title),`${esc(r.ref)} · ${esc(r.period)} · Prepared by ${esc(r.preparedBy)}`,content,true);
+ audit(mode==="pdf"?"EXPORT_PDF":"PRINT","AUDIT_REPORT",r.ref);save()
 }
 function excelXmlEscape(v){
  return String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")
