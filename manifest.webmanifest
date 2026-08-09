@@ -5,10 +5,10 @@
   "display": "standalone",
   "background_color": "#f6f1e6",
   "theme_color": "#06291f",
-  "description": "CCEMS Phase 1 v0.9 \u2014 Inventory, Stores, Purchasing & Supplier Operations.",
+  "description": "CCEMS Phase 1 v1.0 \u2014 Estate Operations Control Centre.",
   "icons": [
     {
-      "src": "/logo.svg",
+      "src": "/crown-cross-estate-master.svg?v=0902",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
