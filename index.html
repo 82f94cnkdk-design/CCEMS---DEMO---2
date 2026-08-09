@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v1.1.7 Estate Operations Control Centre demo">
+<meta name="description" content="CCEMS Phase 1 v1.1.8 Estate Operations Control Centre demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v1.1.7</title>
+<title>CCEMS Phase 1 v1.1.8</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -672,12 +672,18 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 @media(max-width:1050px){.dash-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:720px){.dash-tiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.dash-tile{padding:13px}.dash-tile strong{font-size:25px}.dash-grid{grid-template-columns:1fr}.dash-head h2{font-size:27px}.dash-faith{align-items:flex-start}}
 
+
+/* v1.1.8 — dashboard legacy-data recovery */
+.dashboard-loading,.ccems-recovery{max-width:760px;margin:20px auto}
+.dashboard-loading h2,.ccems-recovery h2{font-family:Georgia,serif;color:var(--g900);margin:6px 0}
+.ccems-recovery .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+
 </style>
 </head>
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.7</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.8</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden"><div id="sideBackdrop" class="side-backdrop" onclick="toggleSideNav(false)"></div>
  <aside class="side" id="ccemsSideNav"><button class="side-close-btn" type="button" onclick="toggleSideNav(false)" aria-label="Close navigation">×</button><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -733,7 +739,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
  </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation">☰ <span>Menu</span></button><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.1.7</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation">☰ <span>Menu</span></button><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.1.8</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
@@ -1006,10 +1012,24 @@ function load(){try{
  if(old){const migrated=Object.assign(clone(defaults),JSON.parse(old));migrated.notifications=clone(defaults.notifications);migrated.estateDiary=clone(defaults.estateDiary);migrated.incidents=clone(defaults.incidents);migrated.documents=clone(defaults.documents);migrated.roles=clone(defaults.roles);migrated.activityFeed=clone(defaults.activityFeed);return normaliseState(migrated)}
  return clone(defaults)
 }catch(e){return clone(defaults)}}
-function normaliseState(s){["grazing","crops","soilTests","inputs","harvests","fieldOps","assets","workOrders","inspections","fuelLogs","parts","suppliers","training","shifts","attendance","leave","ppe","taskRules","recurringTasks","checklistRuns","correctiveActions","approvals","sopAcknowledgements","complianceEvidence","inventory","stockIssues","purchaseRequisitions","purchaseOrders","goodsReceipts","procurementSuppliers","workflowTemplates","workflowRuns","auditReports","permissionOverrides","executiveReports","notifications","estateDiary","incidents","documents","roles","activityFeed"].forEach(k=>{if(!Array.isArray(s[k]))s[k]=clone(defaults[k])});(s.documents||[]).forEach(d=>{if(!("file" in d))d.file=null;if(!Array.isArray(d.revisions))d.revisions=[]});return s}
+function normaliseState(s){
+ s=s&&typeof s==="object"?s:{};
+ ["tasks","animals","compliance","staff","land","flocks","movements","grazing","crops","soilTests","inputs","harvests","fieldOps","assets","workOrders","inspections","fuelLogs","parts","suppliers","training","shifts","attendance","leave","ppe","taskRules","recurringTasks","checklistRuns","correctiveActions","approvals","sopAcknowledgements","complianceEvidence","inventory","stockIssues","purchaseRequisitions","purchaseOrders","goodsReceipts","procurementSuppliers","workflowTemplates","workflowRuns","auditReports","permissionOverrides","executiveReports","notifications","estateDiary","incidents","documents","roles","activityFeed"].forEach(k=>{
+   if(!Array.isArray(s[k]))s[k]=clone(defaults[k]||[]);
+   else s[k]=s[k].filter(x=>x!==null&&x!==undefined)
+ });
+ (s.documents||[]).forEach(d=>{if(!("file" in d))d.file=null;if(!Array.isArray(d.revisions))d.revisions=[]});
+ return s
+}
 function save(){localStorage.setItem(KEY,JSON.stringify(state))}
 function audit(action,entity,detail){state.audit.unshift({at:new Date().toISOString(),user:"James Carter",action,entity,detail});save()}
-function login(){document.getElementById("login").classList.add("hidden");document.getElementById("app").classList.remove("hidden");render("dashboard")}
+function login(){
+ document.getElementById("login").classList.add("hidden");
+ document.getElementById("app").classList.remove("hidden");
+ state=normaliseState(Object.assign(clone(defaults),state||{}));
+ save();
+ render("dashboard")
+}
 function val(id){return document.getElementById(id)?.value||""}
 function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]))}
 function nextId(arr){return arr.length?Math.max(...arr.map(x=>Number(x.id)||0))+1:1}
@@ -1025,23 +1045,26 @@ navSetup();
 function render(page){
  document.querySelectorAll(".nav button[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
  const v=document.getElementById("view");
- ({dashboard:renderDashboard,tasks:renderTasksV08,deptwork:renderDeptWork,workflows:renderWorkflows,animals:renderAnimals,health:renderHealth,breeding:renderBreeding,movements:renderMovements,flocks:renderFlocks,land:renderLand,grazing:renderGrazing,crops:renderCrops,soil:renderSoil,harvest:renderHarvest,sops:renderSops,checklists:renderChecklists,corrective:renderCorrective,compliance:renderComplianceV08,controlcentre:renderControlCentre,approvals:renderApprovalInbox,diary:renderDiary,incidents:renderIncidents,documents:renderDocuments,reports:renderReports,access:renderAccessModel,inventory:renderInventory,purchasing:renderPurchasing,goods:renderGoods,suppliers:renderSuppliers,maintenance:renderMaintenance,assets:renderAssets,fleet:renderFleet,inspections:renderInspections,fuel:renderFuel,staff:renderStaff,rota:renderRota,training:renderTraining,competency:renderCompetency,leave:renderLeave,ppe:renderPPE,workflows:renderWorkflows,audit:renderAudit}[page]||renderDashboard)(v)
+ try{
+   ({dashboard:renderDashboard,tasks:renderTasksV08,deptwork:renderDeptWork,workflows:renderWorkflows,animals:renderAnimals,health:renderHealth,breeding:renderBreeding,movements:renderMovements,flocks:renderFlocks,land:renderLand,grazing:renderGrazing,crops:renderCrops,soil:renderSoil,harvest:renderHarvest,sops:renderSops,checklists:renderChecklists,corrective:renderCorrective,compliance:renderComplianceV08,controlcentre:renderControlCentre,approvals:renderApprovalInbox,diary:renderDiary,incidents:renderIncidents,documents:renderDocuments,reports:renderReports,access:renderAccessModel,inventory:renderInventory,purchasing:renderPurchasing,goods:renderGoods,suppliers:renderSuppliers,maintenance:renderMaintenance,assets:renderAssets,fleet:renderFleet,inspections:renderInspections,fuel:renderFuel,staff:renderStaff,rota:renderRota,training:renderTraining,competency:renderCompetency,leave:renderLeave,ppe:renderPPE,workflows:renderWorkflows,audit:renderAudit}[page]||renderDashboard)(v)
+ }catch(err){
+   console.error("CCEMS screen render error:",page,err);
+   setTitle(page==="dashboard"?"Estate Dashboard":"CCEMS");
+   v.innerHTML=`<section class="card panel ccems-recovery"><h2>Dashboard data needs refreshing</h2><p>CCEMS detected an older saved-data record that could not be displayed safely.</p><div class="warn">${esc(err?.message||"Display error")}</div><div class="actions"><button class="primary" onclick="repairCCEMSData()">Repair Saved Data</button><button class="secondary" onclick="resetDashboardView()">Reload Dashboard</button></div></section>`
+ }
 }
-
-function toggleSideNav(force){
- const side=document.getElementById("ccemsSideNav"),backdrop=document.getElementById("sideBackdrop");
- if(!side)return;
- const open=typeof force==="boolean"?force:!side.classList.contains("open");
- side.classList.toggle("open",open);
- if(backdrop)backdrop.classList.toggle("show",open);
- document.body.classList.toggle("nav-open",open)
+function repairCCEMSData(){
+ state=normaliseState(Object.assign(clone(defaults),state||{}));
+ save();
+ render("dashboard")
 }
-window.addEventListener("resize",()=>{if(window.innerWidth>900)toggleSideNav(false)});
+function resetDashboardView(){render("dashboard")}
 
 function withdrawalRecords(){return state.animals.flatMap(a=>(a.medicines||[]).filter(m=>m.status==="WITHDRAWAL"&&m.withdrawalEnd>=new Date().toISOString().slice(0,10)).map(m=>({a,m})))}
 function dueBirths(){return state.animals.flatMap(a=>(a.breeding||[]).filter(b=>b.due).map(b=>({a,b}))).filter(x=>x.b.due>="2026-08-08")}
 function renderDashboard(v){
  setTitle("Estate Dashboard");
+ v.innerHTML=`<section class="card panel dashboard-loading"><div class="eyebrow">Estate Command Overview</div><h2>Estate Dashboard</h2><p>Loading today’s estate position…</p></section>`;
  const A=k=>Array.isArray(state?.[k])?state[k]:[];
  const tasks=A("tasks"), workflows=A("workflowRuns"), approvals=A("approvals"), reqs=A("purchaseRequisitions");
  const incidents=A("incidents"), workOrders=A("workOrders"), inventory=A("inventory"), staff=A("staff");
