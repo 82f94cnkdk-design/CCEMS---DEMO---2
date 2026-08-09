@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v1.1.14 Estate Operations Control Centre demo">
+<meta name="description" content="CCEMS Phase 1 v1.1.15 Estate Operations Control Centre demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v1.1.14</title>
+<title>CCEMS Phase 1 v1.1.15</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -741,12 +741,38 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 .modal .field{position:relative}
 @media(max-width:720px){.workflow-kpis{grid-template-columns:1fr 1fr!important}}
 
+
+/* v1.1.15 — direct workflow step execution */
+.workflow-step-list{display:grid;gap:8px}
+.workflow-step-action{
+ display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:10px;align-items:center;
+ width:100%;border:1px solid var(--line);border-radius:11px;background:#fff;
+ padding:11px;color:var(--ink);text-align:left;font:inherit;cursor:pointer
+}
+.workflow-step-action.current{border-color:#d2b46f;background:#fffaf0}
+.workflow-step-action.done{background:#f1f7f3}
+.workflow-step-action.pending{background:#f8f8f5}
+.workflow-step-action:disabled{opacity:.62;cursor:default}
+.workflow-step-number{display:flex;width:30px;height:30px;border-radius:50%;align-items:center;justify-content:center;background:#eef1ef;font-weight:800}
+.workflow-step-action.done .workflow-step-number{background:#dfece4}
+.workflow-step-action.current .workflow-step-number{background:#f2e6bd}
+.workflow-step-copy{display:grid;gap:3px;min-width:0}
+.workflow-step-copy small{font-size:11px;color:var(--muted)}
+.workflow-step-open{font-size:11px;font-weight:800;color:var(--g800);white-space:nowrap}
+.workflow-kpis button{cursor:pointer}
+@media(max-width:720px){
+ .workflow-step-action{grid-template-columns:34px minmax(0,1fr);padding:11px 9px}
+ .workflow-step-open{grid-column:2}
+ .workflow-actions{grid-template-columns:1fr 1fr!important}
+ .workflow-actions .primary{grid-column:1/-1}
+}
+
 </style>
 </head>
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.14</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.15</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden"><div id="sideBackdrop" class="side-backdrop" onclick="toggleSideNav(false)"></div>
  <aside class="side" id="ccemsSideNav"><button class="side-close-btn" type="button" onclick="toggleSideNav(false)" aria-label="Close navigation">×</button><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -801,7 +827,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
  </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation">☰ <span>Menu</span></button><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.1.14</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation">☰ <span>Menu</span></button><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.1.15</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
@@ -2202,40 +2228,75 @@ function saveWorkflowTemplateEdit(id){
 
 function openWorkflowRun(id){
  const r=(state.workflowRuns||[]).find(x=>x.id===id),tpl=(state.workflowTemplates||[]).find(x=>x.id===r?.templateId);if(!r)return;
- const steps=tpl?.steps||["Complete task","Record evidence","Approval"],comments=(state.workflowComments||[]).filter(x=>x.workflowId===id),escalations=(state.workflowEscalations||[]).filter(x=>x.workflowId===id&&x.status==="OPEN");
+ const steps=tpl?.steps?.length?tpl.steps:["Complete task","Record evidence","Manager review"];
+ r.step=Math.max(0,Math.min(Number(r.step)||0,steps.length));
+ if(r.step>=steps.length&&r.status!=="COMPLETED"){r.progress=100;r.status="AWAITING APPROVAL";r.approvalStatus="PENDING"}
+ const comments=(state.workflowComments||[]).filter(x=>x.workflowId===id),escalations=(state.workflowEscalations||[]).filter(x=>x.workflowId===id&&x.status==="OPEN");
+ const isApproval=r.status==="AWAITING APPROVAL";
  modal(`<div class="modalHead"><div><div class="eyebrow">Controlled Workflow</div><h3>${esc(r.ref)} · ${esc(r.title)}</h3><p class="muted">${esc(r.department)} · ${esc(r.location)}</p></div><button class="close" onclick="closeModal()">×</button></div>
  <div class="workflow-detail-grid"><div class="stat"><span>Assigned to</span><strong>${esc(r.assignedTo)}</strong></div><div class="stat"><span>Due</span><strong>${dateFmt(r.due)}</strong></div><div class="stat"><span>Priority</span>${badge(r.priority)}</div><div class="stat"><span>Status</span>${badge(r.status)}</div></div>
+ <div class="stat"><span>Approval route</span><strong>${esc(r.approvalRole||tpl?.approval||"Department Manager")}</strong></div>
  ${r.escalated?`<div class="warn"><strong>Escalated:</strong> ${esc(r.escalationReason||"Management review")}</div>`:""}
  ${r.correctionRequired?`<div class="warn"><strong>Correction required:</strong> ${esc(r.correctionRequired)}</div>`:""}
  <div class="sectionTitle">Workflow Steps</div>
- ${steps.map((s,i)=>`<div class="workflow-step ${i<r.step?"done":i===r.step?"current":""}"><span>${i<r.step?"✓":i+1}</span><div><strong>${esc(s)}</strong><br><small>${i<r.step?"Completed":i===r.step?"Current step":"Pending"}</small></div></div>`).join("")}
+ <div class="workflow-step-list">
+ ${steps.map((s,i)=>{
+   const done=i<r.step, current=i===r.step&&!isApproval, future=i>r.step;
+   return `<button class="workflow-step-action ${done?"done":current?"current":"pending"}" ${future||isApproval?"disabled":""} onclick="completeWorkflowStep(${r.id},${i})">
+    <span class="workflow-step-number">${done?"✓":i+1}</span>
+    <span class="workflow-step-copy"><strong>${esc(s)}</strong><small>${done?"Completed":current?(i===steps.length-1?"Ready to complete & submit":"Tap to complete this step"):"Pending"}</small></span>
+    <span class="workflow-step-open">${done?"Done":current?"Complete ›":""}</span>
+   </button>`
+ }).join("")}
+ </div>
  <div class="workflow-progress workflow-progress-large"><div style="width:${r.progress||0}%"></div></div><p class="muted">${r.progress||0}% complete</p>
- <div class="field"><label>Evidence / reference</label><input id="wfrEvidence" value="${esc(r.evidence||"")}"></div>
+ <div class="field"><label>Evidence / reference</label><input id="wfrEvidence" value="${esc(r.evidence||"")}" placeholder="Photo, document, checklist or inspection reference"></div>
  <div class="field"><label>Operational notes</label><textarea id="wfrNotes" rows="4">${esc(r.notes||"")}</textarea></div>
  ${comments.length?`<div class="sectionTitle">Handover & Notes</div><div class="workflow-comments">${comments.slice(0,5).map(c=>`<div><strong>${esc(c.user)}</strong><span>${esc(c.text)}</span></div>`).join("")}</div>`:""}
  ${escalations.length?`<div class="sectionTitle">Open Escalation</div>${escalations.map(e=>`<div class="notice"><strong>${esc(e.reason)}</strong> → ${esc(e.to)}<br><span class="muted">${esc(e.notes||"")}</span></div>`).join("")}`:""}
  <div class="sectionTitle">Workflow Actions</div>
  <div class="actions workflow-actions">
+   <button class="secondary" onclick="saveWorkflowNotes(${r.id})">Save Evidence & Notes</button>
    <button class="secondary" onclick="workflowAddComment(${r.id})">Add Note</button>
    <button class="secondary" onclick="workflowReassign(${r.id})">Reassign</button>
    <button class="secondary" onclick="workflowEscalate(${r.id})">Escalate</button>
-   <button class="secondary" onclick="saveWorkflowProgress(${r.id},false)">Save Progress</button>
-   ${r.status==="AWAITING APPROVAL"?`<button class="secondary" onclick="workflowReject(${r.id})">Return for Correction</button><button class="primary" onclick="approveWorkflow(${r.id})">Approve & Close</button>`:r.progress<100?`<button class="primary" onclick="saveWorkflowProgress(${r.id},true)">Complete Current Step</button>`:""}
+   ${isApproval?`<button class="secondary" onclick="workflowReject(${r.id})">Return for Correction</button><button class="primary" onclick="approveWorkflow(${r.id})">Approve & Close</button>`:""}
  </div>`)
 }
-
-function saveWorkflowProgress(id,advance){
- const r=(state.workflowRuns||[]).find(x=>x.id===id),tpl=(state.workflowTemplates||[]).find(x=>x.id===r?.templateId);if(!r)return;
- const steps=(tpl?.steps&&tpl.steps.length?tpl.steps:["Complete task","Record evidence","Approval"]);
+function saveWorkflowNotes(id){
+ const r=(state.workflowRuns||[]).find(x=>x.id===id);if(!r)return;
  r.evidence=val("wfrEvidence");r.notes=val("wfrNotes");
- if(advance){
-   r.step=Math.min(steps.length,(Number(r.step)||0)+1);
-   r.progress=Math.min(100,Math.round(r.step/steps.length*100));
-   if(r.step>=steps.length){r.progress=100;r.status="AWAITING APPROVAL";r.approvalStatus="PENDING";r.completedAt=new Date().toISOString()}
-   else {r.status="IN PROGRESS";r.approvalStatus="NOT READY"}
- }
- audit(advance?"COMPLETE_STEP":"UPDATE","WORKFLOW_RUN",`${r.ref} · ${r.progress}% · ${r.status}`);save();closeModal();render("workflows")
+ audit("UPDATE","WORKFLOW_RUN",`${r.ref} · evidence/notes`);save();
+ alert("Workflow evidence and notes saved.")
 }
+function completeWorkflowStep(id,index){
+ const r=(state.workflowRuns||[]).find(x=>x.id===id),tpl=(state.workflowTemplates||[]).find(x=>x.id===r?.templateId);if(!r)return;
+ const steps=tpl?.steps?.length?tpl.steps:["Complete task","Record evidence","Manager review"];
+ if(index!==r.step)return;
+ r.evidence=val("wfrEvidence");r.notes=val("wfrNotes");
+ r.step=Math.min(steps.length,(Number(r.step)||0)+1);
+ r.progress=Math.round(r.step/steps.length*100);
+ if(r.step>=steps.length){
+   r.progress=100;
+   r.status="AWAITING APPROVAL";
+   r.approvalStatus="PENDING";
+   r.completedAt=new Date().toISOString();
+   audit("SUBMIT_APPROVAL","WORKFLOW_RUN",`${r.ref} · ${r.approvalRole||tpl?.approval||"Manager"}`)
+ }else{
+   r.status="IN PROGRESS";
+   r.approvalStatus="NOT READY";
+   audit("COMPLETE_STEP","WORKFLOW_RUN",`${r.ref} · step ${r.step}/${steps.length}`)
+ }
+ save();
+ closeModal();
+ openWorkflowRun(id)
+}
+function saveWorkflowProgress(id,advance){
+ if(advance){
+   const r=(state.workflowRuns||[]).find(x=>x.id===id);if(r)completeWorkflowStep(id,Number(r.step)||0)
+ }else saveWorkflowNotes(id)
+}
+
 function approveWorkflow(id){const r=(state.workflowRuns||[]).find(x=>x.id===id);if(!r)return;if(r.status!=="AWAITING APPROVAL"){alert("This workflow has not yet reached the approval stage.");return}r.approvalStatus="APPROVED";r.status="COMPLETED";r.progress=100;r.approvedAt=new Date().toISOString();r.approvedBy=workflowCurrentUser();audit("APPROVE","WORKFLOW_RUN",`${r.ref} · ${r.approvedBy}`);save();closeModal();render("workflows")}
 
 function renderAudit(v){
