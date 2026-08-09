@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v1.1.65 Estate Operations Control Centre demo">
+<meta name="description" content="CCEMS Phase 1 v1.1.66 Estate Operations Control Centre demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v1.1.65</title>
+<title>CCEMS Phase 1 v1.1.66</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -879,13 +879,13 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 @media(max-width:720px){.dependency-row{grid-template-columns:minmax(0,1fr);gap:7px}}
 
 
-/* v1.1.65 — explicit blocker state */
+/* v1.1.66 — explicit blocker state */
 .workflow-card[data-blocked="true"]{box-shadow:inset 4px 0 0 #a86e19}
 .workflow-card[data-blocked="true"] .workflow-progress>div{opacity:.55}
 .active-blocked{font-weight:900!important}
 
 
-/* v1.1.65 — controlled step execution & workflow timeline */
+/* v1.1.66 — controlled step execution & workflow timeline */
 .step-evidence-card{border:1px solid #d8ded8;border-radius:18px;padding:16px;margin:10px 0;background:#fffdf8;text-align:left;width:100%}
 .step-evidence-card strong{display:block;color:#123f32;margin-bottom:5px}
 .step-evidence-card small{display:block;color:#6d7772;line-height:1.45}
@@ -896,7 +896,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 .workflow-timeline-item span{margin-top:3px}.workflow-timeline-item small{color:#727b77;margin-top:4px}
 .step-control-note{padding:12px 14px;border-radius:14px;background:#eef5ef;margin:10px 0;color:#234b3d}
 
-/* v1.1.65 — SLA & due-date control */
+/* v1.1.66 — SLA & due-date control */
 .sla-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
 .sla-strip button{border:1px solid var(--cc-border);border-radius:14px;background:var(--cc-card-soft);padding:13px;text-align:left;color:var(--ink);cursor:pointer}
 .sla-strip span{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:800}
@@ -908,18 +908,18 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 @media(max-width:720px){.sla-strip{grid-template-columns:1fr 1fr}}
 
 
-/* v1.1.65 — workflow drill-down & zero-state UX */
+/* v1.1.66 — workflow drill-down & zero-state UX */
 .sla-strip button.zero-state,.workflow-kpis button.zero-state,.workflow-command-strip button.zero-state{opacity:.58;cursor:default}
 .workflow-zero{border:1px solid #d8e3d9;background:#eef6ef;border-radius:14px;padding:16px;color:#315b48;margin-top:12px}
 .workflow-result-head{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
 .workflow-result-count{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:800}
 
 
-/* v1.1.65 — clearer workflow history actor attribution */
+/* v1.1.66 — clearer workflow history actor attribution */
 .workflow-timeline-item small b{color:var(--g900);font-weight:800}
 
 
-/* v1.1.65 — controlled workflow evidence attachments */
+/* v1.1.66 — controlled workflow evidence attachments */
 .evidence-upload{border:1px dashed #aebdb4;border-radius:16px;padding:14px;background:#fbfcf9;margin-top:8px}
 .evidence-upload input[type=file]{width:100%;font-size:15px}
 .evidence-upload-help{display:block;color:#6d7772;font-size:13px;line-height:1.45;margin-top:7px}
@@ -930,7 +930,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 .evidence-file small{color:#6d7772;margin-top:3px}
 
 
-/* v1.1.65 — iPhone-native photo/document evidence pickers */
+/* v1.1.66 — iPhone-native photo/document evidence pickers */
 .evidence-picker-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .evidence-picker-btn{display:grid;grid-template-columns:auto 1fr;gap:2px 9px;align-items:center;border:1px solid var(--cc-border);border-radius:13px;background:var(--cc-card-soft);padding:13px;cursor:pointer;color:var(--g900);touch-action:manipulation}
 .evidence-picker-btn>span{grid-row:1/3;font-size:22px}
@@ -942,7 +942,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 @media(max-width:520px){.evidence-picker-grid{grid-template-columns:1fr}.evidence-picker-btn{min-height:58px}}
 
 
-/* v1.1.65 — universal CCEMS evidence upload standard */
+/* v1.1.66 — universal CCEMS evidence upload standard */
 .ccems-evidence-widget{margin-top:12px;border:1px solid #d6ded8;border-radius:15px;padding:13px;background:#fbfcf9}
 .ccems-evidence-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
 .ccems-evidence-title strong{color:var(--g900)}.ccems-evidence-title span{font-size:11px;color:var(--muted)}
@@ -954,7 +954,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 .ccems-evidence-selected-count{font-size:12px;font-weight:800;color:var(--g800);padding:5px 0}
 
 
-/* v1.1.65 — persistent evidence viewing */
+/* v1.1.66 — persistent evidence viewing */
 .ccems-evidence-openable{cursor:pointer}
 .ccems-evidence-openable:active{background:#f2f6f2}
 .evidence-open-label{display:block;margin-top:4px;font-size:11px;font-weight:800;color:var(--g800)}
@@ -964,7 +964,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 .evidence-doc-icon.large{width:72px;height:72px}
 
 
-/* v1.1.65 — evidence-aware approval management */
+/* v1.1.66 — evidence-aware approval management */
 .approval-queue{display:grid;gap:12px}
 .approval-card{border:1px solid var(--cc-border);border-radius:14px;background:var(--cc-card);overflow:hidden}
 .approval-card-main{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:start;width:100%;border:0;background:transparent;color:var(--ink);padding:14px;text-align:left;cursor:pointer}
@@ -981,16 +981,16 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 }
 
 
-/* v1.1.65 — evidence nested navigation */
+/* v1.1.66 — evidence nested navigation */
 .evidence-viewer-image-wrap + .stat{margin-top:12px}
 
 
-/* v1.1.65 — recurring workflow scheduling */
+/* v1.1.66 — recurring workflow scheduling */
 .tabs{overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
 .tabs button{flex:0 0 auto}
 
 
-/* v1.1.65 — visible workflow schedules navigation */
+/* v1.1.66 — visible workflow schedules navigation */
 .workflow-schedule-command{
  border:1px solid #c8b27c!important;
  background:#fffaf0!important;
@@ -1024,10 +1024,10 @@ td,th{overflow-wrap:anywhere;word-break:normal}
  }
 }
 
-/* v1.1.65 */
+/* v1.1.66 */
 .workflow-card-badges{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.sla-policy-tab{border-color:#c8b27c!important}
 
-/* v1.1.65 — mobile SLA command card alignment */
+/* v1.1.66 — mobile SLA command card alignment */
 .workflow-command-strip .sla-command-card{
  display:flex!important;
  flex-direction:column!important;
@@ -1077,7 +1077,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 
 
 /* =========================================================
-   v1.1.65 — CCEMS SYSTEM-WIDE UI STANDARD
+   v1.1.66 — CCEMS SYSTEM-WIDE UI STANDARD
    One visual language across dashboards, modules and modals.
    ========================================================= */
 :root{
@@ -1324,9 +1324,9 @@ th,td{padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:top}
 
 
 /* =========================================================
-   v1.1.65 — CROWN & CROSS SURFACE PALETTE CORRECTION
+   v1.1.66 — CROWN & CROSS SURFACE PALETTE CORRECTION
    Restores the warm ivory estate character while preserving
-   the v1.1.65 system-wide spacing and component standards.
+   the v1.1.66 system-wide spacing and component standards.
    ========================================================= */
 :root{
  --cc-surface:#f7f2e7;
@@ -1481,7 +1481,7 @@ tbody tr:nth-child(even) td{
 
 
 /* =========================================================
-   v1.1.65 — LEGACY WHITE SURFACE SWEEP
+   v1.1.66 — LEGACY WHITE SURFACE SWEEP
    Removes remaining clinical-white dashboard/list surfaces.
    ========================================================= */
 
@@ -1551,7 +1551,7 @@ input,select,textarea,
 }
 
 
-/* v1.1.65 — exact Management Attention surface correction */
+/* v1.1.66 — exact Management Attention surface correction */
 .dash-attention > button,
 .card.panel .dash-attention > button{
  background:var(--cc-surface-soft)!important;
@@ -1565,7 +1565,7 @@ input,select,textarea,
 
 
 /* =========================================================
-   v1.1.65 — HEADER CONTRAST PROTECTION
+   v1.1.66 — HEADER CONTRAST PROTECTION
    Palette rules must never recolour the dark estate header.
    ========================================================= */
 .topbar,
@@ -1597,7 +1597,7 @@ header *{
 
 
 /* =========================================================
-   v1.1.65 — MOBILE HEADER RECOMPOSITION
+   v1.1.66 — MOBILE HEADER RECOMPOSITION
    Compact, balanced Crown & Cross application header.
    ========================================================= */
 
@@ -1744,7 +1744,7 @@ header::after{
 }
 
 
-/* v1.1.65 exact header selectors */
+/* v1.1.66 exact header selectors */
 .top{
  min-height:84px!important;
  padding:12px 16px!important;
@@ -1816,7 +1816,7 @@ header::after{
 
 
 /* =========================================================
-   v1.1.65 — CROWN & CROSS MOBILE APPLICATION BAR
+   v1.1.66 — CROWN & CROSS MOBILE APPLICATION BAR
    ========================================================= */
 
 .top{
@@ -1995,7 +1995,7 @@ header::after{
 
 
 /* =========================================================
-   v1.1.65 — ADAPTIVE MOBILE HEADER
+   v1.1.66 — ADAPTIVE MOBILE HEADER
    Full module names must remain readable on phone screens.
    ========================================================= */
 
@@ -2110,7 +2110,7 @@ header::after{
 
 
 /* =========================================================
-   v1.1.65 — TASK CARD SURFACE HARMONISATION
+   v1.1.66 — TASK CARD SURFACE HARMONISATION
    Warm Crown & Cross hierarchy for task records.
    ========================================================= */
 :root{
@@ -2216,7 +2216,7 @@ header::after{
 
 
 /* =========================================================
-   v1.1.65 — CCEMS FULL WHITE-SURFACE AUDIT
+   v1.1.66 — CCEMS FULL WHITE-SURFACE AUDIT
    All non-functional white surfaces are harmonised with the
    Crown & Cross warm ivory / parchment system.
    ========================================================= */
@@ -2449,7 +2449,7 @@ textarea,
 
 
 /* =========================================================
-   v1.1.65 — LONG-TITLE MOBILE HEADER FIX
+   v1.1.66 — LONG-TITLE MOBILE HEADER FIX
    Authoritative final mobile header rules.
    ========================================================= */
 
@@ -2605,7 +2605,7 @@ textarea,
 
 
 /* =========================================================
-   v1.1.65 — FINAL WHITE-SURFACE ELIMINATION
+   v1.1.66 — FINAL WHITE-SURFACE ELIMINATION
    No non-functional CCEMS UI surface may render pure white.
    ========================================================= */
 
@@ -2662,7 +2662,7 @@ textarea,
 
 
 /* =========================================================
-   v1.1.65 — TASK RECORD COLUMN REFINEMENT
+   v1.1.66 — TASK RECORD COLUMN REFINEMENT
    Cleaner two-column metadata grid with consistent alignment.
    ========================================================= */
 
@@ -2848,11 +2848,11 @@ textarea,
 }
 
 
-/* v1.1.65 — Staff Activity, Attendance & Audit Management */
+/* v1.1.66 — Staff Activity, Attendance & Audit Management */
 .staff-audit-shell{display:grid;gap:16px}.staff-audit-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.staff-audit-kpi{background:var(--cc-card);border:1px solid var(--cc-border);border-radius:15px;padding:15px}.staff-audit-kpi small{display:block;color:var(--muted);font-size:10px;font-weight:850;letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px}.staff-audit-kpi strong{display:block;color:var(--g900);font-family:Georgia,serif;font-size:27px}.staff-audit-tabs{display:flex;gap:8px;flex-wrap:wrap}.staff-audit-tabs button{background:var(--cc-card-soft);border:1px solid var(--cc-border);color:var(--g900);border-radius:10px;padding:10px 13px;font-weight:750}.staff-audit-tabs button.active{background:var(--g900);color:#fffdf8}.staff-audit-panel{background:var(--cc-card);border:1px solid var(--cc-border);border-radius:16px;padding:16px}.staff-audit-list{display:grid;gap:10px}.staff-audit-row{display:grid;grid-template-columns:minmax(170px,1.2fr) repeat(4,minmax(95px,.7fr));background:var(--cc-cell);border:1px solid var(--cc-border);border-radius:13px;overflow:hidden}.staff-audit-cell{padding:13px 14px;min-width:0;border-left:1px solid var(--cc-border)}.staff-audit-cell:first-child{border-left:0}.staff-audit-cell small{display:block;font-size:9px;letter-spacing:.11em;text-transform:uppercase;font-weight:850;color:var(--muted);margin-bottom:5px}.staff-audit-cell strong{display:block;color:var(--g900);font-size:14px}.staff-status:before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#2f7650;margin-right:6px}.staff-status.off:before{background:#9a8d76}.staff-audit-note{background:#f4efe2;border:1px solid var(--cc-border);border-radius:12px;padding:12px;color:var(--g900)}.audit-event{display:grid;grid-template-columns:92px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--cc-border)}.audit-time{font-weight:800;color:var(--muted)}
 @media(max-width:720px){.staff-audit-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.staff-audit-row{grid-template-columns:1fr 1fr}.staff-audit-cell{border-left:0;border-top:1px solid var(--cc-border)}.staff-audit-cell:first-child{grid-column:1/-1;border-top:0}.staff-audit-cell:nth-child(even){border-left:1px solid var(--cc-border)}}
 
-/* v1.1.65 — controlled attendance location selector */
+/* v1.1.66 — controlled attendance location selector */
 .staff-shift-location select,
 #shiftLocation,
 select[id*="Loc"],
@@ -2871,7 +2871,7 @@ select[id*="loc"]{
 }
 
 
-/* v1.1.65 — exact Add Shift location selector */
+/* v1.1.66 — exact Add Shift location selector */
 #shLoc{
  -webkit-appearance:menulist!important;
  appearance:auto!important;
@@ -2888,7 +2888,7 @@ select[id*="loc"]{
 }
 
 
-/* v1.1.65 — clickable Rota & Attendance subsection headings */
+/* v1.1.66 — clickable Rota & Attendance subsection headings */
 .section-drill-heading{
  width:100%!important;
  display:flex!important;
@@ -2976,7 +2976,7 @@ select[id*="loc"]{
 
 
 /* =========================================================
-   v1.1.65 — ADD SHIFT FORM UNIFORMITY
+   v1.1.66 — ADD SHIFT FORM UNIFORMITY
    Exact equal width/height for Staff, Date, Start, End, Location.
    ========================================================= */
 .shift-form-uniform{
@@ -3066,7 +3066,7 @@ select[id*="loc"]{
 
 
 /* =========================================================
-   v1.1.65 — ADD SHIFT EXACT WIDTH CORRECTION
+   v1.1.66 — ADD SHIFT EXACT WIDTH CORRECTION
    All controls share the same parent, width and box model.
    ========================================================= */
 .shift-form-uniform{
@@ -3166,7 +3166,7 @@ select[id*="loc"]{
 
 
 /* =========================================================
-   v1.1.65 — ADD SHIFT SHARED CONTROL GEOMETRY
+   v1.1.66 — ADD SHIFT SHARED CONTROL GEOMETRY
    One class, one width, one box model for every field.
    ========================================================= */
 .shift-form-uniform{
@@ -3246,7 +3246,7 @@ select#shLoc.shift-control,
 }
 
 
-/* v1.1.65 — iOS visual-width lock for Add Shift selects */
+/* v1.1.66 — iOS visual-width lock for Add Shift selects */
 .shift-form-uniform .shift-select-field{
  position:relative!important;
 }
@@ -3274,7 +3274,7 @@ select#shLoc.shift-control,
 
 
 /* =========================================================
-   v1.1.65 — SAFARI ADD SHIFT WIDTH LOCK
+   v1.1.66 — SAFARI ADD SHIFT WIDTH LOCK
    Runtime JS supplies exact pixel width; these rules prevent
    parent shrinkage or intrinsic select sizing.
    ========================================================= */
@@ -3317,7 +3317,7 @@ select#shLoc.shift-control,
 
 
 /* =========================================================
-   v1.1.65 — CUSTOM ADD SHIFT PICKERS
+   v1.1.66 — CUSTOM ADD SHIFT PICKERS
    Avoids iOS native-select intrinsic width differences.
    ========================================================= */
 .shift-form-uniform .shift-picker-btn{
@@ -3370,7 +3370,7 @@ select#shLoc.shift-control,
 }
 
 
-/* v1.1.65 — Count Heading Spacing */
+/* v1.1.66 — Count Heading Spacing */
 .ccems-count-heading{
  display:inline-flex!important;
  align-items:baseline!important;
@@ -3384,7 +3384,7 @@ select#shLoc.shift-control,
 }
 
 
-/* v1.1.65 — exact workflow result label/count spacing */
+/* v1.1.66 — exact workflow result label/count spacing */
 .workflow-result-title{
  display:inline-flex!important;
  align-items:baseline!important;
@@ -3399,7 +3399,7 @@ select#shLoc.shift-control,
 }
 
 
-/* v1.1.65 — hard fix for ALL 5 WORKFLOWS spacing */
+/* v1.1.66 — hard fix for ALL 5 WORKFLOWS spacing */
 .workflow-result-title>strong{
  display:block!important;
  white-space:nowrap!important;
@@ -3409,7 +3409,7 @@ select#shLoc.shift-control,
 }
 
 
-/* v1.1.65 — Maintenance Summary redesign */
+/* v1.1.66 — Maintenance Summary redesign */
 .maintenance-summary-grid{
  display:grid;
  grid-template-columns:repeat(2,minmax(0,1fr));
@@ -3460,7 +3460,7 @@ select#shLoc.shift-control,
 
 
 /* =========================================================
-   v1.1.65 — WORKFLOW KPI GEOMETRY STANDARD
+   v1.1.66 — WORKFLOW KPI GEOMETRY STANDARD
    One consistent label / number / supporting-text layout.
    ========================================================= */
 
@@ -3639,12 +3639,130 @@ select#shLoc.shift-control,
  }
 }
 
+
+/* =========================================================
+   v1.1.66 — UNIFIED WORKFLOW TILE STRUCTURE
+   Every workflow metric now uses the same markup and geometry.
+   ========================================================= */
+.workflow-unified-grid{
+ display:grid!important;
+ grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ gap:12px!important;
+ margin:0 0 16px!important;
+}
+
+.workflow-unified-tile{
+ width:100%!important;
+ height:142px!important;
+ min-height:142px!important;
+ box-sizing:border-box!important;
+ display:grid!important;
+ grid-template-rows:28px 1fr 30px!important;
+ align-items:start!important;
+ justify-items:start!important;
+ gap:0!important;
+ padding:16px!important;
+ margin:0!important;
+ border:1px solid var(--cc-border)!important;
+ border-radius:15px!important;
+ background:var(--cc-card)!important;
+ color:var(--g900)!important;
+ text-align:left!important;
+ overflow:hidden!important;
+}
+
+.workflow-unified-label{
+ display:flex!important;
+ align-items:flex-start!important;
+ width:100%!important;
+ height:28px!important;
+ margin:0!important;
+ padding:0!important;
+ font-size:10px!important;
+ line-height:1.15!important;
+ font-weight:850!important;
+ letter-spacing:.12em!important;
+ text-transform:uppercase!important;
+ color:var(--muted)!important;
+}
+
+.workflow-unified-value{
+ display:flex!important;
+ align-items:center!important;
+ justify-content:flex-start!important;
+ width:100%!important;
+ height:100%!important;
+ margin:0!important;
+ padding:0!important;
+ font-family:Georgia,serif!important;
+ font-size:30px!important;
+ line-height:1!important;
+ font-weight:650!important;
+ color:var(--g900)!important;
+ text-align:left!important;
+}
+
+.workflow-unified-note{
+ display:flex!important;
+ align-items:flex-end!important;
+ width:100%!important;
+ height:30px!important;
+ margin:0!important;
+ padding:0!important;
+ font-size:11px!important;
+ line-height:1.2!important;
+ color:var(--muted)!important;
+ text-align:left!important;
+}
+
+.workflow-unified-text-value .workflow-unified-value{
+ font-size:23px!important;
+ line-height:1.05!important;
+}
+
+.workflow-unified-tile[aria-disabled="true"]{
+ cursor:default!important;
+}
+
+.workflow-unified-tile:active:not([aria-disabled="true"]){
+ background:var(--cc-press)!important;
+}
+
+@media(max-width:720px){
+ .workflow-unified-grid{
+   grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ }
+ .workflow-unified-tile{
+   height:138px!important;
+   min-height:138px!important;
+   grid-template-rows:28px 1fr 28px!important;
+   padding:14px 15px!important;
+ }
+ .workflow-unified-value{
+   font-size:29px!important;
+ }
+}
+
+@media(max-width:390px){
+ .workflow-unified-tile{
+   height:134px!important;
+   min-height:134px!important;
+   padding:13px 14px!important;
+ }
+ .workflow-unified-value{
+   font-size:27px!important;
+ }
+ .workflow-unified-text-value .workflow-unified-value{
+   font-size:20px!important;
+ }
+}
+
 </style>
 </head>
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.65</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.66</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden"><div id="sideBackdrop" class="side-backdrop" onclick="toggleSideNav(false)"></div>
  <aside class="side" id="ccemsSideNav"><button class="side-close-btn" type="button" onclick="toggleSideNav(false)" aria-label="Close navigation">×</button><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -3699,7 +3817,7 @@ select#shLoc.shift-control,
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
  </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation"><span class="menu-icon">☰</span><span>Menu</span></button><div class="top-brand"><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><div class="top-title-wrap"><span id="pageTitle">Estate Dashboard</span><small>Crown & Cross Estate Management System</small></div></div><div class="topRight"><span>CCEMS v1.1.65</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation"><span class="menu-icon">☰</span><span>Menu</span></button><div class="top-brand"><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><div class="top-title-wrap"><span id="pageTitle">Estate Dashboard</span><small>Crown & Cross Estate Management System</small></div></div><div class="topRight"><span>CCEMS v1.1.66</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
@@ -4147,7 +4265,7 @@ function ccemsWireSubsections(page){
 }
 
 
-/* v1.1.65 — universal CCEMS evidence attachment framework */
+/* v1.1.66 — universal CCEMS evidence attachment framework */
 function ccemsEvidenceKey(module,recordId,field){
  return `${String(module||"GENERAL")}::${String(recordId||"NEW")}::${String(field||"EVIDENCE")}`
 }
@@ -4254,7 +4372,7 @@ function ccemsInjectEvidenceWidgets(){
 }
 
 
-/* v1.1.65 — persistent evidence viewer */
+/* v1.1.66 — persistent evidence viewer */
 function ccemsEvidenceById(id){
  return (state.evidenceAttachments||[]).find(x=>String(x.id)===String(id))
 }
@@ -4287,7 +4405,7 @@ function ccemsOpenEvidenceData(id){
 }
 
 
-/* v1.1.65 — nested evidence return navigation */
+/* v1.1.66 — nested evidence return navigation */
 window.__ccemsReturnStack=window.__ccemsReturnStack||[];
 
 function ccemsPushReturnContext(fn,args=[]){
@@ -4711,7 +4829,7 @@ function renderRota(v){
  <div class="grid2"><section class="card panel"><button class="section-drill-heading" type="button" onclick="openRotaSection('shifts')"><span>Shift Rota</span><strong>›</strong></button>${simpleTable(["Staff","Date","Start","End","Location","Status"],state.shifts.map(s=>[esc(staffName(s.staff)),dateFmt(s.date),esc(s.start),esc(s.end),esc(s.location),badge(s.status)]))}</section><section class="card panel"><button class="section-drill-heading" type="button" onclick="openRotaSection('attendance')"><span>Attendance</span><strong>›</strong></button>${simpleTable(["Staff","Date","Clock in","Clock out","Status"],state.attendance.map(a=>[esc(staffName(a.staff)),dateFmt(a.date),esc(a.clockIn),esc(a.clockOut||"—"),badge(a.status)]))}</section></div>`
 }
 
-/* v1.1.65 — runtime Add Shift width equalisation for iOS Safari */
+/* v1.1.66 — runtime Add Shift width equalisation for iOS Safari */
 function equaliseShiftFieldWidths(){
  const form=document.querySelector(".shift-form-uniform");
  if(!form)return;
@@ -4962,7 +5080,7 @@ function renderDeptWork(v){
  v.innerHTML=`<div class="head"><div><h2>Department Work Queue</h2><p>Operational workload grouped by estate department.</p></div></div>${depts.map(d=>`<section class="card panel" style="margin-bottom:17px"><h3>${esc(d)}</h3>${simpleTable(["Task","Assigned","Priority","Due","Status"],state.tasks.filter(t=>t.dept===d).map(t=>[esc(t.title),esc(t.assigned||"Unassigned"),badge(t.priority),dateFmt(t.due),badge(t.status)]))}</section>`).join("")}`
 }
 
-/* v1.1.65 — workflow SLA policy & escalation control */
+/* v1.1.66 — workflow SLA policy & escalation control */
 function workflowSLAPolicyFor(r){
  const rows=state.workflowSLAPolicies||[];
  return rows.find(x=>x.status==="ACTIVE"&&x.department===r.department&&x.priority===r.priority)
@@ -5659,6 +5777,16 @@ function saveWorkflowReschedule(id){
 }
 
 
+
+function workflowUnifiedTile(label,value,note,action="",extraClass=""){
+ const clickable=action?`onclick="${action}"`:'aria-disabled="true"';
+ return `<button class="workflow-unified-tile ${extraClass}" ${clickable}>
+   <span class="workflow-unified-label">${esc(label)}</span>
+   <strong class="workflow-unified-value">${esc(String(value))}</strong>
+   <small class="workflow-unified-note">${esc(note||"")}</small>
+ </button>`
+}
+
 function workflowMetricButton(count,action,html){
  return `<button class="${Number(count)===0?"zero-state":""}" ${Number(count)>0?`onclick="${action}"`:'aria-disabled="true"'}>${html}</button>`
 }
@@ -5673,25 +5801,25 @@ function renderWorkflows(v){
  const critical=open.filter(x=>x.critical===true||x.priority==="CRITICAL");
  const blocked=open.filter(x=>workflowDerivedStatus(x)==="BLOCKED");
  v.innerHTML=`<div class="head"><div><div class="eyebrow">v1.1 Workflow Command</div><h2>Advanced Task & Workflow Management</h2><p>Controlled assignment, dependencies, execution, evidence, approvals, escalation and recurring estate work.</p></div><div class="actions"><button class="secondary" onclick="workflowTemplateModal()">New Template</button><button class="primary" onclick="workflowRunModal()">Create Workflow Run</button></div></div>
- <div class="kpis workflow-kpis">
- ${workflowMetricButton(open.length,"workflowQuickView('all')",kpi("Active workflows",open.length,"Operational runs"))}
- ${workflowMetricButton(overdue.length,"workflowQuickView('overdue')",kpi("Overdue",overdue.length,"Past due date"))}
- ${workflowMetricButton(approval.length,"workflowQuickView('approval')",kpi("Awaiting approval",approval.length,"Manager decisions"))}
- ${workflowMetricButton(critical.length,"workflowQuickView('critical')",kpi("Critical",critical.length,"Priority workflows"))}
- </div>
- <div class="sla-strip">
- ${workflowMetricButton(open.filter(x=>workflowSLAState(x)==="on-track").length,"workflowSLAView('on-track')",`<span>On Track</span><strong>${open.filter(x=>workflowSLAState(x)==="on-track").length}</strong>`)}
- ${workflowMetricButton(open.filter(x=>workflowSLAState(x)==="due-soon").length,"workflowSLAView('due-soon')",`<span>Due ≤ 2 Days</span><strong>${open.filter(x=>workflowSLAState(x)==="due-soon").length}</strong>`)}
- ${workflowMetricButton(open.filter(x=>workflowSLAState(x)==="overdue").length,"workflowSLAView('overdue')",`<span>SLA Breach</span><strong>${open.filter(x=>workflowSLAState(x)==="overdue").length}</strong>`)}
- ${workflowMetricButton(open.filter(x=>workflowSLAState(x)==="no-date").length,"workflowSLAView('no-date')",`<span>No Due Date</span><strong>${open.filter(x=>workflowSLAState(x)==="no-date").length}</strong>`)}
- </div>
- <div class="workflow-command-strip">
- ${workflowMetricButton(open.filter(x=>x.assignedTo===workflowCurrentUser()).length,"workflowQuickView('mine')",`<span>My Work</span><strong>${open.filter(x=>x.assignedTo===workflowCurrentUser()).length}</strong>`)}
- ${workflowMetricButton(blocked.length,"workflowQuickView('blocked')",`<span>Blocked</span><strong>${blocked.length}</strong>`)}
- ${workflowMetricButton(overdue.length,"workflowQuickView('overdue')",`<span>Overdue</span><strong>${overdue.length}</strong>`)}
- ${workflowMetricButton(approval.length,"workflowQuickView('approval')",`<span>Approvals</span><strong>${approval.length}</strong>`)}
- ${workflowMetricButton(open.length,"workflowQuickView('all')",`<span>All Active</span><strong>${open.length}</strong>`)}
- <button class="workflow-schedule-command" onclick="openWorkflowSchedules()"><span>Schedules</span><strong>${(state.workflowRecurrenceRules||[]).length}</strong><small>Recurring workflow plans</small></button><button class="workflow-schedule-command sla-command-card" onclick="openWorkflowSLAPolicies()"><span class="sla-command-label">SLA Policies</span><strong class="sla-command-value">${(state.workflowSLAPolicies||[]).length||"Default"}</strong><small class="sla-command-desc">Warning & escalation rules</small></button>
+ <div class="workflow-unified-grid">
+ ${workflowUnifiedTile("Active Workflows",open.length,"Operational runs","workflowQuickView('all')")}
+ ${workflowUnifiedTile("Overdue",overdue.length,"Past due date",overdue.length?"workflowQuickView('overdue')":"")}
+ ${workflowUnifiedTile("Awaiting Approval",approval.length,"Manager decisions",approval.length?"workflowQuickView('approval')":"")}
+ ${workflowUnifiedTile("Critical",critical.length,"Priority workflows",critical.length?"workflowQuickView('critical')":"")}
+
+ ${workflowUnifiedTile("On Track",open.filter(x=>workflowSLAState(x)==="on-track").length,"Within SLA",open.filter(x=>workflowSLAState(x)==="on-track").length?"workflowSLAView('on-track')":"")}
+ ${workflowUnifiedTile("Due ≤ 2 Days",open.filter(x=>workflowSLAState(x)==="due-soon").length,"Warning window",open.filter(x=>workflowSLAState(x)==="due-soon").length?"workflowSLAView('due-soon')":"")}
+ ${workflowUnifiedTile("SLA Breach",open.filter(x=>workflowSLAState(x)==="overdue").length,"Requires escalation",open.filter(x=>workflowSLAState(x)==="overdue").length?"workflowSLAView('overdue')":"")}
+ ${workflowUnifiedTile("No Due Date",open.filter(x=>workflowSLAState(x)==="no-date").length,"Scheduling required",open.filter(x=>workflowSLAState(x)==="no-date").length?"workflowSLAView('no-date')":"")}
+
+ ${workflowUnifiedTile("My Work",open.filter(x=>x.assignedTo===workflowCurrentUser()).length,"Assigned to me","workflowQuickView('mine')")}
+ ${workflowUnifiedTile("Blocked",blocked.length,"Open blockers",blocked.length?"workflowQuickView('blocked')":"")}
+ ${workflowUnifiedTile("Overdue",overdue.length,"Past due",overdue.length?"workflowQuickView('overdue')":"")}
+ ${workflowUnifiedTile("Approvals",approval.length,"Awaiting decision",approval.length?"workflowQuickView('approval')":"")}
+
+ ${workflowUnifiedTile("All Active",open.length,"Open workflow runs","workflowQuickView('all')")}
+ ${workflowUnifiedTile("Schedules",(state.workflowRecurrenceRules||[]).length,"Recurring workflow plans","openWorkflowSchedules()")}
+ ${workflowUnifiedTile("SLA Policies","Default","Warning & escalation rules","openWorkflowSLAPolicies()","workflow-unified-text-value")}
  </div>
  <div class="tabs"><button class="active" onclick="workflowTab('runs',this)">Workflow Command</button><button onclick="workflowTab('templates',this)">Templates</button><button onclick="workflowTab('exceptions',this)">Exceptions</button><button onclick="workflowTab('approvals',this)">Approvals</button><button onclick="workflowTab('dependencies',this)">Dependencies</button><button class="schedule-tab" onclick="workflowTab('schedules',this)">Schedules</button><button class="sla-policy-tab" onclick="workflowTab('sla-policies',this)">SLA Policies</button></div>
  <div id="workflowBody">${workflowRunsView()}</div>`
@@ -5879,7 +6007,7 @@ function forceReleaseWorkflowBlock(id){
 }
 
 
-/* v1.1.65 — evidence-aware workflow approval */
+/* v1.1.66 — evidence-aware workflow approval */
 function workflowEvidenceSummary(id){
  const stepRecords=workflowStepRecordsFor(id);
  const direct=ccemsEvidenceFor("WORKFLOW_RUN",id,"EVIDENCE");
@@ -6030,7 +6158,7 @@ function saveWorkflowComment(id){
 function workflowTemplateModal(){modal(`<div class="modalHead"><div><h3>New Workflow Template</h3><p class="muted">Create a reusable controlled workflow.</p></div><button class="close" onclick="closeModal()">×</button></div><div class="field"><label>Workflow name</label><input id="wftName"></div><div class="grid2"><div class="field"><label>Department</label><select id="wftDept">${optionsFrom(ccDepartments(),"Select department")}</select></div><div class="field"><label>Location</label><select id="wftLoc">${optionsFrom(ccLocations(),"Select location")}</select></div></div><div class="grid2"><div class="field"><label>Frequency</label><select id="wftFreq"><option>DAILY</option><option>WEEKLY</option><option>MONTHLY</option><option>QUARTERLY</option><option>ANNUALLY</option><option>ON DEMAND</option></select></div><div class="field"><label>Priority</label><select id="wftPriority"><option>LOW</option><option>MEDIUM</option><option>HIGH</option><option>CRITICAL</option></select></div></div><div class="field"><label>Approval role</label><select id="wftApproval">${optionsFrom(state.roles.map(x=>x.name),"Select approval role")}</select></div><div class="field"><label>Steps — one per line</label><textarea id="wftSteps" rows="6"></textarea></div><button class="primary" onclick="saveWorkflowTemplate()">Create Template</button>`)}
 function saveWorkflowTemplate(){const name=val("wftName"),dept=val("wftDept"),loc=val("wftLoc"),approval=val("wftApproval");if(!name||!dept||!loc||!approval){alert("Complete all required fields.");return}const id=nextId(state.workflowTemplates),steps=(val("wftSteps")||"").split(/\n+/).map(x=>x.trim()).filter(Boolean);state.workflowTemplates.push({id,ref:`WF-${String(id).padStart(3,"0")}`,name,department:dept,location:loc,priority:val("wftPriority"),frequency:val("wftFreq"),approval,status:"ACTIVE",steps:steps.length?steps:["Complete task","Record evidence","Approval"]});audit("CREATE","WORKFLOW_TEMPLATE",name);save();closeModal();render("workflows")}
 
-/* v1.1.65 — recurring workflow scheduling */
+/* v1.1.66 — recurring workflow scheduling */
 function workflowRecurrenceForTemplate(templateId){
  return (state.workflowRecurrenceRules||[]).find(x=>String(x.templateId)===String(templateId)&&x.status==="ACTIVE")
 }
