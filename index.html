@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v1.0.10 Estate Operations Control Centre demo">
+<meta name="description" content="CCEMS Phase 1 v1.0.11 Estate Operations Control Centre demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v1.0.10</title>
+<title>CCEMS Phase 1 v1.0.11</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -94,12 +94,39 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 .activity.clickable{cursor:pointer;transition:transform .12s ease,box-shadow .12s ease}
 .activity.clickable:active{transform:scale(.99)}
 .activity.clickable:focus{outline:2px solid #b9974f;outline-offset:2px}
+
+/* v1.0.11 — uniform Roles & Access controls */
+.permission-table{width:100%;table-layout:fixed}
+.permission-table th,.permission-table td{vertical-align:middle}
+.permission-table th:nth-child(1),.permission-table td:nth-child(1){width:auto}
+.permission-table th:nth-child(2),.permission-table td:nth-child(2){width:120px;text-align:center}
+.permission-table th:nth-child(3),.permission-table td:nth-child(3){width:112px;text-align:center}
+.permission-access{display:inline-flex;align-items:center;justify-content:center;min-width:92px;max-width:100%;min-height:34px;padding:6px 10px;border-radius:999px;white-space:nowrap;line-height:1;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:#eef1ef;color:#5f6964;box-sizing:border-box}
+.permission-amend-btn{display:inline-flex;align-items:center;justify-content:center;width:94px;min-width:94px;height:44px;padding:0 14px;border:0;border-radius:12px;background:var(--g900);color:white;font:700 14px/1 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;white-space:nowrap;letter-spacing:.01em;box-sizing:border-box;cursor:pointer}
+.permission-amend-btn:active{transform:scale(.98)}
+@media(max-width:720px){
+ .permission-table{min-width:0!important;width:100%!important;table-layout:fixed}
+ .permission-table th,.permission-table td{padding:12px 8px!important;white-space:normal!important}
+ .permission-table th:nth-child(1),.permission-table td:nth-child(1){width:auto!important}
+ .permission-table th:nth-child(2),.permission-table td:nth-child(2){width:104px!important}
+ .permission-table th:nth-child(3),.permission-table td:nth-child(3){width:100px!important}
+ .permission-amend-btn{width:88px;min-width:88px;height:42px;font-size:13px}
+ .permission-access{min-width:84px;font-size:10px;letter-spacing:.06em}
+}
+@media(max-width:420px){
+ .permission-table th,.permission-table td{padding:10px 6px!important}
+ .permission-table th:nth-child(2),.permission-table td:nth-child(2){width:94px!important}
+ .permission-table th:nth-child(3),.permission-table td:nth-child(3){width:92px!important}
+ .permission-amend-btn{width:80px;min-width:80px;height:40px;font-size:12px;padding:0 10px}
+ .permission-access{min-width:76px;padding:6px 8px;font-size:9px}
+}
+
 </style>
 </head>
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.0.10</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.0.11</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden">
  <aside class="side"><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -154,7 +181,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
  </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.0.10</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.0.11</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
@@ -1052,12 +1079,12 @@ function renderAccessModel(v){
  <div class="kpis">${kpi("Defined roles",state.roles.length,"Access profiles")}${kpi("Permission rules",matrix.length*5,"Role × permission controls")}${kpi("Amendments",(state.permissionOverrides||[]).length,"Saved overrides")}${kpi("Read-only roles",state.roles.filter(r=>r.level==="READ_ONLY").length,"Audit access")}</div>
  <div class="grid2"><section class="card panel"><h3>Role Profiles</h3>${state.roles.map(r=>`<div class="activity clickable" onclick="roleDetail(${r.id})"><strong>${esc(r.name)}</strong> · ${badge(r.level)}<br><span>${esc(r.scope)}</span><br><span class="muted">${esc(r.permissions)}</span><div class="muted" style="margin-top:6px;font-size:12px">Tap to open role</div></div>`).join("")}</section>
  <section class="card panel"><h3>Access Principles</h3><div class="notice"><strong>Least privilege</strong><br>Staff receive only the access required for their responsibilities.</div><div class="notice"><strong>Department scope</strong><br>Department managers are limited to their own operational area unless explicitly elevated.</div><div class="notice"><strong>Segregation of duties</strong><br>Requesting, approving and receiving should be separated where practical.</div><div class="notice"><strong>Auditability</strong><br>Every permission amendment is written to Audit History.</div></section></div>
- <section class="card panel" style="margin-top:17px"><h3>Editable Permissions Matrix</h3><div class="notice">Tap any permission value to open it. Changes in this browser prototype alter the access model and are persisted on this device.</div><table><thead><tr><th>Permission</th><th>Estate Director</th><th>Estate Manager</th><th>Department Manager</th><th>Operative</th><th>Auditor</th></tr></thead><tbody>${matrix.map(m=>`<tr><td class="clickable" onclick="permissionRowDetail('${m.key}')"><strong>${esc(m.permission)}</strong><br><span class="muted">Tap for permission detail</span></td>${["director","manager","department","operative","auditor"].map(k=>`<td class="clickable" onclick="permissionCellModal('${m.key}','${k}')">${badge(permissionTone(m[k]))}<br><span class="muted">${esc(m[k])}</span></td>`).join("")}</tr>`).join("")}</tbody></table></section>`
+ <section class="card panel" style="margin-top:17px"><h3>Editable Permissions Matrix</h3><div class="notice">Tap any permission value to open it. Changes in this browser prototype alter the access model and are persisted on this device.</div><table><thead><tr><th>Permission</th><th>Estate Director</th><th>Estate Manager</th><th>Department Manager</th><th>Operative</th><th>Auditor</th></tr></thead><tbody>${matrix.map(m=>`<tr><td class="clickable" onclick="permissionRowDetail('${m.key}')"><strong>${esc(m.permission)}</strong><br><span class="muted">Tap for permission detail</span></td>${["director","manager","department","operative","auditor"].map(k=>`<td class="clickable" onclick="permissionCellModal('${m.key}','${k}')"><span class="permission-access">${esc(m[k])}</span></td>`).join("")}</tr>`).join("")}</tbody></table></section>`
 }
 function permissionRowDetail(key){
  const row=rolePermissionMatrix().find(x=>x.key===key);if(!row)return;
  modal(`<div class="modalHead"><div><h3>${esc(row.permission)}</h3><p class="muted">Permission Rule</p></div><button class="close" onclick="closeModal()">×</button></div>
- ${simpleTable(["Role","Current access","Edit"],["director","manager","department","operative","auditor"].map(k=>[esc(roleKeyLabel(k)),badge(permissionTone(row[k])),`<button class="primary" onclick="permissionCellModal('${key}','${k}')">Amend</button>`]))}
+ ${simpleTable(["Role","Current access","Edit"],["director","manager","department","operative","auditor"].map(k=>[esc(roleKeyLabel(k)),badge(permissionTone(row[k])),`<button class="permission-amend-btn" onclick="permissionCellModal('${key}','${k}')">Amend</button>`]))}
  <div class="actions" style="margin-top:18px"><button class="secondary" onclick="closeModal()">Close</button></div>`)
 }
 function permissionCellModal(permissionKey,roleKey){
@@ -1091,7 +1118,7 @@ function roleDetail(id){
  const matrix=rolePermissionMatrix();
  modal(`<div class="modalHead"><div><h3>${esc(r.name)}</h3><p class="muted">${esc(r.level)} · ${esc(r.scope)}</p></div><button class="close" onclick="closeModal()">×</button></div>
  <div class="stat"><span>Access level</span>${badge(r.level)}</div><div class="stat"><span>Scope</span><strong>${esc(r.scope)}</strong></div>
- <div class="sectionTitle">Role Permissions</div>${rk?simpleTable(["Permission","Access","Amend"],matrix.map(m=>[esc(m.permission),badge(permissionTone(m[rk])),`<button class="primary" onclick="permissionCellModal('${m.key}','${rk}')">Amend</button>`])):'<div class="notice">No matrix mapping recorded for this role.</div>'}
+ <div class="sectionTitle">Role Permissions</div>${rk?`<table class="permission-table"><thead><tr><th>Permission</th><th>Access</th><th>Amend</th></tr></thead><tbody>${matrix.map(m=>`<tr><td>${esc(m.permission)}</td><td><span class="permission-access">${esc(m[rk])}</span></td><td><button class="permission-amend-btn" onclick="permissionCellModal('${m.key}','${rk}')">Amend</button></td></tr>`).join("")}</tbody></table>`:'<div class="notice">No matrix mapping recorded for this role.</div>'}
  <div class="warn" style="margin-top:14px">Phase 1 models role permissions in the browser. Production enforcement must be server-side with authenticated user accounts, MFA and privileged-access controls.</div>
  <div class="actions" style="margin-top:18px"><button class="secondary" onclick="closeModal()">Close</button></div>`)
 }
