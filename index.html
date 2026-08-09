@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v1.0.24 Estate Operations Control Centre demo">
+<meta name="description" content="CCEMS Phase 1 v1.0.25 Estate Operations Control Centre demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v1.0.24</title>
+<title>CCEMS Phase 1 v1.0.25</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -550,12 +550,24 @@ td,th{overflow-wrap:anywhere;word-break:normal}
  }
 }
 
+
+/* v1.0.25 — clickable Governance role cards */
+#executiveReportPrint .gov-card-clickable{cursor:pointer;transition:background .12s ease,transform .12s ease,border-color .12s ease}
+#executiveReportPrint .gov-card-clickable:active{transform:scale(.995);background:#fbfaf5}
+#executiveReportPrint .gov-card-clickable:focus{outline:2px solid var(--gold);outline-offset:2px}
+#executiveReportPrint .gov-card-title{display:flex;align-items:center;justify-content:space-between;gap:10px}
+#executiveReportPrint .gov-card-open{
+ font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+ font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+ color:var(--gold);white-space:nowrap
+}
+
 </style>
 </head>
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.0.24</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.0.25</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden">
  <aside class="side"><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -610,7 +622,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
  </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.0.24</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.0.25</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
@@ -1501,8 +1513,8 @@ function openExecutiveReport(id){
   </table>
 </div>
 <div class="gov-mobile">
-  ${state.roles.map(x=>`<div class="gov-card">
-    <div class="gov-card-title">${esc(x.name)}</div>
+  ${state.roles.map(x=>`<div class="gov-card gov-card-clickable" role="button" tabindex="0" onclick="openRoleFromExecutiveReport(${x.id})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openRoleFromExecutiveReport(${x.id})}">
+    <div class="gov-card-title">${esc(x.name)}<span class="gov-card-open">Open ›</span></div>
     <div class="gov-card-line"><span>Scope</span><strong>${esc(x.scope)}</strong></div>
     <div class="gov-card-line"><span>Level</span><strong><span class="governance-level-pill">${esc(x.level)}</span></strong></div>
     <div class="gov-card-line gov-card-perms"><span>Permissions</span><strong>${esc(x.permissions)}</strong></div>
@@ -1609,6 +1621,11 @@ function savePermissionOverride(){
  else state.permissionOverrides.push({id:nextId(state.permissionOverrides),permissionKey:key,roleKey:role,value,reason,authorisedBy:by,updated:new Date().toISOString()});
  audit("UPDATE","ROLE_PERMISSION",`${roleKeyLabel(role)} · ${key} · ${value} · authorised by ${by}`);
  save();closeModal();render("access")
+}
+
+function openRoleFromExecutiveReport(id){
+ closeModal();
+ setTimeout(()=>roleDetail(id),60)
 }
 function roleDetail(id){
  const r=state.roles.find(x=>x.id===id);if(!r)return;
