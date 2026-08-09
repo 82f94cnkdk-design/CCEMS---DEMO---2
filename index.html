@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v1.0.3 Estate Operations Control Centre demo">
+<meta name="description" content="CCEMS Phase 1 v1.0.4 Estate Operations Control Centre demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v1.0.3</title>
+<title>CCEMS Phase 1 v1.0.4</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -74,7 +74,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.0.3</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.0.4</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden">
  <aside class="side"><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -128,7 +128,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
  </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.0.3</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.0.4</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
@@ -805,7 +805,47 @@ function incidentModal(){modal(`<div class="modalHead"><h3>Report Estate Inciden
 function saveIncident(){if(!val("inLoc")){alert("Select an estate location.");return}if(!val("inBy")){alert("Select the reporting staff member.");return}if(!val("inOwner")){alert("Select the incident owner.");return}const id=nextId(state.incidents),ref=`INC-2026-${String(id).padStart(3,"0")}`;state.incidents.unshift({id,ref,date:val("inDate"),time:val("inTime"),category:val("inCat"),severity:val("inSeverity"),location:val("inLoc"),title:val("inTitle"),reportedBy:val("inBy"),owner:val("inOwner"),status:"OPEN",linked:"",action:val("inAction")});state.notifications.unshift({id:nextId(state.notifications),severity:val("inSeverity"),title:`Incident ${ref}`,detail:val("inTitle"),module:"Incidents",status:"OPEN",date:val("inDate")});audit("CREATE","INCIDENT",ref);closeModal();render("incidents")}
 function renderDocuments(v){
  setTitle("Document Register");
- v.innerHTML=`<div class="head"><div><h2>Document Register</h2><p>Controlled estate documents, versions, ownership and review dates.</p></div><button class="primary" onclick="documentModal()">+ Document</button></div><div class="kpis">${kpi("Documents",state.documents.length,"Controlled")}${kpi("Current",state.documents.filter(d=>d.status==="CURRENT").length,"In force")}${kpi("Controlled / confidential",state.documents.filter(d=>d.sensitivity!=="INTERNAL").length,"Restricted")}</div><section class="card panel">${simpleTable(["Reference","Document","Category","Department","Version","Owner","Review","Status","Sensitivity"],state.documents.map(d=>[`<strong>${esc(d.ref)}</strong>`,esc(d.title),esc(d.category),esc(d.department),esc(d.version),esc(d.owner),dateFmt(d.review),badge(d.status),badge(d.sensitivity)]))}</section>`
+ v.innerHTML=`<div class="head"><div><h2>Document Register</h2><p>Controlled estate documents, versions, ownership and review dates.</p></div><button class="primary" onclick="documentModal()">+ Document</button></div>
+ <div class="kpis">${kpi("Documents",state.documents.length,"Controlled")}${kpi("Current",state.documents.filter(d=>d.status==="CURRENT").length,"In force")}${kpi("Controlled / confidential",state.documents.filter(d=>d.sensitivity!=="INTERNAL").length,"Restricted")}</div>
+ <section class="card panel"><table><thead><tr><th>Reference</th><th>Document</th><th>Category</th><th>Department</th><th>Version</th><th>Owner</th><th>Review</th><th>Status</th><th>Sensitivity</th></tr></thead><tbody>${state.documents.map(d=>`<tr class="clickable" onclick="documentDetail(${d.id})"><td><strong>${esc(d.ref)}</strong></td><td>${esc(d.title)}</td><td>${esc(d.category)}</td><td>${esc(d.department)}</td><td>${esc(d.version)}</td><td>${esc(d.owner)}</td><td>${dateFmt(d.review)}</td><td>${badge(d.status)}</td><td>${badge(d.sensitivity)}</td></tr>`).join("")}</tbody></table></section>`
+}
+function documentDetail(id){
+ const d=state.documents.find(x=>x.id===id); if(!d)return;
+ modal(`<div class="modalHead"><div><h3>${esc(d.ref)} · ${esc(d.title)}</h3><p class="muted">${esc(d.category)} · ${esc(d.department)}</p></div><button class="close" onclick="closeModal()">×</button></div>
+ <div class="grid2"><section>
+ <div class="stat"><span>Version</span><strong>${esc(d.version||"—")}</strong></div>
+ <div class="stat"><span>Status</span>${badge(d.status)}</div>
+ <div class="stat"><span>Sensitivity</span>${badge(d.sensitivity)}</div>
+ <div class="stat"><span>Owner</span><strong>${esc(d.owner||"—")}</strong></div>
+ <div class="stat"><span>Review date</span><strong>${dateFmt(d.review)}</strong></div>
+ </section><section>
+ <div class="sectionTitle">Document Control</div>
+ <p>This record represents the controlled master entry for the document. Production CCEMS will attach the actual file, revision history, approvals and archived superseded versions here.</p>
+ <div class="notice">Reference: <strong>${esc(d.ref)}</strong><br>Current version: <strong>${esc(d.version||"—")}</strong></div>
+ </section></div>
+ <div class="actions" style="margin-top:18px"><button class="secondary" onclick="closeModal()">Close</button><button class="primary" onclick="documentEditModal(${d.id})">Edit Record</button></div>`)
+}
+function documentEditModal(id){
+ const d=state.documents.find(x=>x.id===id); if(!d)return;
+ modal(`<div class="modalHead"><div><h3>Edit ${esc(d.ref)}</h3><p class="muted">${esc(d.title)}</p></div><button class="close" onclick="closeModal()">×</button></div>
+ <input type="hidden" id="deId" value="${d.id}">
+ <div class="field"><label>Document title</label><input id="deTitle" value="${esc(d.title)}"></div>
+ <div class="grid2"><div>
+ <div class="field"><label>Category</label><select id="deCat"><option>${esc(d.category)}</option><option>COMPLIANCE</option><option>ANIMAL HEALTH</option><option>ORGANIC COMPLIANCE</option><option>HEALTH & SAFETY</option><option>INSURANCE</option><option>HR & TRAINING</option><option>OPERATIONS</option><option>MAINTENANCE</option><option>PROCUREMENT</option><option>FOOD SAFETY</option></select></div>
+ <div class="field"><label>Department</label><select id="deDept"><option value="${esc(d.department)}">${esc(d.department)}</option>${ccDepartments().filter(x=>x!==d.department).map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join("")}</select></div>
+ <div class="field"><label>Version</label><input id="deVersion" value="${esc(d.version||"")}"></div>
+ </div><div>
+ <div class="field"><label>Owner</label><select id="deOwner"><option value="${esc(d.owner)}">${esc(d.owner)}</option>${ccStaff().map(s=>s.name).filter(x=>x!==d.owner).map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join("")}</select></div>
+ <div class="field"><label>Review date</label><input id="deReview" type="date" value="${esc(d.review||"")}"></div>
+ <div class="field"><label>Status</label><select id="deStatus"><option>${esc(d.status)}</option><option>CURRENT</option><option>DRAFT</option><option>SUPERSEDED</option><option>ARCHIVED</option></select></div>
+ <div class="field"><label>Sensitivity</label><select id="deSens"><option>${esc(d.sensitivity)}</option><option>INTERNAL</option><option>CONTROLLED</option><option>CONFIDENTIAL</option></select></div>
+ </div></div>
+ <button class="primary" onclick="saveDocumentEdit()">Save Changes</button>`)
+}
+function saveDocumentEdit(){
+ const d=state.documents.find(x=>x.id===Number(val("deId"))); if(!d)return;
+ d.title=val("deTitle");d.category=val("deCat");d.department=val("deDept");d.version=val("deVersion");d.owner=val("deOwner");d.review=val("deReview");d.status=val("deStatus");d.sensitivity=val("deSens");
+ audit("UPDATE","DOCUMENT",d.ref);closeModal();render("documents")
 }
 function documentModal(){modal(`<div class="modalHead"><h3>Register Document</h3><button class="close" onclick="closeModal()">×</button></div><div class="field"><label>Title</label><input id="dcTitle"></div><div class="grid2"><div><div class="field"><label>Category</label><select id="dcCat"><option>COMPLIANCE</option><option>ANIMAL HEALTH</option><option>ORGANIC COMPLIANCE</option><option>HEALTH & SAFETY</option><option>INSURANCE</option><option>HR & TRAINING</option><option>OPERATIONS</option><option>MAINTENANCE</option><option>PROCUREMENT</option><option>FOOD SAFETY</option></select></div><div class="field"><label>Department</label><select id="dcDept">${optionsFrom(ccDepartments(),"Select department")}</select></div><div class="field"><label>Version</label><input id="dcVersion"></div></div><div><div class="field"><label>Owner</label><select id="dcOwner">${optionsFrom(ccStaff().map(s=>s.name),"Select document owner")}</select></div><div class="field"><label>Review date</label><input id="dcReview" type="date"></div><div class="field"><label>Sensitivity</label><select id="dcSens"><option>INTERNAL</option><option>CONTROLLED</option><option>CONFIDENTIAL</option></select></div></div></div><button class="primary" onclick="saveDocument()">Register Document</button>`)}
 function saveDocument(){if(!val("dcDept")){alert("Select a department.");return}if(!val("dcOwner")){alert("Select the document owner.");return}const id=nextId(state.documents),ref=`DOC-${String(id).padStart(3,"0")}`;state.documents.push({id,ref,title:val("dcTitle"),category:val("dcCat"),department:val("dcDept"),version:val("dcVersion"),owner:val("dcOwner"),review:val("dcReview"),status:"CURRENT",sensitivity:val("dcSens")});audit("CREATE","DOCUMENT",ref);closeModal();render("documents")}
