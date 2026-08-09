@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v1.0.8 Estate Operations Control Centre demo">
+<meta name="description" content="CCEMS Phase 1 v1.0.9 Estate Operations Control Centre demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v1.0.8</title>
+<title>CCEMS Phase 1 v1.0.9</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -99,7 +99,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.0.8</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.0.9</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden">
  <aside class="side"><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -137,6 +137,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
   <button data-page="incidents"><span class="ic">!</span>Incidents</button>
   <button data-page="documents"><span class="ic">▤</span>Document Register</button>
   <button data-page="reports"><span class="ic">▥</span>Executive Reports</button>
+  <button data-page="access"><span class="ic">♜</span>Roles & Access</button>
   <div class="navTitle">Inventory & Procurement</div>
   <button data-page="inventory"><span class="ic">▤</span>Inventory & Stores</button>
   <button data-page="purchasing"><span class="ic">▣</span>Purchasing</button>
@@ -153,7 +154,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
  </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.0.8</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.0.9</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
@@ -427,7 +428,7 @@ navSetup();
 function render(page){
  document.querySelectorAll(".nav button[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
  const v=document.getElementById("view");
- ({dashboard:renderDashboard,tasks:renderTasksV08,deptwork:renderDeptWork,workflows:renderWorkflows,animals:renderAnimals,health:renderHealth,breeding:renderBreeding,movements:renderMovements,flocks:renderFlocks,land:renderLand,grazing:renderGrazing,crops:renderCrops,soil:renderSoil,harvest:renderHarvest,sops:renderSops,checklists:renderChecklists,corrective:renderCorrective,compliance:renderComplianceV08,controlcentre:renderControlCentre,approvals:renderApprovalInbox,diary:renderDiary,incidents:renderIncidents,documents:renderDocuments,reports:renderReports,inventory:renderInventory,purchasing:renderPurchasing,goods:renderGoods,suppliers:renderSuppliers,maintenance:renderMaintenance,assets:renderAssets,fleet:renderFleet,inspections:renderInspections,fuel:renderFuel,staff:renderStaff,rota:renderRota,training:renderTraining,competency:renderCompetency,leave:renderLeave,ppe:renderPPE,audit:renderAudit}[page]||renderDashboard)(v)
+ ({dashboard:renderDashboard,tasks:renderTasksV08,deptwork:renderDeptWork,workflows:renderWorkflows,animals:renderAnimals,health:renderHealth,breeding:renderBreeding,movements:renderMovements,flocks:renderFlocks,land:renderLand,grazing:renderGrazing,crops:renderCrops,soil:renderSoil,harvest:renderHarvest,sops:renderSops,checklists:renderChecklists,corrective:renderCorrective,compliance:renderComplianceV08,controlcentre:renderControlCentre,approvals:renderApprovalInbox,diary:renderDiary,incidents:renderIncidents,documents:renderDocuments,reports:renderReports,access:renderAccessModel,inventory:renderInventory,purchasing:renderPurchasing,goods:renderGoods,suppliers:renderSuppliers,maintenance:renderMaintenance,assets:renderAssets,fleet:renderFleet,inspections:renderInspections,fuel:renderFuel,staff:renderStaff,rota:renderRota,training:renderTraining,competency:renderCompetency,leave:renderLeave,ppe:renderPPE,audit:renderAudit}[page]||renderDashboard)(v)
 }
 function withdrawalRecords(){return state.animals.flatMap(a=>(a.medicines||[]).filter(m=>m.status==="WITHDRAWAL"&&m.withdrawalEnd>=new Date().toISOString().slice(0,10)).map(m=>({a,m})))}
 function dueBirths(){return state.animals.flatMap(a=>(a.breeding||[]).filter(b=>b.due).map(b=>({a,b}))).filter(x=>x.b.due>="2026-08-08")}
@@ -785,7 +786,7 @@ function renderControlCentre(v){
  ${kpi("Documents",state.documents.length,"Controlled register")}
  </div>
  <div class="grid2"><section class="card panel"><h3>Command Alerts</h3>${alerts.slice(0,8).map(a=>`<div class="${a.severity==="CRITICAL"?"critical":"warn"}"><strong>${esc(a.title)}</strong> · ${badge(a.severity)}<br>${esc(a.detail)}<br><span class="muted">${esc(a.module)}</span></div>`).join("")||'<div class="notice">No open alerts.</div>'}</section>
- <section class="card panel"><h3>Management Snapshot</h3><div class="stat"><span>Today's diary entries</span><strong>${state.estateDiary.filter(d=>d.date==="2026-08-09").length}</strong></div><div class="stat"><span>Open purchase orders</span><strong>${state.purchaseOrders.filter(p=>p.status==="OPEN").length}</strong></div><div class="stat"><span>Training due soon</span><strong>${state.training.filter(t=>t.status==="DUE_SOON").length}</strong></div><div class="stat"><span>Active medicine withdrawals</span><strong>${withdrawalRecords().length}</strong></div><div class="stat"><span>Resting paddocks</span><strong>${state.land.filter(f=>f.status==="RESTING").length}</strong></div><div class="stat"><span>Open requisitions</span><strong>${state.purchaseRequisitions.filter(r=>r.status==="PENDING").length}</strong></div></section></div>
+ <section class="card panel"><h3>Management Snapshot</h3><div class="stat"><span>Today's diary entries</span><strong>${state.estateDiary.filter(d=>d.date==="2026-08-09").length}</strong></div><div class="stat"><span>Open purchase orders</span><strong>${state.purchaseOrders.filter(p=>p.status==="OPEN").length}</strong></div><div class="stat"><span>Training due soon</span><strong>${state.training.filter(t=>t.status==="DUE_SOON").length}</strong></div><div class="stat"><span>Active medicine withdrawals</span><strong>${withdrawalRecords().length}</strong></div><div class="stat"><span>Resting paddocks</span><strong>${state.land.filter(f=>f.status==="RESTING").length}</strong></div><div class="stat"><span>Open requisitions</span><strong>${state.purchaseRequisitions.filter(r=>r.status==="PENDING").length}</strong></div><div class="stat clickable" onclick="render('access')"><span>Roles & access profiles</span><strong>${state.roles.length} →</strong></div></section></div>
  <div class="grid2" style="margin-top:17px"><section class="card panel"><h3>Today's Estate Diary</h3>${simpleTable(["Time","Activity","Department","Owner","Status"],state.estateDiary.filter(d=>d.date==="2026-08-09").map(d=>[esc(d.time),esc(d.title),esc(d.department),esc(d.owner),badge(d.status)]))}</section><section class="card panel"><h3>Cross-Department Activity</h3>${state.activityFeed.map((a,i)=>`<div class="activity clickable" role="button" tabindex="0" onclick="activityFeedDetail(${i})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();activityFeedDetail(${i})}"><strong>${esc(a.module)}</strong> · ${esc(a.action)}<br>${esc(a.detail)}<br><span class="muted">${esc(a.date)} · ${esc(a.user)}</span><div class="muted" style="margin-top:6px;font-size:12px">Tap to open activity</div></div>`).join("")}</section></div>`
 }
 function renderApprovalInbox(v){
@@ -1008,6 +1009,47 @@ function printExecutiveReport(id){
  if(!w){alert("Your browser blocked the report window. Allow pop-ups for CCEMS and try again.");return}
  w.document.write(`<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(r.ref)} Executive Report</title><style>body{font-family:Arial,sans-serif;color:#173329;padding:28px;max-width:1000px;margin:auto}h1,h2,h3{font-family:Georgia,serif;color:#0b3529}.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.kpi,.warn,.notice{border:1px solid #dde4de;border-radius:10px;padding:12px;margin:8px 0}.stat{display:flex;justify-content:space-between;border-bottom:1px solid #dde4de;padding:10px 0}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}table{width:100%;border-collapse:collapse}th,td{padding:9px;border-bottom:1px solid #ddd;text-align:left}.badge{font-size:11px;font-weight:bold}@media(max-width:650px){.kpis,.grid2{grid-template-columns:1fr 1fr}}@media print{button{display:none}}</style></head><body><h1>Crown & Cross Organic Estate</h1><h2>${esc(r.title)}</h2><p><strong>${esc(r.ref)}</strong> · ${esc(r.period)} · Prepared by ${esc(r.generatedBy)}</p>${content}</body></html>`);
  w.document.close();setTimeout(()=>w.print(),300)
+}
+
+
+function rolePermissionMatrix(){
+ return [
+  {permission:"View Estate Command",director:"YES",manager:"YES",department:"YES",operative:"LIMITED",auditor:"YES"},
+  {permission:"Create / Edit Operational Records",director:"YES",manager:"YES",department:"OWN DEPT",operative:"ASSIGNED",auditor:"NO"},
+  {permission:"Assign Tasks",director:"YES",manager:"YES",department:"OWN DEPT",operative:"NO",auditor:"NO"},
+  {permission:"Approve Workflows / Purchasing",director:"YES",manager:"YES",department:"REQUEST ONLY",operative:"NO",auditor:"NO"},
+  {permission:"View HR / Personnel Records",director:"YES",manager:"YES",department:"OWN TEAM",operative:"SELF",auditor:"CONTROLLED"},
+  {permission:"View Controlled Documents",director:"YES",manager:"YES",department:"OWN SCOPE",operative:"ASSIGNED",auditor:"YES"},
+  {permission:"Upload / Replace Controlled Documents",director:"YES",manager:"YES",department:"OWN SCOPE",operative:"NO",auditor:"NO"},
+  {permission:"Generate Executive Reports",director:"YES",manager:"YES",department:"NO",operative:"NO",auditor:"VIEW ONLY"},
+  {permission:"Close Corrective Actions",director:"YES",manager:"YES",department:"OWN SCOPE",operative:"NO",auditor:"NO"},
+  {permission:"User / Role Administration",director:"YES",manager:"LIMITED",department:"NO",operative:"NO",auditor:"NO"},
+  {permission:"Audit History",director:"YES",manager:"YES",department:"OWN SCOPE",operative:"OWN ACTIONS",auditor:"YES"}
+ ]
+}
+function renderAccessModel(v){
+ setTitle("Roles & Access");
+ const matrix=rolePermissionMatrix();
+ v.innerHTML=`<div class="head"><div><h2>Roles & Access Model</h2><p>Phase 1 access-control model for estate leadership, managers, operatives and auditors.</p></div></div>
+ <div class="kpis">${kpi("Defined roles",state.roles.length,"Access profiles")}${kpi("Executive roles",state.roles.filter(r=>r.level==="EXECUTIVE").length,"Estate-wide")}${kpi("Manager roles",state.roles.filter(r=>r.level==="MANAGER").length,"Operational control")}${kpi("Read-only roles",state.roles.filter(r=>r.level==="READ_ONLY").length,"Audit access")}</div>
+ <div class="grid2"><section class="card panel"><h3>Role Profiles</h3>${state.roles.map(r=>`<div class="activity clickable" onclick="roleDetail(${r.id})"><strong>${esc(r.name)}</strong> · ${badge(r.level)}<br><span>${esc(r.scope)}</span><br><span class="muted">${esc(r.permissions)}</span><div class="muted" style="margin-top:6px;font-size:12px">Tap to open role</div></div>`).join("")}</section>
+ <section class="card panel"><h3>Access Principles</h3><div class="notice"><strong>Least privilege</strong><br>Staff should only receive the access required for their responsibilities.</div><div class="notice"><strong>Department scope</strong><br>Department managers are limited to their own operational area unless explicitly elevated.</div><div class="notice"><strong>Segregation of duties</strong><br>Requesting, approving and receiving should be separated where practical.</div><div class="notice"><strong>Auditability</strong><br>Access-sensitive actions should be recorded in Audit History.</div></section></div>
+ <section class="card panel" style="margin-top:17px"><h3>Permissions Matrix</h3><table><thead><tr><th>Permission</th><th>Estate Director</th><th>Estate Manager</th><th>Department Manager</th><th>Operative</th><th>Auditor</th></tr></thead><tbody>${matrix.map(m=>`<tr><td><strong>${esc(m.permission)}</strong></td><td>${badge(m.director)}</td><td>${badge(m.manager)}</td><td>${badge(m.department)}</td><td>${badge(m.operative)}</td><td>${badge(m.auditor)}</td></tr>`).join("")}</tbody></table></section>`
+}
+function roleDetail(id){
+ const r=state.roles.find(x=>x.id===id);if(!r)return;
+ const users=state.staff.filter(s=>{
+   if(r.name==="Estate Manager")return /manager/i.test(s.role||"");
+   if(r.name==="Department Manager")return /supervisor|head|manager/i.test(s.role||"")&&!/estate manager/i.test(s.role||"");
+   return false
+ });
+ modal(`<div class="modalHead"><div><h3>${esc(r.name)}</h3><p class="muted">${esc(r.level)} · ${esc(r.scope)}</p></div><button class="close" onclick="closeModal()">×</button></div>
+ <div class="stat"><span>Access level</span>${badge(r.level)}</div>
+ <div class="stat"><span>Scope</span><strong>${esc(r.scope)}</strong></div>
+ <div class="sectionTitle">Permission Summary</div><div class="notice">${esc(r.permissions)}</div>
+ <div class="sectionTitle">Example Assigned Staff</div>${users.length?simpleTable(["Employee","Name","Role","Department"],users.map(s=>[esc(s.no),esc(s.name),esc(s.role),esc(s.dept||s.department||"—")])):'<div class="notice">No staff are explicitly mapped to this role in the browser prototype.</div>'}
+ <div class="warn" style="margin-top:14px">Phase 1 currently models access roles in the browser. Production CCEMS must enforce these permissions server-side with authenticated user accounts and MFA.</div>
+ <div class="actions" style="margin-top:18px"><button class="secondary" onclick="closeModal()">Close</button></div>`)
 }
 
 function inventoryItem(sku){return state.inventory.find(i=>i.sku===sku)}
