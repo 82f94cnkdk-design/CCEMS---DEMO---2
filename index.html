@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v1.1.25 Estate Operations Control Centre demo">
+<meta name="description" content="CCEMS Phase 1 v1.1.26 Estate Operations Control Centre demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v1.1.25</title>
+<title>CCEMS Phase 1 v1.1.26</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -879,13 +879,13 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 @media(max-width:720px){.dependency-row{grid-template-columns:minmax(0,1fr);gap:7px}}
 
 
-/* v1.1.25 — explicit blocker state */
+/* v1.1.26 — explicit blocker state */
 .workflow-card[data-blocked="true"]{box-shadow:inset 4px 0 0 #a86e19}
 .workflow-card[data-blocked="true"] .workflow-progress>div{opacity:.55}
 .active-blocked{font-weight:900!important}
 
 
-/* v1.1.25 — controlled step execution & workflow timeline */
+/* v1.1.26 — controlled step execution & workflow timeline */
 .step-evidence-card{border:1px solid #d8ded8;border-radius:18px;padding:16px;margin:10px 0;background:#fffdf8;text-align:left;width:100%}
 .step-evidence-card strong{display:block;color:#123f32;margin-bottom:5px}
 .step-evidence-card small{display:block;color:#6d7772;line-height:1.45}
@@ -895,12 +895,24 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 .workflow-timeline-item strong,.workflow-timeline-item span,.workflow-timeline-item small{display:block}
 .workflow-timeline-item span{margin-top:3px}.workflow-timeline-item small{color:#727b77;margin-top:4px}
 .step-control-note{padding:12px 14px;border-radius:14px;background:#eef5ef;margin:10px 0;color:#234b3d}
+
+/* v1.1.26 — SLA & due-date control */
+.sla-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
+.sla-strip button{border:1px solid var(--line);border-radius:14px;background:#fff;padding:13px;text-align:left;color:var(--ink);cursor:pointer}
+.sla-strip span{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:800}
+.sla-strip strong{display:block;font-size:22px;color:var(--g900);margin-top:3px}
+.workflow-card[data-sla="due-soon"]{box-shadow:inset 4px 0 0 #b8872d}
+.workflow-card[data-sla="overdue"]{box-shadow:inset 4px 0 0 #a44438}
+.sla-note{font-size:11px;font-weight:800}
+.sla-note.due-soon{color:#8a641d}.sla-note.overdue{color:#9a392f}
+@media(max-width:720px){.sla-strip{grid-template-columns:1fr 1fr}}
+
 </style>
 </head>
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.25</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.26</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden"><div id="sideBackdrop" class="side-backdrop" onclick="toggleSideNav(false)"></div>
  <aside class="side" id="ccemsSideNav"><button class="side-close-btn" type="button" onclick="toggleSideNav(false)" aria-label="Close navigation">×</button><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -955,7 +967,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
  </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation">☰ <span>Menu</span></button><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.1.25</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation">☰ <span>Menu</span></button><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.1.26</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
@@ -2399,6 +2411,49 @@ function workflowDerivedStatus(r){
  return r.status||"IN PROGRESS"
 }
 
+
+function workflowDaysUntilDue(r){
+ if(!r?.due||r.status==="COMPLETED")return null;
+ const due=new Date(String(r.due).slice(0,10)+"T23:59:59");
+ const now=new Date("2026-08-09T23:59:59");
+ if(Number.isNaN(due.getTime()))return null;
+ return Math.ceil((due-now)/86400000)
+}
+function workflowSLAState(r){
+ if(!r||r.status==="COMPLETED")return "closed";
+ const d=workflowDaysUntilDue(r);
+ if(d===null)return "no-date";
+ if(d<0)return "overdue";
+ if(d<=2)return "due-soon";
+ return "on-track"
+}
+function workflowSLAView(type){
+ const all=(state.workflowRuns||[]).filter(x=>x.status!=="COMPLETED");
+ let rows=all;
+ if(type==="due-soon")rows=all.filter(x=>workflowSLAState(x)==="due-soon");
+ if(type==="overdue")rows=all.filter(x=>workflowSLAState(x)==="overdue");
+ if(type==="on-track")rows=all.filter(x=>workflowSLAState(x)==="on-track");
+ if(type==="no-date")rows=all.filter(x=>workflowSLAState(x)==="no-date");
+ document.getElementById("workflowBody").innerHTML=`<section class="card panel"><div class="workflow-view-head"><button class="secondary" onclick="render('workflows')">← Workflow Command</button><strong>SLA · ${esc(type.toUpperCase())}</strong></div>${workflowRunRows(rows)}</section>`
+}
+function workflowRescheduleModal(id){
+ const r=workflowById(id);if(!r)return;
+ modal(`<div class="modalHead"><div><div class="eyebrow">Controlled Due-Date Change</div><h3>Reschedule Workflow</h3><p class="muted">${esc(r.ref)} · ${esc(r.title)}</p></div><button class="close" onclick="closeModal()">×</button></div>
+ <div class="stat"><span>Current due date</span><strong>${dateFmt(r.due)}</strong></div>
+ <div class="field"><label>New Due Date</label><input id="wfNewDue" type="date" value="${esc(String(r.due||"").slice(0,10))}"></div>
+ <div class="field"><label>Reason for Change</label><select id="wfDueReason"><option value="">Select reason</option><option>OPERATIONAL PRIORITY CHANGE</option><option>RESOURCE CONSTRAINT</option><option>SUPPLIER / CONTRACTOR DELAY</option><option>WEATHER / SITE CONDITION</option><option>DEPENDENCY DELAY</option><option>MANAGEMENT INSTRUCTION</option><option>OTHER</option></select></div>
+ <div class="field"><label>Authorisation / Notes</label><textarea id="wfDueNotes" rows="4" placeholder="Record why the controlled due date is being amended."></textarea></div>
+ <div class="actions"><button class="secondary" onclick="openWorkflowRun('${esc(id)}')">Cancel</button><button class="primary" onclick="saveWorkflowReschedule('${esc(id)}')">Authorise New Due Date</button></div>`)
+}
+function saveWorkflowReschedule(id){
+ const r=workflowById(id);if(!r)return;
+ const due=val("wfNewDue"),reason=val("wfDueReason"),notes=val("wfDueNotes");
+ if(!due||!reason||!notes){alert("New due date, reason and authorisation notes are required.");return}
+ const old=r.due;r.due=due;r.lastRescheduledAt=new Date().toISOString();r.lastRescheduledBy=workflowCurrentUser();
+ addWorkflowHistory(id,"DUE DATE CHANGED",`${dateFmt(old)} → ${dateFmt(due)} · ${reason} · ${notes}`);
+ audit("RESCHEDULE","WORKFLOW_RUN",`${r.ref} · ${old} → ${due} · ${reason}`);save();closeModal();openWorkflowRun(id)
+}
+
 function renderWorkflows(v){
  setTitle("Advanced Task & Workflow Management");
  const runs=state.workflowRuns||[];
@@ -2409,6 +2464,12 @@ function renderWorkflows(v){
  const blocked=open.filter(x=>workflowDerivedStatus(x)==="BLOCKED");
  v.innerHTML=`<div class="head"><div><div class="eyebrow">v1.1 Workflow Command</div><h2>Advanced Task & Workflow Management</h2><p>Controlled assignment, dependencies, execution, evidence, approvals, escalation and recurring estate work.</p></div><div class="actions"><button class="secondary" onclick="workflowTemplateModal()">New Template</button><button class="primary" onclick="workflowRunModal()">Create Workflow Run</button></div></div>
  <div class="kpis workflow-kpis"><button onclick="workflowQuickView('all')">${kpi("Active workflows",open.length,"Operational runs")}</button><button onclick="workflowQuickView('overdue')">${kpi("Overdue",overdue.length,"Past due date")}</button><button onclick="workflowQuickView('approval')">${kpi("Awaiting approval",approval.length,"Manager decisions")}</button><button onclick="workflowQuickView('critical')">${kpi("Critical",critical.length,"Priority workflows")}</button></div>
+ <div class="sla-strip">
+   <button onclick="workflowSLAView('on-track')"><span>On Track</span><strong>${open.filter(x=>workflowSLAState(x)==="on-track").length}</strong></button>
+   <button onclick="workflowSLAView('due-soon')"><span>Due ≤ 2 Days</span><strong>${open.filter(x=>workflowSLAState(x)==="due-soon").length}</strong></button>
+   <button onclick="workflowSLAView('overdue')"><span>SLA Breach</span><strong>${open.filter(x=>workflowSLAState(x)==="overdue").length}</strong></button>
+   <button onclick="workflowSLAView('no-date')"><span>No Due Date</span><strong>${open.filter(x=>workflowSLAState(x)==="no-date").length}</strong></button>
+ </div>
  <div class="workflow-command-strip"><button onclick="workflowQuickView('mine')"><span>My Work</span><strong>${open.filter(x=>x.assignedTo===workflowCurrentUser()).length}</strong></button><button onclick="workflowQuickView('blocked')"><span>Blocked</span><strong>${blocked.length}</strong></button><button onclick="workflowQuickView('overdue')"><span>Overdue</span><strong>${overdue.length}</strong></button><button onclick="workflowQuickView('approval')"><span>Approvals</span><strong>${approval.length}</strong></button></div>
  <div class="tabs"><button class="active" onclick="workflowTab('runs',this)">Workflow Command</button><button onclick="workflowTab('templates',this)">Templates</button><button onclick="workflowTab('exceptions',this)">Exceptions</button><button onclick="workflowTab('approvals',this)">Approvals</button><button onclick="workflowTab('dependencies',this)">Dependencies</button></div>
  <div id="workflowBody">${workflowRunsView()}</div>`
@@ -2416,7 +2477,7 @@ function renderWorkflows(v){
 function workflowQuickView(type){
  const all=state.workflowRuns||[];let rows=all,current=workflowCurrentUser();
  if(type==="mine")rows=all.filter(x=>x.status!=="COMPLETED"&&x.assignedTo===current);
- if(type==="overdue")rows=all.filter(x=>x.status==="OVERDUE");
+ if(type==="overdue")rows=all.filter(x=>x.status!=="COMPLETED"&&workflowDerivedStatus(x)==="OVERDUE");
  if(type==="approval")rows=all.filter(x=>x.status==="AWAITING APPROVAL");
  if(type==="critical")rows=all.filter(x=>x.status!=="COMPLETED"&&(x.critical===true||x.priority==="CRITICAL"));
  if(type==="blocked")rows=all.filter(x=>x.status!=="COMPLETED"&&workflowDerivedStatus(x)==="BLOCKED");
@@ -2424,20 +2485,21 @@ function workflowQuickView(type){
  document.getElementById("workflowBody").innerHTML=`<section class="card panel"><div class="workflow-view-head"><button class="secondary" onclick="render('workflows')">← Workflow Command</button><strong>${esc(type.toUpperCase())}</strong></div>${workflowRunRows(rows)}</section>`
 }
 function workflowTab(tab,btn){document.querySelectorAll(".tabs button").forEach(b=>b.classList.remove("active"));btn.classList.add("active");document.getElementById("workflowBody").innerHTML=tab==="templates"?workflowTemplatesView():tab==="exceptions"?workflowExceptionsView():tab==="approvals"?workflowApprovalsView():tab==="dependencies"?workflowDependenciesView():workflowRunsView()}
-function workflowRunsView(){const runs=state.workflowRuns||[];return `<section class="card panel"><div class="workflow-filter"><select id="wfStatus" onchange="workflowFilter()"><option value="">All statuses</option><option>NOT STARTED</option><option>IN PROGRESS</option><option>OVERDUE</option><option>AWAITING APPROVAL</option><option>COMPLETED</option></select><select id="wfDept" onchange="workflowFilter()"><option value="">All departments</option>${[...new Set(runs.map(x=>x.department))].map(x=>`<option>${esc(x)}</option>`).join("")}</select></div><div id="workflowRunList">${workflowRunRows(runs)}</div></section>`}
+function workflowRunsView(){const runs=state.workflowRuns||[];return `<section class="card panel"><div class="workflow-filter"><select id="wfStatus" onchange="workflowFilter()"><option value="">All statuses</option><option>NOT STARTED</option><option>IN PROGRESS</option><option>OVERDUE</option><option>BLOCKED</option><option>AWAITING APPROVAL</option><option>COMPLETED</option></select><select id="wfDept" onchange="workflowFilter()"><option value="">All departments</option>${[...new Set(runs.map(x=>x.department))].map(x=>`<option>${esc(x)}</option>`).join("")}</select></div><div id="workflowRunList">${workflowRunRows(runs)}</div></section>`}
 function workflowRunRows(rows){
  if(!rows.length)return '<div class="notice">No workflow runs match the filters.</div>';
  return `<div class="workflow-list">${rows.map(r=>{
    const critical=r.critical===true||r.priority==="CRITICAL",approval=r.status==="AWAITING APPROVAL",derived=workflowDerivedStatus(r),blocked=derived==="BLOCKED",late=workflowDaysLate(r);
-   return `<div class="workflow-card" data-critical="${critical}" data-blocked="${blocked}" onclick="openWorkflowRun('${esc(r.id)}')">
+   const sla=workflowSLAState(r),days=workflowDaysUntilDue(r);
+   return `<div class="workflow-card" data-critical="${critical}" data-blocked="${blocked}" data-sla="${sla}" onclick="openWorkflowRun('${esc(r.id)}')">
     <div class="workflow-card-top"><div><strong>${esc(r.ref)}</strong><h3>${esc(r.title)}</h3>${critical?'<span class="workflow-card-critical">Critical</span>':""}${blocked?'<span class="workflow-card-blocked">Blocked</span>':""}</div>${badge(derived)}</div>
-    <div class="workflow-meta"><span>${esc(r.department)}</span><span>${esc(r.location)}</span><span>Due ${dateFmt(r.due)}</span>${late?`<span>${late} day${late===1?"":"s"} late</span>`:""}</div>
+    <div class="workflow-meta"><span>${esc(r.department)}</span><span>${esc(r.location)}</span><span>Due ${dateFmt(r.due)}</span>${sla==="overdue"?`<span class="sla-note overdue">SLA breached · ${late} day${late===1?"":"s"} late</span>`:sla==="due-soon"?`<span class="sla-note due-soon">${days===0?"Due today":`Due in ${days} day${days===1?"":"s"}`}</span>`:""}</div>
     <div class="workflow-progress"><div style="width:${Number(r.progress)||0}%"></div></div>
     <div class="workflow-foot"><span>${Number(r.progress)||0}% complete · ${esc(r.assignedTo)}</span><strong>Open ›</strong></div>
     <div class="workflow-card-actions" onclick="event.stopPropagation()">
       ${!approval&&r.status!=="COMPLETED"?`<button class="wf-state-btn" onclick="workflowSetApproval('${esc(r.id)}')">Send to Approval</button>`:""}
       ${r.status!=="COMPLETED"?`<button class="wf-state-btn ${critical?"active-critical":""}" onclick="workflowSetCritical('${esc(r.id)}',${critical?"false":"true"})">${critical?"Remove Critical":"Mark Critical"}</button>`:""}
-      ${r.status!=="COMPLETED"?`<button class="wf-state-btn ${blocked?"active-blocked":""}" onclick="workflowBlockerModal('${esc(r.id)}')">${blocked?"Manage / Resolve Blocker":"Block Workflow"}</button>`:""}
+      ${r.status!=="COMPLETED"?`<button class="wf-state-btn ${blocked?"active-blocked":""}" onclick="workflowBlockerModal('${esc(r.id)}')">${blocked?"Manage / Resolve Blocker":"Block Workflow"}</button>`:""}${r.status!=="COMPLETED"?`<button class="wf-state-btn" onclick="workflowRescheduleModal('${esc(r.id)}')">Reschedule</button>`:""}
     </div>
    </div>`
  }).join("")}</div>`
@@ -2464,7 +2526,7 @@ function workflowSetCritical(id,on){
  render("workflows")
 }
 
-function workflowFilter(){const s=val("wfStatus"),d=val("wfDept"),rows=(state.workflowRuns||[]).filter(x=>(!s||x.status===s)&&(!d||x.department===d));document.getElementById("workflowRunList").innerHTML=workflowRunRows(rows)}
+function workflowFilter(){const s=val("wfStatus"),d=val("wfDept"),rows=(state.workflowRuns||[]).filter(x=>(!s||workflowDerivedStatus(x)===s)&&(!d||x.department===d));document.getElementById("workflowRunList").innerHTML=workflowRunRows(rows)}
 function workflowTemplatesView(){return `<section class="card panel"><div class="workflow-list">${(state.workflowTemplates||[]).map(x=>`<div class="workflow-card" onclick="openWorkflowTemplate(${x.id})"><div class="workflow-card-top"><div><strong>${esc(x.ref)}</strong><h3>${esc(x.name)}</h3></div>${badge(x.status)}</div><div class="workflow-meta"><span>${esc(x.department)}</span><span>${esc(x.frequency)}</span><span>${x.steps.length} steps</span></div><div class="workflow-foot"><span>Approval: ${esc(x.approval)}</span><strong>Open ›</strong></div></div>`).join("")}</div></section>`}
 function workflowExceptionsView(){const rows=(state.workflowRuns||[]).filter(x=>x.status==="OVERDUE"||x.approvalStatus==="REJECTED");return `<section class="card panel"><h3>Exceptions & Escalations</h3>${rows.length?workflowRunRows(rows):'<div class="notice">No active workflow exceptions.</div>'}</section>`}
 
@@ -2777,6 +2839,7 @@ function openWorkflowRun(id){
  <div class="stat"><span>Critical control</span>${badge((r.critical===true||r.priority==="CRITICAL")?"CRITICAL":"NORMAL")}</div>
  <div class="stat"><span>Dependencies</span><strong>${workflowDependenciesFor(r.id).length}</strong></div>
  <div class="stat"><span>Open blockers</span><strong>${workflowBlockersFor(r.id).length}</strong></div>
+ <div class="stat"><span>SLA status</span>${badge(workflowSLAState(r).replace("-"," ").toUpperCase())}</div>
  ${r.escalated?`<div class="warn"><strong>Escalated:</strong> ${esc(r.escalationReason||"Management review")}</div>`:""}
  ${r.correctionRequired?`<div class="warn"><strong>Correction required:</strong> ${esc(r.correctionRequired)}</div>`:""}
  ${workflowIsBlocked(r.id)?`<div class="warn"><strong>Workflow blocked.</strong> Resolve blockers or dependencies before completing the next step.</div>`:""}
@@ -2802,6 +2865,7 @@ function openWorkflowRun(id){
    <button class="secondary" onclick="saveWorkflowNotes(${r.id})">Save Evidence & Notes</button>
    <button class="secondary" onclick="workflowAddComment(${r.id})">Add Note</button>
    <button class="secondary" onclick="workflowTimelineModal('${esc(r.id)}')">Workflow History</button>
+   <button class="secondary" onclick="workflowRescheduleModal('${esc(r.id)}')">Reschedule Due Date</button>
    <button class="secondary" onclick="workflowReassign(${r.id})">Reassign</button>
    <button class="secondary" onclick="workflowEscalate(${r.id})">Escalate</button>
    <button class="secondary" onclick="workflowDependencyModal('${esc(r.id)}')">Add Dependency</button>
