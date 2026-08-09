@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v1.1.71 Estate Operations Control Centre demo">
+<meta name="description" content="CCEMS Phase 1 v1.1.72 Estate Operations Control Centre demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v1.1.71</title>
+<title>CCEMS Phase 1 v1.1.72</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -879,13 +879,13 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 @media(max-width:720px){.dependency-row{grid-template-columns:minmax(0,1fr);gap:7px}}
 
 
-/* v1.1.71 — explicit blocker state */
+/* v1.1.72 — explicit blocker state */
 .workflow-card[data-blocked="true"]{box-shadow:inset 4px 0 0 #a86e19}
 .workflow-card[data-blocked="true"] .workflow-progress>div{opacity:.55}
 .active-blocked{font-weight:900!important}
 
 
-/* v1.1.71 — controlled step execution & workflow timeline */
+/* v1.1.72 — controlled step execution & workflow timeline */
 .step-evidence-card{border:1px solid #d8ded8;border-radius:18px;padding:16px;margin:10px 0;background:#fffdf8;text-align:left;width:100%}
 .step-evidence-card strong{display:block;color:#123f32;margin-bottom:5px}
 .step-evidence-card small{display:block;color:#6d7772;line-height:1.45}
@@ -896,7 +896,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 .workflow-timeline-item span{margin-top:3px}.workflow-timeline-item small{color:#727b77;margin-top:4px}
 .step-control-note{padding:12px 14px;border-radius:14px;background:#eef5ef;margin:10px 0;color:#234b3d}
 
-/* v1.1.71 — SLA & due-date control */
+/* v1.1.72 — SLA & due-date control */
 .sla-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
 .sla-strip button{border:1px solid var(--cc-border);border-radius:14px;background:var(--cc-card-soft);padding:13px;text-align:left;color:var(--ink);cursor:pointer}
 .sla-strip span{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:800}
@@ -908,18 +908,18 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 @media(max-width:720px){.sla-strip{grid-template-columns:1fr 1fr}}
 
 
-/* v1.1.71 — workflow drill-down & zero-state UX */
+/* v1.1.72 — workflow drill-down & zero-state UX */
 .sla-strip button.zero-state,.workflow-kpis button.zero-state,.workflow-command-strip button.zero-state{opacity:.58;cursor:default}
 .workflow-zero{border:1px solid #d8e3d9;background:#eef6ef;border-radius:14px;padding:16px;color:#315b48;margin-top:12px}
 .workflow-result-head{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
 .workflow-result-count{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:800}
 
 
-/* v1.1.71 — clearer workflow history actor attribution */
+/* v1.1.72 — clearer workflow history actor attribution */
 .workflow-timeline-item small b{color:var(--g900);font-weight:800}
 
 
-/* v1.1.71 — controlled workflow evidence attachments */
+/* v1.1.72 — controlled workflow evidence attachments */
 .evidence-upload{border:1px dashed #aebdb4;border-radius:16px;padding:14px;background:#fbfcf9;margin-top:8px}
 .evidence-upload input[type=file]{width:100%;font-size:15px}
 .evidence-upload-help{display:block;color:#6d7772;font-size:13px;line-height:1.45;margin-top:7px}
@@ -930,7 +930,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 .evidence-file small{color:#6d7772;margin-top:3px}
 
 
-/* v1.1.71 — iPhone-native photo/document evidence pickers */
+/* v1.1.72 — iPhone-native photo/document evidence pickers */
 .evidence-picker-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .evidence-picker-btn{display:grid;grid-template-columns:auto 1fr;gap:2px 9px;align-items:center;border:1px solid var(--cc-border);border-radius:13px;background:var(--cc-card-soft);padding:13px;cursor:pointer;color:var(--g900);touch-action:manipulation}
 .evidence-picker-btn>span{grid-row:1/3;font-size:22px}
@@ -942,7 +942,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 @media(max-width:520px){.evidence-picker-grid{grid-template-columns:1fr}.evidence-picker-btn{min-height:58px}}
 
 
-/* v1.1.71 — universal CCEMS evidence upload standard */
+/* v1.1.72 — universal CCEMS evidence upload standard */
 .ccems-evidence-widget{margin-top:12px;border:1px solid #d6ded8;border-radius:15px;padding:13px;background:#fbfcf9}
 .ccems-evidence-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
 .ccems-evidence-title strong{color:var(--g900)}.ccems-evidence-title span{font-size:11px;color:var(--muted)}
@@ -954,7 +954,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 .ccems-evidence-selected-count{font-size:12px;font-weight:800;color:var(--g800);padding:5px 0}
 
 
-/* v1.1.71 — persistent evidence viewing */
+/* v1.1.72 — persistent evidence viewing */
 .ccems-evidence-openable{cursor:pointer}
 .ccems-evidence-openable:active{background:#f2f6f2}
 .evidence-open-label{display:block;margin-top:4px;font-size:11px;font-weight:800;color:var(--g800)}
@@ -964,7 +964,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 .evidence-doc-icon.large{width:72px;height:72px}
 
 
-/* v1.1.71 — evidence-aware approval management */
+/* v1.1.72 — evidence-aware approval management */
 .approval-queue{display:grid;gap:12px}
 .approval-card{border:1px solid var(--cc-border);border-radius:14px;background:var(--cc-card);overflow:hidden}
 .approval-card-main{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:start;width:100%;border:0;background:transparent;color:var(--ink);padding:14px;text-align:left;cursor:pointer}
@@ -981,16 +981,16 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 }
 
 
-/* v1.1.71 — evidence nested navigation */
+/* v1.1.72 — evidence nested navigation */
 .evidence-viewer-image-wrap + .stat{margin-top:12px}
 
 
-/* v1.1.71 — recurring workflow scheduling */
+/* v1.1.72 — recurring workflow scheduling */
 .tabs{overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
 .tabs button{flex:0 0 auto}
 
 
-/* v1.1.71 — visible workflow schedules navigation */
+/* v1.1.72 — visible workflow schedules navigation */
 .workflow-schedule-command{
  border:1px solid #c8b27c!important;
  background:#fffaf0!important;
@@ -1024,10 +1024,10 @@ td,th{overflow-wrap:anywhere;word-break:normal}
  }
 }
 
-/* v1.1.71 */
+/* v1.1.72 */
 .workflow-card-badges{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.sla-policy-tab{border-color:#c8b27c!important}
 
-/* v1.1.71 — mobile SLA command card alignment */
+/* v1.1.72 — mobile SLA command card alignment */
 .workflow-command-strip .sla-command-card{
  display:flex!important;
  flex-direction:column!important;
@@ -1077,7 +1077,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 
 
 /* =========================================================
-   v1.1.71 — CCEMS SYSTEM-WIDE UI STANDARD
+   v1.1.72 — CCEMS SYSTEM-WIDE UI STANDARD
    One visual language across dashboards, modules and modals.
    ========================================================= */
 :root{
@@ -1324,9 +1324,9 @@ th,td{padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:top}
 
 
 /* =========================================================
-   v1.1.71 — CROWN & CROSS SURFACE PALETTE CORRECTION
+   v1.1.72 — CROWN & CROSS SURFACE PALETTE CORRECTION
    Restores the warm ivory estate character while preserving
-   the v1.1.71 system-wide spacing and component standards.
+   the v1.1.72 system-wide spacing and component standards.
    ========================================================= */
 :root{
  --cc-surface:#f7f2e7;
@@ -1481,7 +1481,7 @@ tbody tr:nth-child(even) td{
 
 
 /* =========================================================
-   v1.1.71 — LEGACY WHITE SURFACE SWEEP
+   v1.1.72 — LEGACY WHITE SURFACE SWEEP
    Removes remaining clinical-white dashboard/list surfaces.
    ========================================================= */
 
@@ -1551,7 +1551,7 @@ input,select,textarea,
 }
 
 
-/* v1.1.71 — exact Management Attention surface correction */
+/* v1.1.72 — exact Management Attention surface correction */
 .dash-attention > button,
 .card.panel .dash-attention > button{
  background:var(--cc-surface-soft)!important;
@@ -1565,7 +1565,7 @@ input,select,textarea,
 
 
 /* =========================================================
-   v1.1.71 — HEADER CONTRAST PROTECTION
+   v1.1.72 — HEADER CONTRAST PROTECTION
    Palette rules must never recolour the dark estate header.
    ========================================================= */
 .topbar,
@@ -1597,7 +1597,7 @@ header *{
 
 
 /* =========================================================
-   v1.1.71 — MOBILE HEADER RECOMPOSITION
+   v1.1.72 — MOBILE HEADER RECOMPOSITION
    Compact, balanced Crown & Cross application header.
    ========================================================= */
 
@@ -1744,7 +1744,7 @@ header::after{
 }
 
 
-/* v1.1.71 exact header selectors */
+/* v1.1.72 exact header selectors */
 .top{
  min-height:84px!important;
  padding:12px 16px!important;
@@ -1816,7 +1816,7 @@ header::after{
 
 
 /* =========================================================
-   v1.1.71 — CROWN & CROSS MOBILE APPLICATION BAR
+   v1.1.72 — CROWN & CROSS MOBILE APPLICATION BAR
    ========================================================= */
 
 .top{
@@ -1995,7 +1995,7 @@ header::after{
 
 
 /* =========================================================
-   v1.1.71 — ADAPTIVE MOBILE HEADER
+   v1.1.72 — ADAPTIVE MOBILE HEADER
    Full module names must remain readable on phone screens.
    ========================================================= */
 
@@ -2110,7 +2110,7 @@ header::after{
 
 
 /* =========================================================
-   v1.1.71 — TASK CARD SURFACE HARMONISATION
+   v1.1.72 — TASK CARD SURFACE HARMONISATION
    Warm Crown & Cross hierarchy for task records.
    ========================================================= */
 :root{
@@ -2216,7 +2216,7 @@ header::after{
 
 
 /* =========================================================
-   v1.1.71 — CCEMS FULL WHITE-SURFACE AUDIT
+   v1.1.72 — CCEMS FULL WHITE-SURFACE AUDIT
    All non-functional white surfaces are harmonised with the
    Crown & Cross warm ivory / parchment system.
    ========================================================= */
@@ -2449,7 +2449,7 @@ textarea,
 
 
 /* =========================================================
-   v1.1.71 — LONG-TITLE MOBILE HEADER FIX
+   v1.1.72 — LONG-TITLE MOBILE HEADER FIX
    Authoritative final mobile header rules.
    ========================================================= */
 
@@ -2605,7 +2605,7 @@ textarea,
 
 
 /* =========================================================
-   v1.1.71 — FINAL WHITE-SURFACE ELIMINATION
+   v1.1.72 — FINAL WHITE-SURFACE ELIMINATION
    No non-functional CCEMS UI surface may render pure white.
    ========================================================= */
 
@@ -2662,7 +2662,7 @@ textarea,
 
 
 /* =========================================================
-   v1.1.71 — TASK RECORD COLUMN REFINEMENT
+   v1.1.72 — TASK RECORD COLUMN REFINEMENT
    Cleaner two-column metadata grid with consistent alignment.
    ========================================================= */
 
@@ -2848,11 +2848,11 @@ textarea,
 }
 
 
-/* v1.1.71 — Staff Activity, Attendance & Audit Management */
+/* v1.1.72 — Staff Activity, Attendance & Audit Management */
 .staff-audit-shell{display:grid;gap:16px}.staff-audit-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.staff-audit-kpi{background:var(--cc-card);border:1px solid var(--cc-border);border-radius:15px;padding:15px}.staff-audit-kpi small{display:block;color:var(--muted);font-size:10px;font-weight:850;letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px}.staff-audit-kpi strong{display:block;color:var(--g900);font-family:Georgia,serif;font-size:27px}.staff-audit-tabs{display:flex;gap:8px;flex-wrap:wrap}.staff-audit-tabs button{background:var(--cc-card-soft);border:1px solid var(--cc-border);color:var(--g900);border-radius:10px;padding:10px 13px;font-weight:750}.staff-audit-tabs button.active{background:var(--g900);color:#fffdf8}.staff-audit-panel{background:var(--cc-card);border:1px solid var(--cc-border);border-radius:16px;padding:16px}.staff-audit-list{display:grid;gap:10px}.staff-audit-row{display:grid;grid-template-columns:minmax(170px,1.2fr) repeat(4,minmax(95px,.7fr));background:var(--cc-cell);border:1px solid var(--cc-border);border-radius:13px;overflow:hidden}.staff-audit-cell{padding:13px 14px;min-width:0;border-left:1px solid var(--cc-border)}.staff-audit-cell:first-child{border-left:0}.staff-audit-cell small{display:block;font-size:9px;letter-spacing:.11em;text-transform:uppercase;font-weight:850;color:var(--muted);margin-bottom:5px}.staff-audit-cell strong{display:block;color:var(--g900);font-size:14px}.staff-status:before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#2f7650;margin-right:6px}.staff-status.off:before{background:#9a8d76}.staff-audit-note{background:#f4efe2;border:1px solid var(--cc-border);border-radius:12px;padding:12px;color:var(--g900)}.audit-event{display:grid;grid-template-columns:92px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--cc-border)}.audit-time{font-weight:800;color:var(--muted)}
 @media(max-width:720px){.staff-audit-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.staff-audit-row{grid-template-columns:1fr 1fr}.staff-audit-cell{border-left:0;border-top:1px solid var(--cc-border)}.staff-audit-cell:first-child{grid-column:1/-1;border-top:0}.staff-audit-cell:nth-child(even){border-left:1px solid var(--cc-border)}}
 
-/* v1.1.71 — controlled attendance location selector */
+/* v1.1.72 — controlled attendance location selector */
 .staff-shift-location select,
 #shiftLocation,
 select[id*="Loc"],
@@ -2871,7 +2871,7 @@ select[id*="loc"]{
 }
 
 
-/* v1.1.71 — exact Add Shift location selector */
+/* v1.1.72 — exact Add Shift location selector */
 #shLoc{
  -webkit-appearance:menulist!important;
  appearance:auto!important;
@@ -2888,7 +2888,7 @@ select[id*="loc"]{
 }
 
 
-/* v1.1.71 — clickable Rota & Attendance subsection headings */
+/* v1.1.72 — clickable Rota & Attendance subsection headings */
 .section-drill-heading{
  width:100%!important;
  display:flex!important;
@@ -2976,7 +2976,7 @@ select[id*="loc"]{
 
 
 /* =========================================================
-   v1.1.71 — ADD SHIFT FORM UNIFORMITY
+   v1.1.72 — ADD SHIFT FORM UNIFORMITY
    Exact equal width/height for Staff, Date, Start, End, Location.
    ========================================================= */
 .shift-form-uniform{
@@ -3066,7 +3066,7 @@ select[id*="loc"]{
 
 
 /* =========================================================
-   v1.1.71 — ADD SHIFT EXACT WIDTH CORRECTION
+   v1.1.72 — ADD SHIFT EXACT WIDTH CORRECTION
    All controls share the same parent, width and box model.
    ========================================================= */
 .shift-form-uniform{
@@ -3166,7 +3166,7 @@ select[id*="loc"]{
 
 
 /* =========================================================
-   v1.1.71 — ADD SHIFT SHARED CONTROL GEOMETRY
+   v1.1.72 — ADD SHIFT SHARED CONTROL GEOMETRY
    One class, one width, one box model for every field.
    ========================================================= */
 .shift-form-uniform{
@@ -3246,7 +3246,7 @@ select#shLoc.shift-control,
 }
 
 
-/* v1.1.71 — iOS visual-width lock for Add Shift selects */
+/* v1.1.72 — iOS visual-width lock for Add Shift selects */
 .shift-form-uniform .shift-select-field{
  position:relative!important;
 }
@@ -3274,7 +3274,7 @@ select#shLoc.shift-control,
 
 
 /* =========================================================
-   v1.1.71 — SAFARI ADD SHIFT WIDTH LOCK
+   v1.1.72 — SAFARI ADD SHIFT WIDTH LOCK
    Runtime JS supplies exact pixel width; these rules prevent
    parent shrinkage or intrinsic select sizing.
    ========================================================= */
@@ -3317,7 +3317,7 @@ select#shLoc.shift-control,
 
 
 /* =========================================================
-   v1.1.71 — CUSTOM ADD SHIFT PICKERS
+   v1.1.72 — CUSTOM ADD SHIFT PICKERS
    Avoids iOS native-select intrinsic width differences.
    ========================================================= */
 .shift-form-uniform .shift-picker-btn{
@@ -3370,7 +3370,7 @@ select#shLoc.shift-control,
 }
 
 
-/* v1.1.71 — Count Heading Spacing */
+/* v1.1.72 — Count Heading Spacing */
 .ccems-count-heading{
  display:inline-flex!important;
  align-items:baseline!important;
@@ -3384,7 +3384,7 @@ select#shLoc.shift-control,
 }
 
 
-/* v1.1.71 — exact workflow result label/count spacing */
+/* v1.1.72 — exact workflow result label/count spacing */
 .workflow-result-title{
  display:inline-flex!important;
  align-items:baseline!important;
@@ -3399,7 +3399,7 @@ select#shLoc.shift-control,
 }
 
 
-/* v1.1.71 — hard fix for ALL 5 WORKFLOWS spacing */
+/* v1.1.72 — hard fix for ALL 5 WORKFLOWS spacing */
 .workflow-result-title>strong{
  display:block!important;
  white-space:nowrap!important;
@@ -3409,7 +3409,7 @@ select#shLoc.shift-control,
 }
 
 
-/* v1.1.71 — Maintenance Summary redesign */
+/* v1.1.72 — Maintenance Summary redesign */
 .maintenance-summary-grid{
  display:grid;
  grid-template-columns:repeat(2,minmax(0,1fr));
@@ -3460,7 +3460,7 @@ select#shLoc.shift-control,
 
 
 /* =========================================================
-   v1.1.71 — WORKFLOW KPI GEOMETRY STANDARD
+   v1.1.72 — WORKFLOW KPI GEOMETRY STANDARD
    One consistent label / number / supporting-text layout.
    ========================================================= */
 
@@ -3641,7 +3641,7 @@ select#shLoc.shift-control,
 
 
 /* =========================================================
-   v1.1.71 — UNIFIED WORKFLOW TILE STRUCTURE
+   v1.1.72 — UNIFIED WORKFLOW TILE STRUCTURE
    Every workflow metric now uses the same markup and geometry.
    ========================================================= */
 .workflow-unified-grid{
@@ -3759,7 +3759,7 @@ select#shLoc.shift-control,
 
 
 /* =========================================================
-   v1.1.71 — UNIVERSAL CLICKABLE SECTION HEADERS
+   v1.1.72 — UNIVERSAL CLICKABLE SECTION HEADERS
    ========================================================= */
 .ccems-section-heading[role="button"]{
  position:relative!important;
@@ -3826,7 +3826,7 @@ select#shLoc.shift-control,
 
 
 /* =========================================================
-   v1.1.71 — CCEMS SEARCH SYSTEM REPAIR
+   v1.1.72 — CCEMS SEARCH SYSTEM REPAIR
    ========================================================= */
 .toolbar{
  position:relative!important;
@@ -3874,7 +3874,7 @@ select#shLoc.shift-control,
 }
 
 
-/* v1.1.71 — Staff / HR management integration */
+/* v1.1.72 — Staff / HR management integration */
 .staff-profile-tabs{display:flex!important;flex-wrap:wrap!important;gap:7px!important;margin-bottom:16px!important}
 .staff-profile-tabs button{flex:1 1 140px!important;min-height:44px!important;padding:9px 12px!important;border:1px solid var(--cc-border)!important;border-radius:10px!important;background:var(--cc-card-soft)!important;color:var(--g900)!important;font-weight:750!important}
 .staff-profile-tabs button.active{background:var(--g900)!important;border-color:var(--g900)!important;color:#fff!important}
@@ -3894,7 +3894,7 @@ select#shLoc.shift-control,
 @media(max-width:390px){.staff-profile-tabs button{flex-basis:100%!important}}
 
 
-/* v1.1.71 — People Operations Command Dashboard */
+/* v1.1.72 — People Operations Command Dashboard */
 .people-command-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin-bottom:16px}
 .people-command-panel{margin-bottom:16px}
 .people-command-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
@@ -3904,12 +3904,31 @@ select#shLoc.shift-control,
 .people-management-lower{margin-top:0}.people-attention-list{display:grid;margin-top:10px}.people-attention-list>div{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--cc-border)}.people-attention-list>div:last-child{border-bottom:0}.people-attention-list span{font-size:12px;color:var(--muted)}.people-attention-list strong{font-family:Georgia,serif;font-size:22px;color:var(--g900)}
 @media(max-width:720px){.people-command-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.people-command-grid{grid-template-columns:1fr}}
 
+
+/* v1.1.72 — Add Staff controlled dropdowns */
+#sfDept,#sfRole,#sfManager{
+ width:100%!important;
+ min-width:100%!important;
+ max-width:100%!important;
+ min-height:56px!important;
+ height:56px!important;
+ box-sizing:border-box!important;
+ background:#fffef9!important;
+ color:var(--g900)!important;
+ border:1px solid var(--cc-border)!important;
+ border-radius:13px!important;
+ padding:0 44px 0 16px!important;
+ font:inherit!important;
+ -webkit-appearance:menulist!important;
+ appearance:auto!important;
+}
+
 </style>
 </head>
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.71</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.72</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden"><div id="sideBackdrop" class="side-backdrop" onclick="toggleSideNav(false)"></div>
  <aside class="side" id="ccemsSideNav"><button class="side-close-btn" type="button" onclick="toggleSideNav(false)" aria-label="Close navigation">×</button><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -3966,7 +3985,7 @@ select#shLoc.shift-control,
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
  </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation"><span class="menu-icon">☰</span><span>Menu</span></button><div class="top-brand"><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><div class="top-title-wrap"><span id="pageTitle">Estate Dashboard</span><small>Crown & Cross Estate Management System</small></div></div><div class="topRight"><span>CCEMS v1.1.71</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation"><span class="menu-icon">☰</span><span>Menu</span></button><div class="top-brand"><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><div class="top-title-wrap"><span id="pageTitle">Estate Dashboard</span><small>Crown & Cross Estate Management System</small></div></div><div class="topRight"><span>CCEMS v1.1.72</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
@@ -4488,7 +4507,7 @@ function ccemsWireSubsections(page){
 }
 
 
-/* v1.1.71 — universal CCEMS evidence attachment framework */
+/* v1.1.72 — universal CCEMS evidence attachment framework */
 function ccemsEvidenceKey(module,recordId,field){
  return `${String(module||"GENERAL")}::${String(recordId||"NEW")}::${String(field||"EVIDENCE")}`
 }
@@ -4595,7 +4614,7 @@ function ccemsInjectEvidenceWidgets(){
 }
 
 
-/* v1.1.71 — persistent evidence viewer */
+/* v1.1.72 — persistent evidence viewer */
 function ccemsEvidenceById(id){
  return (state.evidenceAttachments||[]).find(x=>String(x.id)===String(id))
 }
@@ -4628,7 +4647,7 @@ function ccemsOpenEvidenceData(id){
 }
 
 
-/* v1.1.71 — nested evidence return navigation */
+/* v1.1.72 — nested evidence return navigation */
 window.__ccemsReturnStack=window.__ccemsReturnStack||[];
 
 function ccemsPushReturnContext(fn,args=[]){
@@ -4653,7 +4672,7 @@ function ccemsEvidenceListFrom(module,recordId,field,returnFn,...returnArgs){
 }
 
 
-/* v1.1.71 — guaranteed Staff Activity menu registration */
+/* v1.1.72 — guaranteed Staff Activity menu registration */
 function ccemsEnsureStaffAuditNavigation(){
  document.querySelectorAll(".nav").forEach(nav=>{
    const staffBtn=nav.querySelector('button[data-page="staff"]');
@@ -4831,7 +4850,7 @@ function renderAnimals(v){
 }
 function animalRows(rows){return rows.map(a=>`<tr class="clickable" onclick="animalModal('${a.id}')"><td><strong>${esc(a.id)}</strong><br><span class="muted">${esc(a.official||"")}</span></td><td>${esc(a.name)}</td><td>${esc(a.species)}</td><td>${esc(a.breed)}</td><td>${esc(a.group)}</td><td>${esc(a.location)}</td><td>${badge(a.status)}</td><td>${activeWithdrawal(a)?badge("WITHDRAWAL"):"—"}</td></tr>`).join("")}
 
-/* v1.1.71 — reliable live-search framework */
+/* v1.1.72 — reliable live-search framework */
 function ccemsSearchNormalise(value){
  return String(value??"")
    .normalize("NFKD")
@@ -5103,7 +5122,84 @@ function renderStaff(v){
  <div class="kpis">${kpi("Active staff",state.staff.filter(s=>s.status==="ACTIVE").length,"Current workforce")}${kpi("Departments",new Set(state.staff.map(s=>s.dept)).size,"Represented")}${kpi("Full time",state.staff.filter(s=>s.employment==="FULL_TIME").length,"Employees")}${kpi("Training due",state.training.filter(t=>t.status==="DUE_SOON").length,"Renewal attention")}</div>
  <section class="card panel"><table><thead><tr><th>Employee</th><th>Name</th><th>Department</th><th>Role</th><th>Manager</th><th>Employment</th><th>Status</th></tr></thead><tbody>${state.staff.map(s=>`<tr class="clickable" onclick="staffDetail(${s.id})"><td><strong>${esc(s.no)}</strong></td><td>${esc(s.name)}</td><td>${esc(s.dept)}</td><td>${esc(s.role)}</td><td>${esc(s.manager)}</td><td>${esc(s.employment).replaceAll("_"," ")}</td><td>${badge(s.status)}</td></tr>`).join("")}</tbody></table></section>`
 }
-function staffModal(){modal(`<div class="modalHead"><h3>Add Staff Member</h3><button class="close" onclick="closeModal()">×</button></div><div class="grid2"><div><div class="field"><label>Name</label><input id="sfName"></div><div class="field"><label>Department</label><input id="sfDept"></div><div class="field"><label>Role</label><input id="sfRole"></div><div class="field"><label>Manager</label><input id="sfManager"></div></div><div><div class="field"><label>Employment</label><select id="sfEmployment"><option>FULL_TIME</option><option>PART_TIME</option><option>SEASONAL</option><option>CONTRACTOR</option></select></div><div class="field"><label>Start date</label><input id="sfStart" type="date"></div><div class="field"><label>Email</label><input id="sfEmail"></div><div class="field"><label>Phone</label><input id="sfPhone"></div></div></div><button class="primary" onclick="saveStaff()">Create Staff Record</button>`)}
+
+function ccemsFilterStaffRolesByDepartment(){
+ const dept=document.getElementById("sfDept"),role=document.getElementById("sfRole");
+ if(!dept||!role)return;
+ const current=role.value;
+ const map={
+  "Livestock":["Livestock Manager","Health & Welfare Officer","Stockperson","Farm Operative","Veterinary Coordinator"],
+  "Jersey Dairy":["Dairy Manager","Dairy Operative","Stockperson","Health & Welfare Officer"],
+  "Poultry":["Poultry Manager","Poultry Operative","Farm Operative","Health & Welfare Officer"],
+  "Facilities":["Facilities Manager","Maintenance Manager","Maintenance Technician","Housekeeping / Facilities Operative"],
+  "Maintenance":["Maintenance Manager","Maintenance Technician","Facilities Manager"],
+  "Fleet":["Fleet Manager","Driver","Maintenance Technician"],
+  "Administration":["Administrator","HR / People Operations Manager","Finance Manager","Procurement Officer"],
+  "People Operations":["HR / People Operations Manager","Administrator"],
+  "Compliance":["Compliance Manager","Food Safety Manager","Health & Welfare Officer"],
+  "Farm Shop":["Farm Shop Manager","Stores Operative","Administrator"],
+  "Bakery":["Bakery Manager","Food Safety Manager"],
+  "Estate Kitchen":["Kitchen Manager","Food Safety Manager"],
+  "Stores":["Warehouse & Stores Manager","Stores Operative","Procurement Officer"],
+  "Horticulture":["Horticulture Manager","Horticulture Operative","Farm Operative"],
+  "Land Operations":["Land & Crop Manager","Farm Operative","Horticulture Operative"]
+ };
+ const roles=map[dept.value]||ccemsStaffRoles();
+ role.innerHTML='<option value="">Select role</option>'+roles.map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join("");
+ if(roles.includes(current))role.value=current;
+}
+
+
+function ccemsStaffRoles(){
+ return [
+  "Estate Manager",
+  "Deputy Estate Manager",
+  "Operations Manager",
+  "Livestock Manager",
+  "Dairy Manager",
+  "Poultry Manager",
+  "Land & Crop Manager",
+  "Horticulture Manager",
+  "Maintenance Manager",
+  "Fleet Manager",
+  "Facilities Manager",
+  "Health & Welfare Officer",
+  "Compliance Manager",
+  "Food Safety Manager",
+  "Farm Shop Manager",
+  "Bakery Manager",
+  "Kitchen Manager",
+  "Warehouse & Stores Manager",
+  "Procurement Officer",
+  "HR / People Operations Manager",
+  "Finance Manager",
+  "Administrator",
+  "Veterinary Coordinator",
+  "Stockperson",
+  "Dairy Operative",
+  "Poultry Operative",
+  "Farm Operative",
+  "Horticulture Operative",
+  "Maintenance Technician",
+  "Driver",
+  "Stores Operative",
+  "Housekeeping / Facilities Operative",
+  "Seasonal Worker",
+  "Contractor"
+ ]
+}
+
+function staffModal(){modal(`<div class="modalHead"><h3>Add Staff Member</h3><button class="close" onclick="closeModal()">×</button></div><div class="grid2"><div><div class="field"><label>Name</label><input id="sfName"></div><div class="field"><label>Department</label><select id="sfDept" onchange="ccemsFilterStaffRolesByDepartment()">
+<option value="">Select department</option>
+${ccDepartments().map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join("")}
+</select></div><div class="field"><label>Role</label><select id="sfRole">
+<option value="">Select role</option>
+${ccemsStaffRoles().map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join("")}
+</select></div><div class="field"><label>Manager</label><select id="sfManager">
+<option value="">Select manager</option>
+<option value="Estate Manager">Estate Manager</option>
+${(state.staff||[]).filter(s=>s.status==="ACTIVE").map(s=>`<option value="${esc(s.name)}">${esc(s.name)} · ${esc(s.role||s.dept||"")}</option>`).join("")}
+</select></div></div><div><div class="field"><label>Employment</label><select id="sfEmployment"><option>FULL_TIME</option><option>PART_TIME</option><option>SEASONAL</option><option>CONTRACTOR</option></select></div><div class="field"><label>Start date</label><input id="sfStart" type="date"></div><div class="field"><label>Email</label><input id="sfEmail"></div><div class="field"><label>Phone</label><input id="sfPhone"></div></div></div><button class="primary" onclick="saveStaff()">Create Staff Record</button>`)}
 function saveStaff(){const id=nextId(state.staff),no=`EMP-${String(id).padStart(3,"0")}`;state.staff.push({id,no,name:val("sfName"),dept:val("sfDept"),role:val("sfRole"),manager:val("sfManager"),status:"ACTIVE",employment:val("sfEmployment"),start:val("sfStart"),email:val("sfEmail"),phone:val("sfPhone"),emergency:"",shift:"",annualLeave:28,leaveUsed:0,notes:"",competencies:[]});audit("CREATE","STAFF",`${no} · ${val("sfName")}`);closeModal();render("staff")}
 function staffDetail(id,tab="overview"){
  const s=state.staff.find(x=>x.id===id);if(!s)return;
@@ -5329,7 +5425,7 @@ function renderRota(v){
  <div class="grid2"><section class="card panel"><button class="section-drill-heading" type="button" onclick="openRotaSection('shifts')"><span>Shift Rota</span><strong>›</strong></button>${simpleTable(["Staff","Date","Start","End","Location","Status"],state.shifts.map(s=>[esc(staffName(s.staff)),dateFmt(s.date),esc(s.start),esc(s.end),esc(s.location),badge(s.status)]))}</section><section class="card panel"><button class="section-drill-heading" type="button" onclick="openRotaSection('attendance')"><span>Attendance</span><strong>›</strong></button>${simpleTable(["Staff","Date","Clock in","Clock out","Status"],state.attendance.map(a=>[esc(staffName(a.staff)),dateFmt(a.date),esc(a.clockIn),esc(a.clockOut||"—"),badge(a.status)]))}</section></div>`
 }
 
-/* v1.1.71 — runtime Add Shift width equalisation for iOS Safari */
+/* v1.1.72 — runtime Add Shift width equalisation for iOS Safari */
 function equaliseShiftFieldWidths(){
  const form=document.querySelector(".shift-form-uniform");
  if(!form)return;
@@ -5580,7 +5676,7 @@ function renderDeptWork(v){
  v.innerHTML=`<div class="head"><div><h2>Department Work Queue</h2><p>Operational workload grouped by estate department.</p></div></div>${depts.map(d=>`<section class="card panel" style="margin-bottom:17px"><h3>${esc(d)}</h3>${simpleTable(["Task","Assigned","Priority","Due","Status"],state.tasks.filter(t=>t.dept===d).map(t=>[esc(t.title),esc(t.assigned||"Unassigned"),badge(t.priority),dateFmt(t.due),badge(t.status)]))}</section>`).join("")}`
 }
 
-/* v1.1.71 — workflow SLA policy & escalation control */
+/* v1.1.72 — workflow SLA policy & escalation control */
 function workflowSLAPolicyFor(r){
  const rows=state.workflowSLAPolicies||[];
  return rows.find(x=>x.status==="ACTIVE"&&x.department===r.department&&x.priority===r.priority)
@@ -6507,7 +6603,7 @@ function forceReleaseWorkflowBlock(id){
 }
 
 
-/* v1.1.71 — evidence-aware workflow approval */
+/* v1.1.72 — evidence-aware workflow approval */
 function workflowEvidenceSummary(id){
  const stepRecords=workflowStepRecordsFor(id);
  const direct=ccemsEvidenceFor("WORKFLOW_RUN",id,"EVIDENCE");
@@ -6658,7 +6754,7 @@ function saveWorkflowComment(id){
 function workflowTemplateModal(){modal(`<div class="modalHead"><div><h3>New Workflow Template</h3><p class="muted">Create a reusable controlled workflow.</p></div><button class="close" onclick="closeModal()">×</button></div><div class="field"><label>Workflow name</label><input id="wftName"></div><div class="grid2"><div class="field"><label>Department</label><select id="wftDept">${optionsFrom(ccDepartments(),"Select department")}</select></div><div class="field"><label>Location</label><select id="wftLoc">${optionsFrom(ccLocations(),"Select location")}</select></div></div><div class="grid2"><div class="field"><label>Frequency</label><select id="wftFreq"><option>DAILY</option><option>WEEKLY</option><option>MONTHLY</option><option>QUARTERLY</option><option>ANNUALLY</option><option>ON DEMAND</option></select></div><div class="field"><label>Priority</label><select id="wftPriority"><option>LOW</option><option>MEDIUM</option><option>HIGH</option><option>CRITICAL</option></select></div></div><div class="field"><label>Approval role</label><select id="wftApproval">${optionsFrom(state.roles.map(x=>x.name),"Select approval role")}</select></div><div class="field"><label>Steps — one per line</label><textarea id="wftSteps" rows="6"></textarea></div><button class="primary" onclick="saveWorkflowTemplate()">Create Template</button>`)}
 function saveWorkflowTemplate(){const name=val("wftName"),dept=val("wftDept"),loc=val("wftLoc"),approval=val("wftApproval");if(!name||!dept||!loc||!approval){alert("Complete all required fields.");return}const id=nextId(state.workflowTemplates),steps=(val("wftSteps")||"").split(/\n+/).map(x=>x.trim()).filter(Boolean);state.workflowTemplates.push({id,ref:`WF-${String(id).padStart(3,"0")}`,name,department:dept,location:loc,priority:val("wftPriority"),frequency:val("wftFreq"),approval,status:"ACTIVE",steps:steps.length?steps:["Complete task","Record evidence","Approval"]});audit("CREATE","WORKFLOW_TEMPLATE",name);save();closeModal();render("workflows")}
 
-/* v1.1.71 — recurring workflow scheduling */
+/* v1.1.72 — recurring workflow scheduling */
 function workflowRecurrenceForTemplate(templateId){
  return (state.workflowRecurrenceRules||[]).find(x=>String(x.templateId)===String(templateId)&&x.status==="ACTIVE")
 }
