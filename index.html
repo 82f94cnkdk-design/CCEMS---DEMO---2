@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v1.0.4 Estate Operations Control Centre demo">
+<meta name="description" content="CCEMS Phase 1 v1.0.5 Estate Operations Control Centre demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v1.0.4</title>
+<title>CCEMS Phase 1 v1.0.5</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -74,7 +74,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.0.4</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.0.5</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden">
  <aside class="side"><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -128,7 +128,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
  </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.0.4</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.0.5</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
@@ -378,7 +378,7 @@ function load(){try{
  if(old){const migrated=Object.assign(clone(defaults),JSON.parse(old));migrated.notifications=clone(defaults.notifications);migrated.estateDiary=clone(defaults.estateDiary);migrated.incidents=clone(defaults.incidents);migrated.documents=clone(defaults.documents);migrated.roles=clone(defaults.roles);migrated.activityFeed=clone(defaults.activityFeed);return normaliseState(migrated)}
  return clone(defaults)
 }catch(e){return clone(defaults)}}
-function normaliseState(s){["grazing","crops","soilTests","inputs","harvests","fieldOps","assets","workOrders","inspections","fuelLogs","parts","suppliers","training","shifts","attendance","leave","ppe","taskRules","recurringTasks","checklistRuns","correctiveActions","approvals","sopAcknowledgements","complianceEvidence","inventory","stockIssues","purchaseRequisitions","purchaseOrders","goodsReceipts","procurementSuppliers","notifications","estateDiary","incidents","documents","roles","activityFeed"].forEach(k=>{if(!Array.isArray(s[k]))s[k]=clone(defaults[k])});return s}
+function normaliseState(s){["grazing","crops","soilTests","inputs","harvests","fieldOps","assets","workOrders","inspections","fuelLogs","parts","suppliers","training","shifts","attendance","leave","ppe","taskRules","recurringTasks","checklistRuns","correctiveActions","approvals","sopAcknowledgements","complianceEvidence","inventory","stockIssues","purchaseRequisitions","purchaseOrders","goodsReceipts","procurementSuppliers","notifications","estateDiary","incidents","documents","roles","activityFeed"].forEach(k=>{if(!Array.isArray(s[k]))s[k]=clone(defaults[k])});(s.documents||[]).forEach(d=>{if(!("file" in d))d.file=null;if(!Array.isArray(d.revisions))d.revisions=[]});return s}
 function save(){localStorage.setItem(KEY,JSON.stringify(state))}
 function audit(action,entity,detail){state.audit.unshift({at:new Date().toISOString(),user:"James Carter",action,entity,detail});save()}
 function login(){document.getElementById("login").classList.add("hidden");document.getElementById("app").classList.remove("hidden");render("controlcentre")}
@@ -806,8 +806,12 @@ function saveIncident(){if(!val("inLoc")){alert("Select an estate location.");re
 function renderDocuments(v){
  setTitle("Document Register");
  v.innerHTML=`<div class="head"><div><h2>Document Register</h2><p>Controlled estate documents, versions, ownership and review dates.</p></div><button class="primary" onclick="documentModal()">+ Document</button></div>
- <div class="kpis">${kpi("Documents",state.documents.length,"Controlled")}${kpi("Current",state.documents.filter(d=>d.status==="CURRENT").length,"In force")}${kpi("Controlled / confidential",state.documents.filter(d=>d.sensitivity!=="INTERNAL").length,"Restricted")}</div>
- <section class="card panel"><table><thead><tr><th>Reference</th><th>Document</th><th>Category</th><th>Department</th><th>Version</th><th>Owner</th><th>Review</th><th>Status</th><th>Sensitivity</th></tr></thead><tbody>${state.documents.map(d=>`<tr class="clickable" onclick="documentDetail(${d.id})"><td><strong>${esc(d.ref)}</strong></td><td>${esc(d.title)}</td><td>${esc(d.category)}</td><td>${esc(d.department)}</td><td>${esc(d.version)}</td><td>${esc(d.owner)}</td><td>${dateFmt(d.review)}</td><td>${badge(d.status)}</td><td>${badge(d.sensitivity)}</td></tr>`).join("")}</tbody></table></section>`
+ <div class="kpis">${kpi("Documents",state.documents.length,"Controlled")}${kpi("Current",state.documents.filter(d=>d.status==="CURRENT").length,"In force")}${kpi("Controlled / confidential",state.documents.filter(d=>d.sensitivity!=="INTERNAL").length,"Restricted")}${kpi("Files attached",state.documents.filter(d=>d.file).length,"Controlled masters")}</div>
+ <section class="card panel"><table><thead><tr><th>Reference</th><th>Document</th><th>Category</th><th>Department</th><th>Version</th><th>Owner</th><th>Review</th><th>Status</th><th>Sensitivity</th><th>File</th></tr></thead><tbody>${state.documents.map(d=>`<tr class="clickable" onclick="documentDetail(${d.id})"><td><strong>${esc(d.ref)}</strong></td><td>${esc(d.title)}</td><td>${esc(d.category)}</td><td>${esc(d.department)}</td><td>${esc(d.version)}</td><td>${esc(d.owner)}</td><td>${dateFmt(d.review)}</td><td>${badge(d.status)}</td><td>${badge(d.sensitivity)}</td><td>${d.file?badge("FILE ATTACHED"):badge("NO FILE")}</td></tr>`).join("")}</tbody></table></section>`
+}
+function documentFileSummary(d){
+ if(!d.file)return '<div class="warn"><strong>No controlled file attached.</strong><br>Upload the approved PDF or Word master for this record.</div>';
+ return `<div class="notice"><strong>Controlled file attached</strong><br>${esc(d.file.name)} · ${esc(d.file.type||"File")} · ${(Number(d.file.size||0)/1024).toFixed(1)} KB<br>Uploaded ${dateFmt(d.file.uploadedAt)} by ${esc(d.file.uploadedBy||"—")}</div>`
 }
 function documentDetail(id){
  const d=state.documents.find(x=>x.id===id); if(!d)return;
@@ -818,12 +822,48 @@ function documentDetail(id){
  <div class="stat"><span>Sensitivity</span>${badge(d.sensitivity)}</div>
  <div class="stat"><span>Owner</span><strong>${esc(d.owner||"—")}</strong></div>
  <div class="stat"><span>Review date</span><strong>${dateFmt(d.review)}</strong></div>
- </section><section>
- <div class="sectionTitle">Document Control</div>
- <p>This record represents the controlled master entry for the document. Production CCEMS will attach the actual file, revision history, approvals and archived superseded versions here.</p>
- <div class="notice">Reference: <strong>${esc(d.ref)}</strong><br>Current version: <strong>${esc(d.version||"—")}</strong></div>
- </section></div>
+ </section><section><div class="sectionTitle">Controlled Master File</div>${documentFileSummary(d)}
+ <div class="actions">${d.file?`<button class="primary" onclick="openControlledDocument(${d.id})">Open / Download</button>`:""}<button class="secondary" onclick="uploadDocumentModal(${d.id})">${d.file?"Replace File":"Upload File"}</button></div></section></div>
+ <div class="sectionTitle">Revision History</div>${simpleTable(["Version","File","Uploaded","By","Status"],(d.revisions||[]).map(r=>[esc(r.version),esc(r.name),dateFmt(r.uploadedAt),esc(r.uploadedBy),badge(r.status)]))}
  <div class="actions" style="margin-top:18px"><button class="secondary" onclick="closeModal()">Close</button><button class="primary" onclick="documentEditModal(${d.id})">Edit Record</button></div>`)
+}
+function uploadDocumentModal(id){
+ const d=state.documents.find(x=>x.id===id);if(!d)return;
+ modal(`<div class="modalHead"><div><h3>${d.file?"Replace":"Upload"} Controlled File</h3><p class="muted">${esc(d.ref)} · ${esc(d.title)}</p></div><button class="close" onclick="closeModal()">×</button></div>
+ <input type="hidden" id="duId" value="${d.id}">
+ <div class="warn">Demo storage limit: files up to <strong>2 MB</strong>. Accepted types: PDF, DOC and DOCX. Production CCEMS will use encrypted server/cloud document storage.</div>
+ <div class="field"><label>Controlled file</label><input id="duFile" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"></div>
+ <div class="field"><label>Version for this file</label><input id="duVersion" value="${esc(d.version||"")}"></div>
+ <div class="field"><label>Uploaded / approved by</label><select id="duBy">${optionsFrom(ccStaff().map(s=>s.name),"Select staff member")}</select></div>
+ <div class="field"><label>Revision note</label><textarea id="duNote" placeholder="Reason for issue/revision"></textarea></div>
+ <button class="primary" onclick="saveControlledDocument()">Attach Controlled File</button>`)
+}
+function saveControlledDocument(){
+ const d=state.documents.find(x=>x.id===Number(val("duId")));if(!d)return;
+ const input=document.getElementById("duFile"),f=input?.files?.[0];
+ if(!f){alert("Select a PDF or Word document.");return}
+ const allowed=["application/pdf","application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
+ const ext=(f.name.split(".").pop()||"").toLowerCase();
+ if(!allowed.includes(f.type)&&!["pdf","doc","docx"].includes(ext)){alert("Only PDF, DOC and DOCX files are accepted.");return}
+ if(f.size>2*1024*1024){alert("For this browser demo, the file must be 2 MB or smaller.");return}
+ if(!val("duBy")){alert("Select who uploaded/approved this document.");return}
+ const reader=new FileReader();
+ reader.onload=()=>{
+   if(d.file){d.revisions=d.revisions||[];d.revisions.unshift({version:d.version||"",name:d.file.name,type:d.file.type,size:d.file.size,uploadedAt:d.file.uploadedAt,uploadedBy:d.file.uploadedBy,status:"SUPERSEDED",note:d.file.note||""})}
+   const now=new Date().toISOString();
+   d.version=val("duVersion")||d.version;
+   d.file={name:f.name,type:f.type||ext,size:f.size,data:reader.result,uploadedAt:now,uploadedBy:val("duBy"),note:val("duNote")};
+   audit("ATTACH","CONTROLLED_DOCUMENT",`${d.ref} · ${f.name} · v${d.version}`);
+   save();closeModal();documentDetail(d.id)
+ };
+ reader.onerror=()=>alert("The file could not be read.");
+ reader.readAsDataURL(f)
+}
+function openControlledDocument(id){
+ const d=state.documents.find(x=>x.id===id);if(!d?.file?.data){alert("No controlled file is attached.");return}
+ const a=document.createElement("a");a.href=d.file.data;a.download=d.file.name||`${d.ref}.${d.file.type==="application/pdf"?"pdf":"docx"}`;
+ if(d.file.type==="application/pdf"){const w=window.open();if(w){w.document.write(`<iframe src="${d.file.data}" style="position:fixed;inset:0;width:100%;height:100%;border:0"></iframe>`);w.document.close();return}}
+ document.body.appendChild(a);a.click();a.remove()
 }
 function documentEditModal(id){
  const d=state.documents.find(x=>x.id===id); if(!d)return;
