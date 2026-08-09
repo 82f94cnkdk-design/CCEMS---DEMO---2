@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v1.1.15 Estate Operations Control Centre demo">
+<meta name="description" content="CCEMS Phase 1 v1.1.16 Estate Operations Control Centre demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v1.1.15</title>
+<title>CCEMS Phase 1 v1.1.16</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -767,12 +767,35 @@ td,th{overflow-wrap:anywhere;word-break:normal}
  .workflow-actions .primary{grid-column:1/-1}
 }
 
+
+/* v1.1.16 — fully interactive controlled workflow fields */
+.modal select{
+ -webkit-appearance:menulist!important;
+ appearance:auto!important;
+ width:100%!important;
+ min-height:54px!important;
+ background:#fff!important;
+ color:var(--ink)!important;
+ opacity:1!important;
+ pointer-events:auto!important;
+ touch-action:manipulation!important;
+}
+.modal select:disabled{
+ opacity:1!important;
+ color:var(--ink)!important;
+}
+.workflow-launch-btn{width:100%;margin-top:12px}
+@media(max-width:720px){
+ .modal .field{margin:14px 0}
+ .modal select,.modal input[type="date"]{font-size:16px!important;min-height:56px!important}
+}
+
 </style>
 </head>
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.15</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.16</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden"><div id="sideBackdrop" class="side-backdrop" onclick="toggleSideNav(false)"></div>
  <aside class="side" id="ccemsSideNav"><button class="side-close-btn" type="button" onclick="toggleSideNav(false)" aria-label="Close navigation">×</button><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -827,7 +850,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
  </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation">☰ <span>Menu</span></button><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.1.15</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation">☰ <span>Menu</span></button><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.1.16</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
@@ -2183,28 +2206,57 @@ function workflowTemplateModal(){modal(`<div class="modalHead"><div><h3>New Work
 function saveWorkflowTemplate(){const name=val("wftName"),dept=val("wftDept"),loc=val("wftLoc"),approval=val("wftApproval");if(!name||!dept||!loc||!approval){alert("Complete all required fields.");return}const id=nextId(state.workflowTemplates),steps=(val("wftSteps")||"").split(/\n+/).map(x=>x.trim()).filter(Boolean);state.workflowTemplates.push({id,ref:`WF-${String(id).padStart(3,"0")}`,name,department:dept,location:loc,priority:val("wftPriority"),frequency:val("wftFreq"),approval,status:"ACTIVE",steps:steps.length?steps:["Complete task","Record evidence","Approval"]});audit("CREATE","WORKFLOW_TEMPLATE",name);save();closeModal();render("workflows")}
 function workflowRunModal(){
  const ts=(state.workflowTemplates||[]).filter(x=>x.status==="ACTIVE");
- modal(`<div class="modalHead"><div><h3>Create Workflow Run</h3><p class="muted">Launch controlled work from an approved template.</p></div><button class="close" onclick="closeModal()">×</button></div>
- <div class="field"><label>Workflow template</label><select id="wfrTemplate" onchange="workflowRunTemplateChanged()"><option value="">Select workflow template</option>${ts.map(x=>`<option value="${x.id}">${esc(x.ref)} · ${esc(x.name)}</option>`).join("")}</select></div>
- <div id="wfrTemplateInfo" class="notice">Select a template to load its department, location, priority and approval route.</div>
- <div class="grid2"><div class="field"><label>Department</label><select id="wfrDept" disabled>${optionsFrom(ccDepartments(),"Select department")}</select></div><div class="field"><label>Location</label><select id="wfrLoc" disabled>${optionsFrom(ccLocations(),"Select location")}</select></div></div>
- <div class="grid2"><div class="field"><label>Assigned to</label><select id="wfrAssigned">${optionsFrom(ccStaff().map(x=>x.name),"Select assignee")}</select></div><div class="field"><label>Due date</label><input id="wfrDue" type="date" value="${new Date().toISOString().slice(0,10)}"></div></div>
- <div class="field"><label>Priority</label><select id="wfrPriority" disabled><option>LOW</option><option>MEDIUM</option><option>HIGH</option><option>CRITICAL</option></select></div>
- <button class="primary" onclick="createWorkflowRun()">Launch Workflow</button>`)
+ modal(`<div class="modalHead"><div><h3>Create Workflow Run</h3><p class="muted">Launch controlled work from an approved workflow template.</p></div><button class="close" onclick="closeModal()">×</button></div>
+ <div class="field"><label>Workflow Template</label><select id="wfrTemplate" onchange="workflowRunTemplateChanged()"><option value="">Select workflow template</option>${ts.map(x=>`<option value="${x.id}">${esc(x.ref)} · ${esc(x.name)}</option>`).join("")}</select></div>
+ <div id="wfrTemplateInfo" class="notice">Select a template to load the recommended controlled fields. You can then amend them from the approved CCEMS lists.</div>
+ <div class="field"><label>Department</label><select id="wfrDept">${optionsFrom(ccDepartments(),"Select department")}</select></div>
+ <div class="field"><label>Location</label><select id="wfrLoc">${optionsFrom(ccLocations(),"Select location")}</select></div>
+ <div class="field"><label>Assigned To</label><select id="wfrAssigned">${optionsFrom(ccStaff().map(x=>x.name),"Select assignee")}</select></div>
+ <div class="field"><label>Due Date</label><input id="wfrDue" type="date" value="${new Date().toISOString().slice(0,10)}"></div>
+ <div class="field"><label>Priority</label><select id="wfrPriority"><option value="">Select priority</option><option>LOW</option><option>MEDIUM</option><option>HIGH</option><option>CRITICAL</option></select></div>
+ <div class="field"><label>Approval Route</label><select id="wfrApproval">${optionsFrom(state.roles.map(x=>x.name),"Select approval role")}</select></div>
+ <div class="field"><label>Workflow Status</label><select id="wfrStatus"><option>IN PROGRESS</option><option>NOT STARTED</option></select></div>
+ <button class="primary workflow-launch-btn" onclick="createWorkflowRun()">Launch Workflow</button>`)
 }
 function workflowRunTemplateChanged(){
  const tpl=(state.workflowTemplates||[]).find(x=>x.id===Number(val("wfrTemplate")));if(!tpl)return;
- const dept=document.getElementById("wfrDept"),loc=document.getElementById("wfrLoc"),pri=document.getElementById("wfrPriority"),info=document.getElementById("wfrTemplateInfo");
- if(dept)dept.value=tpl.department||"";if(loc)loc.value=tpl.location||"";if(pri)pri.value=tpl.priority||"MEDIUM";
- if(info)info.innerHTML=`<strong>${esc(tpl.name)}</strong><br>${tpl.steps.length} controlled steps · Approval: ${esc(tpl.approval||"Manager")}`
+ const dept=document.getElementById("wfrDept"),loc=document.getElementById("wfrLoc"),pri=document.getElementById("wfrPriority"),approval=document.getElementById("wfrApproval"),info=document.getElementById("wfrTemplateInfo");
+ if(dept)dept.value=tpl.department||"";
+ if(loc)loc.value=tpl.location||"";
+ if(pri)pri.value=tpl.priority||"MEDIUM";
+ if(approval)approval.value=tpl.approval||"";
+ if(info)info.innerHTML=`<strong>${esc(tpl.name)}</strong><br>${(tpl.steps||[]).length} controlled steps · Recommended approval: ${esc(tpl.approval||"Manager")}<br><span class="muted">Department, location, priority and approval route remain selectable.</span>`
 }
 function createWorkflowRun(){
- const template=(state.workflowTemplates||[]).find(x=>x.id===Number(val("wfrTemplate"))),assigned=val("wfrAssigned"),due=val("wfrDue");
+ const template=(state.workflowTemplates||[]).find(x=>x.id===Number(val("wfrTemplate")));
+ const department=val("wfrDept"),location=val("wfrLoc"),assigned=val("wfrAssigned"),due=val("wfrDue"),priority=val("wfrPriority"),approval=val("wfrApproval"),status=val("wfrStatus");
  if(!template){alert("Select a workflow template.");return}
+ if(!department){alert("Select a department.");return}
+ if(!location){alert("Select a location.");return}
  if(!assigned){alert("Select who the workflow is assigned to.");return}
  if(!due){alert("Select a due date.");return}
+ if(!priority){alert("Select a priority.");return}
+ if(!approval){alert("Select an approval route.");return}
  const id=nextId(state.workflowRuns);
- state.workflowRuns.unshift({id,ref:`WR-2026-${String(id).padStart(3,"0")}`,templateId:template.id,title:template.name,department:template.department,location:template.location,assignedTo:assigned,priority:template.priority,status:"IN PROGRESS",due,progress:0,step:0,evidence:"",notes:"",approvalStatus:"NOT READY",approvalRole:template.approval});
- audit("CREATE","WORKFLOW_RUN",`${template.name} · ${assigned}`);save();closeModal();render("workflows")
+ state.workflowRuns.unshift({
+   id,
+   ref:`WR-2026-${String(id).padStart(3,"0")}`,
+   templateId:template.id,
+   title:template.name,
+   department,
+   location,
+   assignedTo:assigned,
+   priority,
+   status:status||"IN PROGRESS",
+   due,
+   progress:0,
+   step:0,
+   evidence:"",
+   notes:"",
+   approvalStatus:"NOT READY",
+   approvalRole:approval
+ });
+ audit("CREATE","WORKFLOW_RUN",`${template.name} · ${assigned} · ${department} · ${location}`);save();closeModal();render("workflows")
 }
 function openWorkflowTemplate(id){const x=state.workflowTemplates.find(a=>a.id===id);if(!x)return;modal(`<div class="modalHead"><div><h3>${esc(x.ref)} · ${esc(x.name)}</h3><p class="muted">${esc(x.department)} · ${esc(x.frequency)}</p></div><button class="close" onclick="closeModal()">×</button></div><div class="stat"><span>Location</span><strong>${esc(x.location)}</strong></div><div class="stat"><span>Priority</span>${badge(x.priority)}</div><div class="stat"><span>Approval</span><strong>${esc(x.approval)}</strong></div><div class="sectionTitle">Controlled Steps</div>${x.steps.map((s,i)=>`<div class="notice"><strong>${i+1}.</strong> ${esc(s)}</div>`).join("")}<div class="actions" style="margin-top:16px"><button class="secondary" onclick="closeModal()">Close</button><button class="primary" onclick="editWorkflowTemplate(${x.id})">Amend Template</button></div>`)}
 
