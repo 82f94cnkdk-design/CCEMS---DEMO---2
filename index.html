@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v1.0.13 Estate Operations Control Centre demo">
+<meta name="description" content="CCEMS Phase 1 v1.0.14 Estate Operations Control Centre demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v1.0.13</title>
+<title>CCEMS Phase 1 v1.0.14</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -153,12 +153,39 @@ td,th{overflow-wrap:anywhere;word-break:normal}
  .audit-event-top{align-items:flex-start}
 }
 
+
+/* v1.0.14 — refined interactive Audit History */
+.audit-panel{padding:0;overflow:hidden}
+.audit-toolbar{display:grid;grid-template-columns:minmax(0,1fr) 180px 200px;gap:10px;margin-bottom:14px}
+.audit-list{display:block;width:100%}
+.audit-row{display:grid;grid-template-columns:minmax(0,1fr) 24px;align-items:center;gap:12px;width:100%;padding:16px 18px;border-bottom:1px solid var(--line);background:var(--paper);box-sizing:border-box;cursor:pointer}
+.audit-row:last-child{border-bottom:0}
+.audit-row:hover{background:#fbfaf5}
+.audit-row:active{background:#f5f1e7}
+.audit-row:focus{outline:2px solid var(--gold);outline-offset:-2px}
+.audit-row-main{min-width:0}
+.audit-row-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:7px}
+.audit-action{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--g900)}
+.audit-entity{display:inline-flex;align-items:center;min-height:26px;padding:4px 9px;border-radius:999px;background:#eef1ef;color:#65706a;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.audit-row-detail{font-size:15px;line-height:1.35;color:var(--ink);overflow-wrap:anywhere}
+.audit-row-meta{display:flex;justify-content:space-between;gap:12px;margin-top:8px;color:var(--muted);font-size:12px}
+.audit-row-arrow{font-size:30px;line-height:1;color:var(--gold);text-align:right}
+.audit-detail-card{border:1px solid var(--line);border-radius:12px;padding:0 14px;background:var(--paper)}
+.audit-detail-text{overflow-wrap:anywhere}
+@media(max-width:720px){
+ .audit-toolbar{grid-template-columns:minmax(0,1fr);gap:8px}
+ .audit-row{padding:14px 14px;gap:8px}
+ .audit-row-detail{font-size:14px}
+ .audit-row-meta{flex-direction:column;gap:2px}
+ .audit-row-arrow{font-size:26px}
+}
+
 </style>
 </head>
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.0.13</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.0.14</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden">
  <aside class="side"><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -213,7 +240,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
  </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.0.13</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.0.14</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
@@ -1249,14 +1276,29 @@ function renderAudit(v){
  setTitle("Audit History");
  const actions=[...new Set(state.audit.map(a=>a.action).filter(Boolean))].sort();
  const entities=[...new Set(state.audit.map(a=>a.entity).filter(Boolean))].sort();
- v.innerHTML=`<div class="head"><div><h2>Audit History</h2><p>Operational audit trail with searchable, tappable event records.</p></div><button class="secondary" onclick="exportAudit()">Export JSON</button></div>
+ v.innerHTML=`<div class="head"><div><h2>Audit History</h2><p>Searchable operational audit trail. Tap any row to open the full event.</p></div><button class="secondary" onclick="exportAudit()">Export JSON</button></div>
  <div class="kpis">${kpi("Audit events",state.audit.length,"Recorded actions")}${kpi("Users",new Set(state.audit.map(a=>a.user).filter(Boolean)).size,"Recorded actors")}${kpi("Action types",actions.length,"Event classes")}${kpi("Record types",entities.length,"Controlled modules")}</div>
- <div class="toolbar"><input id="auditSearch" placeholder="Search audit history..." oninput="filterAudit()"><select id="auditAction" onchange="filterAudit()"><option value="">All actions</option>${actions.map(x=>`<option>${esc(x)}</option>`).join("")}</select><select id="auditEntity" onchange="filterAudit()"><option value="">All record types</option>${entities.map(x=>`<option>${esc(x)}</option>`).join("")}</select></div>
- <section class="card panel"><div id="auditList">${auditRows(state.audit)}</div></section>`
+ <div class="toolbar audit-toolbar"><input id="auditSearch" placeholder="Search audit history..." oninput="filterAudit()"><select id="auditAction" onchange="filterAudit()"><option value="">All actions</option>${actions.map(x=>`<option>${esc(x)}</option>`).join("")}</select><select id="auditEntity" onchange="filterAudit()"><option value="">All record types</option>${entities.map(x=>`<option>${esc(x)}</option>`).join("")}</select></div>
+ <section class="card panel audit-panel"><div id="auditList">${auditRows(state.audit)}</div></section>`
 }
 function auditRows(rows){
  if(!rows.length)return '<div class="notice">No audit records match the selected filters.</div>';
- return `<div class="audit-register">${rows.map(a=>`<button class="audit-event" onclick="auditDetail(${state.audit.indexOf(a)})"><div class="audit-event-top"><strong>${esc(a.action||"ACTION")}</strong><span>${badge(a.entity||"RECORD")}</span></div><div class="audit-event-detail">${esc(a.detail||"No detail")}</div><div class="audit-event-meta">${esc(a.user||"System")} · ${auditDateTime(a.at)}</div><div class="audit-open">Open event →</div></button>`).join("")}</div>`
+ return `<div class="audit-list">${rows.map(a=>{
+   const idx=state.audit.indexOf(a);
+   return `<div class="audit-row" role="button" tabindex="0" data-audit-index="${idx}" onclick="openAuditFromRow(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAuditFromRow(this)}">
+     <div class="audit-row-main">
+       <div class="audit-row-head"><span class="audit-action">${esc(a.action||"ACTION")}</span><span class="audit-entity">${esc(a.entity||"RECORD")}</span></div>
+       <div class="audit-row-detail">${esc(a.detail||"No detail recorded")}</div>
+       <div class="audit-row-meta"><span>${esc(a.user||"System")}</span><span>${auditDateTime(a.at)}</span></div>
+     </div>
+     <div class="audit-row-arrow">›</div>
+   </div>`
+ }).join("")}</div>`
+}
+function openAuditFromRow(el){
+ const idx=Number(el?.dataset?.auditIndex);
+ if(Number.isNaN(idx))return;
+ auditDetail(idx)
 }
 function auditDateTime(at){
  if(!at)return "—";
@@ -1265,20 +1307,27 @@ function auditDateTime(at){
  return d.toLocaleString("en-GB",{day:"numeric",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"})
 }
 function filterAudit(){
- const q=(val("auditSearch")||"").toLowerCase(),act=val("auditAction"),ent=val("auditEntity");
+ const q=(val("auditSearch")||"").toLowerCase();
+ const act=val("auditAction"),ent=val("auditEntity");
  const rows=state.audit.filter(a=>(!act||a.action===act)&&(!ent||a.entity===ent)&&[a.action,a.entity,a.detail,a.user,a.at].join(" ").toLowerCase().includes(q));
- document.getElementById("auditList").innerHTML=auditRows(rows)
+ const host=document.getElementById("auditList");
+ if(host)host.innerHTML=auditRows(rows)
 }
 function auditDetail(index){
- const a=state.audit[index];if(!a)return;
+ const a=state.audit[index];
+ if(!a)return;
  const target=auditTarget(a);
  modal(`<div class="modalHead"><div><h3>${esc(a.action||"Audit Event")}</h3><p class="muted">${esc(a.entity||"Record Type")}</p></div><button class="close" onclick="closeModal()">×</button></div>
- <div class="stat"><span>Date & time</span><strong>${auditDateTime(a.at)}</strong></div>
- <div class="stat"><span>User</span><strong>${esc(a.user||"System")}</strong></div>
- <div class="stat"><span>Action</span>${badge(a.action||"ACTION")}</div>
- <div class="stat"><span>Record type</span><strong>${esc(a.entity||"—")}</strong></div>
- <div class="sectionTitle">Event Detail</div><div class="notice">${esc(a.detail||"No additional detail was recorded.")}</div>
- <div class="sectionTitle">Audit Control</div><div class="warn">This event is part of the CCEMS audit trail. Production CCEMS should retain audit events server-side with immutable storage, before/after values and authenticated actor context.</div>
+ <div class="audit-detail-card">
+   <div class="stat"><span>Date & time</span><strong>${auditDateTime(a.at)}</strong></div>
+   <div class="stat"><span>User</span><strong>${esc(a.user||"System")}</strong></div>
+   <div class="stat"><span>Action</span><strong>${esc(a.action||"ACTION")}</strong></div>
+   <div class="stat"><span>Record type</span><strong>${esc(a.entity||"—")}</strong></div>
+ </div>
+ <div class="sectionTitle">Event Detail</div>
+ <div class="notice audit-detail-text">${esc(a.detail||"No additional detail was recorded.")}</div>
+ <div class="sectionTitle">Audit Control</div>
+ <div class="warn">This event is part of the CCEMS audit trail. Production CCEMS should retain audit events server-side with immutable storage, authenticated actor identity, before/after values and device/IP context.</div>
  <div class="actions" style="margin-top:18px"><button class="secondary" onclick="closeModal()">Close</button>${target?`<button class="primary" onclick="closeModal();render('${target}')">Open Related Module</button>`:""}</div>`)
 }
 function auditTarget(a){
