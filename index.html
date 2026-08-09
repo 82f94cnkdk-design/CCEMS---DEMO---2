@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v1.1.20 Estate Operations Control Centre demo">
+<meta name="description" content="CCEMS Phase 1 v1.1.21 Estate Operations Control Centre demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v1.1.20</title>
+<title>CCEMS Phase 1 v1.1.21</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -839,12 +839,42 @@ td,th{overflow-wrap:anywhere;word-break:normal}
  .ccems-drill-summary{touch-action:manipulation}
 }
 
+
+/* v1.1.21 — clickable Estate Dashboard workflow status tiles */
+.dash-mini-tile{
+ display:block;
+ width:100%;
+ border:0;
+ border-radius:10px;
+ background:#f7f5ee;
+ padding:10px;
+ color:var(--ink);
+ text-align:left;
+ font:inherit;
+ cursor:pointer;
+ touch-action:manipulation;
+}
+.dash-mini-tile span{
+ display:block;
+ font-size:9px;
+ text-transform:uppercase;
+ color:var(--muted);
+}
+.dash-mini-tile strong{
+ font-size:21px;
+ color:var(--g900);
+}
+.dash-mini-tile:active{
+ transform:scale(.985);
+ background:#efeade;
+}
+
 </style>
 </head>
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.20</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.21</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden"><div id="sideBackdrop" class="side-backdrop" onclick="toggleSideNav(false)"></div>
  <aside class="side" id="ccemsSideNav"><button class="side-close-btn" type="button" onclick="toggleSideNav(false)" aria-label="Close navigation">×</button><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -899,7 +929,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
  </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation">☰ <span>Menu</span></button><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.1.20</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation">☰ <span>Menu</span></button><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.1.21</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
@@ -1321,6 +1351,14 @@ function resetDashboardView(){render("dashboard")}
 
 function withdrawalRecords(){return state.animals.flatMap(a=>(a.medicines||[]).filter(m=>m.status==="WITHDRAWAL"&&m.withdrawalEnd>=new Date().toISOString().slice(0,10)).map(m=>({a,m})))}
 function dueBirths(){return state.animals.flatMap(a=>(a.breeding||[]).filter(b=>b.due).map(b=>({a,b}))).filter(x=>x.b.due>="2026-08-08")}
+
+function openDashboardWorkflowView(type){
+ render("workflows");
+ setTimeout(()=>{
+   if(typeof workflowQuickView==="function")workflowQuickView(type)
+ },0)
+}
+
 function renderDashboard(v){
  setTitle("Estate Dashboard");
  v.innerHTML=`<section class="card panel dashboard-loading"><div class="eyebrow">Estate Command Overview</div><h2>Estate Dashboard</h2><p>Loading today’s estate position…</p></section>`;
@@ -1372,9 +1410,9 @@ function renderDashboard(v){
    <section class="card panel">
      <div class="dash-section-head"><div><h3>Workflow Status</h3><p>Controlled operational workflows.</p></div><button class="dash-link" onclick="render('workflows')">Open →</button></div>
      <div class="dash-mini">
-       <div><span>Active</span><strong>${activeWorkflows.length}</strong></div>
-       <div><span>Overdue</span><strong>${overdueWorkflows.length}</strong></div>
-       <div><span>Approval</span><strong>${activeWorkflows.filter(x=>x.status==="AWAITING APPROVAL").length}</strong></div>
+       <button class="dash-mini-tile" onclick="openDashboardWorkflowView('all')"><span>Active</span><strong>${activeWorkflows.length}</strong></button>
+       <button class="dash-mini-tile" onclick="openDashboardWorkflowView('overdue')"><span>Overdue</span><strong>${overdueWorkflows.length}</strong></button>
+       <button class="dash-mini-tile" onclick="openDashboardWorkflowView('approval')"><span>Approval</span><strong>${activeWorkflows.filter(x=>x.status==="AWAITING APPROVAL").length}</strong></button>
      </div>
      ${activeWorkflows.slice(0,3).map(r=>`<button class="dash-row" onclick="openWorkflowRun(${Number(r.id)||0})"><div><strong>${esc(r.title||"Workflow")}</strong><span>${esc(r.assignedTo||"Unassigned")} · Due ${dateFmt(r.due)}</span></div><strong>${Number(r.progress)||0}%</strong></button>`).join("")||'<div class="notice">No active workflows.</div>'}
    </section>
