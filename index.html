@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v1.0.18 Estate Operations Control Centre demo">
+<meta name="description" content="CCEMS Phase 1 v1.0.19 Estate Operations Control Centre demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v1.0.18</title>
+<title>CCEMS Phase 1 v1.0.19</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -291,12 +291,28 @@ td,th{overflow-wrap:anywhere;word-break:normal}
  .executive-open-btn-mobile{font-size:12px;height:42px}
 }
 
+
+/* v1.0.19 — formal Audit Reports */
+.audit-report-list{display:grid;gap:0}
+.audit-report-row{display:grid;grid-template-columns:minmax(0,1fr) 110px 80px 24px;gap:12px;align-items:center;padding:14px 4px;border-bottom:1px solid var(--line)}
+.audit-report-row:last-child{border-bottom:0}
+.audit-report-table-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.audit-report-table{width:100%;min-width:880px;border-collapse:collapse}
+.audit-report-table th,.audit-report-table td{padding:10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.audit-report-table th{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.audit-report-actions{display:flex;flex-wrap:wrap;gap:10px}
+@media(max-width:720px){
+ .audit-report-row{grid-template-columns:minmax(0,1fr) 88px 58px 18px;gap:8px;font-size:13px}
+ .audit-report-actions button{flex:1 1 auto;min-width:120px}
+ #auditReportPrint .grid2{grid-template-columns:minmax(0,1fr)}
+}
+
 </style>
 </head>
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.0.18</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.0.19</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden">
  <aside class="side"><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -351,7 +367,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
  </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.0.18</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.0.19</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
@@ -499,6 +515,10 @@ const defaults={
 
 
 
+
+ auditReports:[
+ ],
+
  permissionOverrides:[
  ],
 
@@ -610,7 +630,7 @@ function load(){try{
  if(old){const migrated=Object.assign(clone(defaults),JSON.parse(old));migrated.notifications=clone(defaults.notifications);migrated.estateDiary=clone(defaults.estateDiary);migrated.incidents=clone(defaults.incidents);migrated.documents=clone(defaults.documents);migrated.roles=clone(defaults.roles);migrated.activityFeed=clone(defaults.activityFeed);return normaliseState(migrated)}
  return clone(defaults)
 }catch(e){return clone(defaults)}}
-function normaliseState(s){["grazing","crops","soilTests","inputs","harvests","fieldOps","assets","workOrders","inspections","fuelLogs","parts","suppliers","training","shifts","attendance","leave","ppe","taskRules","recurringTasks","checklistRuns","correctiveActions","approvals","sopAcknowledgements","complianceEvidence","inventory","stockIssues","purchaseRequisitions","purchaseOrders","goodsReceipts","procurementSuppliers","permissionOverrides","executiveReports","notifications","estateDiary","incidents","documents","roles","activityFeed"].forEach(k=>{if(!Array.isArray(s[k]))s[k]=clone(defaults[k])});(s.documents||[]).forEach(d=>{if(!("file" in d))d.file=null;if(!Array.isArray(d.revisions))d.revisions=[]});return s}
+function normaliseState(s){["grazing","crops","soilTests","inputs","harvests","fieldOps","assets","workOrders","inspections","fuelLogs","parts","suppliers","training","shifts","attendance","leave","ppe","taskRules","recurringTasks","checklistRuns","correctiveActions","approvals","sopAcknowledgements","complianceEvidence","inventory","stockIssues","purchaseRequisitions","purchaseOrders","goodsReceipts","procurementSuppliers","auditReports","permissionOverrides","executiveReports","notifications","estateDiary","incidents","documents","roles","activityFeed"].forEach(k=>{if(!Array.isArray(s[k]))s[k]=clone(defaults[k])});(s.documents||[]).forEach(d=>{if(!("file" in d))d.file=null;if(!Array.isArray(d.revisions))d.revisions=[]});return s}
 function save(){localStorage.setItem(KEY,JSON.stringify(state))}
 function audit(action,entity,detail){state.audit.unshift({at:new Date().toISOString(),user:"James Carter",action,entity,detail});save()}
 function login(){document.getElementById("login").classList.add("hidden");document.getElementById("app").classList.remove("hidden");render("controlcentre")}
@@ -1395,14 +1415,16 @@ function renderAudit(v){
  setTitle("Audit History");
  const actions=[...new Set(state.audit.map(a=>a.action).filter(Boolean))].sort();
  const entities=[...new Set(state.audit.map(a=>a.entity).filter(Boolean))].sort();
- v.innerHTML=`<div class="head"><div><h2>Audit History</h2><p>Searchable operational audit trail. Tap any row to open the full event.</p></div><button class="secondary" onclick="exportAudit()">Export JSON</button></div>
- <div class="kpis">${kpi("Audit events",state.audit.length,"Recorded actions")}${kpi("Users",new Set(state.audit.map(a=>a.user).filter(Boolean)).size,"Recorded actors")}${kpi("Action types",actions.length,"Event classes")}${kpi("Record types",entities.length,"Controlled modules")}</div>
+ const reports=state.auditReports||[];
+ v.innerHTML=`<div class="head"><div><h2>Audit History</h2><p>Searchable operational audit trail with formal report generation.</p></div><div class="actions"><button class="secondary" onclick="exportAudit()">Export JSON</button><button class="primary" onclick="auditReportModal()">Generate Full Audit Report</button></div></div>
+ <div class="kpis">${kpi("Audit events",state.audit.length,"Recorded actions")}${kpi("Users",new Set(state.audit.map(a=>a.user).filter(Boolean)).size,"Recorded actors")}${kpi("Action types",actions.length,"Event classes")}${kpi("Audit reports",reports.length,"Generated reports")}</div>
  <div class="audit-filters">
    <div class="field audit-search-field"><label>Audit Event</label><select id="auditSearch" onchange="filterAudit()"><option value="">All audit events</option>${state.audit.map((a,i)=>`<option value="${i}">${esc(a.action||"ACTION")} · ${esc(a.entity||"RECORD")} · ${esc((a.detail||"").slice(0,70))}</option>`).join("")}</select></div>
    <div class="field"><label>Action</label><select id="auditAction" onchange="filterAudit()"><option value="">All actions</option>${actions.map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join("")}</select></div>
    <div class="field"><label>Record Type</label><select id="auditEntity" onchange="filterAudit()"><option value="">All record types</option>${entities.map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join("")}</select></div>
  </div>
- <section class="card panel audit-panel"><div id="auditList">${auditRows(state.audit)}</div></section>`
+ <section class="card panel audit-panel"><div id="auditList">${auditRows(state.audit)}</div></section>
+ <section class="card panel" style="margin-top:17px"><div class="head" style="margin-bottom:12px"><div><h3>Generated Audit Reports</h3><p>Retained audit snapshots available for review, PDF and Excel export.</p></div></div>${reports.length?`<div class="audit-report-list">${reports.map(r=>`<div class="audit-report-row clickable" onclick="openAuditReport(${r.id})"><div><strong>${esc(r.ref)}</strong><br><span>${esc(r.title)}</span><br><span class="muted">${esc(r.period)} · ${esc(r.preparedBy)}</span></div><div>${badge(r.status)}</div><div><strong>${r.eventCount}</strong><br><span class="muted">events</span></div><div class="audit-row-arrow">›</div></div>`).join("")}</div>`:'<div class="notice">No formal audit reports have been generated yet.</div>'}</section>`
 }
 function auditRows(rows){
  if(!rows.length)return '<div class="notice">No audit records match the selected filters.</div>';
@@ -1470,6 +1492,80 @@ function auditTarget(a){
  if(s.includes("compliance")||s.includes("corrective"))return "compliance";
  return null
 }
+
+function auditReportModal(){
+ const today=new Date().toISOString().slice(0,10);
+ const oldest=state.audit.length?String(state.audit[state.audit.length-1].at||today).slice(0,10):today;
+ modal(`<div class="modalHead"><div><h3>Generate Full Audit Report</h3><p class="muted">Create a retained snapshot of the CCEMS audit trail.</p></div><button class="close" onclick="closeModal()">×</button></div>
+ <div class="field"><label>Report title</label><input id="arTitle" value="Full Estate Audit Report"></div>
+ <div class="grid2"><div><div class="field"><label>From date</label><input id="arFrom" type="date" value="${esc(oldest)}"></div></div><div><div class="field"><label>To date</label><input id="arTo" type="date" value="${esc(today)}"></div></div></div>
+ <div class="field"><label>Prepared by</label><select id="arBy">${optionsFrom(ccStaff().map(s=>s.name),"Select report preparer")}</select></div>
+ <div class="field"><label>Status</label><select id="arStatus"><option>FINAL</option><option>DRAFT</option></select></div>
+ <div class="notice">The report captures the full matching audit trail at the moment it is generated. Later audit events will not alter the retained report.</div>
+ <button class="primary" onclick="generateAuditReport()">Generate Audit Report</button>`)
+}
+function generateAuditReport(){
+ const from=val("arFrom"),to=val("arTo"),by=val("arBy");
+ if(!by){alert("Select who prepared the audit report.");return}
+ if(!from||!to){alert("Select the reporting period.");return}
+ if(from>to){alert("The From date must be before the To date.");return}
+ const events=state.audit.filter(a=>{
+   const d=String(a.at||"").slice(0,10);
+   return d>=from&&d<=to
+ }).map(a=>({at:a.at,user:a.user,action:a.action,entity:a.entity,detail:a.detail}));
+ const id=nextId(state.auditReports),ref=`AUR-2026-${String(id).padStart(3,"0")}`;
+ const actionCounts={};const entityCounts={};const userCounts={};
+ events.forEach(a=>{actionCounts[a.action]=(actionCounts[a.action]||0)+1;entityCounts[a.entity]=(entityCounts[a.entity]||0)+1;userCounts[a.user]=(userCounts[a.user]||0)+1});
+ const report={id,ref,title:val("arTitle")||"Full Estate Audit Report",from,to,period:`${dateFmt(from)} – ${dateFmt(to)}`,preparedBy:by,generated:new Date().toISOString(),status:val("arStatus"),eventCount:events.length,events,actionCounts,entityCounts,userCounts};
+ state.auditReports.unshift(report);
+ audit("GENERATE","AUDIT_REPORT",`${ref} · ${events.length} events · ${from} to ${to}`);
+ save();closeModal();openAuditReport(id)
+}
+function openAuditReport(id){
+ const r=(state.auditReports||[]).find(x=>x.id===id);if(!r)return;
+ modal(`<div class="modalHead"><div><h3>${esc(r.ref)} · ${esc(r.title)}</h3><p class="muted">${esc(r.period)} · Prepared by ${esc(r.preparedBy)}</p></div><button class="close" onclick="closeModal()">×</button></div>
+ <div id="auditReportPrint">
+   <div class="kpis">${kpi("Audit events",r.eventCount,"Captured")}${kpi("Users",Object.keys(r.userCounts||{}).length,"Actors")}${kpi("Action types",Object.keys(r.actionCounts||{}).length,"Classes")}${kpi("Record types",Object.keys(r.entityCounts||{}).length,"Modules")}</div>
+   <div class="grid2"><section class="card panel"><h3>Report Control</h3><div class="stat"><span>Reference</span><strong>${esc(r.ref)}</strong></div><div class="stat"><span>Period</span><strong>${esc(r.period)}</strong></div><div class="stat"><span>Prepared by</span><strong>${esc(r.preparedBy)}</strong></div><div class="stat"><span>Generated</span><strong>${auditDateTime(r.generated)}</strong></div><div class="stat"><span>Status</span>${badge(r.status)}</div></section>
+   <section class="card panel"><h3>Action Summary</h3>${Object.entries(r.actionCounts||{}).map(([k,v])=>`<div class="stat"><span>${esc(k)}</span><strong>${v}</strong></div>`).join("")||'<div class="notice">No actions in this period.</div>'}</section></div>
+   <section class="card panel" style="margin-top:16px"><h3>Full Audit Trail</h3><div class="audit-report-table-wrap"><table class="audit-report-table"><thead><tr><th>Date & Time</th><th>User</th><th>Action</th><th>Record Type</th><th>Event Detail</th></tr></thead><tbody>${r.events.map(a=>`<tr><td>${auditDateTime(a.at)}</td><td>${esc(a.user||"System")}</td><td>${esc(a.action||"ACTION")}</td><td>${esc(a.entity||"RECORD")}</td><td>${esc(a.detail||"")}</td></tr>`).join("")}</tbody></table></div></section>
+   <p class="muted">Generated by CCEMS · ${esc(r.ref)} · ${esc(r.status)}</p>
+ </div>
+ <div class="actions audit-report-actions" style="margin-top:18px"><button class="secondary" onclick="closeModal()">Close</button><button class="secondary" onclick="saveAuditReportExcel(${r.id})">Save Excel</button><button class="primary" onclick="printAuditReport(${r.id})">Print / Save PDF</button></div>`)
+}
+function printAuditReport(id){
+ const r=(state.auditReports||[]).find(x=>x.id===id),content=document.getElementById("auditReportPrint")?.innerHTML;
+ if(!r||!content)return;
+ const w=window.open("","_blank");
+ if(!w){alert("Your browser blocked the report window. Allow pop-ups for CCEMS and try again.");return}
+ w.document.write(`<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(r.ref)} Audit Report</title><style>body{font-family:Arial,sans-serif;color:#173329;padding:28px;max-width:1100px;margin:auto}h1,h2,h3{font-family:Georgia,serif;color:#0b3529}.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.kpi,.card{border:1px solid #dde4de;border-radius:10px;padding:12px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.stat{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid #dde4de;padding:9px 0}table{width:100%;border-collapse:collapse;font-size:11px}th,td{padding:7px;border-bottom:1px solid #ddd;text-align:left;vertical-align:top}th{background:#f6f1e6}.muted{color:#66736d}@media print{button{display:none}}@media(max-width:700px){.kpis,.grid2{grid-template-columns:1fr 1fr}}</style></head><body><h1>Crown & Cross Organic Estate</h1><h2>${esc(r.title)}</h2><p><strong>${esc(r.ref)}</strong> · ${esc(r.period)} · Prepared by ${esc(r.preparedBy)}</p>${content}</body></html>`);
+ w.document.close();setTimeout(()=>w.print(),300)
+}
+function excelXmlEscape(v){
+ return String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")
+}
+function saveAuditReportExcel(id){
+ const r=(state.auditReports||[]).find(x=>x.id===id);if(!r)return;
+ const rows=[
+  ["Crown & Cross Organic Estate",""],
+  ["Audit Report Reference",r.ref],
+  ["Report Title",r.title],
+  ["Period",r.period],
+  ["Prepared By",r.preparedBy],
+  ["Generated",auditDateTime(r.generated)],
+  ["Status",r.status],
+  ["Event Count",r.eventCount],
+  [],
+  ["Date & Time","User","Action","Record Type","Event Detail"],
+  ...r.events.map(a=>[auditDateTime(a.at),a.user||"System",a.action||"",a.entity||"",a.detail||""])
+ ];
+ const table=rows.map(row=>`<tr>${row.map(c=>`<td>${excelXmlEscape(c)}</td>`).join("")}</tr>`).join("");
+ const html=`<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel"><head><meta charset="utf-8"></head><body><table>${table}</table></body></html>`;
+ const blob=new Blob([html],{type:"application/vnd.ms-excel;charset=utf-8"}),u=URL.createObjectURL(blob),a=document.createElement("a");
+ a.href=u;a.download=`${r.ref}-audit-report.xls`;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(u);
+ audit("EXPORT","AUDIT_REPORT_EXCEL",r.ref);save()
+}
+
 function exportAudit(){const blob=new Blob([JSON.stringify(state.audit,null,2)],{type:"application/json"}),u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download="ccems-audit.json";a.click();URL.revokeObjectURL(u)}
 </script>
 </body></html>
