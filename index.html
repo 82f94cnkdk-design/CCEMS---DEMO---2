@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v1.1.16 Estate Operations Control Centre demo">
+<meta name="description" content="CCEMS Phase 1 v1.1.17 Estate Operations Control Centre demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v1.1.16</title>
+<title>CCEMS Phase 1 v1.1.17</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -790,12 +790,18 @@ td,th{overflow-wrap:anywhere;word-break:normal}
  .modal select,.modal input[type="date"]{font-size:16px!important;min-height:56px!important}
 }
 
+
+/* v1.1.17 — explicit workflow state controls */
+.workflow-actions .primary{font-weight:800}
+.workflow-card[data-critical="true"]{border-color:#c9746b}
+.workflow-card-critical{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#a33b32}
+
 </style>
 </head>
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.16</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.17</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden"><div id="sideBackdrop" class="side-backdrop" onclick="toggleSideNav(false)"></div>
  <aside class="side" id="ccemsSideNav"><button class="side-close-btn" type="button" onclick="toggleSideNav(false)" aria-label="Close navigation">×</button><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -850,7 +856,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
  </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation">☰ <span>Menu</span></button><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.1.16</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation">☰ <span>Menu</span></button><h1><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><span id="pageTitle">Estate Dashboard</span></h1><div class="topRight"><span>CCEMS v1.1.17</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
@@ -2134,7 +2140,7 @@ function saveSupplier(){
 function renderWorkflows(v){
  setTitle("Advanced Task & Workflow Management");
  const runs=state.workflowRuns||[],templates=state.workflowTemplates||[];
- const open=runs.filter(x=>x.status!=="COMPLETED"),overdue=open.filter(x=>x.status==="OVERDUE"),approval=open.filter(x=>x.status==="AWAITING APPROVAL"),critical=open.filter(x=>x.priority==="CRITICAL");
+ const open=runs.filter(x=>x.status!=="COMPLETED"),overdue=open.filter(x=>x.status==="OVERDUE"),approval=open.filter(x=>x.status==="AWAITING APPROVAL"),critical=open.filter(x=>x.critical===true||x.priority==="CRITICAL");
  v.innerHTML=`<div class="head"><div><div class="eyebrow">v1.1 Workflow Command</div><h2>Advanced Task & Workflow Management</h2><p>Controlled assignment, execution, evidence, approvals, escalation and recurring estate work.</p></div><div class="actions"><button class="secondary" onclick="workflowTemplateModal()">New Template</button><button class="primary" onclick="workflowRunModal()">Create Workflow Run</button></div></div>
  <div class="kpis workflow-kpis"><button onclick="workflowQuickView('all')">${kpi("Active workflows",open.length,"Operational runs")}</button><button onclick="workflowQuickView('overdue')">${kpi("Overdue",overdue.length,"Requires attention")}</button><button onclick="workflowQuickView('approval')">${kpi("Awaiting approval",approval.length,"Manager decisions")}</button><button onclick="workflowQuickView('critical')">${kpi("Critical",critical.length,"Priority workflows")}</button></div>
  <div class="workflow-command-strip"><button onclick="workflowQuickView('mine')"><span>My Work</span><strong>${open.filter(x=>x.assignedTo===workflowCurrentUser()).length}</strong></button><button onclick="workflowQuickView('overdue')"><span>Overdue</span><strong>${overdue.length}</strong></button><button onclick="workflowQuickView('approval')"><span>Approvals</span><strong>${approval.length}</strong></button><button onclick="workflowQuickView('all')"><span>All Active</span><strong>${open.length}</strong></button></div>
@@ -2147,13 +2153,13 @@ function workflowQuickView(type){
  if(type==="mine")rows=all.filter(x=>x.status!=="COMPLETED"&&x.assignedTo===current);
  if(type==="overdue")rows=all.filter(x=>x.status==="OVERDUE");
  if(type==="approval")rows=all.filter(x=>x.status==="AWAITING APPROVAL");
- if(type==="critical")rows=all.filter(x=>x.status!=="COMPLETED"&&x.priority==="CRITICAL");
+ if(type==="critical")rows=all.filter(x=>x.status!=="COMPLETED"&&(x.critical===true||x.priority==="CRITICAL"));
  if(type==="all")rows=all.filter(x=>x.status!=="COMPLETED");
  document.getElementById("workflowBody").innerHTML=`<section class="card panel"><div class="workflow-view-head"><button class="secondary" onclick="render('workflows')">← Workflow Command</button><strong>${esc(type.toUpperCase())}</strong></div>${workflowRunRows(rows)}</section>`
 }
 function workflowTab(tab,btn){document.querySelectorAll(".tabs button").forEach(b=>b.classList.remove("active"));btn.classList.add("active");document.getElementById("workflowBody").innerHTML=tab==="templates"?workflowTemplatesView():tab==="exceptions"?workflowExceptionsView():tab==="approvals"?workflowApprovalsView():workflowRunsView()}
 function workflowRunsView(){const runs=state.workflowRuns||[];return `<section class="card panel"><div class="workflow-filter"><select id="wfStatus" onchange="workflowFilter()"><option value="">All statuses</option><option>NOT STARTED</option><option>IN PROGRESS</option><option>OVERDUE</option><option>AWAITING APPROVAL</option><option>COMPLETED</option></select><select id="wfDept" onchange="workflowFilter()"><option value="">All departments</option>${[...new Set(runs.map(x=>x.department))].map(x=>`<option>${esc(x)}</option>`).join("")}</select></div><div id="workflowRunList">${workflowRunRows(runs)}</div></section>`}
-function workflowRunRows(rows){if(!rows.length)return '<div class="notice">No workflow runs match the filters.</div>';return `<div class="workflow-list">${rows.map(r=>`<div class="workflow-card" onclick="openWorkflowRun(${r.id})"><div class="workflow-card-top"><div><strong>${esc(r.ref)}</strong><h3>${esc(r.title)}</h3></div>${badge(r.status)}</div><div class="workflow-meta"><span>${esc(r.department)}</span><span>${esc(r.location)}</span><span>Due ${dateFmt(r.due)}</span></div><div class="workflow-progress"><div style="width:${r.progress||0}%"></div></div><div class="workflow-foot"><span>${r.progress||0}% complete · ${esc(r.assignedTo)}</span><strong>Open ›</strong></div></div>`).join("")}</div>`}
+function workflowRunRows(rows){if(!rows.length)return '<div class="notice">No workflow runs match the filters.</div>';return `<div class="workflow-list">${rows.map(r=>`<div class="workflow-card" data-critical="${r.critical===true||r.priority==="CRITICAL"}" onclick="openWorkflowRun(${r.id})"><div class="workflow-card-top"><div><strong>${esc(r.ref)}</strong><h3>${esc(r.title)}</h3>${(r.critical===true||r.priority==="CRITICAL")?'<span class="workflow-card-critical">Critical</span>':""}</div>${badge(r.status)}</div><div class="workflow-meta"><span>${esc(r.department)}</span><span>${esc(r.location)}</span><span>Due ${dateFmt(r.due)}</span></div><div class="workflow-progress"><div style="width:${r.progress||0}%"></div></div><div class="workflow-foot"><span>${r.progress||0}% complete · ${esc(r.assignedTo)}</span><strong>Open ›</strong></div></div>`).join("")}</div>`}
 function workflowFilter(){const s=val("wfStatus"),d=val("wfDept"),rows=(state.workflowRuns||[]).filter(x=>(!s||x.status===s)&&(!d||x.department===d));document.getElementById("workflowRunList").innerHTML=workflowRunRows(rows)}
 function workflowTemplatesView(){return `<section class="card panel"><div class="workflow-list">${(state.workflowTemplates||[]).map(x=>`<div class="workflow-card" onclick="openWorkflowTemplate(${x.id})"><div class="workflow-card-top"><div><strong>${esc(x.ref)}</strong><h3>${esc(x.name)}</h3></div>${badge(x.status)}</div><div class="workflow-meta"><span>${esc(x.department)}</span><span>${esc(x.frequency)}</span><span>${x.steps.length} steps</span></div><div class="workflow-foot"><span>Approval: ${esc(x.approval)}</span><strong>Open ›</strong></div></div>`).join("")}</div></section>`}
 function workflowExceptionsView(){const rows=(state.workflowRuns||[]).filter(x=>x.status==="OVERDUE"||x.approvalStatus==="REJECTED");return `<section class="card panel"><h3>Exceptions & Escalations</h3>${rows.length?workflowRunRows(rows):'<div class="notice">No active workflow exceptions.</div>'}</section>`}
@@ -2171,6 +2177,7 @@ function saveWorkflowEscalation(id){
  state.workflowEscalations=state.workflowEscalations||[];
  state.workflowEscalations.unshift({id:nextId(state.workflowEscalations),workflowId:id,ref:r.ref,reason:val("wfEscReason"),to:val("wfEscTo"),notes:val("wfEscNotes"),date:new Date().toISOString(),status:"OPEN"});
  r.escalated=true;r.escalationReason=val("wfEscReason");
+ if(["SAFETY CONCERN","COMPLIANCE RISK"].includes(r.escalationReason)){r.critical=true;r.priority="CRITICAL"}
  audit("ESCALATE","WORKFLOW_RUN",`${r.ref} · ${r.escalationReason}`);save();closeModal();render("workflows")
 }
 function workflowReassign(id){
@@ -2254,7 +2261,8 @@ function createWorkflowRun(){
    evidence:"",
    notes:"",
    approvalStatus:"NOT READY",
-   approvalRole:approval
+   approvalRole:approval,
+   critical:priority==="CRITICAL"
  });
  audit("CREATE","WORKFLOW_RUN",`${template.name} · ${assigned} · ${department} · ${location}`);save();closeModal();render("workflows")
 }
@@ -2288,6 +2296,7 @@ function openWorkflowRun(id){
  modal(`<div class="modalHead"><div><div class="eyebrow">Controlled Workflow</div><h3>${esc(r.ref)} · ${esc(r.title)}</h3><p class="muted">${esc(r.department)} · ${esc(r.location)}</p></div><button class="close" onclick="closeModal()">×</button></div>
  <div class="workflow-detail-grid"><div class="stat"><span>Assigned to</span><strong>${esc(r.assignedTo)}</strong></div><div class="stat"><span>Due</span><strong>${dateFmt(r.due)}</strong></div><div class="stat"><span>Priority</span>${badge(r.priority)}</div><div class="stat"><span>Status</span>${badge(r.status)}</div></div>
  <div class="stat"><span>Approval route</span><strong>${esc(r.approvalRole||tpl?.approval||"Department Manager")}</strong></div>
+ <div class="stat"><span>Critical control</span>${badge((r.critical===true||r.priority==="CRITICAL")?"CRITICAL":"NORMAL")}</div>
  ${r.escalated?`<div class="warn"><strong>Escalated:</strong> ${esc(r.escalationReason||"Management review")}</div>`:""}
  ${r.correctionRequired?`<div class="warn"><strong>Correction required:</strong> ${esc(r.correctionRequired)}</div>`:""}
  <div class="sectionTitle">Workflow Steps</div>
@@ -2312,9 +2321,40 @@ function openWorkflowRun(id){
    <button class="secondary" onclick="workflowAddComment(${r.id})">Add Note</button>
    <button class="secondary" onclick="workflowReassign(${r.id})">Reassign</button>
    <button class="secondary" onclick="workflowEscalate(${r.id})">Escalate</button>
+   <button class="secondary" onclick="toggleWorkflowCritical(${r.id})">${(r.critical===true||r.priority==="CRITICAL")?"Remove Critical":"Mark Critical"}</button>
+   ${!isApproval&&r.status!=="COMPLETED"?`<button class="primary" onclick="submitWorkflowForApproval(${r.id})">Submit for Approval</button>`:""}
    ${isApproval?`<button class="secondary" onclick="workflowReject(${r.id})">Return for Correction</button><button class="primary" onclick="approveWorkflow(${r.id})">Approve & Close</button>`:""}
  </div>`)
 }
+
+function submitWorkflowForApproval(id){
+ const r=(state.workflowRuns||[]).find(x=>x.id===id);if(!r)return;
+ r.status="AWAITING APPROVAL";
+ r.approvalStatus="PENDING";
+ r.submittedAt=new Date().toISOString();
+ if((Number(r.progress)||0)<100)r.progress=100;
+ audit("SUBMIT_APPROVAL","WORKFLOW_RUN",`${r.ref} · ${r.approvalRole||"Manager"}`);
+ save();
+ closeModal();
+ render("workflows")
+}
+function toggleWorkflowCritical(id){
+ const r=(state.workflowRuns||[]).find(x=>x.id===id);if(!r)return;
+ const currently=r.critical===true||r.priority==="CRITICAL";
+ if(currently){
+   r.critical=false;
+   if(r.priority==="CRITICAL")r.priority="HIGH";
+   audit("REMOVE_CRITICAL","WORKFLOW_RUN",r.ref)
+ }else{
+   r.critical=true;
+   r.priority="CRITICAL";
+   audit("MARK_CRITICAL","WORKFLOW_RUN",r.ref)
+ }
+ save();
+ closeModal();
+ render("workflows")
+}
+
 function saveWorkflowNotes(id){
  const r=(state.workflowRuns||[]).find(x=>x.id===id);if(!r)return;
  r.evidence=val("wfrEvidence");r.notes=val("wfrNotes");
