@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v1.1.48 Estate Operations Control Centre demo">
+<meta name="description" content="CCEMS Phase 1 v1.1.49 Estate Operations Control Centre demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v1.1.48</title>
+<title>CCEMS Phase 1 v1.1.49</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -879,13 +879,13 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 @media(max-width:720px){.dependency-row{grid-template-columns:minmax(0,1fr);gap:7px}}
 
 
-/* v1.1.48 — explicit blocker state */
+/* v1.1.49 — explicit blocker state */
 .workflow-card[data-blocked="true"]{box-shadow:inset 4px 0 0 #a86e19}
 .workflow-card[data-blocked="true"] .workflow-progress>div{opacity:.55}
 .active-blocked{font-weight:900!important}
 
 
-/* v1.1.48 — controlled step execution & workflow timeline */
+/* v1.1.49 — controlled step execution & workflow timeline */
 .step-evidence-card{border:1px solid #d8ded8;border-radius:18px;padding:16px;margin:10px 0;background:#fffdf8;text-align:left;width:100%}
 .step-evidence-card strong{display:block;color:#123f32;margin-bottom:5px}
 .step-evidence-card small{display:block;color:#6d7772;line-height:1.45}
@@ -896,7 +896,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 .workflow-timeline-item span{margin-top:3px}.workflow-timeline-item small{color:#727b77;margin-top:4px}
 .step-control-note{padding:12px 14px;border-radius:14px;background:#eef5ef;margin:10px 0;color:#234b3d}
 
-/* v1.1.48 — SLA & due-date control */
+/* v1.1.49 — SLA & due-date control */
 .sla-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
 .sla-strip button{border:1px solid var(--line);border-radius:14px;background:#fff;padding:13px;text-align:left;color:var(--ink);cursor:pointer}
 .sla-strip span{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:800}
@@ -908,18 +908,18 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 @media(max-width:720px){.sla-strip{grid-template-columns:1fr 1fr}}
 
 
-/* v1.1.48 — workflow drill-down & zero-state UX */
+/* v1.1.49 — workflow drill-down & zero-state UX */
 .sla-strip button.zero-state,.workflow-kpis button.zero-state,.workflow-command-strip button.zero-state{opacity:.58;cursor:default}
 .workflow-zero{border:1px solid #d8e3d9;background:#eef6ef;border-radius:14px;padding:16px;color:#315b48;margin-top:12px}
 .workflow-result-head{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
 .workflow-result-count{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:800}
 
 
-/* v1.1.48 — clearer workflow history actor attribution */
+/* v1.1.49 — clearer workflow history actor attribution */
 .workflow-timeline-item small b{color:var(--g900);font-weight:800}
 
 
-/* v1.1.48 — controlled workflow evidence attachments */
+/* v1.1.49 — controlled workflow evidence attachments */
 .evidence-upload{border:1px dashed #aebdb4;border-radius:16px;padding:14px;background:#fbfcf9;margin-top:8px}
 .evidence-upload input[type=file]{width:100%;font-size:15px}
 .evidence-upload-help{display:block;color:#6d7772;font-size:13px;line-height:1.45;margin-top:7px}
@@ -930,7 +930,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 .evidence-file small{color:#6d7772;margin-top:3px}
 
 
-/* v1.1.48 — iPhone-native photo/document evidence pickers */
+/* v1.1.49 — iPhone-native photo/document evidence pickers */
 .evidence-picker-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .evidence-picker-btn{display:grid;grid-template-columns:auto 1fr;gap:2px 9px;align-items:center;border:1px solid #b8c6bd;border-radius:13px;background:#fff;padding:13px;cursor:pointer;color:var(--g900);touch-action:manipulation}
 .evidence-picker-btn>span{grid-row:1/3;font-size:22px}
@@ -942,7 +942,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 @media(max-width:520px){.evidence-picker-grid{grid-template-columns:1fr}.evidence-picker-btn{min-height:58px}}
 
 
-/* v1.1.48 — universal CCEMS evidence upload standard */
+/* v1.1.49 — universal CCEMS evidence upload standard */
 .ccems-evidence-widget{margin-top:12px;border:1px solid #d6ded8;border-radius:15px;padding:13px;background:#fbfcf9}
 .ccems-evidence-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
 .ccems-evidence-title strong{color:var(--g900)}.ccems-evidence-title span{font-size:11px;color:var(--muted)}
@@ -954,7 +954,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 .ccems-evidence-selected-count{font-size:12px;font-weight:800;color:var(--g800);padding:5px 0}
 
 
-/* v1.1.48 — persistent evidence viewing */
+/* v1.1.49 — persistent evidence viewing */
 .ccems-evidence-openable{cursor:pointer}
 .ccems-evidence-openable:active{background:#f2f6f2}
 .evidence-open-label{display:block;margin-top:4px;font-size:11px;font-weight:800;color:var(--g800)}
@@ -964,7 +964,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 .evidence-doc-icon.large{width:72px;height:72px}
 
 
-/* v1.1.48 — evidence-aware approval management */
+/* v1.1.49 — evidence-aware approval management */
 .approval-queue{display:grid;gap:12px}
 .approval-card{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
 .approval-card-main{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:start;width:100%;border:0;background:transparent;color:var(--ink);padding:14px;text-align:left;cursor:pointer}
@@ -981,16 +981,16 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 }
 
 
-/* v1.1.48 — evidence nested navigation */
+/* v1.1.49 — evidence nested navigation */
 .evidence-viewer-image-wrap + .stat{margin-top:12px}
 
 
-/* v1.1.48 — recurring workflow scheduling */
+/* v1.1.49 — recurring workflow scheduling */
 .tabs{overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
 .tabs button{flex:0 0 auto}
 
 
-/* v1.1.48 — visible workflow schedules navigation */
+/* v1.1.49 — visible workflow schedules navigation */
 .workflow-schedule-command{
  border:1px solid #c8b27c!important;
  background:#fffaf0!important;
@@ -1024,10 +1024,10 @@ td,th{overflow-wrap:anywhere;word-break:normal}
  }
 }
 
-/* v1.1.48 */
+/* v1.1.49 */
 .workflow-card-badges{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.sla-policy-tab{border-color:#c8b27c!important}
 
-/* v1.1.48 — mobile SLA command card alignment */
+/* v1.1.49 — mobile SLA command card alignment */
 .workflow-command-strip .sla-command-card{
  display:flex!important;
  flex-direction:column!important;
@@ -1077,7 +1077,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 
 
 /* =========================================================
-   v1.1.48 — CCEMS SYSTEM-WIDE UI STANDARD
+   v1.1.49 — CCEMS SYSTEM-WIDE UI STANDARD
    One visual language across dashboards, modules and modals.
    ========================================================= */
 :root{
@@ -1324,9 +1324,9 @@ th,td{padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:top}
 
 
 /* =========================================================
-   v1.1.48 — CROWN & CROSS SURFACE PALETTE CORRECTION
+   v1.1.49 — CROWN & CROSS SURFACE PALETTE CORRECTION
    Restores the warm ivory estate character while preserving
-   the v1.1.48 system-wide spacing and component standards.
+   the v1.1.49 system-wide spacing and component standards.
    ========================================================= */
 :root{
  --cc-surface:#f7f2e7;
@@ -1481,7 +1481,7 @@ tbody tr:nth-child(even) td{
 
 
 /* =========================================================
-   v1.1.48 — LEGACY WHITE SURFACE SWEEP
+   v1.1.49 — LEGACY WHITE SURFACE SWEEP
    Removes remaining clinical-white dashboard/list surfaces.
    ========================================================= */
 
@@ -1551,7 +1551,7 @@ input,select,textarea,
 }
 
 
-/* v1.1.48 — exact Management Attention surface correction */
+/* v1.1.49 — exact Management Attention surface correction */
 .dash-attention > button,
 .card.panel .dash-attention > button{
  background:var(--cc-surface-soft)!important;
@@ -1565,7 +1565,7 @@ input,select,textarea,
 
 
 /* =========================================================
-   v1.1.48 — HEADER CONTRAST PROTECTION
+   v1.1.49 — HEADER CONTRAST PROTECTION
    Palette rules must never recolour the dark estate header.
    ========================================================= */
 .topbar,
@@ -1597,7 +1597,7 @@ header *{
 
 
 /* =========================================================
-   v1.1.48 — MOBILE HEADER RECOMPOSITION
+   v1.1.49 — MOBILE HEADER RECOMPOSITION
    Compact, balanced Crown & Cross application header.
    ========================================================= */
 
@@ -1744,7 +1744,7 @@ header::after{
 }
 
 
-/* v1.1.48 exact header selectors */
+/* v1.1.49 exact header selectors */
 .top{
  min-height:84px!important;
  padding:12px 16px!important;
@@ -1816,7 +1816,7 @@ header::after{
 
 
 /* =========================================================
-   v1.1.48 — CROWN & CROSS MOBILE APPLICATION BAR
+   v1.1.49 — CROWN & CROSS MOBILE APPLICATION BAR
    ========================================================= */
 
 .top{
@@ -1995,7 +1995,7 @@ header::after{
 
 
 /* =========================================================
-   v1.1.48 — ADAPTIVE MOBILE HEADER
+   v1.1.49 — ADAPTIVE MOBILE HEADER
    Full module names must remain readable on phone screens.
    ========================================================= */
 
@@ -2110,7 +2110,7 @@ header::after{
 
 
 /* =========================================================
-   v1.1.48 — TASK CARD SURFACE HARMONISATION
+   v1.1.49 — TASK CARD SURFACE HARMONISATION
    Warm Crown & Cross hierarchy for task records.
    ========================================================= */
 :root{
@@ -2216,7 +2216,7 @@ header::after{
 
 
 /* =========================================================
-   v1.1.48 — CCEMS FULL WHITE-SURFACE AUDIT
+   v1.1.49 — CCEMS FULL WHITE-SURFACE AUDIT
    All non-functional white surfaces are harmonised with the
    Crown & Cross warm ivory / parchment system.
    ========================================================= */
@@ -2447,12 +2447,168 @@ textarea,
  }
 }
 
+
+/* =========================================================
+   v1.1.49 — LONG-TITLE MOBILE HEADER FIX
+   Authoritative final mobile header rules.
+   ========================================================= */
+
+@media(max-width:720px){
+
+  .top{
+    min-height:82px!important;
+    height:auto!important;
+    padding:10px 12px!important;
+    display:grid!important;
+    grid-template-columns:auto minmax(0,1fr)!important;
+    align-items:center!important;
+    column-gap:10px!important;
+    overflow:visible!important;
+  }
+
+  .top .mobile-menu-btn{
+    height:44px!important;
+    min-height:44px!important;
+    padding:0 11px!important;
+    gap:7px!important;
+    flex:0 0 auto!important;
+  }
+
+  .top-brand{
+    display:grid!important;
+    grid-template-columns:34px minmax(0,1fr)!important;
+    align-items:center!important;
+    gap:8px!important;
+    min-width:0!important;
+  }
+
+  .top .top-logo{
+    width:34px!important;
+    height:34px!important;
+    min-width:34px!important;
+    flex:0 0 34px!important;
+    padding:2px!important;
+  }
+
+  .top-title-wrap{
+    display:block!important;
+    min-width:0!important;
+    width:100%!important;
+  }
+
+  .top #pageTitle{
+    display:block!important;
+    width:100%!important;
+    max-width:100%!important;
+    margin:0!important;
+    padding:0!important;
+    color:#fffdf8!important;
+    font-family:Georgia,serif!important;
+    font-weight:600!important;
+    letter-spacing:-.01em!important;
+    white-space:normal!important;
+    overflow:visible!important;
+    text-overflow:clip!important;
+    word-break:normal!important;
+    overflow-wrap:normal!important;
+    -webkit-line-clamp:unset!important;
+    line-clamp:unset!important;
+    -webkit-box-orient:unset!important;
+  }
+
+  .top #pageTitle[data-ccems-title-length="short"]{
+    font-size:21px!important;
+    line-height:1.05!important;
+  }
+
+  .top #pageTitle[data-ccems-title-length="medium"]{
+    font-size:18px!important;
+    line-height:1.08!important;
+  }
+
+  .top #pageTitle[data-ccems-title-length="long"]{
+    font-size:16px!important;
+    line-height:1.12!important;
+  }
+
+  /* Long titles get the full vertical space; no subtitle collision. */
+  .top #pageTitle[data-ccems-title-length="long"] + small{
+    display:none!important;
+  }
+
+  /* Medium titles may keep a compact CCEMS subtitle only. */
+  .top #pageTitle[data-ccems-title-length="medium"] + small{
+    font-size:0!important;
+    margin-top:3px!important;
+  }
+  .top #pageTitle[data-ccems-title-length="medium"] + small::after{
+    content:"CCEMS"!important;
+    font-size:7px!important;
+    letter-spacing:.16em!important;
+    color:#d8c49a!important;
+  }
+
+  /* Short titles can keep the compact system subtitle. */
+  .top #pageTitle[data-ccems-title-length="short"] + small{
+    display:block!important;
+    font-size:7px!important;
+    letter-spacing:.1em!important;
+    margin-top:3px!important;
+    color:#d8c49a!important;
+  }
+
+  .top .topRight{
+    display:none!important;
+  }
+}
+
+/* Very narrow phones: protect title first */
+@media(max-width:390px){
+  .top{
+    grid-template-columns:auto minmax(0,1fr)!important;
+    gap:8px!important;
+    padding-left:9px!important;
+    padding-right:9px!important;
+  }
+
+  .top .mobile-menu-btn{
+    padding:0 9px!important;
+  }
+
+  .top-brand{
+    grid-template-columns:30px minmax(0,1fr)!important;
+    gap:7px!important;
+  }
+
+  .top .top-logo{
+    width:30px!important;
+    height:30px!important;
+    min-width:30px!important;
+    flex-basis:30px!important;
+  }
+
+  .top #pageTitle[data-ccems-title-length="short"]{
+    font-size:19px!important;
+  }
+  .top #pageTitle[data-ccems-title-length="medium"]{
+    font-size:17px!important;
+  }
+  .top #pageTitle[data-ccems-title-length="long"]{
+    font-size:15px!important;
+    line-height:1.1!important;
+  }
+
+  .top-title-wrap small{
+    display:none!important;
+  }
+}
+
 </style>
 </head>
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.48</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.49</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden"><div id="sideBackdrop" class="side-backdrop" onclick="toggleSideNav(false)"></div>
  <aside class="side" id="ccemsSideNav"><button class="side-close-btn" type="button" onclick="toggleSideNav(false)" aria-label="Close navigation">×</button><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -2507,7 +2663,7 @@ textarea,
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
  </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation"><span class="menu-icon">☰</span><span>Menu</span></button><div class="top-brand"><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><div class="top-title-wrap"><span id="pageTitle">Estate Dashboard</span><small>Crown & Cross Estate Management System</small></div></div><div class="topRight"><span>CCEMS v1.1.48</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation"><span class="menu-icon">☰</span><span>Menu</span></button><div class="top-brand"><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><div class="top-title-wrap"><span id="pageTitle">Estate Dashboard</span><small>Crown & Cross Estate Management System</small></div></div><div class="topRight"><span>CCEMS v1.1.49</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
@@ -2925,7 +3081,7 @@ function ccemsWireSubsections(page){
 }
 
 
-/* v1.1.48 — universal CCEMS evidence attachment framework */
+/* v1.1.49 — universal CCEMS evidence attachment framework */
 function ccemsEvidenceKey(module,recordId,field){
  return `${String(module||"GENERAL")}::${String(recordId||"NEW")}::${String(field||"EVIDENCE")}`
 }
@@ -3032,7 +3188,7 @@ function ccemsInjectEvidenceWidgets(){
 }
 
 
-/* v1.1.48 — persistent evidence viewer */
+/* v1.1.49 — persistent evidence viewer */
 function ccemsEvidenceById(id){
  return (state.evidenceAttachments||[]).find(x=>String(x.id)===String(id))
 }
@@ -3065,7 +3221,7 @@ function ccemsOpenEvidenceData(id){
 }
 
 
-/* v1.1.48 — nested evidence return navigation */
+/* v1.1.49 — nested evidence return navigation */
 window.__ccemsReturnStack=window.__ccemsReturnStack||[];
 
 function ccemsPushReturnContext(fn,args=[]){
@@ -3527,7 +3683,7 @@ function renderDeptWork(v){
  v.innerHTML=`<div class="head"><div><h2>Department Work Queue</h2><p>Operational workload grouped by estate department.</p></div></div>${depts.map(d=>`<section class="card panel" style="margin-bottom:17px"><h3>${esc(d)}</h3>${simpleTable(["Task","Assigned","Priority","Due","Status"],state.tasks.filter(t=>t.dept===d).map(t=>[esc(t.title),esc(t.assigned||"Unassigned"),badge(t.priority),dateFmt(t.due),badge(t.status)]))}</section>`).join("")}`
 }
 
-/* v1.1.48 — workflow SLA policy & escalation control */
+/* v1.1.49 — workflow SLA policy & escalation control */
 function workflowSLAPolicyFor(r){
  const rows=state.workflowSLAPolicies||[];
  return rows.find(x=>x.status==="ACTIVE"&&x.department===r.department&&x.priority===r.priority)
@@ -4444,7 +4600,7 @@ function forceReleaseWorkflowBlock(id){
 }
 
 
-/* v1.1.48 — evidence-aware workflow approval */
+/* v1.1.49 — evidence-aware workflow approval */
 function workflowEvidenceSummary(id){
  const stepRecords=workflowStepRecordsFor(id);
  const direct=ccemsEvidenceFor("WORKFLOW_RUN",id,"EVIDENCE");
@@ -4595,7 +4751,7 @@ function saveWorkflowComment(id){
 function workflowTemplateModal(){modal(`<div class="modalHead"><div><h3>New Workflow Template</h3><p class="muted">Create a reusable controlled workflow.</p></div><button class="close" onclick="closeModal()">×</button></div><div class="field"><label>Workflow name</label><input id="wftName"></div><div class="grid2"><div class="field"><label>Department</label><select id="wftDept">${optionsFrom(ccDepartments(),"Select department")}</select></div><div class="field"><label>Location</label><select id="wftLoc">${optionsFrom(ccLocations(),"Select location")}</select></div></div><div class="grid2"><div class="field"><label>Frequency</label><select id="wftFreq"><option>DAILY</option><option>WEEKLY</option><option>MONTHLY</option><option>QUARTERLY</option><option>ANNUALLY</option><option>ON DEMAND</option></select></div><div class="field"><label>Priority</label><select id="wftPriority"><option>LOW</option><option>MEDIUM</option><option>HIGH</option><option>CRITICAL</option></select></div></div><div class="field"><label>Approval role</label><select id="wftApproval">${optionsFrom(state.roles.map(x=>x.name),"Select approval role")}</select></div><div class="field"><label>Steps — one per line</label><textarea id="wftSteps" rows="6"></textarea></div><button class="primary" onclick="saveWorkflowTemplate()">Create Template</button>`)}
 function saveWorkflowTemplate(){const name=val("wftName"),dept=val("wftDept"),loc=val("wftLoc"),approval=val("wftApproval");if(!name||!dept||!loc||!approval){alert("Complete all required fields.");return}const id=nextId(state.workflowTemplates),steps=(val("wftSteps")||"").split(/\n+/).map(x=>x.trim()).filter(Boolean);state.workflowTemplates.push({id,ref:`WF-${String(id).padStart(3,"0")}`,name,department:dept,location:loc,priority:val("wftPriority"),frequency:val("wftFreq"),approval,status:"ACTIVE",steps:steps.length?steps:["Complete task","Record evidence","Approval"]});audit("CREATE","WORKFLOW_TEMPLATE",name);save();closeModal();render("workflows")}
 
-/* v1.1.48 — recurring workflow scheduling */
+/* v1.1.49 — recurring workflow scheduling */
 function workflowRecurrenceForTemplate(templateId){
  return (state.workflowRecurrenceRules||[]).find(x=>String(x.templateId)===String(templateId)&&x.status==="ACTIVE")
 }
