@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#06291f">
-<meta name="description" content="CCEMS Phase 1 v1.1.94 Estate Operations Control Centre demo">
+<meta name="description" content="CCEMS Phase 1 v1.1.96 Estate Operations Control Centre demo">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/crown-cross-estate-master.svg?v=0902" type="image/svg+xml">
-<title>CCEMS Phase 1 v1.1.94</title>
+<title>CCEMS Phase 1 v1.1.96</title>
 <style>
 :root{--g950:#06291f;--g900:#0b3529;--g800:#124635;--g700:#1c5b44;--gold:#c5a15a;--gold2:#e6d1a3;--cream:#f6f1e6;--paper:#fffdf8;--ink:#173329;--muted:#66736d;--line:#dde4de;--red:#b8433a;--amber:#ad781b;--blue:#2f6689;--shadow:0 12px 32px rgba(8,40,30,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}.hidden{display:none!important}
@@ -879,13 +879,13 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 @media(max-width:720px){.dependency-row{grid-template-columns:minmax(0,1fr);gap:7px}}
 
 
-/* v1.1.94 — explicit blocker state */
+/* v1.1.96 — explicit blocker state */
 .workflow-card[data-blocked="true"]{box-shadow:inset 4px 0 0 #a86e19}
 .workflow-card[data-blocked="true"] .workflow-progress>div{opacity:.55}
 .active-blocked{font-weight:900!important}
 
 
-/* v1.1.94 — controlled step execution & workflow timeline */
+/* v1.1.96 — controlled step execution & workflow timeline */
 .step-evidence-card{border:1px solid #d8ded8;border-radius:18px;padding:16px;margin:10px 0;background:#fffdf8;text-align:left;width:100%}
 .step-evidence-card strong{display:block;color:#123f32;margin-bottom:5px}
 .step-evidence-card small{display:block;color:#6d7772;line-height:1.45}
@@ -896,7 +896,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 .workflow-timeline-item span{margin-top:3px}.workflow-timeline-item small{color:#727b77;margin-top:4px}
 .step-control-note{padding:12px 14px;border-radius:14px;background:#eef5ef;margin:10px 0;color:#234b3d}
 
-/* v1.1.94 — SLA & due-date control */
+/* v1.1.96 — SLA & due-date control */
 .sla-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
 .sla-strip button{border:1px solid var(--cc-border);border-radius:14px;background:var(--cc-card-soft);padding:13px;text-align:left;color:var(--ink);cursor:pointer}
 .sla-strip span{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:800}
@@ -908,18 +908,18 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 @media(max-width:720px){.sla-strip{grid-template-columns:1fr 1fr}}
 
 
-/* v1.1.94 — workflow drill-down & zero-state UX */
+/* v1.1.96 — workflow drill-down & zero-state UX */
 .sla-strip button.zero-state,.workflow-kpis button.zero-state,.workflow-command-strip button.zero-state{opacity:.58;cursor:default}
 .workflow-zero{border:1px solid #d8e3d9;background:#eef6ef;border-radius:14px;padding:16px;color:#315b48;margin-top:12px}
 .workflow-result-head{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
 .workflow-result-count{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:800}
 
 
-/* v1.1.94 — clearer workflow history actor attribution */
+/* v1.1.96 — clearer workflow history actor attribution */
 .workflow-timeline-item small b{color:var(--g900);font-weight:800}
 
 
-/* v1.1.94 — controlled workflow evidence attachments */
+/* v1.1.96 — controlled workflow evidence attachments */
 .evidence-upload{border:1px dashed #aebdb4;border-radius:16px;padding:14px;background:#fbfcf9;margin-top:8px}
 .evidence-upload input[type=file]{width:100%;font-size:15px}
 .evidence-upload-help{display:block;color:#6d7772;font-size:13px;line-height:1.45;margin-top:7px}
@@ -930,7 +930,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 .evidence-file small{color:#6d7772;margin-top:3px}
 
 
-/* v1.1.94 — iPhone-native photo/document evidence pickers */
+/* v1.1.96 — iPhone-native photo/document evidence pickers */
 .evidence-picker-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .evidence-picker-btn{display:grid;grid-template-columns:auto 1fr;gap:2px 9px;align-items:center;border:1px solid var(--cc-border);border-radius:13px;background:var(--cc-card-soft);padding:13px;cursor:pointer;color:var(--g900);touch-action:manipulation}
 .evidence-picker-btn>span{grid-row:1/3;font-size:22px}
@@ -942,7 +942,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 @media(max-width:520px){.evidence-picker-grid{grid-template-columns:1fr}.evidence-picker-btn{min-height:58px}}
 
 
-/* v1.1.94 — universal CCEMS evidence upload standard */
+/* v1.1.96 — universal CCEMS evidence upload standard */
 .ccems-evidence-widget{margin-top:12px;border:1px solid #d6ded8;border-radius:15px;padding:13px;background:#fbfcf9}
 .ccems-evidence-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
 .ccems-evidence-title strong{color:var(--g900)}.ccems-evidence-title span{font-size:11px;color:var(--muted)}
@@ -954,7 +954,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 .ccems-evidence-selected-count{font-size:12px;font-weight:800;color:var(--g800);padding:5px 0}
 
 
-/* v1.1.94 — persistent evidence viewing */
+/* v1.1.96 — persistent evidence viewing */
 .ccems-evidence-openable{cursor:pointer}
 .ccems-evidence-openable:active{background:#f2f6f2}
 .evidence-open-label{display:block;margin-top:4px;font-size:11px;font-weight:800;color:var(--g800)}
@@ -964,7 +964,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 .evidence-doc-icon.large{width:72px;height:72px}
 
 
-/* v1.1.94 — evidence-aware approval management */
+/* v1.1.96 — evidence-aware approval management */
 .approval-queue{display:grid;gap:12px}
 .approval-card{border:1px solid var(--cc-border);border-radius:14px;background:var(--cc-card);overflow:hidden}
 .approval-card-main{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:start;width:100%;border:0;background:transparent;color:var(--ink);padding:14px;text-align:left;cursor:pointer}
@@ -981,16 +981,16 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 }
 
 
-/* v1.1.94 — evidence nested navigation */
+/* v1.1.96 — evidence nested navigation */
 .evidence-viewer-image-wrap + .stat{margin-top:12px}
 
 
-/* v1.1.94 — recurring workflow scheduling */
+/* v1.1.96 — recurring workflow scheduling */
 .tabs{overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
 .tabs button{flex:0 0 auto}
 
 
-/* v1.1.94 — visible workflow schedules navigation */
+/* v1.1.96 — visible workflow schedules navigation */
 .workflow-schedule-command{
  border:1px solid #c8b27c!important;
  background:#fffaf0!important;
@@ -1024,10 +1024,10 @@ td,th{overflow-wrap:anywhere;word-break:normal}
  }
 }
 
-/* v1.1.94 */
+/* v1.1.96 */
 .workflow-card-badges{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.sla-policy-tab{border-color:#c8b27c!important}
 
-/* v1.1.94 — mobile SLA command card alignment */
+/* v1.1.96 — mobile SLA command card alignment */
 .workflow-command-strip .sla-command-card{
  display:flex!important;
  flex-direction:column!important;
@@ -1077,7 +1077,7 @@ td,th{overflow-wrap:anywhere;word-break:normal}
 
 
 /* =========================================================
-   v1.1.94 — CCEMS SYSTEM-WIDE UI STANDARD
+   v1.1.96 — CCEMS SYSTEM-WIDE UI STANDARD
    One visual language across dashboards, modules and modals.
    ========================================================= */
 :root{
@@ -1324,9 +1324,9 @@ th,td{padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:top}
 
 
 /* =========================================================
-   v1.1.94 — CROWN & CROSS SURFACE PALETTE CORRECTION
+   v1.1.96 — CROWN & CROSS SURFACE PALETTE CORRECTION
    Restores the warm ivory estate character while preserving
-   the v1.1.94 system-wide spacing and component standards.
+   the v1.1.96 system-wide spacing and component standards.
    ========================================================= */
 :root{
  --cc-surface:#f7f2e7;
@@ -1481,7 +1481,7 @@ tbody tr:nth-child(even) td{
 
 
 /* =========================================================
-   v1.1.94 — LEGACY WHITE SURFACE SWEEP
+   v1.1.96 — LEGACY WHITE SURFACE SWEEP
    Removes remaining clinical-white dashboard/list surfaces.
    ========================================================= */
 
@@ -1551,7 +1551,7 @@ input,select,textarea,
 }
 
 
-/* v1.1.94 — exact Management Attention surface correction */
+/* v1.1.96 — exact Management Attention surface correction */
 .dash-attention > button,
 .card.panel .dash-attention > button{
  background:var(--cc-surface-soft)!important;
@@ -1565,7 +1565,7 @@ input,select,textarea,
 
 
 /* =========================================================
-   v1.1.94 — HEADER CONTRAST PROTECTION
+   v1.1.96 — HEADER CONTRAST PROTECTION
    Palette rules must never recolour the dark estate header.
    ========================================================= */
 .topbar,
@@ -1597,7 +1597,7 @@ header *{
 
 
 /* =========================================================
-   v1.1.94 — MOBILE HEADER RECOMPOSITION
+   v1.1.96 — MOBILE HEADER RECOMPOSITION
    Compact, balanced Crown & Cross application header.
    ========================================================= */
 
@@ -1744,7 +1744,7 @@ header::after{
 }
 
 
-/* v1.1.94 exact header selectors */
+/* v1.1.96 exact header selectors */
 .top{
  min-height:84px!important;
  padding:12px 16px!important;
@@ -1816,7 +1816,7 @@ header::after{
 
 
 /* =========================================================
-   v1.1.94 — CROWN & CROSS MOBILE APPLICATION BAR
+   v1.1.96 — CROWN & CROSS MOBILE APPLICATION BAR
    ========================================================= */
 
 .top{
@@ -1995,7 +1995,7 @@ header::after{
 
 
 /* =========================================================
-   v1.1.94 — ADAPTIVE MOBILE HEADER
+   v1.1.96 — ADAPTIVE MOBILE HEADER
    Full module names must remain readable on phone screens.
    ========================================================= */
 
@@ -2110,7 +2110,7 @@ header::after{
 
 
 /* =========================================================
-   v1.1.94 — TASK CARD SURFACE HARMONISATION
+   v1.1.96 — TASK CARD SURFACE HARMONISATION
    Warm Crown & Cross hierarchy for task records.
    ========================================================= */
 :root{
@@ -2216,7 +2216,7 @@ header::after{
 
 
 /* =========================================================
-   v1.1.94 — CCEMS FULL WHITE-SURFACE AUDIT
+   v1.1.96 — CCEMS FULL WHITE-SURFACE AUDIT
    All non-functional white surfaces are harmonised with the
    Crown & Cross warm ivory / parchment system.
    ========================================================= */
@@ -2449,7 +2449,7 @@ textarea,
 
 
 /* =========================================================
-   v1.1.94 — LONG-TITLE MOBILE HEADER FIX
+   v1.1.96 — LONG-TITLE MOBILE HEADER FIX
    Authoritative final mobile header rules.
    ========================================================= */
 
@@ -2605,7 +2605,7 @@ textarea,
 
 
 /* =========================================================
-   v1.1.94 — FINAL WHITE-SURFACE ELIMINATION
+   v1.1.96 — FINAL WHITE-SURFACE ELIMINATION
    No non-functional CCEMS UI surface may render pure white.
    ========================================================= */
 
@@ -2662,7 +2662,7 @@ textarea,
 
 
 /* =========================================================
-   v1.1.94 — TASK RECORD COLUMN REFINEMENT
+   v1.1.96 — TASK RECORD COLUMN REFINEMENT
    Cleaner two-column metadata grid with consistent alignment.
    ========================================================= */
 
@@ -2848,11 +2848,11 @@ textarea,
 }
 
 
-/* v1.1.94 — Staff Activity, Attendance & Audit Management */
+/* v1.1.96 — Staff Activity, Attendance & Audit Management */
 .staff-audit-shell{display:grid;gap:16px}.staff-audit-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.staff-audit-kpi{background:var(--cc-card);border:1px solid var(--cc-border);border-radius:15px;padding:15px}.staff-audit-kpi small{display:block;color:var(--muted);font-size:10px;font-weight:850;letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px}.staff-audit-kpi strong{display:block;color:var(--g900);font-family:Georgia,serif;font-size:27px}.staff-audit-tabs{display:flex;gap:8px;flex-wrap:wrap}.staff-audit-tabs button{background:var(--cc-card-soft);border:1px solid var(--cc-border);color:var(--g900);border-radius:10px;padding:10px 13px;font-weight:750}.staff-audit-tabs button.active{background:var(--g900);color:#fffdf8}.staff-audit-panel{background:var(--cc-card);border:1px solid var(--cc-border);border-radius:16px;padding:16px}.staff-audit-list{display:grid;gap:10px}.staff-audit-row{display:grid;grid-template-columns:minmax(170px,1.2fr) repeat(4,minmax(95px,.7fr));background:var(--cc-cell);border:1px solid var(--cc-border);border-radius:13px;overflow:hidden}.staff-audit-cell{padding:13px 14px;min-width:0;border-left:1px solid var(--cc-border)}.staff-audit-cell:first-child{border-left:0}.staff-audit-cell small{display:block;font-size:9px;letter-spacing:.11em;text-transform:uppercase;font-weight:850;color:var(--muted);margin-bottom:5px}.staff-audit-cell strong{display:block;color:var(--g900);font-size:14px}.staff-status:before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#2f7650;margin-right:6px}.staff-status.off:before{background:#9a8d76}.staff-audit-note{background:#f4efe2;border:1px solid var(--cc-border);border-radius:12px;padding:12px;color:var(--g900)}.audit-event{display:grid;grid-template-columns:92px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--cc-border)}.audit-time{font-weight:800;color:var(--muted)}
 @media(max-width:720px){.staff-audit-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.staff-audit-row{grid-template-columns:1fr 1fr}.staff-audit-cell{border-left:0;border-top:1px solid var(--cc-border)}.staff-audit-cell:first-child{grid-column:1/-1;border-top:0}.staff-audit-cell:nth-child(even){border-left:1px solid var(--cc-border)}}
 
-/* v1.1.94 — controlled attendance location selector */
+/* v1.1.96 — controlled attendance location selector */
 .staff-shift-location select,
 #shiftLocation,
 select[id*="Loc"],
@@ -2871,7 +2871,7 @@ select[id*="loc"]{
 }
 
 
-/* v1.1.94 — exact Add Shift location selector */
+/* v1.1.96 — exact Add Shift location selector */
 #shLoc{
  -webkit-appearance:menulist!important;
  appearance:auto!important;
@@ -2888,7 +2888,7 @@ select[id*="loc"]{
 }
 
 
-/* v1.1.94 — clickable Rota & Attendance subsection headings */
+/* v1.1.96 — clickable Rota & Attendance subsection headings */
 .section-drill-heading{
  width:100%!important;
  display:flex!important;
@@ -2976,7 +2976,7 @@ select[id*="loc"]{
 
 
 /* =========================================================
-   v1.1.94 — ADD SHIFT FORM UNIFORMITY
+   v1.1.96 — ADD SHIFT FORM UNIFORMITY
    Exact equal width/height for Staff, Date, Start, End, Location.
    ========================================================= */
 .shift-form-uniform{
@@ -3066,7 +3066,7 @@ select[id*="loc"]{
 
 
 /* =========================================================
-   v1.1.94 — ADD SHIFT EXACT WIDTH CORRECTION
+   v1.1.96 — ADD SHIFT EXACT WIDTH CORRECTION
    All controls share the same parent, width and box model.
    ========================================================= */
 .shift-form-uniform{
@@ -3166,7 +3166,7 @@ select[id*="loc"]{
 
 
 /* =========================================================
-   v1.1.94 — ADD SHIFT SHARED CONTROL GEOMETRY
+   v1.1.96 — ADD SHIFT SHARED CONTROL GEOMETRY
    One class, one width, one box model for every field.
    ========================================================= */
 .shift-form-uniform{
@@ -3246,7 +3246,7 @@ select#shLoc.shift-control,
 }
 
 
-/* v1.1.94 — iOS visual-width lock for Add Shift selects */
+/* v1.1.96 — iOS visual-width lock for Add Shift selects */
 .shift-form-uniform .shift-select-field{
  position:relative!important;
 }
@@ -3274,7 +3274,7 @@ select#shLoc.shift-control,
 
 
 /* =========================================================
-   v1.1.94 — SAFARI ADD SHIFT WIDTH LOCK
+   v1.1.96 — SAFARI ADD SHIFT WIDTH LOCK
    Runtime JS supplies exact pixel width; these rules prevent
    parent shrinkage or intrinsic select sizing.
    ========================================================= */
@@ -3317,7 +3317,7 @@ select#shLoc.shift-control,
 
 
 /* =========================================================
-   v1.1.94 — CUSTOM ADD SHIFT PICKERS
+   v1.1.96 — CUSTOM ADD SHIFT PICKERS
    Avoids iOS native-select intrinsic width differences.
    ========================================================= */
 .shift-form-uniform .shift-picker-btn{
@@ -3370,7 +3370,7 @@ select#shLoc.shift-control,
 }
 
 
-/* v1.1.94 — Count Heading Spacing */
+/* v1.1.96 — Count Heading Spacing */
 .ccems-count-heading{
  display:inline-flex!important;
  align-items:baseline!important;
@@ -3384,7 +3384,7 @@ select#shLoc.shift-control,
 }
 
 
-/* v1.1.94 — exact workflow result label/count spacing */
+/* v1.1.96 — exact workflow result label/count spacing */
 .workflow-result-title{
  display:inline-flex!important;
  align-items:baseline!important;
@@ -3399,7 +3399,7 @@ select#shLoc.shift-control,
 }
 
 
-/* v1.1.94 — hard fix for ALL 5 WORKFLOWS spacing */
+/* v1.1.96 — hard fix for ALL 5 WORKFLOWS spacing */
 .workflow-result-title>strong{
  display:block!important;
  white-space:nowrap!important;
@@ -3409,7 +3409,7 @@ select#shLoc.shift-control,
 }
 
 
-/* v1.1.94 — Maintenance Summary redesign */
+/* v1.1.96 — Maintenance Summary redesign */
 .maintenance-summary-grid{
  display:grid;
  grid-template-columns:repeat(2,minmax(0,1fr));
@@ -3460,7 +3460,7 @@ select#shLoc.shift-control,
 
 
 /* =========================================================
-   v1.1.94 — WORKFLOW KPI GEOMETRY STANDARD
+   v1.1.96 — WORKFLOW KPI GEOMETRY STANDARD
    One consistent label / number / supporting-text layout.
    ========================================================= */
 
@@ -3641,7 +3641,7 @@ select#shLoc.shift-control,
 
 
 /* =========================================================
-   v1.1.94 — UNIFIED WORKFLOW TILE STRUCTURE
+   v1.1.96 — UNIFIED WORKFLOW TILE STRUCTURE
    Every workflow metric now uses the same markup and geometry.
    ========================================================= */
 .workflow-unified-grid{
@@ -3759,7 +3759,7 @@ select#shLoc.shift-control,
 
 
 /* =========================================================
-   v1.1.94 — UNIVERSAL CLICKABLE SECTION HEADERS
+   v1.1.96 — UNIVERSAL CLICKABLE SECTION HEADERS
    ========================================================= */
 .ccems-section-heading[role="button"]{
  position:relative!important;
@@ -3826,7 +3826,7 @@ select#shLoc.shift-control,
 
 
 /* =========================================================
-   v1.1.94 — CCEMS SEARCH SYSTEM REPAIR
+   v1.1.96 — CCEMS SEARCH SYSTEM REPAIR
    ========================================================= */
 .toolbar{
  position:relative!important;
@@ -3874,7 +3874,7 @@ select#shLoc.shift-control,
 }
 
 
-/* v1.1.94 — Staff / HR management integration */
+/* v1.1.96 — Staff / HR management integration */
 .staff-profile-tabs{display:flex!important;flex-wrap:wrap!important;gap:7px!important;margin-bottom:16px!important}
 .staff-profile-tabs button{flex:1 1 140px!important;min-height:44px!important;padding:9px 12px!important;border:1px solid var(--cc-border)!important;border-radius:10px!important;background:var(--cc-card-soft)!important;color:var(--g900)!important;font-weight:750!important}
 .staff-profile-tabs button.active{background:var(--g900)!important;border-color:var(--g900)!important;color:#fff!important}
@@ -3894,7 +3894,7 @@ select#shLoc.shift-control,
 @media(max-width:390px){.staff-profile-tabs button{flex-basis:100%!important}}
 
 
-/* v1.1.94 — People Operations Command Dashboard */
+/* v1.1.96 — People Operations Command Dashboard */
 .people-command-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin-bottom:16px}
 .people-command-panel{margin-bottom:16px}
 .people-command-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
@@ -3905,7 +3905,7 @@ select#shLoc.shift-control,
 @media(max-width:720px){.people-command-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.people-command-grid{grid-template-columns:1fr}}
 
 
-/* v1.1.94 — Add Staff controlled dropdowns */
+/* v1.1.96 — Add Staff controlled dropdowns */
 #sfDept,#sfRole,#sfManager{
  width:100%!important;
  min-width:100%!important;
@@ -3924,7 +3924,7 @@ select#shLoc.shift-control,
 }
 
 
-/* v1.1.94 — Controlled Staff Onboarding */
+/* v1.1.96 — Controlled Staff Onboarding */
 .staff-onboarding{display:grid;gap:14px}
 .staff-onboard-section{border:1px solid var(--cc-border);border-radius:14px;background:var(--cc-card-soft);padding:14px}
 .staff-onboard-section h4{margin:0 0 12px;color:var(--g900);font-family:Georgia,serif;font-size:18px}
@@ -3934,14 +3934,14 @@ select#shLoc.shift-control,
 @media(max-width:720px){.staff-onboard-section .grid2{grid-template-columns:1fr!important}.staff-onboard-actions button{flex:1}}
 
 
-/* v1.1.94 — Staff Profile Lifecycle Management */
+/* v1.1.96 — Staff Profile Lifecycle Management */
 .staff-profile-actions{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--cc-border)}
 .staff-profile-actions button{min-height:42px}.staff-delete-action{margin-left:auto}
 button.danger{background:#7a2e2e!important;border:1px solid #7a2e2e!important;color:#fff!important;border-radius:10px;padding:10px 14px;font-weight:800}
 .danger-notice{border:1px solid rgba(122,46,46,.35);border-radius:13px;background:rgba(122,46,46,.06);padding:14px;margin-bottom:14px}.danger-notice p{color:var(--muted);margin:5px 0 0}
 @media(max-width:720px){.staff-profile-actions{display:grid;grid-template-columns:1fr 1fr}.staff-profile-actions button{width:100%}.staff-delete-action{margin-left:0;grid-column:1/-1}}
 
-/* v1.1.94 — Staff lifecycle interaction repair */
+/* v1.1.96 — Staff lifecycle interaction repair */
 .staff-profile-head-actions{display:flex;align-items:center;gap:8px}
 .staff-profile-actions button{pointer-events:auto!important;position:relative!important;z-index:2!important}
 @media(max-width:720px){
@@ -3951,7 +3951,7 @@ button.danger{background:#7a2e2e!important;border:1px solid #7a2e2e!important;co
 
 
 /* =========================================================
-   v1.1.94 — STAFF ACCOUNTS, ROLES & PERMISSIONS
+   v1.1.96 — STAFF ACCOUNTS, ROLES & PERMISSIONS
    ========================================================= */
 .access-command-kpis{grid-template-columns:repeat(3,minmax(0,1fr))!important}
 .staff-accounts-panel{margin-bottom:16px!important}
@@ -3999,11 +3999,11 @@ button.danger{background:#7a2e2e!important;border:1px solid #7a2e2e!important;co
 }
 
 
-/* v1.1.94 — People Operations access navigation correction */
+/* v1.1.96 — People Operations access navigation correction */
 .ccems-focus-panel{outline:2px solid var(--gold)!important;outline-offset:3px!important;transition:outline .2s ease}
 
 
-/* v1.1.94 — Contextual People Operations navigation */
+/* v1.1.96 — Contextual People Operations navigation */
 .staff-context-nav{
  display:flex!important;
  align-items:center!important;
@@ -4027,7 +4027,7 @@ button.danger{background:#7a2e2e!important;border:1px solid #7a2e2e!important;co
 }
 
 
-/* v1.1.94 — definitive People Operations return navigation */
+/* v1.1.96 — definitive People Operations return navigation */
 .people-return-nav{
  display:grid!important;
  grid-template-columns:repeat(2,minmax(0,1fr))!important;
@@ -4047,7 +4047,7 @@ button.danger{background:#7a2e2e!important;border:1px solid #7a2e2e!important;co
 }
 
 
-/* v1.1.94 — Role Profiles mobile card redesign */
+/* v1.1.96 — Role Profiles mobile card redesign */
 .role-profiles-panel{overflow:hidden}
 .role-profiles-panel .dash-section-head{margin-bottom:8px}
 .role-profile-list{display:grid;gap:10px}
@@ -4085,7 +4085,7 @@ button.danger{background:#7a2e2e!important;border:1px solid #7a2e2e!important;co
 }
 
 
-/* v1.1.94 — Role Profile Surface Palette Correction */
+/* v1.1.96 — Role Profile Surface Palette Correction */
 .role-profiles-panel{
  background:var(--cc-card)!important;
  border-color:var(--cc-border)!important;
@@ -4111,7 +4111,7 @@ button.danger{background:#7a2e2e!important;border:1px solid #7a2e2e!important;co
 }
 
 
-/* v1.1.94 — Definitive Role Profiles Surface Contrast
+/* v1.1.96 — Definitive Role Profiles Surface Contrast
    Explicit colours used so this cannot resolve visually as white. */
 .role-profiles-panel{
  background:#f1e8d7!important;
@@ -4139,14 +4139,14 @@ button.role-profile-row:active{
 }
 
 
-/* v1.1.94 — Staff Lifecycle & Employment */
+/* v1.1.96 — Staff Lifecycle & Employment */
 .lifecycle-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-bottom:14px}.lifecycle-kpis>div{padding:12px;border:1px solid var(--cc-border);border-radius:12px;background:var(--cc-card-soft)}.lifecycle-kpis small{display:block;margin-bottom:6px;font-size:9px;font-weight:850;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .lifecycle-timeline{display:grid;margin-top:10px}.lifecycle-event{display:grid;grid-template-columns:18px 1fr;gap:10px;position:relative;padding-bottom:18px}.lifecycle-event>i{width:13px;height:13px;border-radius:50%;background:var(--g700);margin-top:3px}.lifecycle-event-head{display:flex;justify-content:space-between;gap:10px}.lifecycle-event p{margin:5px 0;font-weight:700}.lifecycle-event span,.lifecycle-event em{display:block;color:var(--muted);font-size:12px;line-height:1.4;font-style:normal}.lifecycle-event em{margin-top:5px;color:var(--g700);font-weight:800}
 .lifecycle-due-list{display:grid;gap:8px}.lifecycle-due-list>button{width:100%;display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;text-align:left;padding:12px;border:1px solid var(--cc-border);border-radius:12px;background:var(--cc-card-soft);color:var(--g900)}.lifecycle-due-list span{display:grid;gap:4px}.lifecycle-due-list small{font-size:9px;text-transform:uppercase;color:var(--muted)}
 @media(max-width:720px){.lifecycle-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.lifecycle-event-head{display:grid}}
 
 
-/* v1.1.94 — Controlled Species & Breed Selection */
+/* v1.1.96 — Controlled Species & Breed Selection */
 #naSpecies,#naBreed{
  width:100%!important;min-width:100%!important;max-width:100%!important;
  height:56px!important;min-height:56px!important;box-sizing:border-box!important;
@@ -4159,17 +4159,17 @@ button.role-profile-row:active{
 }
 
 
-/* v1.1.94 — Controlled Animal Group & Location */
+/* v1.1.96 — Controlled Animal Group & Location */
 #naGroup,#naLoc{width:100%!important;min-width:100%!important;max-width:100%!important;height:56px!important;min-height:56px!important;box-sizing:border-box!important;background:#fffef9!important;border:1px solid var(--cc-border)!important;border-radius:13px!important;padding:0 42px 0 16px!important;color:var(--g900)!important;font:inherit!important}
 
 
-/* v1.1.94 — Livestock Production Units */
+/* v1.1.96 — Livestock Production Units */
 #naUnit{width:100%!important;min-width:100%!important;max-width:100%!important;height:56px!important;min-height:56px!important;box-sizing:border-box!important;background:#fffef9!important;border:1px solid var(--cc-border)!important;border-radius:13px!important;padding:0 42px 0 16px!important;color:var(--g900)!important;font:inherit!important}
 .livestock-unit-list{display:grid;gap:9px}.livestock-unit-row{display:grid;grid-template-columns:1.15fr 1fr 1fr;border:1px solid var(--cc-border);border-radius:12px;background:var(--cc-card-soft);overflow:hidden}.livestock-unit-row>span{display:grid;gap:5px;padding:12px;border-left:1px solid var(--cc-border)}.livestock-unit-row>span:first-child{border-left:0}.livestock-unit-row small{font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:800}.livestock-unit-row strong{font-size:13px;color:var(--g900)}
 @media(max-width:720px){.livestock-unit-row{grid-template-columns:1fr}.livestock-unit-row>span{border-left:0;border-top:1px solid var(--cc-border)}.livestock-unit-row>span:first-child{border-top:0}}
 
 
-/* v1.1.94 — Add Animal Form Uniformity */
+/* v1.1.96 — Add Animal Form Uniformity */
 .animal-create-modal .grid2{
  align-items:start!important;
  gap:18px!important;
@@ -4260,7 +4260,7 @@ button.role-profile-row:active{
 
 
 /* =========================================================
-   v1.1.94 — Definitive Add Animal Structural Uniformity
+   v1.1.96 — Definitive Add Animal Structural Uniformity
    Flat field stack; no inherited grid2/field sizing.
    ========================================================= */
 .animal-create-modal{
@@ -4380,7 +4380,7 @@ button.role-profile-row:active{
 }
 
 .animal-field input[readonly]{background:#f2efe5!important;color:#66706b!important;font-weight:750!important}.animal-id-note{display:block;margin-top:-3px;font-size:10px;line-height:1.35;color:var(--muted)}
-/* v1.1.94 — Automatic Sequential Management Tags */
+/* v1.1.96 — Automatic Sequential Management Tags */
 #naMgmtTag[readonly],#naId[readonly]{
  background:#f2efe5!important;
  color:#5e6863!important;
@@ -4389,7 +4389,7 @@ button.role-profile-row:active{
 }
 
 
-/* v1.1.94 — Management Tag Sequence Reliability */
+/* v1.1.96 — Management Tag Sequence Reliability */
 #naMgmtTag[readonly]{
  background:#ebe4d4!important;
  border-color:#c7b790!important;
@@ -4405,12 +4405,30 @@ button.role-profile-row:active{
  font-weight:750;
 }
 
+
+/* v1.1.96 — Heritage Egg Collection Eligibility */
+.animal-field-wide{grid-column:1/-1!important}
+.animal-house-eligibility{min-height:58px;padding:12px 14px;border-radius:14px;border:1px solid var(--cc-border);display:flex;flex-direction:column;justify-content:center;gap:4px;box-sizing:border-box}
+.animal-house-eligibility strong{font-size:12px}.animal-house-eligibility span{font-size:11px;line-height:1.4}
+.animal-house-eligibility.neutral{background:#f3ecdd;color:var(--muted)}
+.animal-house-eligibility.allowed{background:#e7efe8;border-color:#9fb6a2;color:#27573f}
+.animal-house-eligibility.blocked{background:#f6e7e3;border-color:#c99a91;color:#7a2e2e}
+.poultry-rule-list{display:grid;gap:10px}.poultry-rule-card{display:grid;grid-template-columns:1fr 1.4fr;gap:0;border:1px solid var(--cc-border);border-radius:12px;overflow:hidden;background:var(--cc-card-soft)}.poultry-rule-card>div{padding:12px}.poultry-rule-card>div+div{border-left:1px solid var(--cc-border)}.poultry-rule-card small,.poultry-house-summary small{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:850;margin-bottom:5px}.poultry-rule-card span{font-size:11px;color:var(--muted)}.poultry-rule-card p{display:flex;flex-wrap:wrap;gap:5px;margin:0}.rule-breed{padding:4px 7px;border:1px solid var(--cc-border);border-radius:999px;background:#eee5d4;color:var(--g900)!important}
+.poultry-house-summary{display:grid;grid-template-columns:120px 1fr;gap:12px}.poultry-house-summary>div{padding:10px 0}.poultry-house-summary strong{font-size:13px;color:var(--g900)}
+@media(max-width:720px){.poultry-rule-card{grid-template-columns:1fr}.poultry-rule-card>div+div{border-left:0;border-top:1px solid var(--cc-border)}.poultry-house-summary{grid-template-columns:1fr}.animal-field-wide{grid-column:auto!important}}
+
+
+/* v1.1.96 — Verified Heritage Egg Collection Rules */
+.rule-status{display:inline-block;margin-top:7px;padding:4px 7px;border-radius:999px;font-style:normal;font-size:8px;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
+.rule-status.verified{background:#e3eee5;color:#285a3d}.rule-status.pending,.rule-pending{background:#f2e6cf;color:#785d28}
+.rule-pending{display:inline-block;padding:6px 8px;border-radius:8px;font-size:10px;font-weight:800}
+
 </style>
 </head>
 <body>
 <section id="login" class="login">
  <div class="hero"><div class="logo"><div class="cc-logo login-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><h1>CROWN & CROSS</h1><div class="sub">Organic Estate</div><div class="motto">Faith • Family • Farm • Future</div></div></div>
- <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.94</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
+ <div class="loginPanel"><div class="loginCard"><div class="eyebrow">CCEMS · Phase 1 v1.1.96</div><h2>Welcome Back</h2><p class="muted">Estate Operations Control Centre — integrated Phase 1 command, alerts, approvals, incidents, diary, documents and executive reporting.</p><div class="field"><label>Email</label><input id="email" value="manager@crowncross.local"></div><div class="field"><label>Password</label><input id="password" type="password" value="FaithFamilyFarmFuture!"></div><button class="primary" style="width:100%" onclick="login()">SIGN IN</button><p class="muted" style="margin-top:24px;font-family:Georgia,serif;font-style:italic">“Whatever you do, work at it with all your heart…” — Colossians 3:23</p></div></div>
 </section>
 <section id="app" class="app hidden"><div id="sideBackdrop" class="side-backdrop" onclick="toggleSideNav(false)"></div>
  <aside class="side" id="ccemsSideNav"><button class="side-close-btn" type="button" onclick="toggleSideNav(false)" aria-label="Close navigation">×</button><div class="brand"><div class="cc-logo side-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt="Crown & Cross logo"></div><strong>CROWN & CROSS</strong><small>Organic Estate · CCEMS</small></div>
@@ -4424,6 +4442,7 @@ button.role-profile-row:active{
   <button data-page="animals"><span class="ic">♞</span>Animals</button>
   <button data-page="breeds"><span class="ic">◈</span>Species & Breed Database</button>
   <button data-page="livestockunits"><span class="ic">▦</span>Livestock Units & Houses</button>
+  <button data-page="eggtrace"><span class="ic">◉</span>Heritage Egg Traceability</button>
   <button data-page="health"><span class="ic">✚</span>Health & Medicines</button>
   <button data-page="breeding"><span class="ic">◌</span>Breeding & Births</button>
   <button data-page="movements"><span class="ic">⇄</span>Movements</button>
@@ -4472,7 +4491,7 @@ button.role-profile-row:active{
   <button data-page="ppe"><span class="ic">◇</span>PPE & Equipment</button>
   <button data-page="audit"><span class="ic">≡</span>Audit History</button>
   </div><div class="sideFoot">Faith • Family • Farm • Future</div></aside>
- <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation"><span class="menu-icon">☰</span><span>Menu</span></button><div class="top-brand"><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><div class="top-title-wrap"><span id="pageTitle">Estate Dashboard</span><small>Crown & Cross Estate Management System</small></div></div><div class="topRight"><span>CCEMS v1.1.94</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
+ <main class="main"><header class="top"><button class="mobile-menu-btn" type="button" onclick="toggleSideNav()" aria-label="Open navigation"><span class="menu-icon">☰</span><span>Menu</span></button><div class="top-brand"><span class="cc-logo top-logo"><img src="/crown-cross-estate-master.svg?v=0902" alt=""></span><div class="top-title-wrap"><span id="pageTitle">Estate Dashboard</span><small>Crown & Cross Estate Management System</small></div></div><div class="topRight"><span>CCEMS v1.1.96</span><span>● Secure Demo</span></div></header><div id="view" class="content"></div></main>
 </section>
 <div id="modalRoot"></div>
 <script>
@@ -4758,7 +4777,7 @@ function load(){try{
 }catch(e){return clone(defaults)}}
 function normaliseState(s){
  s=s&&typeof s==="object"?s:{};
- ["tasks","animals","compliance","staff","land","flocks","movements","grazing","crops","soilTests","inputs","harvests","fieldOps","assets","workOrders","inspections","fuelLogs","parts","suppliers","training","shifts","attendance","leave","ppe","taskRules","recurringTasks","checklistRuns","correctiveActions","approvals","sopAcknowledgements","complianceEvidence","inventory","stockIssues","purchaseRequisitions","purchaseOrders","goodsReceipts","procurementSuppliers","workflowTemplates","workflowRuns","workflowComments","workflowEscalations","workflowDependencies","workflowBlockers","workflowStepRecords","workflowHistory","evidenceAttachments","workflowApprovalReviews","workflowRecurrenceRules","workflowSLAPolicies","auditReports","permissionOverrides","executiveReports","notifications","estateDiary","incidents","documents","roles","activityFeed","userAccounts","employmentLifecycle","breedCatalog","animalGroups","estateLocations","livestockUnits"].forEach(k=>{
+ ["tasks","animals","compliance","staff","land","flocks","movements","grazing","crops","soilTests","inputs","harvests","fieldOps","assets","workOrders","inspections","fuelLogs","parts","suppliers","training","shifts","attendance","leave","ppe","taskRules","recurringTasks","checklistRuns","correctiveActions","approvals","sopAcknowledgements","complianceEvidence","inventory","stockIssues","purchaseRequisitions","purchaseOrders","goodsReceipts","procurementSuppliers","workflowTemplates","workflowRuns","workflowComments","workflowEscalations","workflowDependencies","workflowBlockers","workflowStepRecords","workflowHistory","evidenceAttachments","workflowApprovalReviews","workflowRecurrenceRules","workflowSLAPolicies","auditReports","permissionOverrides","executiveReports","notifications","estateDiary","incidents","documents","roles","activityFeed","userAccounts","employmentLifecycle","breedCatalog","animalGroups","estateLocations","livestockUnits","poultryHouseRules"].forEach(k=>{
    if(!Array.isArray(s[k]))s[k]=clone(defaults[k]||[]);
    else s[k]=s[k].filter(x=>x!==null&&x!==undefined)
  });
@@ -5005,7 +5024,7 @@ function ccemsWireSubsections(page){
 }
 
 
-/* v1.1.94 — universal CCEMS evidence attachment framework */
+/* v1.1.96 — universal CCEMS evidence attachment framework */
 function ccemsEvidenceKey(module,recordId,field){
  return `${String(module||"GENERAL")}::${String(recordId||"NEW")}::${String(field||"EVIDENCE")}`
 }
@@ -5112,7 +5131,7 @@ function ccemsInjectEvidenceWidgets(){
 }
 
 
-/* v1.1.94 — persistent evidence viewer */
+/* v1.1.96 — persistent evidence viewer */
 function ccemsEvidenceById(id){
  return (state.evidenceAttachments||[]).find(x=>String(x.id)===String(id))
 }
@@ -5145,7 +5164,7 @@ function ccemsOpenEvidenceData(id){
 }
 
 
-/* v1.1.94 — nested evidence return navigation */
+/* v1.1.96 — nested evidence return navigation */
 window.__ccemsReturnStack=window.__ccemsReturnStack||[];
 
 function ccemsPushReturnContext(fn,args=[]){
@@ -5170,7 +5189,7 @@ function ccemsEvidenceListFrom(module,recordId,field,returnFn,...returnArgs){
 }
 
 
-/* v1.1.94 — guaranteed Staff Activity menu registration */
+/* v1.1.96 — guaranteed Staff Activity menu registration */
 function ccemsEnsureStaffAuditNavigation(){
  document.querySelectorAll(".nav").forEach(nav=>{
    const staffBtn=nav.querySelector('button[data-page="staff"]');
@@ -5284,7 +5303,7 @@ function render(page){
  document.querySelectorAll(".nav button[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
  const v=document.getElementById("view");
  try{
-   ({dashboard:renderDashboard,tasks:renderTasksV08,deptwork:renderDeptWork,workflows:renderWorkflows,animals:renderAnimals,breeds:renderBreedDatabase,livestockunits:renderLivestockUnits,health:renderHealth,breeding:renderBreeding,movements:renderMovements,flocks:renderFlocks,land:renderLand,grazing:renderGrazing,crops:renderCrops,soil:renderSoil,harvest:renderHarvest,sops:renderSops,checklists:renderChecklists,corrective:renderCorrective,compliance:renderComplianceV08,controlcentre:renderControlCentre,approvals:renderApprovalInbox,diary:renderDiary,incidents:renderIncidents,documents:renderDocuments,reports:renderReports,access:renderAccessModel,inventory:renderInventory,purchasing:renderPurchasing,goods:renderGoods,suppliers:renderSuppliers,maintenance:renderMaintenance,assets:renderAssets,fleet:renderFleet,inspections:renderInspections,fuel:renderFuel,people:renderPeopleOperations,staff:renderStaff,staffaudit:renderStaffAudit,lifecycle:renderLifecycle,rota:renderRota,training:renderTraining,competency:renderCompetency,leave:renderLeave,ppe:renderPPE,workflows:renderWorkflows,audit:renderAudit}[page]||renderDashboard)(v);
+   ({dashboard:renderDashboard,tasks:renderTasksV08,deptwork:renderDeptWork,workflows:renderWorkflows,animals:renderAnimals,breeds:renderBreedDatabase,livestockunits:renderLivestockUnits,eggtrace:renderPoultryTraceability,health:renderHealth,breeding:renderBreeding,movements:renderMovements,flocks:renderFlocks,land:renderLand,grazing:renderGrazing,crops:renderCrops,soil:renderSoil,harvest:renderHarvest,sops:renderSops,checklists:renderChecklists,corrective:renderCorrective,compliance:renderComplianceV08,controlcentre:renderControlCentre,approvals:renderApprovalInbox,diary:renderDiary,incidents:renderIncidents,documents:renderDocuments,reports:renderReports,access:renderAccessModel,inventory:renderInventory,purchasing:renderPurchasing,goods:renderGoods,suppliers:renderSuppliers,maintenance:renderMaintenance,assets:renderAssets,fleet:renderFleet,inspections:renderInspections,fuel:renderFuel,people:renderPeopleOperations,staff:renderStaff,staffaudit:renderStaffAudit,lifecycle:renderLifecycle,rota:renderRota,training:renderTraining,competency:renderCompetency,leave:renderLeave,ppe:renderPPE,workflows:renderWorkflows,audit:renderAudit}[page]||renderDashboard)(v);
    ensureDashboardBack(page);
    ccemsEnsurePeopleContext(page);
    ccemsWireSubsections(page)
@@ -5432,15 +5451,133 @@ function completeTask(id){const x=state.tasks.find(t=>t.id===id);x.status="COMPL
 
 
 /* =========================================================
-   v1.1.94 — CENTRAL SPECIES & BREED DATABASE
+   v1.1.96 — CENTRAL SPECIES & BREED DATABASE
    Controlled livestock taxonomy reused across CCEMS.
    ========================================================= */
 
 
 /* =========================================================
-   v1.1.94 — LIVESTOCK PRODUCTION UNIT HIERARCHY
+   v1.1.96 — LIVESTOCK PRODUCTION UNIT HIERARCHY
    Species → Unit/House/Herd/Flock → Operational Group → Location
    ========================================================= */
+
+/* =========================================================
+   v1.1.96 — HERITAGE EGG HOUSE ELIGIBILITY & TRACEABILITY
+   ========================================================= */
+
+function ccemsHeritageEggHouses(){
+ return ["Spring Collection","Summer Collection","Harvest Collection","Christmas Estate Collection","Heritage Reserve Collection"]
+}
+
+function ccemsDefaultPoultryHouseRules(){
+ /* Verified against the supplied Crown & Cross Heritage Egg collection boards.
+    Christmas and Heritage Reserve remain deliberately locked until their
+    breed specifications are approved. */
+ return [
+  {house:"Spring Collection",box:"Spring Heritage Egg Collection",allowedBreeds:["Cream Legbar","Olive Egger","Buff Orpington","Light Sussex","Welsummer","Marans"],status:"ACTIVE",verification:"VERIFIED"},
+  {house:"Summer Collection",box:"Summer Heritage Egg Collection",allowedBreeds:["Cream Legbar","Olive Egger","Buff Orpington","Welsummer","Marans"],status:"ACTIVE",verification:"VERIFIED"},
+  {house:"Harvest Collection",box:"Harvest Heritage Egg Collection",allowedBreeds:["Marans","Welsummer","Olive Egger","Buff Orpington","Speckled Sussex"],status:"ACTIVE",verification:"VERIFIED"},
+  {house:"Christmas Estate Collection",box:"Christmas Estate Heritage Egg Collection",allowedBreeds:[],status:"PENDING_APPROVAL",verification:"PENDING"},
+  {house:"Heritage Reserve Collection",box:"Royal Estate / Heritage Reserve Collection",allowedBreeds:[],status:"PENDING_APPROVAL",verification:"PENDING"}
+ ]
+}
+
+function ccemsEnsurePoultryHouseRules(){
+ state.poultryHouseRules=Array.isArray(state.poultryHouseRules)?state.poultryHouseRules:[];
+ const version="2026-08-10-VERIFIED-COLLECTIONS";
+ if(state.poultryHouseRulesVersion!==version){
+   state.poultryHouseRules=ccemsDefaultPoultryHouseRules().map((x,i)=>({id:i+1,...x}));
+   state.poultryHouseRulesVersion=version;
+ }
+ return state.poultryHouseRules
+}
+
+function ccemsPoultryHouseRule(house){
+ ccemsEnsurePoultryHouseRules();
+ return state.poultryHouseRules.find(x=>x.house===house&&x.status!=="INACTIVE")
+}
+
+function ccemsChickenHouseEligibility(breed,house){
+ ccemsEnsurePoultryHouseRules();
+ const rule=state.poultryHouseRules.find(x=>x.house===house);
+ if(!rule)return {allowed:false,reason:"No Heritage Egg collection rule exists for this production area."};
+ if(rule.status==="PENDING_APPROVAL")return {allowed:false,pending:true,reason:`Breed specification for ${house} is pending approval. Assignment is locked until the approved breed list is recorded.`};
+ if(rule.allowedBreeds.includes(breed))return {allowed:true,reason:`${breed} is approved for ${house}.`};
+ const approved=state.poultryHouseRules.filter(x=>x.status==="ACTIVE"&&x.allowedBreeds.includes(breed)).map(x=>x.house);
+ return {allowed:false,reason:`${breed} is not approved for ${house}.${approved.length?" Approved collection"+(approved.length>1?"s":"")+": "+approved.join(", ")+".":""}`}
+}
+
+function ccemsPoultryLocationsForAnimal(species){
+ if(species==="Chicken")return ccemsHeritageEggHouses();
+ return ccemsEstateLocationNames()
+}
+
+function ccemsPopulateAnimalLocations(){
+ const species=document.getElementById("naSpecies"),loc=document.getElementById("naLoc");
+ if(!species||!loc)return;
+ const current=loc.value;
+ const locations=ccemsPoultryLocationsForAnimal(species.value);
+ loc.innerHTML='<option value="">Select estate location</option>'+locations.map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join("");
+ if(locations.includes(current))loc.value=current;
+ ccemsEvaluatePoultryHouseEligibility()
+}
+
+function ccemsEvaluatePoultryHouseEligibility(){
+ const species=document.getElementById("naSpecies")?.value||"";
+ const breed=document.getElementById("naBreed")?.value||"";
+ const house=document.getElementById("naLoc")?.value||"";
+ const box=document.getElementById("naEggBox");
+ const alert=document.getElementById("naHouseEligibility");
+
+ if(!alert)return;
+
+ if(species!=="Chicken"){
+   alert.className="animal-house-eligibility neutral";
+   alert.textContent="Collection eligibility rules apply to Heritage Egg laying chickens.";
+   if(box)box.value="";
+   return
+ }
+
+ if(!breed||!house){
+   alert.className="animal-house-eligibility neutral";
+   alert.textContent="Select a chicken breed and Heritage Egg collection to check eligibility.";
+   if(box)box.value="";
+   return
+ }
+
+ const result=ccemsChickenHouseEligibility(breed,house);
+ const rule=ccemsPoultryHouseRule(house);
+ alert.className=`animal-house-eligibility ${result.allowed?"allowed":"blocked"}`;
+ alert.innerHTML=`<strong>${result.allowed?"Approved assignment":"Assignment blocked"}</strong><span>${esc(result.reason)}</span>`;
+ if(box)box.value=rule?.box||""
+}
+
+function ccemsAnimalBreedChanged(){
+ ccemsEvaluatePoultryHouseEligibility()
+}
+
+function ccemsPoultryRulesModal(){
+ ccemsEnsurePoultryHouseRules();
+ modal(`<div class="modalHead"><div><div class="eyebrow">Heritage Egg Traceability</div><h3>Collection & Breed Eligibility Rules</h3><p class="muted">Controls which chicken breeds may be assigned to each Heritage Egg collection / production area.</p></div><button class="close" onclick="closeModal()">×</button></div>
+ <div class="poultry-rule-list">
+ ${state.poultryHouseRules.map(r=>`<div class="poultry-rule-card"><div><small>Collection Area</small><strong>${esc(r.house)}</strong><span>${esc(r.box)}</span><em class="rule-status ${r.verification==="VERIFIED"?"verified":"pending"}">${r.verification==="VERIFIED"?"Verified from collection board":"Pending approval"}</em></div><div><small>Approved Breeds</small><p>${r.allowedBreeds.length?r.allowedBreeds.map(b=>`<span class="rule-breed">${esc(b)}</span>`).join(""):`<span class="rule-pending">Breed specification pending approval</span>`}</p></div></div>`).join("")}
+ </div>
+ <div class="notice"><strong>Control rule</strong><br>A chicken cannot be created in a Heritage Egg collection unless its breed is approved for that house. Any future change to these rules should be authorised and audited.</div>`)
+}
+
+function renderPoultryTraceability(v){
+ setTitle("Heritage Egg Traceability");
+ ccemsEnsurePoultryHouseRules();
+ const chickens=(state.animals||[]).filter(a=>a.species==="Chicken");
+ const flagged=chickens.filter(a=>{
+   if(!ccemsHeritageEggHouses().includes(a.location))return true;
+   return !ccemsChickenHouseEligibility(a.breed,a.location).allowed
+ });
+ v.innerHTML=`<div class="head"><div><div class="eyebrow">Livestock · Heritage Egg Production</div><h2>Heritage Egg Collection Traceability</h2><p>Collection-area eligibility, breed controls and seasonal Heritage Egg box alignment. Masterplan basis: five collection areas · 95 hens each · 475 seasonal collection hens.</p></div><button class="primary" onclick="ccemsPoultryRulesModal()">View Collection Rules</button></div>
+ <div class="kpis">${kpi("Collection Areas",5,"Controlled production houses")}${kpi("Laying Chickens",chickens.length,"Recorded chickens")}${kpi("Allocation Flags",flagged.length,"Require management attention")}</div>
+ ${ccemsHeritageEggHouses().map(h=>{const r=ccemsPoultryHouseRule(h),birds=chickens.filter(a=>a.location===h);return `<section class="card panel"><div class="dash-section-head"><div><h3>${esc(h)}</h3><p>${esc(r?.box||"Heritage Egg Box")}</p></div>${badge(flagged.some(a=>a.location===h)?"CHECK":"COMPLIANT")}</div><div class="poultry-house-summary"><div><small>Birds</small><strong>${birds.length}</strong></div><div><small>Approved Breeds</small><strong>${esc((r?.allowedBreeds||[]).join(" · "))}</strong></div></div></section>`}).join("")}`
+}
+
 function ccemsEnsureLivestockUnits(){
  state.livestockUnits=Array.isArray(state.livestockUnits)?state.livestockUnits:[];
  if(!state.livestockUnits.length){
@@ -5659,7 +5796,7 @@ function renderAnimals(v){
 }
 function animalRows(rows){return rows.map(a=>`<tr class="clickable" onclick="animalModal('${a.id}')"><td><strong>${esc(a.id)}</strong><br><span class="muted">${esc(a.official||"")}</span></td><td><strong>${esc(a.managementTag||"—")}</strong></td><td>${esc(a.name)}</td><td>${esc(a.species)}</td><td>${esc(a.breed)}</td><td>${esc(a.unit||"—")}</td><td>${esc(a.group)}</td><td>${esc(a.location)}</td><td>${badge(a.status)}</td><td>${activeWithdrawal(a)?badge("WITHDRAWAL"):"—"}</td></tr>`).join("")}
 
-/* v1.1.94 — reliable live-search framework */
+/* v1.1.96 — reliable live-search framework */
 function ccemsSearchNormalise(value){
  return String(value??"")
    .normalize("NFKD")
@@ -5817,7 +5954,7 @@ function ccemsIdentificationFieldsForSpecies(){
  const e=document.getElementById("naId");if(e)e.value=ccemsNextEstateAnimalId(sp);
  const h=document.getElementById("naIdHint");if(h)h.textContent=ccemsRegulatoryIdRequired(sp)?"Record the legally issued official identifier; CCEMS does not generate regulatory IDs.":"Individual regulatory ID optional where not required; use management/flock identification as appropriate.";
 }
-function ccemsAnimalSpeciesChanged(){ccemsPopulateAnimalBreeds();ccemsPopulateAnimalUnits();ccemsIdentificationFieldsForSpecies();ccemsRefreshManagementTag()}
+function ccemsAnimalSpeciesChanged(){ccemsPopulateAnimalBreeds();ccemsPopulateAnimalUnits();ccemsPopulateAnimalLocations();ccemsIdentificationFieldsForSpecies();ccemsRefreshManagementTag();ccemsEvaluatePoultryHouseEligibility()}
 
 function newAnimalModal(){
  ccemsEnsureAnimalRegisters();ccemsEnsureLivestockUnits();
@@ -5833,7 +5970,7 @@ function newAnimalModal(){
 
    <div class="animal-field"><label>Species</label><select id="naSpecies" onchange="ccemsAnimalSpeciesChanged()"><option value="">Select species</option>${ccemsSpeciesList().map(x=>`<option value="${esc(x)}" ${x==="Cattle"?"selected":""}>${esc(x)}</option>`).join("")}</select></div>
 
-   <div class="animal-field"><label>Breed</label><select id="naBreed"><option value="">Select breed</option>${ccemsBreedsForSpecies("Cattle").map(x=>`<option value="${esc(x)}" ${x==="Jersey"?"selected":""}>${esc(x)}</option>`).join("")}</select></div>
+   <div class="animal-field"><label>Breed</label><select id="naBreed" onchange="ccemsAnimalBreedChanged()"><option value="">Select breed</option>${ccemsBreedsForSpecies("Cattle").map(x=>`<option value="${esc(x)}" ${x==="Jersey"?"selected":""}>${esc(x)}</option>`).join("")}</select></div>
 
    <div class="animal-field"><label>Production Unit / House / Herd / Flock</label><select id="naUnit" onchange="ccemsAnimalUnitChanged()"><option value="">Select production unit / house / herd / flock</option>${ccemsUnitOptions("Cattle").map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join("")}</select></div>
 
@@ -5842,7 +5979,9 @@ function newAnimalModal(){
 
    <div class="animal-field"><label>Operational Group</label><select id="naGroup"><option value="">Select operational group</option>${ccemsGroupsForSpecies("Cattle").map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join("")}</select></div>
 
-   <div class="animal-field"><label>Location</label><select id="naLoc"><option value="">Select estate location</option>${ccemsEstateLocationNames().map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join("")}</select></div>
+   <div class="animal-field"><label>Heritage Egg Collection / Production Area</label><select id="naLoc" onchange="ccemsEvaluatePoultryHouseEligibility()"><option value="">Select estate location</option>${ccemsPoultryLocationsForAnimal("Cattle").map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join("")}</select></div>
+<div class="animal-field"><label>Heritage Egg Product</label><input id="naEggBox" readonly placeholder="Automatically linked from selected house"></div>
+<div class="animal-field animal-field-wide"><label>Collection Eligibility</label><div id="naHouseEligibility" class="animal-house-eligibility neutral">Collection eligibility rules apply to Heritage Egg laying chickens.</div></div>
 
    <div class="animal-field animal-field-notes"><label>Notes</label><textarea id="naNotes"></textarea></div>
   </div>
@@ -5852,13 +5991,18 @@ function newAnimalModal(){
  setTimeout(()=>{ccemsIdentificationFieldsForSpecies();ccemsRefreshManagementTag()},0)
 }
 function createAnimal(){
- const species=val("naSpecies"),breed=val("naBreed"),unit=val("naUnit"),group=val("naGroup"),location=val("naLoc");
+ const species=val("naSpecies"),breed=val("naBreed"),unit=val("naUnit"),group=val("naGroup"),location=val("naLoc"),heritageEggProduct=val("naEggBox");
  const id=ccemsNextEstateAnimalId(species),officialId=val("naOfficial"),eid=val("naEid");
  ccemsBackfillManagementTags();
  const managementTag=ccemsNextManagementTag(species);
 
  if(!species||!breed||!unit||!group||!location){
    alert("Select Species, Breed, Production Unit, Group and Location.");return
+ }
+ if(species==="Chicken"){
+   if(!ccemsHeritageEggHouses().includes(location)){alert("Select one of the five Heritage Egg collections for this chicken.");return}
+   const eligibility=ccemsChickenHouseEligibility(breed,location);
+   if(!eligibility.allowed){alert("Heritage Egg collection assignment blocked. "+eligibility.reason);return}
  }
  if(ccemsRegulatoryIdRequired(species)&&!officialId){
    alert("Record the official / regulatory identifier for this animal.");return
@@ -5873,7 +6017,7 @@ function createAnimal(){
  state.animals.push({
    id,estateId:id,official:officialId,officialId,eid,managementTag,
    identificationHistory:[{type:"MANAGEMENT_TAG_ASSIGNED",current:managementTag,reason:"Automatically issued by CCEMS",date:new Date().toISOString()}],
-   name:val("naName"),species,breed,unit,sex:val("naSex"),dob:val("naDob"),
+   name:val("naName"),species,breed,unit,heritageEggProduct,sex:val("naSex"),dob:val("naDob"),
    group,location,status:"ACTIVE",sire:"",dam:"",notes:val("naNotes"),
    events:[],weights:[],health:[],medicines:[],breeding:[],movements:[]
  });
@@ -5882,7 +6026,7 @@ function createAnimal(){
 }
 function animalModal(id,tab="summary"){const a=state.animals.find(x=>x.id===id);if(!a)return;const tabs=["summary","health","medicines","weights","breeding","movements"];modal(`<div class="modalHead"><div><h3>${esc(a.id)} · ${esc(a.name||a.breed)}</h3><p class="muted">${esc(a.breed)} · ${esc(a.group||"No group")} · ${esc(a.location||"No location")}</p></div><button class="close" onclick="closeModal()">×</button></div><div class="tabs">${tabs.map(t=>`<button class="${t===tab?"active":""}" onclick="animalModal('${id}','${t}')">${t[0].toUpperCase()+t.slice(1)}</button>`).join("")}</div>${animalTab(a,tab)}</div>`)}
 function animalTab(a,tab){
- if(tab==="summary")return `<div class="grid2"><section><div class="stat"><span>Official / Regulatory ID</span><strong>${esc(a.officialId||a.official||"—")}</strong></div><div class="stat"><span>EID / RFID</span><strong>${esc(a.eid||"—")}</strong></div><div class="stat"><span>Management Tag</span><strong>${esc(a.managementTag||"—")}</strong></div><div class="stat"><span>Species / Breed</span><strong>${esc(a.species)} / ${esc(a.breed)}</strong></div><div class="stat"><span>Sex</span><strong>${esc(a.sex)}</strong></div><div class="stat"><span>Date of birth</span><strong>${dateFmt(a.dob)}</strong></div><div class="stat"><span>Status</span>${badge(a.status)}</div><div class="stat"><span>Current location</span><strong>${esc(a.location||"—")}</strong></div></section><section>${activeWithdrawal(a)?'<div class="critical"><strong>WITHDRAWAL ACTIVE</strong><br>This animal has an active medicine withdrawal period.</div>':'<div class="notice">No active medicine withdrawal.</div>'}<div class="sectionTitle">Notes</div><p>${esc(a.notes||"No notes recorded.")}</p></section></div>`;
+ if(tab==="summary")return `<div class="grid2"><section><div class="stat"><span>Official / Regulatory ID</span><strong>${esc(a.officialId||a.official||"—")}</strong></div><div class="stat"><span>EID / RFID</span><strong>${esc(a.eid||"—")}</strong></div><div class="stat"><span>Management Tag</span><strong>${esc(a.managementTag||"—")}</strong></div><div class="stat"><span>Heritage Egg Product</span><strong>${esc(a.heritageEggProduct||"—")}</strong></div><div class="stat"><span>Species / Breed</span><strong>${esc(a.species)} / ${esc(a.breed)}</strong></div><div class="stat"><span>Sex</span><strong>${esc(a.sex)}</strong></div><div class="stat"><span>Date of birth</span><strong>${dateFmt(a.dob)}</strong></div><div class="stat"><span>Status</span>${badge(a.status)}</div><div class="stat"><span>Current location</span><strong>${esc(a.location||"—")}</strong></div></section><section>${activeWithdrawal(a)?'<div class="critical"><strong>WITHDRAWAL ACTIVE</strong><br>This animal has an active medicine withdrawal period.</div>':'<div class="notice">No active medicine withdrawal.</div>'}<div class="sectionTitle">Notes</div><p>${esc(a.notes||"No notes recorded.")}</p></section></div>`;
  if(tab==="health")return `<div class="actions"><button class="primary" onclick="healthModal('${a.id}')">+ Health Record</button></div>${simpleTable(["Date","Type","Finding","Vet / Recorder","Status"],(a.health||[]).map(h=>[dateFmt(h.date),h.type,h.finding,h.vet,badge(h.status)]))}`;
  if(tab==="medicines")return `<div class="actions"><button class="primary" onclick="medicineModal('${a.id}')">+ Medicine Record</button></div>${simpleTable(["Date","Medicine","Reason","Dose","Withdrawal end","Status"],(a.medicines||[]).map(m=>[dateFmt(m.date),m.medicine,m.reason,m.dose,dateFmt(m.withdrawalEnd),badge(m.status)]))}`;
  if(tab==="weights")return `<div class="actions"><button class="primary" onclick="weightModal('${a.id}')">+ Weight</button></div>${simpleTable(["Date","Weight","Note"],(a.weights||[]).map(w=>[dateFmt(w.date),`${w.kg} kg`,w.note]))}`;
@@ -6534,7 +6678,7 @@ function renderRota(v){
  <div class="grid2"><section class="card panel"><button class="section-drill-heading" type="button" onclick="openRotaSection('shifts')"><span>Shift Rota</span><strong>›</strong></button>${simpleTable(["Staff","Date","Start","End","Location","Status"],state.shifts.map(s=>[esc(staffName(s.staff)),dateFmt(s.date),esc(s.start),esc(s.end),esc(s.location),badge(s.status)]))}</section><section class="card panel"><button class="section-drill-heading" type="button" onclick="openRotaSection('attendance')"><span>Attendance</span><strong>›</strong></button>${simpleTable(["Staff","Date","Clock in","Clock out","Status"],state.attendance.map(a=>[esc(staffName(a.staff)),dateFmt(a.date),esc(a.clockIn),esc(a.clockOut||"—"),badge(a.status)]))}</section></div>`
 }
 
-/* v1.1.94 — runtime Add Shift width equalisation for iOS Safari */
+/* v1.1.96 — runtime Add Shift width equalisation for iOS Safari */
 function equaliseShiftFieldWidths(){
  const form=document.querySelector(".shift-form-uniform");
  if(!form)return;
@@ -6785,7 +6929,7 @@ function renderDeptWork(v){
  v.innerHTML=`<div class="head"><div><h2>Department Work Queue</h2><p>Operational workload grouped by estate department.</p></div></div>${depts.map(d=>`<section class="card panel" style="margin-bottom:17px"><h3>${esc(d)}</h3>${simpleTable(["Task","Assigned","Priority","Due","Status"],state.tasks.filter(t=>t.dept===d).map(t=>[esc(t.title),esc(t.assigned||"Unassigned"),badge(t.priority),dateFmt(t.due),badge(t.status)]))}</section>`).join("")}`
 }
 
-/* v1.1.94 — workflow SLA policy & escalation control */
+/* v1.1.96 — workflow SLA policy & escalation control */
 function workflowSLAPolicyFor(r){
  const rows=state.workflowSLAPolicies||[];
  return rows.find(x=>x.status==="ACTIVE"&&x.department===r.department&&x.priority===r.priority)
@@ -7220,7 +7364,7 @@ function saveExecutiveReportExcel(id){
 
 
 /* =========================================================
-   v1.1.94 — STAFF ACCOUNTS, ROLES & PERMISSIONS
+   v1.1.96 — STAFF ACCOUNTS, ROLES & PERMISSIONS
    Browser-demo governance layer. Production enforcement must
    remain server-side with authenticated sessions and MFA.
    ========================================================= */
@@ -7354,7 +7498,7 @@ function staffAccountModal(staffId){
   <button class="secondary" onclick="saveStaffPermissionOverrides(${s.id})">Save Permission Overrides</button>
  </section>
 
- <div class="warn">This v1.1.94 build models account and permission governance in the browser demo. A production CCEMS must enforce authentication, MFA and every permission server-side.</div>`)
+ <div class="warn">This v1.1.96 build models account and permission governance in the browser demo. A production CCEMS must enforce authentication, MFA and every permission server-side.</div>`)
 }
 
 function saveStaffAccount(staffId){
@@ -7911,7 +8055,7 @@ function forceReleaseWorkflowBlock(id){
 }
 
 
-/* v1.1.94 — evidence-aware workflow approval */
+/* v1.1.96 — evidence-aware workflow approval */
 function workflowEvidenceSummary(id){
  const stepRecords=workflowStepRecordsFor(id);
  const direct=ccemsEvidenceFor("WORKFLOW_RUN",id,"EVIDENCE");
@@ -8062,7 +8206,7 @@ function saveWorkflowComment(id){
 function workflowTemplateModal(){modal(`<div class="modalHead"><div><h3>New Workflow Template</h3><p class="muted">Create a reusable controlled workflow.</p></div><button class="close" onclick="closeModal()">×</button></div><div class="field"><label>Workflow name</label><input id="wftName"></div><div class="grid2"><div class="field"><label>Department</label><select id="wftDept">${optionsFrom(ccDepartments(),"Select department")}</select></div><div class="field"><label>Location</label><select id="wftLoc">${optionsFrom(ccLocations(),"Select location")}</select></div></div><div class="grid2"><div class="field"><label>Frequency</label><select id="wftFreq"><option>DAILY</option><option>WEEKLY</option><option>MONTHLY</option><option>QUARTERLY</option><option>ANNUALLY</option><option>ON DEMAND</option></select></div><div class="field"><label>Priority</label><select id="wftPriority"><option>LOW</option><option>MEDIUM</option><option>HIGH</option><option>CRITICAL</option></select></div></div><div class="field"><label>Approval role</label><select id="wftApproval">${optionsFrom(state.roles.map(x=>x.name),"Select approval role")}</select></div><div class="field"><label>Steps — one per line</label><textarea id="wftSteps" rows="6"></textarea></div><button class="primary" onclick="saveWorkflowTemplate()">Create Template</button>`)}
 function saveWorkflowTemplate(){const name=val("wftName"),dept=val("wftDept"),loc=val("wftLoc"),approval=val("wftApproval");if(!name||!dept||!loc||!approval){alert("Complete all required fields.");return}const id=nextId(state.workflowTemplates),steps=(val("wftSteps")||"").split(/\n+/).map(x=>x.trim()).filter(Boolean);state.workflowTemplates.push({id,ref:`WF-${String(id).padStart(3,"0")}`,name,department:dept,location:loc,priority:val("wftPriority"),frequency:val("wftFreq"),approval,status:"ACTIVE",steps:steps.length?steps:["Complete task","Record evidence","Approval"]});audit("CREATE","WORKFLOW_TEMPLATE",name);save();closeModal();render("workflows")}
 
-/* v1.1.94 — recurring workflow scheduling */
+/* v1.1.96 — recurring workflow scheduling */
 function workflowRecurrenceForTemplate(templateId){
  return (state.workflowRecurrenceRules||[]).find(x=>String(x.templateId)===String(templateId)&&x.status==="ACTIVE")
 }
